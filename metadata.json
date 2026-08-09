@@ -1,0 +1,8 @@
+{
+  "name": "MFS Growth Agency",
+  "description": "Premium presentations, academic document formatting, ATS resumes, and custom reports with fast global delivery.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

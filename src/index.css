@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-base: #050507;
+    --surface-glass: rgba(11, 11, 14, 0.75);
+    --surface-solid: #0d0d10;
+    --accent-gold: #E5C158;
+    --accent-gold-dark: #C5A847;
+    --border-glass: rgba(229, 193, 88, 0.12);
+    --text-primary: #FFFFFF;
+    --text-secondary: #9FA0A7;
+  }
+
+  body {
+    background-color: #050507;
+    background-image: 
+      radial-gradient(circle at 50% 0%, rgba(229, 193, 88, 0.06) 0%, transparent 60%),
+      radial-gradient(circle at 100% 100%, #0b0b0e 0%, #050507 100%);
+    color: #FFFFFF;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #050507;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(229, 193, 88, 0.25);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #E5C158;
+}
+
+/* Metallic Gold Text Gradient */
+.gold-text-gradient {
+  background: linear-gradient(135deg, #FFFFFF 30%, #E5C158 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-pure-gradient {
+  background: linear-gradient(135deg, #E5C158 0%, #FFF3B0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glassmorphism Card Style */
+.glass-card {
+  background-color: rgba(11, 11, 14, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(229, 193, 88, 0.12);
+}
+
+.glass-card-hover {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-hover:hover {
+  border-color: #E5C158;
+  background-color: rgba(20, 20, 26, 0.85);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(229, 193, 88, 0.08);
+}
+
+/* Floating Animations */
+@keyframes floatDeck {
+  0%, 100% { transform: translateY(0px) rotate(-10deg); }
+  50% { transform: translateY(-12px) rotate(-8deg); }
+}
+
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes breathePulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(37, 211, 102, 0.25); }
+  50% { transform: scale(1.06); box-shadow: 0 0 30px rgba(37, 211, 102, 0.45); }
+}
+
+@keyframes breatheAiPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(229, 193, 88, 0.25); }
+  50% { transform: scale(1.06); box-shadow: 0 0 30px rgba(229, 193, 88, 0.45); }
+}
+
+.animate-float-deck {
+  animation: floatDeck 6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.animate-float-badge {
+  animation: floatBadge 4s ease-in-out infinite;
+}
+
+.animate-breathe {
+  animation: breathePulse 3.5s ease-in-out infinite;
+}
+
+.animate-breathe-ai {
+  animation: breatheAiPulse 3.5s ease-in-out infinite;
+}
+
+/* Lottie & Motion Utility Styles */
+@keyframes lottieRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes lottiePulseRing {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 0.3; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+@keyframes lottieDash {
+  0% { stroke-dashoffset: 100; }
+  50% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -100; }
+}
+
+.animate-lottie-spin {
+  animation: lottieRotate 12s linear infinite;
+}
+
+.animate-lottie-ring {
+  animation: lottiePulseRing 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-lottie-dash {
+  stroke-dasharray: 200;
+  animation: lottieDash 3s ease-in-out infinite;
+}
+
+/* Accessibility: Support for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
