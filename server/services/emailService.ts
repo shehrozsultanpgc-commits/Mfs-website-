@@ -33,9 +33,18 @@ export interface ActionPayload {
   createdAt?: string;
 }
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const ADMIN_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || 'mfsmedia.agency@gmail.com';
-const SENDER_EMAIL = process.env.SENDER_EMAIL || 'MFS Growth Agency <onboarding@resend.dev>';
+function getAdminEmail(): string {
+  return process.env.SUPPORT_EMAIL || process.env.AGENCY_EMAIL || process.env.ADMIN_NOTIFICATION_EMAIL || 'mfsmedia.agency@gmail.com';
+}
+
+function getSenderEmail(): string {
+  return process.env.SMTP_FROM_EMAIL || process.env.SENDER_EMAIL || 'MFS Growth Agency <onboarding@resend.dev>';
+}
+
+function getWhatsAppNumber(): string {
+  const raw = process.env.AGENCY_WHATSAPP || '+923015323689';
+  return raw.replace(/[^0-9]/g, '');
+}
 
 // In-memory log store for inspecting email dispatch history and diagnostic auditing
 export interface EmailLogEntry {
@@ -44,7 +53,7 @@ export interface EmailLogEntry {
   recipient: string;
   type: 'order_client' | 'order_admin' | 'action_client' | 'action_admin';
   subject: string;
-  provider: 'resend' | 'smtp' | 'simulation';
+  provider: 'sendgrid' | 'resend' | 'smtp' | 'simulation';
   status: 'sent' | 'simulated' | 'failed';
   messageId?: string;
   error?: string;
@@ -64,11 +73,49 @@ export function logEmailDispatch(entry: EmailLogEntry) {
   }
 }
 
+async function sendViaSendGrid(to: string, subject: string, html: string): Promise<{ success: boolean; messageId: string } | null> {
+  const apiKey = process.env.SENDGRID_API_KEY;
+  if (!apiKey || apiKey.trim().length < 10 || apiKey.includes('placeholder')) return null;
+
+  try {
+    const sender = getSenderEmail();
+    const fromMatch = sender.match(/<([^>]+)>/);
+    const fromEmail = fromMatch ? fromMatch[1] : sender.trim();
+
+    const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey.trim()}`,
+      },
+      body: JSON.stringify({
+        personalizations: [{ to: [{ email: to }] }],
+        from: { email: fromEmail || 'mfsmedia.agency@gmail.com', name: 'MFS Growth Agency' },
+        subject,
+        content: [{ type: 'text/html', value: html }],
+      }),
+    });
+
+    if (response.ok) {
+      const msgId = response.headers.get('x-message-id') || `sg-${Date.now()}`;
+      return { success: true, messageId: msgId };
+    } else {
+      const errText = await response.text();
+      console.warn('[SendGrid Notice] Dispatch returned notice:', errText);
+      return null;
+    }
+  } catch (err: any) {
+    console.warn('[SendGrid Error] Failed sending email via SendGrid:', err?.message || err);
+    return null;
+  }
+}
+
 let resendClient: Resend | null = null;
 function getResendClient(): Resend | null {
-  if (!resendClient && RESEND_API_KEY && RESEND_API_KEY.trim().length > 10 && !RESEND_API_KEY.includes('placeholder')) {
+  const resendKey = process.env.RESEND_API_KEY;
+  if (!resendClient && resendKey && resendKey.trim().length > 10 && !resendKey.includes('placeholder')) {
     try {
-      resendClient = new Resend(RESEND_API_KEY.trim());
+      resendClient = new Resend(resendKey.trim());
     } catch (err) {
       console.warn('[MFS Resend] Failed to initialize Resend client:', err);
       resendClient = null;
@@ -105,7 +152,7 @@ Phone: ${order.clientPhone}
 Delivery Speed: ${order.urgency}
 Brief: ${order.projectNotes || 'Standard guidelines provided'}`;
 
-  const whatsappUrl = `https://wa.me/923015323689?text=${encodeURIComponent(waMessage)}`;
+  const whatsappUrl = `https://wa.me/${getWhatsAppNumber()}?text=${encodeURIComponent(waMessage)}`;
 
   const emailSubject = `Order Brief & Payment Verification - Order #${order.orderId} (${order.clientName})`;
   const emailBody = `Dear MFS Agency Management,
@@ -379,15 +426,36 @@ function escapeHtml(str: string): string {
 export async function sendClientConfirmation(order: OrderCheckoutPayload): Promise<{ success: boolean; messageId?: string; error?: string }> {
   const html = buildClientConfirmationHtml(order);
   const subject = `Order Confirmation #${order.orderId} - MFS Growth Agency`;
+  const senderEmail = getSenderEmail();
+  const adminEmail = getAdminEmail();
 
+  // 1. SendGrid Provider
+  const sendgridRes = await sendViaSendGrid(order.clientEmail, subject, html);
+  if (sendgridRes) {
+    console.log(`[SendGrid] Client email dispatched for ${order.orderId}:`, sendgridRes.messageId);
+    logEmailDispatch({
+      id: `log-${Date.now()}-1`,
+      timestamp: new Date().toISOString(),
+      recipient: order.clientEmail,
+      type: 'order_client',
+      subject,
+      provider: 'sendgrid',
+      status: 'sent',
+      messageId: sendgridRes.messageId,
+      previewHtml: html,
+    });
+    return { success: true, messageId: sendgridRes.messageId };
+  }
+
+  // 2. Resend Provider
   const resend = getResendClient();
   if (resend) {
     try {
-      const isTestDomain = SENDER_EMAIL.includes('onboarding@resend.dev');
-      const targetEmail = isTestDomain ? 'mfsmedia.agency@gmail.com' : order.clientEmail;
+      const isTestDomain = senderEmail.includes('onboarding@resend.dev');
+      const targetEmail = isTestDomain ? adminEmail : order.clientEmail;
 
       const response = await resend.emails.send({
-        from: SENDER_EMAIL,
+        from: senderEmail,
         to: [targetEmail],
         subject: isTestDomain && targetEmail !== order.clientEmail
           ? `[Client Copy: ${order.clientEmail}] ${subject}`
@@ -411,19 +479,19 @@ export async function sendClientConfirmation(order: OrderCheckoutPayload): Promi
         return { success: true, messageId: response.data.id };
       } else {
         const errMsg = response?.error?.message || 'Resend validation constraint';
-        console.warn(`[Resend Notice] Client email dispatch returned notice (${errMsg}). Falling back to simulation mode.`);
+        console.warn(`[Resend Notice] Client email dispatch returned notice (${errMsg}). Falling back.`);
       }
     } catch (err: any) {
       console.warn(`[Resend Error] Failed sending to client ${order.clientEmail}:`, err?.message || err);
     }
   }
 
-  // Fallback to SMTP if configured
+  // 3. SMTP Provider
   const smtp = getSmtpTransporter();
   if (smtp) {
     try {
       const info = await smtp.sendMail({
-        from: SENDER_EMAIL,
+        from: senderEmail,
         to: order.clientEmail,
         subject: subject,
         html: html,
@@ -468,18 +536,39 @@ export async function sendClientConfirmation(order: OrderCheckoutPayload): Promi
 export async function sendAdminAlert(order: OrderCheckoutPayload): Promise<{ success: boolean; messageId?: string; error?: string }> {
   const html = buildAdminAlertHtml(order);
   const subject = `🚨 NEW ORDER RECEIVED - [${order.orderId}] - ${order.clientName}`;
+  const senderEmail = getSenderEmail();
+  const adminEmail = getAdminEmail();
 
+  // 1. SendGrid Provider
+  const sendgridRes = await sendViaSendGrid(adminEmail, subject, html);
+  if (sendgridRes) {
+    console.log(`[SendGrid] Admin alert dispatched for ${order.orderId}:`, sendgridRes.messageId);
+    logEmailDispatch({
+      id: `log-${Date.now()}-2`,
+      timestamp: new Date().toISOString(),
+      recipient: adminEmail,
+      type: 'order_admin',
+      subject,
+      provider: 'sendgrid',
+      status: 'sent',
+      messageId: sendgridRes.messageId,
+      previewHtml: html,
+    });
+    return { success: true, messageId: sendgridRes.messageId };
+  }
+
+  // 2. Resend Provider
   const resend = getResendClient();
   if (resend) {
     try {
-      const isTestDomain = SENDER_EMAIL.includes('onboarding@resend.dev');
-      const targetEmail = isTestDomain ? 'mfsmedia.agency@gmail.com' : ADMIN_EMAIL;
+      const isTestDomain = senderEmail.includes('onboarding@resend.dev');
+      const targetEmail = isTestDomain ? 'mfsmedia.agency@gmail.com' : adminEmail;
 
       const response = await resend.emails.send({
-        from: SENDER_EMAIL,
+        from: senderEmail,
         to: [targetEmail],
-        subject: isTestDomain && targetEmail !== ADMIN_EMAIL 
-          ? `[Admin Copy: ${ADMIN_EMAIL}] ${subject}`
+        subject: isTestDomain && targetEmail !== adminEmail 
+          ? `[Admin Copy: ${adminEmail}] ${subject}`
           : subject,
         html: html,
       });
@@ -500,20 +589,20 @@ export async function sendAdminAlert(order: OrderCheckoutPayload): Promise<{ suc
         return { success: true, messageId: response.data.id };
       } else {
         const errMsg = response?.error?.message || 'Resend validation constraint';
-        console.warn(`[Resend Notice] Admin alert dispatch returned notice (${errMsg}). Falling back to simulation mode.`);
+        console.warn(`[Resend Notice] Admin alert dispatch returned notice (${errMsg}). Falling back.`);
       }
     } catch (err: any) {
       console.warn(`[Resend Error] Failed sending admin alert:`, err?.message || err);
     }
   }
 
-  // Fallback to SMTP
+  // 3. SMTP Provider
   const smtp = getSmtpTransporter();
   if (smtp) {
     try {
       const info = await smtp.sendMail({
-        from: SENDER_EMAIL,
-        to: ADMIN_EMAIL,
+        from: senderEmail,
+        to: adminEmail,
         subject: subject,
         html: html,
       });
@@ -521,7 +610,7 @@ export async function sendAdminAlert(order: OrderCheckoutPayload): Promise<{ suc
       logEmailDispatch({
         id: `log-${Date.now()}-2`,
         timestamp: new Date().toISOString(),
-        recipient: ADMIN_EMAIL,
+        recipient: adminEmail,
         type: 'order_admin',
         subject,
         provider: 'smtp',
@@ -535,12 +624,12 @@ export async function sendAdminAlert(order: OrderCheckoutPayload): Promise<{ suc
     }
   }
 
-  console.log(`[Email Simulation] Simulated Admin Alert Email queued for ${ADMIN_EMAIL} (#${order.orderId})`);
+  console.log(`[Email Simulation] Simulated Admin Alert Email queued for ${adminEmail} (#${order.orderId})`);
   const simAdminId = `sim-admin-${Date.now()}`;
   logEmailDispatch({
     id: `log-${Date.now()}-2`,
     timestamp: new Date().toISOString(),
-    recipient: ADMIN_EMAIL,
+    recipient: adminEmail,
     type: 'order_admin',
     subject,
     provider: 'simulation',
@@ -727,15 +816,25 @@ export function buildAdminActionHtml(action: ActionPayload): string {
 export async function sendClientActionConfirmation(action: ActionPayload): Promise<{ success: boolean; messageId?: string; error?: string }> {
   const html = buildClientActionHtml(action);
   const subject = `[Confirmation] ${action.actionTitle} - MFS Growth Agency`;
+  const senderEmail = getSenderEmail();
+  const adminEmail = getAdminEmail();
 
+  // 1. SendGrid Provider
+  const sendgridRes = await sendViaSendGrid(action.clientEmail, subject, html);
+  if (sendgridRes) {
+    console.log(`[SendGrid] Client action email dispatched for ${action.clientEmail}:`, sendgridRes.messageId);
+    return { success: true, messageId: sendgridRes.messageId };
+  }
+
+  // 2. Resend Provider
   const resend = getResendClient();
   if (resend) {
     try {
-      const isTestDomain = SENDER_EMAIL.includes('onboarding@resend.dev');
-      const targetEmail = isTestDomain ? 'mfsmedia.agency@gmail.com' : action.clientEmail;
+      const isTestDomain = senderEmail.includes('onboarding@resend.dev');
+      const targetEmail = isTestDomain ? adminEmail : action.clientEmail;
 
       const response = await resend.emails.send({
-        from: SENDER_EMAIL,
+        from: senderEmail,
         to: [targetEmail],
         subject: isTestDomain && targetEmail !== action.clientEmail
           ? `[Client Copy: ${action.clientEmail}] ${subject}`
@@ -752,11 +851,12 @@ export async function sendClientActionConfirmation(action: ActionPayload): Promi
     }
   }
 
+  // 3. SMTP Provider
   const smtp = getSmtpTransporter();
   if (smtp) {
     try {
       const info = await smtp.sendMail({
-        from: SENDER_EMAIL,
+        from: senderEmail,
         to: action.clientEmail,
         subject: subject,
         html: html,
@@ -777,18 +877,28 @@ export async function sendClientActionConfirmation(action: ActionPayload): Promi
 export async function sendAdminActionAlert(action: ActionPayload): Promise<{ success: boolean; messageId?: string; error?: string }> {
   const html = buildAdminActionHtml(action);
   const subject = `🔔 CLIENT ACTION ALERT: ${action.actionTitle} - ${action.clientName}`;
+  const senderEmail = getSenderEmail();
+  const adminEmail = getAdminEmail();
 
+  // 1. SendGrid Provider
+  const sendgridRes = await sendViaSendGrid(adminEmail, subject, html);
+  if (sendgridRes) {
+    console.log(`[SendGrid] Admin action alert dispatched:`, sendgridRes.messageId);
+    return { success: true, messageId: sendgridRes.messageId };
+  }
+
+  // 2. Resend Provider
   const resend = getResendClient();
   if (resend) {
     try {
-      const isTestDomain = SENDER_EMAIL.includes('onboarding@resend.dev');
-      const targetEmail = isTestDomain ? 'mfsmedia.agency@gmail.com' : ADMIN_EMAIL;
+      const isTestDomain = senderEmail.includes('onboarding@resend.dev');
+      const targetEmail = isTestDomain ? 'mfsmedia.agency@gmail.com' : adminEmail;
 
       const response = await resend.emails.send({
-        from: SENDER_EMAIL,
+        from: senderEmail,
         to: [targetEmail],
-        subject: isTestDomain && targetEmail !== ADMIN_EMAIL
-          ? `[Admin Copy: ${ADMIN_EMAIL}] ${subject}`
+        subject: isTestDomain && targetEmail !== adminEmail
+          ? `[Admin Copy: ${adminEmail}] ${subject}`
           : subject,
         html: html,
       });
@@ -802,12 +912,13 @@ export async function sendAdminActionAlert(action: ActionPayload): Promise<{ suc
     }
   }
 
+  // 3. SMTP Provider
   const smtp = getSmtpTransporter();
   if (smtp) {
     try {
       const info = await smtp.sendMail({
-        from: SENDER_EMAIL,
-        to: ADMIN_EMAIL,
+        from: senderEmail,
+        to: adminEmail,
         subject: subject,
         html: html,
       });
@@ -817,6 +928,6 @@ export async function sendAdminActionAlert(action: ActionPayload): Promise<{ suc
     }
   }
 
-  console.log(`[Email Simulation] Simulated Admin Action Alert Email queued for ${ADMIN_EMAIL}`);
+  console.log(`[Email Simulation] Simulated Admin Action Alert Email queued for ${adminEmail}`);
   return { success: true, messageId: `sim-admin-act-${Date.now()}` };
 }
