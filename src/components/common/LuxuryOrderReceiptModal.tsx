@@ -373,20 +373,30 @@ export const LuxuryOrderReceiptModal: React.FC<LuxuryOrderReceiptModalProps> = (
           </div>
 
           {/* Order Status Banner */}
-          <div className="p-4 rounded-2xl bg-[#28C76F]/10 border border-[#28C76F]/30 flex items-center justify-between gap-3">
+          <div className={`p-4 rounded-2xl border flex items-center justify-between gap-3 ${
+            details.isPaid
+              ? 'bg-[#28C76F]/10 border-[#28C76F]/30 text-[#28C76F]'
+              : 'bg-[#E5C158]/10 border-[#E5C158]/40 text-[#E5C158]'
+          }`}>
             <div className="flex items-center gap-3">
-              <ShieldCheck className="w-5 h-5 text-[#28C76F] shrink-0" />
+              <ShieldCheck className="w-5 h-5 shrink-0" />
               <div>
-                <h4 className="text-xs font-bold text-[#28C76F]">
-                  Order Confirmed & Queued in Live Production
+                <h4 className="text-xs font-bold">
+                  {details.isPaid ? 'Order Confirmed & Paid' : 'Order Received & Payment Verification Pending'}
                 </h4>
                 <p className="text-[11px] text-neutral-300">
-                  50% Grand Launch Promo Discount has been locked into your rate.
+                  {details.isPaid
+                    ? 'Payment verified. Project is in active production.'
+                    : 'Payment proof submitted. MFS Finance Team is verifying transfer details.'}
                 </p>
               </div>
             </div>
-            <span className="text-[10px] font-extrabold px-2.5 py-1 rounded bg-[#28C76F] text-black shrink-0 uppercase tracking-wider">
-              {details.isPaid ? 'PAID & VERIFIED' : 'ACTIVE ORDER'}
+            <span className={`text-[10px] font-extrabold px-2.5 py-1 rounded shrink-0 uppercase tracking-wider ${
+              details.isPaid
+                ? 'bg-[#28C76F] text-black'
+                : 'bg-[#E5C158] text-black'
+            }`}>
+              {details.isPaid ? 'PAID & VERIFIED' : 'VERIFICATION PENDING'}
             </span>
           </div>
 
@@ -572,7 +582,7 @@ export const LuxuryOrderReceiptModal: React.FC<LuxuryOrderReceiptModalProps> = (
           </div>
 
           <p className="text-[10px] text-center text-neutral-400">
-            MFS Growth Agency • Islamabad, Pakistan • 24/7 International Online Support (+92 301 5323689)
+            MFS Growth Agency • 24/7 International Online Support (+92 301 5323689)
           </p>
 
         </div>

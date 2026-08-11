@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /#admin
+Disallow: /dashboard
+Disallow: /#dashboard
+Disallow: /payment
+Disallow: /#payment
+Disallow: /confirmation
+Disallow: /#confirmation
+Disallow: /api/
+
+Sitemap: https://mfsgrowthpk.netlify.app/sitemap.xml

@@ -54,7 +54,7 @@ interface DashboardHomeProps {
 export const DashboardHome: React.FC<DashboardHomeProps> = ({
   currency,
   customerName = 'Muhammad Shehroz Sultan',
-  customerEmail = 'shehrozsultanpgc@gmail.com',
+  customerEmail = 'mfsmedia.agency@gmail.com',
   clientId = 'CLI-MFS-98421',
   orders = [],
   loadingOrders = false,
@@ -240,7 +240,7 @@ export const DashboardHome: React.FC<DashboardHomeProps> = ({
               <span className="text-[10px] font-bold text-[#28C76F] uppercase tracking-wider block">
                 • VIP ONLINE SUPPORT 24/7
               </span>
-              <span className="text-xs font-mono text-neutral-300">Islamabad, PKT (UTC+5)</span>
+              <span className="text-xs font-mono text-neutral-300">PKT (UTC+5)</span>
             </div>
           </div>
         </div>

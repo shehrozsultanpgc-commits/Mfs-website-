@@ -75,7 +75,7 @@ export const CMSTestimonialsManager: React.FC<CMSTestimonialsManagerProps> = ({
     {
       id: 'test-3',
       clientName: 'Hamza Chaudhry',
-      designationOrUniversity: 'Lead Software Architect (Islamabad, PK)',
+      designationOrUniversity: 'Lead Software Architect (PK)',
       rating: 5,
       reviewText: 'Engineered my ATS resume and LinkedIn profile. Passed ATS 98% scan rate and landed 4 US remote job interviews in 2 weeks. Best investment for career growth!',
       category: 'Resume / CV',

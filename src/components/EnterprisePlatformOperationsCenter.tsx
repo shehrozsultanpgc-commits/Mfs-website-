@@ -1393,7 +1393,7 @@ export const EnterprisePlatformOperationsCenter: React.FC<EnterprisePlatformOper
             <h3 className="font-poppins font-bold text-white text-sm">Active Admin Sessions</h3>
             <div className="space-y-2 text-xs font-mono">
               {[
-                { user: 'Muhammad Shehroz Sultan (Super Admin)', ip: '111.68.102.45', location: 'Islamabad, PK', device: 'Chrome / macOS', activeSince: '45 mins ago' },
+                { user: 'Muhammad Shehroz Sultan (Super Admin)', ip: '111.68.102.45', location: 'PK', device: 'Chrome / macOS', activeSince: '45 mins ago' },
                 { user: 'Senior Resume Architect', ip: '39.40.12.80', location: 'Lahore, PK', device: 'Firefox / Windows', activeSince: '2 hours ago' },
               ].map((sess, idx) => (
                 <div key={idx} className="p-3 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between">

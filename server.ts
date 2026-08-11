@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import http from 'http';
 import express from 'express';
 import path from 'path';
 import cors from 'cors';
@@ -104,24 +105,10 @@ async function startServer() {
   app.use('/api/notifications', strictCheckoutLimiter, notificationRoutes);
   app.use('/api/ai', aiLimiter, aiRoutes);
 
-  // Vite middleware for development vs static production serving
-  if (process.env.NODE_ENV !== 'production') {
-    const vite = await createViteServer({
-      server: { middlewareMode: true, hmr: false },
-      appType: 'spa',
-    });
-    app.use(vite.middlewares);
-  } else {
-    const distPath = path.join(process.cwd(), 'dist');
-    app.use(express.static(distPath));
-    app.get('*', (req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
-    });
-  }
+  // Static files from public directory (videos, images, assets)
+  app.use(express.static(path.join(process.cwd(), 'public')));
 
-  const server = app.listen(PORT, '0.0.0.0', () => {
-    console.log(`[MFS Server] Enterprise Platform Engine listening on http://0.0.0.0:${PORT}`);
-  });
+  const server = http.createServer(app);
 
   // Attach WebSocket server for Gemini Live API
   const wss = new WebSocketServer({ noServer: true });
@@ -134,12 +121,29 @@ async function startServer() {
         wss.handleUpgrade(request, socket, head, (ws) => {
           wss.emit('connection', ws, request);
         });
-      } else {
-        socket.destroy();
       }
     } catch (e) {
       socket.destroy();
     }
+  });
+
+  // Vite middleware for development vs static production serving
+  if (process.env.NODE_ENV !== 'production') {
+    const vite = await createViteServer({
+      server: { middlewareMode: true, hmr: { server } },
+      appType: 'spa',
+    });
+    app.use(vite.middlewares);
+  } else {
+    const distPath = path.join(process.cwd(), 'dist');
+    app.use(express.static(distPath));
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(distPath, 'index.html'));
+    });
+  }
+
+  server.listen(PORT, '0.0.0.0', () => {
+    console.log(`[MFS Server] Enterprise Platform Engine listening on http://0.0.0.0:${PORT}`);
   });
 }
 

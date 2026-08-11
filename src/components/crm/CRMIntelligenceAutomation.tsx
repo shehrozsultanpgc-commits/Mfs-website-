@@ -164,7 +164,7 @@ export const CRMIntelligenceAutomation: React.FC<CRMIntelligenceAutomationProps>
     {
       id: 'INT-CLI-71204',
       clientName: 'Dr. Tariq Mahmood',
-      company: 'Islamabad Medical Institute',
+      company: 'Medical Institute',
       healthScore: 94,
       engagementScore: 90,
       projectSuccessScore: 98,
@@ -287,7 +287,7 @@ export const CRMIntelligenceAutomation: React.FC<CRMIntelligenceAutomationProps>
       id: 'OPP-MFS-790',
       title: 'Clinical Research Paper Formatting Retainer',
       clientName: 'Dr. Tariq Mahmood',
-      company: 'Islamabad Medical Institute',
+      company: 'Medical Institute',
       estimatedValuePKR: 180000,
       stage: 'Qualified',
       probabilityPercent: 60,
@@ -359,7 +359,7 @@ export const CRMIntelligenceAutomation: React.FC<CRMIntelligenceAutomationProps>
 
   // 7. RELATIONSHIP TIMELINE STATE
   const relationshipJourney = [
-    { date: '2026-07-15', stage: 'First Contact', event: 'Inquiry received via MFS AI Assistant Chat widget from Islamabad IP', status: 'Completed' },
+    { date: '2026-07-15', stage: 'First Contact', event: 'Inquiry received via MFS AI Assistant Chat widget', status: 'Completed' },
     { date: '2026-07-16', stage: 'Discovery Call', event: '30-min strategy call with Shehroz Sultan regarding Series-A Pitch Deck', status: 'Completed' },
     { date: '2026-07-18', stage: 'Proposal & Contract', event: 'Master Digital Services SLA & NDA signed electronically', status: 'Completed' },
     { date: '2026-07-20', stage: 'First Order Placement', event: 'Placed ORD-MFS-849201 for Executive Pitch Deck (Rs. 18,000)', status: 'Completed' },

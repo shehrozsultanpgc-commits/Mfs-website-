@@ -1,0 +1,3 @@
+# Netlify Redirects Configuration for MFS Growth Agency SPA & API Proxy
+/api/*  https://ais-dev-vmczs2ifa6zc4xg5aeantt-732301276821.asia-east1.run.app/api/:splat  200!
+/*      /index.html                                                                        200

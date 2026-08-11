@@ -41,7 +41,7 @@ const INITIAL_SECURITY_ALERTS: SecurityAlert[] = [
     id: 'sec-101',
     type: 'Prompt Injection',
     severity: 'High',
-    sourceIp: '182.180.144.12 (Islamabad, PK)',
+    sourceIp: '182.180.144.12 (PK)',
     userContext: 'Guest Chat Session #9402',
     timestamp: 'Today at 01:05 AM',
     status: 'Open',

@@ -62,7 +62,7 @@ interface ChatMessage {
 export const AIAssistantCenter: React.FC<AIAssistantCenterProps> = ({
   currency,
   customerName = 'Muhammad Shehroz Sultan',
-  customerEmail = 'shehrozsultanpgc@gmail.com',
+  customerEmail = 'mfsmedia.agency@gmail.com',
   clientId = 'CLI-MFS-98421',
   onShowToast,
   onNavigatePage,
@@ -193,7 +193,7 @@ export const AIAssistantCenter: React.FC<AIAssistantCenterProps> = ({
       } else if (lower.includes('urdu') || lower.includes('assalam') || lower.includes('kaise')) {
         aiText = `Assalam-o-Alaikum! Main MFS AI Project Manager hoon. Aap ka project **PRJ-MFS-849201** bilkul time par chal raha hai. Kisi bhi madad ke liye aap mujh se WhatsApp par bhi rabta kar sakte hain (+92 301 5323689).`;
       } else {
-        aiText = `I have verified your request against MFS Growth Agency's knowledge base. For project **PRJ-MFS-849201**, our team is currently crafting your 10-slide deck according to your dark luxury guidelines. If you need immediate human assistance, our Islamabad support desk is online 24/7 on WhatsApp (+92 301 5323689).`;
+        aiText = `I have verified your request against MFS Growth Agency's knowledge base. For project **PRJ-MFS-849201**, our team is currently crafting your 10-slide deck according to your dark luxury guidelines. If you need immediate human assistance, our support desk is online 24/7 on WhatsApp (+92 301 5323689).`;
       }
 
       const aiMsg: ChatMessage = {

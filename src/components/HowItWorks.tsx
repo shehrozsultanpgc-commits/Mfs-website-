@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { HOW_IT_WORKS_STEPS } from '../data/content';
 import { FileEdit, CreditCard, Cpu, CheckCircle } from 'lucide-react';
 
@@ -10,7 +11,13 @@ export const HowItWorks: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-2xl mx-auto mb-16"
+        >
           <span className="font-poppins text-xs font-bold uppercase tracking-widest text-[#E5C158] block mb-2">
             Seamless Process
           </span>
@@ -20,7 +27,7 @@ export const HowItWorks: React.FC = () => {
           <p className="text-neutral-400 text-sm sm:text-base leading-relaxed">
             We’ve structured our workflow to be transparent, straightforward, and completely online.
           </p>
-        </div>
+        </motion.div>
 
         {/* Horizontal Steps Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
@@ -31,9 +38,14 @@ export const HowItWorks: React.FC = () => {
           {HOW_IT_WORKS_STEPS.map((step, idx) => {
             const Icon = stepIcons[idx % stepIcons.length];
             return (
-              <div
+              <motion.div
                 key={idx}
-                className="glass-card glass-card-hover p-8 rounded-2xl relative z-10 flex flex-col items-center text-center group"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.12 }}
+                whileHover={{ y: -6 }}
+                className="glass-card glass-card-hover p-8 rounded-2xl relative z-10 flex flex-col items-center text-center group transition-all"
               >
                 {/* Step badge counter */}
                 <div className="absolute top-4 right-5 font-poppins font-black text-2xl text-[#E5C158]/15 group-hover:text-[#E5C158]/30 transition-colors">
@@ -54,7 +66,7 @@ export const HowItWorks: React.FC = () => {
                 <p className="text-neutral-400 text-xs leading-relaxed max-w-[220px]">
                   {step.description}
                 </p>
-              </div>
+              </motion.div>
             );
           })}
         </div>
@@ -63,3 +75,4 @@ export const HowItWorks: React.FC = () => {
     </section>
   );
 };
+

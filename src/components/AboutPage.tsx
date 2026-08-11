@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'motion/react';
+import { MEDIA_REGISTRY } from '../data/mediaRegistry';
 import {
   Sparkles,
   ShieldCheck,
@@ -33,6 +35,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
   onOpenOrderModal,
   onNavigatePage,
 }) => {
+  const workspaceImg = MEDIA_REGISTRY.find((m) => m.id === 'about-workspace');
   const coreValues = [
     {
       icon: <Award className="w-6 h-6 text-[#E5C158]" />,
@@ -145,37 +148,56 @@ export const AboutPage: React.FC<AboutPageProps> = ({
   ];
 
   return (
-    <div className="w-full pt-28 pb-20 animate-fadeIn">
+    <div className="w-full pt-28 pb-20">
       {/* 1. Hero Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative mb-20 text-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E5C158]/10 border border-[#E5C158]/30 text-[#E5C158] text-xs font-semibold mb-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E5C158]/10 border border-[#E5C158]/30 text-[#E5C158] text-xs font-semibold mb-6"
+        >
           <Sparkles className="w-4 h-4" />
           <span>ABOUT MFS GROWTH AGENCY</span>
-        </div>
+        </motion.div>
 
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-poppins font-bold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-tight">
+        <motion.h1
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, delay: 0.1 }}
+          className="text-3xl sm:text-5xl lg:text-6xl font-poppins font-bold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-tight"
+        >
           Empowering <span className="gradient-gold-text">Students & Professionals</span> Globally
-        </h1>
+        </motion.h1>
 
-        <p className="text-neutral-300 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed mb-8">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-neutral-300 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed mb-8"
+        >
           MFS Growth Agency is a premium online digital services brand dedicated to helping students and professionals succeed through high-impact presentation design, academic writing assistance, ATS resume engineering, and executive document formatting.
-        </p>
+        </motion.p>
 
         {/* Action CTA Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={onOpenOrderModal}
             className="px-8 py-3.5 rounded-full bg-[#E5C158] text-[#050507] font-bold text-xs hover:bg-[#fce888] transition-all shadow-xl cursor-pointer inline-flex items-center gap-2"
           >
             <span>Place Your First Order</span>
             <ArrowRight className="w-4 h-4" />
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => onNavigatePage('services')}
             className="px-8 py-3.5 rounded-full bg-white/[0.05] border border-white/10 text-white font-semibold text-xs hover:bg-white/10 hover:border-white/20 transition-all cursor-pointer"
           >
             Explore Services
-          </button>
+          </motion.button>
         </div>
 
         {/* Agency Metrics Banner */}
@@ -217,7 +239,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </h2>
 
             <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
-              MFS Growth Agency was founded in Islamabad, Pakistan, with a singular mission: to bridge the gap between complex academic/corporate requirements and flawless presentation delivery. We recognized that students and working professionals often face tight deadlines, strict formatting guidelines, and high stakes without reliable support.
+              MFS Growth Agency was founded with a singular mission: to bridge the gap between complex academic/corporate requirements and flawless presentation delivery. We recognized that students and working professionals often face tight deadlines, strict formatting guidelines, and high stakes without reliable support.
             </p>
 
             <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
@@ -227,7 +249,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             <div className="pt-2 grid grid-cols-2 gap-4 text-xs text-neutral-300">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-[#28C76F] shrink-0" />
-                <span>Islamabad Headquarters</span>
+                <span>Global Support Desk</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-[#28C76F] shrink-0" />
@@ -244,8 +266,31 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </div>
           </div>
 
-          {/* Mission & Vision Cards */}
+          {/* Studio Media & Mission & Vision Cards */}
           <div className="space-y-6">
+            {/* Visual Agency Studio Banner */}
+            {workspaceImg && (
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                className="relative h-48 sm:h-56 rounded-2xl overflow-hidden border border-[#E5C158]/30 shadow-2xl group"
+              >
+                <img
+                  src={workspaceImg.url}
+                  alt={workspaceImg.altText}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 bg-black/75 backdrop-blur-md p-3 rounded-xl border border-white/10 flex items-center justify-between text-xs">
+                  <span className="text-[#E5C158] font-extrabold flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    MFS Digital Agency & Studio
+                  </span>
+                  <span className="text-neutral-300 font-mono text-[10px]">24/7 Online</span>
+                </div>
+              </motion.div>
+            )}
+
             <div className="glass-card rounded-2xl border border-white/10 p-6 relative overflow-hidden group hover:border-[#E5C158]/40 transition-all">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-xl bg-[#E5C158]/10 border border-[#E5C158]/30 flex items-center justify-center text-[#E5C158]">
@@ -406,7 +451,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </div>
             <h3 className="font-poppins font-bold text-white text-base">Direct WhatsApp Support</h3>
             <p className="text-xs text-neutral-300 leading-relaxed">
-              Have questions or complex custom requirements? Get instant assistance directly on WhatsApp at <strong className="text-[#E5C158]">+92 301 5323689</strong> or email <strong className="text-white">shehrozsultanpgc@gmail.com</strong>.
+              Have questions or complex custom requirements? Get instant assistance directly on WhatsApp at <strong className="text-[#E5C158]">+92 301 5323689</strong> or email <strong className="text-white">mfsmedia.agency@gmail.com</strong>.
             </p>
           </div>
 

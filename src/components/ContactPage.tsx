@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { CONTACT_CARDS, FAQS } from '../data/content';
 import { sendActionNotificationEmail } from '../lib/emailNotificationService';
 import {
@@ -139,7 +140,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
     },
     {
       title: 'Direct Phone Call',
-      desc: 'Speak directly with our client coordination desk in Islamabad, Pakistan (PKT).',
+      desc: 'Speak directly with our client coordination desk.',
       icon: <PhoneCall className="w-6 h-6 text-[#E5C158]" />,
       actionText: 'Call +92 301 5323689',
       actionUrl: 'tel:+923015323689',
@@ -172,8 +173,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({
             <span>Response Time: &lt; 15 Minutes</span>
           </span>
           <span className="inline-flex items-center gap-1.5 bg-white/[0.03] border border-white/10 px-3.5 py-1.5 rounded-full">
-            <MapPin className="w-3.5 h-3.5 text-[#28C76F]" />
-            <span>Islamabad, Pakistan</span>
+            <Globe className="w-3.5 h-3.5 text-[#28C76F]" />
+            <span>Serving Clients Worldwide</span>
           </span>
           <span className="inline-flex items-center gap-1.5 bg-white/[0.03] border border-white/10 px-3.5 py-1.5 rounded-full">
             <Globe className="w-3.5 h-3.5 text-[#E5C158]" />
@@ -272,9 +273,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                   <Headset className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="text-[11px] font-semibold text-neutral-400 block uppercase tracking-wider">Support Email</span>
-                  <a href="mailto:shehrozsultanpgc@gmail.com" className="text-xs font-mono text-white hover:text-[#28C76F] transition-colors break-all">
-                    shehrozsultanpgc@gmail.com
+                  <span className="text-[11px] font-semibold text-neutral-400 block uppercase tracking-wider">Client Support</span>
+                  <a href="mailto:mfsmedia.agency@gmail.com" className="text-xs font-mono text-white hover:text-[#28C76F] transition-colors break-all">
+                    mfsmedia.agency@gmail.com
                   </a>
                 </div>
               </div>
@@ -289,7 +290,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                   <a href="https://wa.me/923015323689" target="_blank" rel="noreferrer" className="text-xs font-mono text-[#E5C158] font-bold hover:underline">
                     +92 301 5323689
                   </a>
-                  <span className="text-[10px] text-neutral-400 block">Islamabad, Pakistan (PKT)</span>
+                  <span className="text-[10px] text-neutral-400 block">24/7 Support Desk</span>
                 </div>
               </div>
 
@@ -299,8 +300,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="text-[11px] font-semibold text-neutral-400 block uppercase tracking-wider">Agency Location</span>
-                  <p className="text-xs text-white">Islamabad, Pakistan — Serving Clients Worldwide</p>
+                  <span className="text-[11px] font-semibold text-neutral-400 block uppercase tracking-wider">Service Reach</span>
+                  <p className="text-xs text-white">Serving Clients Worldwide</p>
                 </div>
               </div>
 
@@ -522,49 +523,30 @@ export const ContactPage: React.FC<ContactPageProps> = ({
         </div>
       </section>
 
-      {/* 4. Interactive Google Maps Section */}
+      {/* 4. Global Support Center Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
         <div className="glass-card rounded-3xl border border-white/10 p-6 sm:p-8 relative overflow-hidden">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div>
               <div className="inline-flex items-center gap-1.5 text-xs text-[#E5C158] font-bold mb-1">
-                <MapPin className="w-4 h-4" />
-                <span>AGENCY HEADQUARTERS LOCATION</span>
+                <Globe className="w-4 h-4" />
+                <span>GLOBAL SERVICE OPERATIONS</span>
               </div>
-              <h3 className="text-xl font-poppins font-bold text-white">MFS Growth Agency — Islamabad, Pakistan</h3>
+              <h3 className="text-xl font-poppins font-bold text-white">MFS Growth Agency — Online Digital Services</h3>
               <p className="text-xs text-neutral-400 mt-0.5">
-                Providing round-the-clock digital service delivery to clients locally and internationally.
+                Providing round-the-clock digital service delivery to clients worldwide.
               </p>
             </div>
 
             <a
-              href="https://maps.google.com/?q=Islamabad,Pakistan"
+              href="https://wa.me/923015323689"
               target="_blank"
               rel="noreferrer"
-              className="px-4 py-2 rounded-xl bg-white/10 hover:bg-[#E5C158] hover:text-[#050507] text-white text-xs font-semibold transition-all inline-flex items-center gap-2 shrink-0"
+              className="px-4 py-2 rounded-xl bg-[#E5C158] text-[#050507] text-xs font-bold transition-all inline-flex items-center gap-2 shrink-0"
             >
-              <span>Open in Google Maps</span>
+              <span>Chat on WhatsApp</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
-          </div>
-
-          {/* Map Embed Container */}
-          <div className="w-full h-72 sm:h-96 rounded-2xl overflow-hidden border border-white/10 relative bg-[#121212]">
-            <iframe
-              title="MFS Growth Agency Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d212442.20456102604!2d72.9329986348602!3d33.61637222476717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfbfd07891722f%3A0x6059515c3bdb02b6!2sIslamabad%2C%20Islamabad%20Capital%20Territory%2C%20Pakistan!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
-              width="100%"
-              height="100%"
-              style={{ border: 0, filter: 'grayscale(0.8) contrast(1.2) invert(0.9)' }}
-              allowFullScreen={false}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-            <div className="absolute bottom-4 left-4 bg-black/80 backdrop-blur-md border border-white/10 p-3 rounded-xl text-xs text-white max-w-xs">
-              <span className="text-[#E5C158] font-bold block mb-0.5">MFS Growth Agency</span>
-              <span className="text-neutral-300 block text-[11px]">Islamabad, Capital Territory, Pakistan</span>
-              <span className="text-[#28C76F] text-[10px] block font-semibold mt-1">● 24/7 Online Support Center</span>
-            </div>
           </div>
         </div>
       </section>

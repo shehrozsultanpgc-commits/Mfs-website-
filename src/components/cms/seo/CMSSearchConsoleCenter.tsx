@@ -31,7 +31,7 @@ export const CMSSearchConsoleCenter: React.FC<CMSSearchConsoleCenterProps> = ({
   const searchQueries = [
     { query: 'MFS Growth Agency', clicks: 1240, impressions: 4200, ctr: '29.5%', position: '1.0' },
     { query: 'Presentation Design Agency Pakistan', clicks: 820, impressions: 3800, ctr: '21.5%', position: '1.2' },
-    { query: 'ATS Resume Writing Service Islamabad', clicks: 650, impressions: 2900, ctr: '22.4%', position: '1.4' },
+    { query: 'ATS Resume Writing Service Pakistan', clicks: 650, impressions: 2900, ctr: '22.4%', position: '1.4' },
     { query: 'Assignment Writing Help Lahore PKR', clicks: 490, impressions: 2100, ctr: '23.3%', position: '1.8' },
     { query: 'Corporate Pitch Deck Rates', clicks: 310, impressions: 1800, ctr: '17.2%', position: '2.1' },
   ];

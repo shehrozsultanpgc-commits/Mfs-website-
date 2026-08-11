@@ -50,7 +50,7 @@ interface FAQItem {
 export const HelpSupportHub: React.FC<HelpSupportHubProps> = ({
   currency,
   customerName = 'Muhammad Shehroz Sultan',
-  customerEmail = 'shehrozsultanpgc@gmail.com',
+  customerEmail = 'mfsmedia.agency@gmail.com',
   clientId = 'CLI-MFS-98421',
   onShowToast,
   onNavigatePage,
@@ -148,7 +148,7 @@ export const HelpSupportHub: React.FC<HelpSupportHubProps> = ({
             <div className="flex items-center gap-2">
               <span className="px-2.5 py-0.5 rounded-full bg-[#28C76F]/10 text-[#28C76F] border border-[#28C76F]/30 text-[10px] font-bold flex items-center gap-1.5">
                 <CheckCircle2 className="w-3 h-3 text-[#28C76F]" />
-                <span>24/7 ONLINE SUPPORT HUB • ISLAMABAD (PKT)</span>
+                <span>24/7 ONLINE SUPPORT HUB • PKT</span>
               </span>
               <span className="text-[10px] font-mono text-neutral-400 hidden sm:inline">
                 {clientId}
@@ -304,7 +304,7 @@ export const HelpSupportHub: React.FC<HelpSupportHubProps> = ({
             <span className="text-[10px] font-mono text-[#E5C158] uppercase font-bold">DIRECT CONTACT CHANNELS</span>
             <h3 className="font-poppins font-bold text-white text-lg">Official MFS Support Desk</h3>
             <p className="text-xs text-neutral-400">
-              Our support team operates 24/7 out of Islamabad, Pakistan (PKT).
+              Our support team operates 24/7 to assist you.
             </p>
           </div>
 
@@ -333,7 +333,7 @@ export const HelpSupportHub: React.FC<HelpSupportHubProps> = ({
               </div>
               <div>
                 <strong className="text-white block text-sm">Official Support Email</strong>
-                <span className="text-neutral-300 font-mono">shehrozsultanpgc@gmail.com</span>
+                <span className="text-neutral-300 font-mono">mfsmedia.agency@gmail.com</span>
               </div>
             </div>
 

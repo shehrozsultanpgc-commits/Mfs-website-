@@ -48,7 +48,7 @@ interface AccountSecurityCenterProps {
 export const AccountSecurityCenter: React.FC<AccountSecurityCenterProps> = ({
   currency,
   customerName = 'Muhammad Shehroz Sultan',
-  customerEmail = 'shehrozsultanpgc@gmail.com',
+  customerEmail = 'mfsmedia.agency@gmail.com',
   clientId = 'CLI-MFS-98421',
   onShowToast,
   onNavigatePage,
@@ -61,7 +61,7 @@ export const AccountSecurityCenter: React.FC<AccountSecurityCenterProps> = ({
   const [fullName, setFullName] = useState(customerName);
   const [email, setEmail] = useState(customerEmail);
   const [phone, setPhone] = useState('+92 301 5323689');
-  const [country, setCountry] = useState('Pakistan (Islamabad)');
+  const [country, setCountry] = useState('Pakistan');
   const [language, setLanguage] = useState('English (US) / Roman Urdu');
   const [timezone, setTimezone] = useState('Asia/Karachi (PKT - UTC+5)');
   const [isEditingProfile, setIsEditingProfile] = useState(false);
@@ -354,7 +354,7 @@ export const AccountSecurityCenter: React.FC<AccountSecurityCenterProps> = ({
                 </div>
                 <button
                   onClick={() => {
-                    if (onShowToast) onShowToast('Password reset link dispatched to shehrozsultanpgc@gmail.com');
+                    if (onShowToast) onShowToast(`Password reset link dispatched to ${email || 'your email'}`);
                   }}
                   className="px-3.5 py-2 rounded-xl bg-white/10 text-white font-semibold hover:bg-white/20 cursor-pointer"
                 >
@@ -375,7 +375,7 @@ export const AccountSecurityCenter: React.FC<AccountSecurityCenterProps> = ({
               <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-between">
                 <div className="space-y-0.5">
                   <strong className="text-white block text-sm">Active Sessions & Trusted Devices</strong>
-                  <span className="text-neutral-400">Chrome macOS (Current session) • Android App (Islamabad, PK)</span>
+                  <span className="text-neutral-400">Chrome macOS (Current session) • Android App (Pakistan)</span>
                 </div>
                 <button
                   onClick={() => {
@@ -512,10 +512,10 @@ export const AccountSecurityCenter: React.FC<AccountSecurityCenterProps> = ({
 
           <div className="space-y-3 text-xs">
             {[
-              { event: 'Google SSO Authentication Success', ip: '111.68.102.14 (Islamabad, PK)', date: 'Today • 10:30 AM', status: 'Success', device: 'Chrome macOS' },
-              { event: 'Profile Details Updated', ip: '111.68.102.14 (Islamabad, PK)', date: 'Yesterday • 04:15 PM', status: 'Verified', device: 'Chrome macOS' },
-              { event: 'Invoice #INV-849201 Paid & Verified', ip: '111.68.102.14 (Islamabad, PK)', date: 'Yesterday • 04:30 PM', status: 'Verified', device: 'EasyPaisa API' },
-              { event: 'Password Verification Checked', ip: '111.68.102.14 (Islamabad, PK)', date: '3 days ago', status: 'Passed', device: 'Android Mobile' },
+              { event: 'Google SSO Authentication Success', ip: '111.68.102.14 (PK)', date: 'Today • 10:30 AM', status: 'Success', device: 'Chrome macOS' },
+              { event: 'Profile Details Updated', ip: '111.68.102.14 (PK)', date: 'Yesterday • 04:15 PM', status: 'Verified', device: 'Chrome macOS' },
+              { event: 'Invoice #INV-849201 Paid & Verified', ip: '111.68.102.14 (PK)', date: 'Yesterday • 04:30 PM', status: 'Verified', device: 'EasyPaisa API' },
+              { event: 'Password Verification Checked', ip: '111.68.102.14 (PK)', date: '3 days ago', status: 'Passed', device: 'Android Mobile' },
             ].map((log, idx) => (
               <div key={idx} className="p-3.5 rounded-2xl bg-white/[0.02] border border-white/5 flex items-center justify-between">
                 <div className="space-y-0.5">

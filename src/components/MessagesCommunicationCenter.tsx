@@ -80,7 +80,7 @@ interface ThreadItem {
 export const MessagesCommunicationCenter: React.FC<MessagesCommunicationCenterProps> = ({
   currency,
   customerName = 'Muhammad Shehroz Sultan',
-  customerEmail = 'shehrozsultanpgc@gmail.com',
+  customerEmail = 'mfsmedia.agency@gmail.com',
   clientId = 'CLI-MFS-98421',
   onShowToast,
   onNavigatePage,
@@ -346,7 +346,7 @@ export const MessagesCommunicationCenter: React.FC<MessagesCommunicationCenterPr
             <div className="flex items-center gap-2">
               <span className="px-2.5 py-0.5 rounded-full bg-[#28C76F]/10 text-[#28C76F] border border-[#28C76F]/30 text-[10px] font-bold flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-[#28C76F] animate-ping" />
-                <span>MFS SECURE MESSAGING • ISLAMABAD DESK</span>
+                <span>MFS SECURE MESSAGING • SUPPORT DESK</span>
               </span>
               <span className="text-[10px] font-mono text-neutral-400 hidden sm:inline">
                 {clientId}

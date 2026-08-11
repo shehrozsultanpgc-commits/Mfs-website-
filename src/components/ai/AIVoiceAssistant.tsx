@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Mic, MicOff, PhoneOff, Loader2, RefreshCw, ExternalLink, MessageSquare, Phone, X, Sparkles, Volume2, UserCheck, Send } from 'lucide-react';
 import { MFSLogo } from '../common/MFSLogo';
 import { AIOrderReceipt } from './AIOrderReceipt';
+import { calculateServicePrice } from '../../data/content';
 
 interface AIVoiceAssistantProps {
   onClose: () => void;
@@ -368,6 +369,16 @@ export const AIVoiceAssistant: React.FC<AIVoiceAssistantProps> = ({ onClose, onS
     return () => cleanup();
   }, []);
 
+  const handleUserInteraction = () => {
+    if (outputAudioCtxRef.current && outputAudioCtxRef.current.state === 'suspended') {
+      outputAudioCtxRef.current.resume().catch((err) => console.warn('Output audio resume:', err));
+    }
+    if (inputAudioCtxRef.current && inputAudioCtxRef.current.state === 'suspended') {
+      inputAudioCtxRef.current.resume().catch((err) => console.warn('Input audio resume:', err));
+    }
+  };
+
+
   const toggleMute = () => {
     setIsMuted(!isMuted);
   };
@@ -394,6 +405,16 @@ export const AIVoiceAssistant: React.FC<AIVoiceAssistantProps> = ({ onClose, onS
     e.preventDefault();
     if (!manualName.trim()) return;
 
+    const serviceId = manualService.toLowerCase().includes('assignment')
+      ? 'assignment'
+      : manualService.toLowerCase().includes('resume') || manualService.toLowerCase().includes('cv')
+      ? 'resume'
+      : manualService.toLowerCase().includes('report')
+      ? 'reports'
+      : 'presentation';
+
+    const p = calculateServicePrice(serviceId, serviceId === 'presentation' ? 10 : serviceId === 'assignment' || serviceId === 'reports' ? 1000 : 1, 'standard', 'PKR');
+
     const quickData = {
       orderId: 'MFS-AI-' + Math.floor(1000 + Math.random() * 9000),
       clientName: manualName.trim(),
@@ -402,7 +423,7 @@ export const AIVoiceAssistant: React.FC<AIVoiceAssistantProps> = ({ onClose, onS
       serviceName: manualService,
       quantity: manualScope.trim() || 'Scope as discussed',
       deadline: 'Standard Delivery (50% OFF)',
-      totalPrice: manualService.includes('Assignment') ? 'PKR 1,500' : manualService.includes('Resume') ? 'PKR 2,000' : 'PKR 2,500',
+      totalPrice: p.formattedFinal,
       currency: 'PKR',
       projectBrief: 'Voice Consultation Brief provided directly by client.'
     };
@@ -570,41 +591,41 @@ export const AIVoiceAssistant: React.FC<AIVoiceAssistantProps> = ({ onClose, onS
 
   if (showReceiptScreen) {
     return (
-      <div className="fixed bottom-3 sm:bottom-6 right-3 sm:right-6 z-50 w-[calc(100vw-1.5rem)] sm:w-[410px] max-h-[min(640px,calc(100vh-3rem))] bg-[#0F0F12] border border-[#E5C158]/35 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] flex flex-col overflow-hidden font-sans animate-in zoom-in-95 duration-200">
-        <div className="bg-gradient-to-r from-[#1A1A1F] via-[#121217] to-[#050507] p-3.5 flex items-center justify-between border-b border-[#2A2B35] flex-shrink-0">
+      <div className="fixed bottom-3 sm:bottom-6 right-3 sm:right-6 z-50 w-[calc(100vw-1.5rem)] sm:w-[420px] max-h-[min(640px,calc(100vh-3rem))] bg-[#0A0A0E] border border-[#E5C158]/30 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.9)] flex flex-col overflow-hidden font-sans animate-in zoom-in-95 duration-200">
+        <div className="bg-[#121218]/95 backdrop-blur-md p-3.5 flex items-center justify-between border-b border-[#232330] flex-shrink-0">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-full bg-[#28C76F]/10 flex items-center justify-center border border-[#28C76F]/30">
+            <div className="w-8 h-8 rounded-xl bg-[#28C76F]/10 flex items-center justify-center border border-[#28C76F]/30 text-[#28C76F]">
               <Sparkles className="w-4 h-4 text-[#28C76F]" />
             </div>
             <div className="text-left">
-              <h3 className="text-white font-bold text-sm">Official Order Brief</h3>
-              <p className="text-xs text-[#28C76F]">Send details directly on WhatsApp</p>
+              <h3 className="text-white font-bold text-sm tracking-wide">Official Order Brief</h3>
+              <p className="text-[11px] text-[#28C76F] font-medium">Send details directly on WhatsApp</p>
             </div>
           </div>
           <button 
             onClick={onClose}
-            className="text-gray-400 hover:text-white transition-colors p-1.5 rounded-xl hover:bg-[#2A2B35] cursor-pointer"
+            className="text-neutral-400 hover:text-white transition-colors p-1.5 rounded-xl hover:bg-[#181820] cursor-pointer"
             title="Close Assistant"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
-        <div className="flex-1 p-3.5 sm:p-4 overflow-y-auto min-h-0 bg-[#050507] scrollbar-thin scrollbar-thumb-gray-800 space-y-3">
+        <div className="flex-1 p-3.5 sm:p-4 overflow-y-auto min-h-0 bg-[#07070A] scrollbar-thin scrollbar-thumb-neutral-800 space-y-3">
           <AIOrderReceipt 
             orderState={orderLinkData} 
             onDownload={handleDownloadReceipt} 
           />
-          <div className="flex items-center justify-between pt-2 border-t border-[#2A2B35]">
+          <div className="flex items-center justify-between pt-2 border-t border-[#232330]">
             <button
               onClick={() => setShowReceiptScreen(false)}
-              className="text-xs text-[#E5C158] hover:underline font-semibold cursor-pointer"
+              className="text-xs text-[#E5C158] hover:underline font-semibold cursor-pointer flex items-center gap-1"
             >
               ← Return to Voice Call
             </button>
             <button
               onClick={onClose}
-              className="text-xs text-gray-400 hover:text-white transition-colors cursor-pointer"
+              className="text-xs text-neutral-400 hover:text-white transition-colors cursor-pointer"
             >
               Close Window
             </button>
@@ -615,31 +636,35 @@ export const AIVoiceAssistant: React.FC<AIVoiceAssistantProps> = ({ onClose, onS
   }
 
   return (
-    <div className="fixed bottom-3 sm:bottom-6 right-3 sm:right-6 z-50 w-[calc(100vw-1.5rem)] sm:w-[410px] max-h-[min(640px,calc(100vh-3rem))] bg-[#0F0F12] border border-[#E5C158]/35 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] flex flex-col overflow-hidden font-sans animate-in zoom-in-95 duration-200">
+    <div 
+      onClick={handleUserInteraction}
+      onTouchStart={handleUserInteraction}
+      className="fixed bottom-3 sm:bottom-6 right-3 sm:right-6 z-50 w-[calc(100vw-1.5rem)] sm:w-[420px] max-h-[min(640px,calc(100vh-3rem))] bg-[#0A0A0E] border border-[#E5C158]/30 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.9)] flex flex-col overflow-hidden font-sans animate-in zoom-in-95 duration-200"
+    >
       {/* Standalone Voice Assistant Header */}
-      <div className="bg-gradient-to-r from-[#1A1A1F] via-[#121217] to-[#050507] p-3.5 flex items-center justify-between border-b border-[#2A2B35] flex-shrink-0">
+      <div className="bg-[#121218]/95 backdrop-blur-md p-3.5 flex items-center justify-between border-b border-[#232330] flex-shrink-0">
         <div className="flex items-center gap-3">
           <div className="relative">
             <MFSLogo size={36} />
-            <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-[#28C76F] rounded-full border-2 border-[#0F0F12] flex items-center justify-center">
+            <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-[#28C76F] rounded-full border-2 border-[#0A0A0E] flex items-center justify-center shadow-[0_0_8px_rgba(40,199,111,0.8)]">
               <span className="w-1.5 h-1.5 bg-white rounded-full animate-ping" />
             </div>
           </div>
           <div className="text-left">
             <h3 className="text-white font-bold text-sm tracking-wide flex items-center gap-1.5">
-              <span>MFS Growth Executive</span>
-              <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#E5C158]/20 text-[#E5C158] font-black uppercase tracking-wider border border-[#E5C158]/40">VP</span>
+              <span>MFS AI Concierge</span>
+              <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#E5C158]/20 text-[#E5C158] font-black uppercase tracking-wider border border-[#E5C158]/40">VOICE</span>
             </h3>
-            <p className="text-[#28C76F] text-[11px] flex items-center gap-1 font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#28C76F] animate-pulse"></span>
-              Human Voice ({selectedVoice === 'Puck' ? 'Puck Male' : 'Aoede Female'})
+            <p className="text-[#28C76F] text-[11px] flex items-center gap-1 font-normal">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#28C76F]"></span>
+              Live Executive Voice
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-2">
           {/* Executive Voice Selector */}
-          <div className="flex items-center gap-1 px-2 py-1 rounded-xl bg-[#14141A] border border-[#E5C158]/40 text-xs shadow-sm">
+          <div className="flex items-center gap-1 px-2.5 py-1 rounded-xl bg-[#181820] border border-[#E5C158]/30 text-xs shadow-sm">
             <UserCheck className="w-3.5 h-3.5 text-[#E5C158]" />
             <select
               value={selectedVoice}
@@ -651,15 +676,15 @@ export const AIVoiceAssistant: React.FC<AIVoiceAssistantProps> = ({ onClose, onS
               className="bg-transparent text-[#E5C158] font-bold text-xs focus:outline-none cursor-pointer"
               title="Select Executive Voice (Male / Female)"
             >
-              <option value="Puck" className="bg-[#0F0F12] text-white">Male (Puck)</option>
-              <option value="Aoede" className="bg-[#0F0F12] text-white">Female (Aoede)</option>
+              <option value="Puck" className="bg-[#0A0A0E] text-white">Male (Puck)</option>
+              <option value="Aoede" className="bg-[#0A0A0E] text-white">Female (Aoede)</option>
             </select>
           </div>
 
           {onSwitchToChat && (
             <button
               onClick={onSwitchToChat}
-              className="px-2.5 py-1.5 rounded-xl bg-[#2A2B35] text-gray-300 hover:text-[#E5C158] flex items-center gap-1.5 text-xs font-semibold hover:bg-[#32333D] transition-colors cursor-pointer"
+              className="px-2.5 py-1.5 rounded-xl bg-[#181820] border border-white/10 text-neutral-300 hover:text-[#E5C158] hover:border-[#E5C158]/40 flex items-center gap-1.5 text-xs font-semibold transition-colors cursor-pointer"
               title="Switch to Text Chat"
             >
               <MessageSquare className="w-3.5 h-3.5 text-[#E5C158]" />
@@ -668,24 +693,29 @@ export const AIVoiceAssistant: React.FC<AIVoiceAssistantProps> = ({ onClose, onS
           )}
           <button 
             onClick={handleEndCall}
-            className="text-gray-400 hover:text-white transition-colors p-1.5 rounded-xl hover:bg-[#2A2B35] cursor-pointer"
+            className="text-neutral-400 hover:text-white transition-colors p-1.5 rounded-xl hover:bg-[#181820] cursor-pointer"
             title="Close Voice Assistant"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
       </div>
 
-      {/* Main Body Container with Scrollable Area for Audio Stage & Live Order Action Buttons */}
-      <div className="flex-1 p-4 flex flex-col items-center justify-center text-center overflow-y-auto min-h-0 bg-[#050507] space-y-4 scrollbar-thin scrollbar-thumb-gray-800">
-        {/* Center MFS Logo Stage with Pulsing Audio Rings */}
+      {/* Main Body Container */}
+      <div className="flex-1 p-4 flex flex-col items-center justify-center text-center overflow-y-auto min-h-0 bg-[#07070A] space-y-4 scrollbar-thin scrollbar-thumb-neutral-800">
+        {/* Center Stage with Pulsing Audio Rings */}
         <div className="relative my-2 flex items-center justify-center flex-shrink-0">
           {/* Outer Ambient Glowing Rings */}
-          <div className={`absolute w-32 h-32 rounded-full border-2 border-[#E5C158]/40 transition-all duration-300 ${
-            speakerState !== 'quiet' ? 'scale-125 opacity-100 animate-ping' : 'scale-100 opacity-20'
+          <div className={`absolute w-32 h-32 rounded-full border-2 transition-all duration-300 ${
+            speakerState === 'ai' 
+              ? 'scale-125 border-[#28C76F]/60 shadow-[0_0_20px_rgba(40,199,111,0.4)] animate-ping' 
+              : speakerState === 'user' 
+              ? 'scale-125 border-[#E5C158]/60 shadow-[0_0_20px_rgba(229,193,88,0.4)] animate-ping' 
+              : 'scale-100 border-[#E5C158]/20 opacity-20'
           }`} />
-          <div className={`absolute w-24 h-24 rounded-full border border-[#E5C158]/60 transition-all duration-300 ${
-            speakerState === 'ai' ? 'scale-110 border-[#28C76F]' : ''
+          
+          <div className={`absolute w-24 h-24 rounded-full border transition-all duration-300 ${
+            speakerState === 'ai' ? 'scale-110 border-[#28C76F]' : speakerState === 'user' ? 'scale-110 border-[#E5C158]' : 'border-[#E5C158]/40'
           }`} />
           
           {/* MFS Logo in Center Circle */}
@@ -695,7 +725,7 @@ export const AIVoiceAssistant: React.FC<AIVoiceAssistantProps> = ({ onClose, onS
         </div>
 
         {/* Dynamic Real-Time Audio Waveform Bars */}
-        <div className="w-full max-w-[280px] my-2 flex items-center justify-center gap-1.5 h-11 px-3 bg-[#0F0F12] border border-[#2A2B35] rounded-2xl shadow-inner overflow-hidden flex-shrink-0">
+        <div className="w-full max-w-[280px] my-1 flex items-center justify-center gap-1.5 h-11 px-3 bg-[#0D0D12] border border-[#232330] rounded-2xl shadow-inner overflow-hidden flex-shrink-0">
           {Array.from({ length: 16 }).map((_, idx) => {
             const isQuiet = speakerState === 'quiet';
             let heightPx = 4;
@@ -708,7 +738,7 @@ export const AIVoiceAssistant: React.FC<AIVoiceAssistantProps> = ({ onClose, onS
               ? 'bg-[#28C76F] shadow-[0_0_8px_rgba(40,199,111,0.6)]' 
               : speakerState === 'user' 
               ? 'bg-[#E5C158] shadow-[0_0_8px_rgba(229,193,88,0.6)]' 
-              : 'bg-gray-700 opacity-40';
+              : 'bg-neutral-800 opacity-40';
 
             return (
               <div 
@@ -721,19 +751,19 @@ export const AIVoiceAssistant: React.FC<AIVoiceAssistantProps> = ({ onClose, onS
         </div>
         
         {isConnecting ? (
-          <div className="flex items-center text-gray-400 gap-2 h-6">
+          <div className="flex items-center text-neutral-400 gap-2 h-6">
             <Loader2 className="w-4 h-4 animate-spin text-[#E5C158]" />
             <span className="text-xs font-medium">
               Connecting MFS {selectedVoice === 'Puck' ? 'Puck Male' : 'Aoede Female'} Voice Assistant...
             </span>
           </div>
         ) : error ? (
-          <div className="bg-[#1A1A22] border border-red-500/30 rounded-2xl p-3.5 max-w-sm w-full space-y-2.5 text-left my-1">
+          <div className="bg-[#121218] border border-red-500/30 rounded-2xl p-3.5 max-w-sm w-full space-y-2.5 text-left my-1">
             <p className="text-red-400 text-xs leading-relaxed">{error}</p>
             <div className="flex flex-col gap-2 pt-1">
               <button
                 onClick={() => startVoiceSession()}
-                className="w-full bg-[#E5C158] hover:bg-[#D4AF37] text-black font-semibold py-2 px-3 rounded-xl flex items-center justify-center gap-2 text-xs transition-all cursor-pointer"
+                className="w-full bg-[#E5C158] hover:bg-[#D4AF37] text-neutral-950 font-bold py-2 px-3 rounded-xl flex items-center justify-center gap-2 text-xs transition-all cursor-pointer shadow-md"
               >
                 <RefreshCw className="w-3.5 h-3.5" />
                 Allow / Retry Microphone
@@ -753,49 +783,49 @@ export const AIVoiceAssistant: React.FC<AIVoiceAssistantProps> = ({ onClose, onS
           <div className="flex flex-col items-center justify-center gap-1">
             <div className="flex items-center justify-center gap-2 h-5">
               {speakerState === 'ai' ? (
-                <p className="text-[#28C76F] font-semibold text-xs flex items-center gap-1.5">
+                <p className="text-[#28C76F] font-bold text-xs flex items-center gap-1.5">
                   <Volume2 className="w-3.5 h-3.5 animate-bounce" />
                   {selectedVoice === 'Puck' ? 'Puck Male' : 'Aoede Female'} Voice Speaking...
                 </p>
               ) : speakerState === 'user' ? (
-                <p className="text-[#E5C158] font-semibold text-xs flex items-center gap-1.5">
+                <p className="text-[#E5C158] font-bold text-xs flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-[#E5C158] animate-ping"></span>
                   Listening to You (Interrupted)...
                 </p>
               ) : (
-                <p className="text-gray-400 text-xs flex items-center gap-1.5">
+                <p className="text-neutral-400 text-xs flex items-center gap-1.5 font-medium">
                   <span className="w-2 h-2 rounded-full bg-[#28C76F]"></span>
-                  Active Listening Ready — Speak Anytime
+                  Ready to talk — Speak anytime
                 </p>
               )}
             </div>
             
-            <div className="flex items-center gap-1 text-[10px] text-[#28C76F]/90 bg-[#28C76F]/10 border border-[#28C76F]/20 px-2.5 py-0.5 rounded-full">
+            <div className="flex items-center gap-1 text-[10px] text-[#E5C158] bg-[#E5C158]/10 border border-[#E5C158]/20 px-2.5 py-0.5 rounded-full font-medium">
               <Sparkles className="w-3 h-3 text-[#E5C158]" />
-              <span>Interruption-Friendly Active Listening</span>
+              <span>Natural Dual-Language Voice (EN / Urdu)</span>
             </div>
           </div>
         )}
 
-        <div className="flex items-center gap-6 my-2 flex-shrink-0">
+        <div className="flex items-center gap-6 my-1 flex-shrink-0">
           <button
             onClick={toggleMute}
-            className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors cursor-pointer ${isMuted ? 'bg-gray-700 text-white' : 'bg-[#2A2B35] text-white hover:bg-[#3A3B45]'}`}
+            className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all cursor-pointer border ${isMuted ? 'bg-red-500/20 border-red-500/40 text-red-400' : 'bg-[#14141C] border-[#232330] text-neutral-300 hover:text-white hover:border-[#E5C158]/50'}`}
             title={isMuted ? "Unmute Mic" : "Mute Mic"}
           >
             {isMuted ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
           </button>
           <button
             onClick={handleEndCall}
-            className="w-12 h-12 rounded-full bg-red-500 text-white flex items-center justify-center hover:bg-red-600 transition-colors shadow-lg shadow-red-500/20 cursor-pointer"
+            className="w-12 h-12 rounded-2xl bg-gradient-to-r from-red-600 to-rose-700 text-white flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-lg shadow-red-600/25 cursor-pointer"
             title="End Voice Call & View Brief"
           >
             <PhoneOff className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Render Order Action Button at bottom (Always visible, validates details on click) */}
-        <div className="w-full pt-2 border-t border-[#2A2B35]/80 text-center animate-in fade-in duration-300">
+        {/* Render Order Action Button at bottom */}
+        <div className="w-full pt-2 border-t border-[#232330] text-center animate-in fade-in duration-300">
           <button
             onClick={handleWhatsAppButtonClick}
             className="w-full bg-[#28C76F]/15 hover:bg-[#28C76F]/25 text-[#28C76F] border border-[#28C76F]/40 py-2.5 px-3.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm hover:scale-[1.01]"
@@ -807,22 +837,22 @@ export const AIVoiceAssistant: React.FC<AIVoiceAssistantProps> = ({ onClose, onS
 
         {/* Prompt Modal when clicked before details are provided */}
         {showDetailsPrompt && (
-          <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-[100] flex items-center justify-center p-4 animate-in fade-in">
-            <div className="bg-[#121217] border border-[#E5C158]/40 rounded-2xl p-5 max-w-sm w-full text-center relative shadow-2xl">
+          <div className="fixed inset-0 bg-black/85 backdrop-blur-md z-[100] flex items-center justify-center p-4 animate-in fade-in">
+            <div className="bg-[#0C0C10] border border-[#E5C158]/40 rounded-2xl p-5 max-w-sm w-full text-center relative shadow-2xl">
               <button 
                 type="button"
                 onClick={() => setShowDetailsPrompt(false)}
-                className="absolute top-3 right-3 text-gray-400 hover:text-white p-1 rounded-full hover:bg-white/10"
+                className="absolute top-3 right-3 text-neutral-400 hover:text-white p-1 rounded-full hover:bg-white/10"
               >
                 <X className="w-4 h-4" />
               </button>
 
-              <div className="w-12 h-12 rounded-full bg-[#E5C158]/10 border border-[#E5C158]/30 flex items-center justify-center mx-auto mb-3">
-                <Sparkles className="w-6 h-6 text-[#E5C158]" />
+              <div className="w-12 h-12 rounded-2xl bg-[#E5C158]/10 border border-[#E5C158]/30 flex items-center justify-center mx-auto mb-3 text-[#E5C158]">
+                <Sparkles className="w-6 h-6" />
               </div>
 
               <h3 className="text-white font-bold text-base mb-1">Details Required First</h3>
-              <p className="text-gray-300 text-xs mb-4 leading-relaxed">
+              <p className="text-neutral-300 text-xs mb-4 leading-relaxed">
                 Please provide your details first (Name & Service required) to our Voice Assistant. Once you discuss your project, your custom Order Brief and 1-Click WhatsApp buttons will open automatically with your exact information!
               </p>
 
@@ -835,7 +865,7 @@ export const AIVoiceAssistant: React.FC<AIVoiceAssistantProps> = ({ onClose, onS
                     value={manualName}
                     onChange={(e) => setManualName(e.target.value)}
                     placeholder="e.g. Shehroz Sultan"
-                    className="w-full bg-[#08080A] border border-[#2A2B35] focus:border-[#E5C158] rounded-xl px-3 py-2 text-xs text-white outline-none"
+                    className="w-full bg-[#121218] border border-[#232330] focus:border-[#E5C158] rounded-xl px-3 py-2 text-xs text-white outline-none"
                   />
                 </div>
                 <div>
@@ -843,7 +873,7 @@ export const AIVoiceAssistant: React.FC<AIVoiceAssistantProps> = ({ onClose, onS
                   <select
                     value={manualService}
                     onChange={(e) => setManualService(e.target.value)}
-                    className="w-full bg-[#08080A] border border-[#2A2B35] focus:border-[#E5C158] rounded-xl px-3 py-2 text-xs text-white outline-none"
+                    className="w-full bg-[#121218] border border-[#232330] focus:border-[#E5C158] rounded-xl px-3 py-2 text-xs text-white outline-none"
                   >
                     <option value="Presentation Design">Presentation Design</option>
                     <option value="Assignment Writing">Assignment Writing</option>
@@ -852,21 +882,21 @@ export const AIVoiceAssistant: React.FC<AIVoiceAssistantProps> = ({ onClose, onS
                   </select>
                 </div>
                 <div>
-                  <label className="text-[11px] text-gray-400 font-medium block mb-1">Project Scope / Details (Optional)</label>
+                  <label className="text-[11px] text-neutral-400 font-medium block mb-1">Project Scope / Details (Optional)</label>
                   <input 
                     type="text" 
                     value={manualScope}
                     onChange={(e) => setManualScope(e.target.value)}
                     placeholder="e.g. 15 slides / 2000 words"
-                    className="w-full bg-[#08080A] border border-[#2A2B35] focus:border-[#E5C158] rounded-xl px-3 py-2 text-xs text-white outline-none"
+                    className="w-full bg-[#121218] border border-[#232330] focus:border-[#E5C158] rounded-xl px-3 py-2 text-xs text-white outline-none"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-[#28C76F] to-[#20a35a] text-black font-extrabold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 cursor-pointer hover:opacity-95 shadow-lg shadow-[#28C76F]/20"
+                  className="w-full bg-gradient-to-r from-[#28C76F] to-[#20a35a] text-neutral-950 font-extrabold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 cursor-pointer hover:opacity-95 shadow-lg shadow-[#28C76F]/20"
                 >
-                  <Send className="w-4 h-4 fill-black" />
+                  <Send className="w-4 h-4 fill-neutral-950" />
                   <span>Open My Custom Brief & WhatsApp</span>
                 </button>
               </form>
@@ -874,7 +904,7 @@ export const AIVoiceAssistant: React.FC<AIVoiceAssistantProps> = ({ onClose, onS
               <button
                 type="button"
                 onClick={() => setShowDetailsPrompt(false)}
-                className="text-gray-400 hover:text-white text-xs underline font-medium"
+                className="text-neutral-400 hover:text-white text-xs underline font-medium"
               >
                 Continue Speaking with Voice Assistant
               </button>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'motion/react';
 import { Currency, DeliverySpeed } from '../types';
+import { SERVICES, calculateServicePrice } from '../data/content';
 import { CheckCircle, Shield, ArrowRight } from 'lucide-react';
 
 interface PriceCalculatorProps {
@@ -35,10 +37,14 @@ export const PriceCalculator: React.FC<PriceCalculatorProps> = ({
   useEffect(() => {
     if (selectedServiceId) {
       setService(selectedServiceId);
-      if (selectedServiceId === 'presentation') {
+      if (selectedServiceId === 'presentation' || selectedServiceId === 'pitch-deck') {
         setQty(10);
-      } else if (selectedServiceId === 'assignment') {
+      } else if (selectedServiceId === 'assignment' || selectedServiceId === 'reports' || selectedServiceId === 'case-studies') {
         setQty(1000);
+      } else if (selectedServiceId === 'document-formatting') {
+        setQty(1500);
+      } else {
+        setQty(1);
       }
     }
   }, [selectedServiceId]);
@@ -47,56 +53,23 @@ export const PriceCalculator: React.FC<PriceCalculatorProps> = ({
   const handleServiceChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newService = e.target.value;
     setService(newService);
-    if (newService === 'presentation') {
+    if (newService === 'presentation' || newService === 'pitch-deck') {
       setQty(10);
-    } else if (newService === 'assignment') {
+    } else if (newService === 'assignment' || newService === 'reports' || newService === 'case-studies') {
       setQty(1000);
+    } else if (newService === 'document-formatting') {
+      setQty(1500);
+    } else {
+      setQty(1);
     }
   };
 
   // Price Calculation Logic
-  const calculatePrice = () => {
-    let originalPrice = 0;
-
-    const sanitizedQty = Math.max(1, Number(qty) || 1);
-
-    if (service === 'presentation') {
-      // Base original rate: PKR 250 / USD 1.50 per slide (50% Launch Promo = PKR 125 / $0.75 per slide)
-      originalPrice = currency === 'PKR' ? sanitizedQty * 250 : sanitizedQty * 1.5;
-    } else if (service === 'assignment') {
-      // Base original rate: PKR 2 / USD 0.015 per word (50% Launch Promo = PKR 1 / $0.0075 per word => PKR 1,000 / $7.50 per 1k words)
-      originalPrice = currency === 'PKR' ? sanitizedQty * 2 : sanitizedQty * 0.015;
-    } else {
-      // Resume / CV Standard Package
-      originalPrice = currency === 'PKR' ? 2500 : 20;
-    }
-
-    // Urgent speed surcharges
-    let markup = 0;
-    if (speed === 'express') markup = 0.30;
-    if (speed === 'priority') markup = 0.50;
-    if (speed === 'sameday') markup = 0.75;
-
-    const basePriceWithSpeed = originalPrice * (1 + markup);
-    const finalPromoPrice = basePriceWithSpeed * 0.50; // 50% Launch Promo
-
-    return {
-      original: basePriceWithSpeed,
-      final: finalPromoPrice,
-    };
-  };
-
-  const { original, final } = calculatePrice();
-
-  const formattedFinal =
-    currency === 'PKR'
-      ? `PKR ${Math.round(final).toLocaleString()}`
-      : `USD ${final.toFixed(2)}`;
-
-  const formattedOriginal =
-    currency === 'PKR'
-      ? `PKR ${Math.round(original).toLocaleString()}`
-      : `USD ${original.toFixed(2)}`;
+  const priceResult = calculateServicePrice(service, qty, speed, currency);
+  const original = priceResult.originalPrice;
+  const final = priceResult.finalPrice;
+  const formattedFinal = priceResult.formattedFinal;
+  const formattedOriginal = priceResult.formattedOriginal;
 
   return (
     <section id="calculator" className="py-24 relative bg-white/[0.01] border-y border-white/5">
@@ -157,9 +130,11 @@ export const PriceCalculator: React.FC<PriceCalculatorProps> = ({
                 onChange={handleServiceChange}
                 className="w-full bg-[#050507] border border-white/15 focus:border-[#E5C158] text-white text-sm rounded-xl px-4 py-3.5 focus:outline-none transition-colors"
               >
-                <option value="presentation">Presentation Design (per slide)</option>
-                <option value="assignment">Assignment Writing (per word)</option>
-                <option value="resume">ATS Resume Service (Standard Package)</option>
+                {SERVICES.map((s) => (
+                  <option key={s.id} value={s.id}>
+                    {s.title} ({s.unit})
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -306,7 +281,9 @@ export const PriceCalculator: React.FC<PriceCalculatorProps> = ({
               </span>
             </div>
 
-            <button
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() =>
                 onBookOrder({
                   service,
@@ -320,7 +297,7 @@ export const PriceCalculator: React.FC<PriceCalculatorProps> = ({
             >
               <span>Book This Order Now</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </motion.button>
           </div>
 
         </div>

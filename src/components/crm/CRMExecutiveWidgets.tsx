@@ -87,7 +87,7 @@ export const CRMExecutiveWidgets: React.FC<CRMExecutiveWidgetsProps> = ({
     { id: 'ACT-102', event: 'Downloaded final formatted Case Study PDF & DOCX', user: 'James O’Connor', type: 'File Download', timestamp: '1 hour ago', badge: 'file' },
     { id: 'ACT-103', event: 'Sent revision feedback on Slide 12 valuation charts', user: 'Muhammad Shehroz Sultan', type: 'Revision Request', timestamp: '3 hours ago', badge: 'revision' },
     { id: 'ACT-104', event: 'Initiated Gemini 1.5 Pro AI Voice Assistant chat session', user: 'Dr. Tariq Mahmood', type: 'AI Conversation', timestamp: '5 hours ago', badge: 'ai' },
-    { id: 'ACT-105', event: 'Client account login from Islamabad IP (111.68.x.x)', user: 'Muhammad Shehroz Sultan', type: 'Security Audit', timestamp: '6 hours ago', badge: 'login' }
+    { id: 'ACT-105', event: 'Client account login from verified IP (111.68.x.x)', user: 'Muhammad Shehroz Sultan', type: 'Security Audit', timestamp: '6 hours ago', badge: 'login' }
   ];
 
   return (

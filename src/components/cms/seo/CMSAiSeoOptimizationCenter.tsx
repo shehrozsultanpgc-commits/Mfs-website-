@@ -51,7 +51,7 @@ export const CMSAiSeoOptimizationCenter: React.FC<CMSAiSeoOptimizationCenterProp
       type: 'keywords',
       title: 'High-Impact Keyword Gap Opportunities',
       original: 'Presentation Design, Assignment Writing',
-      suggested: 'ATS CV Builder Pakistan, Academic Assignment Help Islamabad, Executive Pitch Deck Design Rate',
+      suggested: 'ATS CV Builder Pakistan, Academic Assignment Help, Executive Pitch Deck Design Rate',
       impact: '+3,400 Monthly Searches',
       icon: Search,
     },

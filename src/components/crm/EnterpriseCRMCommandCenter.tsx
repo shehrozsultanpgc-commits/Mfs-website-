@@ -150,7 +150,7 @@ export const EnterpriseCRMCommandCenter: React.FC<EnterpriseCRMProps> = ({
       name: 'Muhammad Shehroz Sultan',
       company: 'MFS International / PGC Academic',
       avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200',
-      email: 'shehrozsultanpgc@gmail.com',
+      email: 'mfsmedia.agency@gmail.com',
       phone: '+92 301 5323689',
       country: 'Pakistan',
       countryFlag: '🇵🇰',
@@ -197,7 +197,7 @@ export const EnterpriseCRMCommandCenter: React.FC<EnterpriseCRMProps> = ({
     {
       id: 'MFS-CLI-71204',
       name: 'Dr. Tariq Mahmood',
-      company: 'Islamabad Medical Institute / HealthTech PK',
+      company: 'Medical Institute / HealthTech PK',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200',
       email: 'dr.tariq.mahmood@imi.edu.pk',
       phone: '+92 301 8829102',
@@ -1561,7 +1561,7 @@ export const EnterpriseCRMCommandCenter: React.FC<EnterpriseCRMProps> = ({
             </div>
 
             <div className="flex items-center justify-between pt-2">
-              <span className="text-[10px] text-neutral-500">From: shehrozsultanpgc@gmail.com</span>
+              <span className="text-[10px] text-neutral-500">From: mfsmedia.agency@gmail.com</span>
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setActiveModal(null)}

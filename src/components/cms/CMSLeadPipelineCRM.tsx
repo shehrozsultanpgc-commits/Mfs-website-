@@ -120,7 +120,7 @@ export const CMSLeadPipelineCRM: React.FC<CMSLeadPipelineCRMProps> = ({
     },
     {
       id: 'lead-3',
-      companyName: 'Enterprise Cloud Systems (Islamabad)',
+      companyName: 'Enterprise Cloud Systems',
       contactPerson: 'Hamza Chaudhry',
       email: 'hamza@cloudsystems.pk',
       phone: '+92 300 9876543',

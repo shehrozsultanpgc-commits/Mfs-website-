@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { Instagram, Facebook, Mail, Phone, MapPin, Bot, Mic } from 'lucide-react';
 
 interface FooterProps {
@@ -31,7 +32,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
 
             {/* Socials */}
             <div className="flex items-center gap-3 mt-2">
-              <a
+              <motion.a
+                whileHover={{ scale: 1.15 }}
+                whileTap={{ scale: 0.9 }}
                 href="https://instagram.com/mfsgrowth"
                 target="_blank"
                 rel="noreferrer"
@@ -39,8 +42,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
                 title="Follow on Instagram"
               >
                 <Instagram className="w-4 h-4" />
-              </a>
-              <a
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.15 }}
+                whileTap={{ scale: 0.9 }}
                 href="https://facebook.com/MFSGrowth"
                 target="_blank"
                 rel="noreferrer"
@@ -48,7 +53,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
                 title="Follow on Facebook"
               >
                 <Facebook className="w-4 h-4" />
-              </a>
+              </motion.a>
             </div>
           </div>
 
@@ -92,16 +97,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
               <a href="mailto:mfsmedia.agency@gmail.com" className="hover:text-[#E5C158]">mfsmedia.agency@gmail.com</a>
             </div>
             <div className="flex items-center gap-2">
-              <Mail className="w-3.5 h-3.5 text-[#E5C158]" />
-              <a href="mailto:shehrozsultanpgc@gmail.com" className="hover:text-[#E5C158]">shehrozsultanpgc@gmail.com</a>
-            </div>
-            <div className="flex items-center gap-2">
               <Phone className="w-3.5 h-3.5 text-[#E5C158]" />
               <a href="tel:+923015323689" className="hover:text-[#E5C158]">+92 301 5323689</a>
-            </div>
-            <div className="flex items-center gap-2">
-              <MapPin className="w-3.5 h-3.5 text-[#E5C158]" />
-              <span>Islamabad, Pakistan</span>
             </div>
             <div className="flex items-center gap-2 mt-2">
               <button onClick={(e) => { e.preventDefault(); onOpenAIChat?.('chat'); }} className="flex items-center gap-2 text-neutral-400 hover:text-[#E5C158] transition-colors cursor-pointer">

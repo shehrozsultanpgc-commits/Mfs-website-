@@ -68,7 +68,7 @@ export const CRMMeetingScheduleCenter: React.FC<CRMMeetingScheduleCenterProps> =
       title: 'Academic Manuscript Formatting Review Call',
       type: 'Project Review',
       clientName: 'Dr. Tariq Mahmood',
-      clientCompany: 'Islamabad Medical Institute',
+      clientCompany: 'Medical Institute',
       date: '2026-07-25',
       time: '02:00 PM PKT',
       duration: '30 mins',

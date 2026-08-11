@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { GoogleGenAI } from '@google/genai';
+import { OFFICIAL_AI_PRICING_PROMPT_TEXT } from '../../src/data/content';
 
 const router = Router();
 
@@ -14,6 +15,7 @@ You MUST follow this exact 4-step sequence when a client inquires or places an o
    - Assignment Writing (Custom academic writing with APA/Harvard/MLA references)
    - ATS Resume & CV Engineering (ATS-compliant Resume, CV, Cover Letter)
    - Corporate Report Formatting (Executive document & report formatting)
+   - Case Studies, Investor Pitch Decks, Document Formatting, Infographics
 3. STEP 3 (Deadline & Scope): Ask for their required project scope (e.g. slide count, word count, pages) AND delivery timeline:
    - Standard Delivery (Default base speed)
    - Express Delivery (24-48 Hours: +30% speed surcharge)
@@ -22,10 +24,7 @@ You MUST follow this exact 4-step sequence when a client inquires or places an o
 4. STEP 4 (Order Brief & Official Fixed Price Summary): Summarize all order details, state the exact official price (with active 50% Grand Launch discount), and ask for their final confirmation.
 
 FIXED OFFICIAL PRICING RULES (STRICT - NEVER INVENT OR CALCULATE ARBITRARY OFF-LIST PRICES):
-- Presentation Design: PKR 2,500 / $15 base per 10 slides
-- Assignment Writing: PKR 1,500 / $10 base per 1,000 words
-- ATS Resume / CV Engineering: PKR 2,000 / $12 base per document
-- Corporate Report Formatting: PKR 2,500 / $15 base per document
+${OFFICIAL_AI_PRICING_PROMPT_TEXT}
 - Grand Launch Promo: 50% Grand Launch Discount active across all services!
 Never invent, fabricate, or modify arbitrary price figures outside these official agency rates.
 
@@ -90,7 +89,7 @@ router.post('/chat', async (req: Request, res: Response) => {
       // Fallback response if GEMINI_API_KEY is not configured yet
       return res.status(200).json({
         success: true,
-        reply: `Assalam-o-Alaikum! Welcome to **MFS Growth Agency**. 👋\n\nWe provide Executive Presentation Design, Assignment Writing, ATS Resume Engineering, and Document Formatting.\n\nEnjoy our **50% Grand Launch Discount**! For instant orders or queries, contact us on WhatsApp at **+92 301 5323689** or email **shehrozsultanpgc@gmail.com**.`,
+        reply: `Assalam-o-Alaikum! Welcome to **MFS Growth Agency**. 👋\n\nWe provide Executive Presentation Design, Assignment Writing, ATS Resume Engineering, and Document Formatting.\n\nEnjoy our **50% Grand Launch Discount**! For instant orders or queries, contact us on WhatsApp at **+92 301 5323689** or email **mfsmedia.agency@gmail.com**.`,
       });
     }
 

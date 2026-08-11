@@ -99,8 +99,8 @@ const INITIAL_PAYMENTS: PaymentRecord[] = [
   {
     id: 'PAY-MFS-849201',
     orderId: 'ORD-MFS-849201',
-    clientName: 'Muhammad Shehroz Sultan',
-    clientEmail: 'shehrozsultanpgc@gmail.com',
+    clientName: 'Client Account',
+    clientEmail: 'mfsmedia.agency@gmail.com',
     clientPhone: '+92 301 5323689',
     serviceName: 'Executive Presentation Design',
     packageName: 'Express Pitch Deck (15 Slides) + 50% Launch Discount',

@@ -110,8 +110,8 @@ const INITIAL_INVOICES: InvoiceRecord[] = [
   {
     id: 'INV-MFS-849201',
     orderId: 'ORD-MFS-849201',
-    clientName: 'Muhammad Shehroz Sultan',
-    clientEmail: 'shehrozsultanpgc@gmail.com',
+    clientName: 'Client Account',
+    clientEmail: 'mfsmedia.agency@gmail.com',
     clientPhone: '+92 301 5323689',
     clientCompany: 'MFS Growth Tech',
     serviceName: 'Executive Presentation Design',
@@ -1155,8 +1155,8 @@ export const InvoicesFinancialCenter: React.FC<InvoicesFinancialCenterProps> = (
                       MFS <span className="text-[#E5C158]">GROWTH</span> AGENCY
                     </div>
                     <p className="text-xs text-neutral-400">High-Quality Online Digital Solutions</p>
-                    <p className="text-[11px] font-mono text-neutral-500">Islamabad, Pakistan • 24/7 Support</p>
-                    <p className="text-[11px] font-mono text-neutral-500">Email: shehrozsultanpgc@gmail.com</p>
+                    <p className="text-[11px] font-mono text-neutral-500">24/7 Support Desk</p>
+                    <p className="text-[11px] font-mono text-neutral-500">Email: mfsmedia.agency@gmail.com</p>
                   </div>
 
                   <div className="text-left sm:text-right space-y-1">

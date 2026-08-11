@@ -34,10 +34,36 @@ export interface ActionPayload {
 }
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const ADMIN_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || 'shehrozsultanpgc@gmail.com';
+const ADMIN_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || 'mfsmedia.agency@gmail.com';
 const SENDER_EMAIL = process.env.SENDER_EMAIL || 'MFS Growth Agency <onboarding@resend.dev>';
 
-// Initialize Resend lazily
+// In-memory log store for inspecting email dispatch history and diagnostic auditing
+export interface EmailLogEntry {
+  id: string;
+  timestamp: string;
+  recipient: string;
+  type: 'order_client' | 'order_admin' | 'action_client' | 'action_admin';
+  subject: string;
+  provider: 'resend' | 'smtp' | 'simulation';
+  status: 'sent' | 'simulated' | 'failed';
+  messageId?: string;
+  error?: string;
+  previewHtml?: string;
+}
+
+const emailLogsStore: EmailLogEntry[] = [];
+
+export function getEmailLogs(): EmailLogEntry[] {
+  return [...emailLogsStore].reverse();
+}
+
+export function logEmailDispatch(entry: EmailLogEntry) {
+  emailLogsStore.push(entry);
+  if (emailLogsStore.length > 200) {
+    emailLogsStore.shift();
+  }
+}
+
 let resendClient: Resend | null = null;
 function getResendClient(): Resend | null {
   if (!resendClient && RESEND_API_KEY && RESEND_API_KEY.trim().length > 10 && !RESEND_API_KEY.includes('placeholder')) {
@@ -220,12 +246,12 @@ ${order.clientName}`;
       </div>
 
       <div class="text" style="font-size: 12px; text-align: center; margin-top: 20px;">
-        Need assistance or custom invoicing? Reply directly to this email or contact 24/7 Support at <strong>shehrozsultanpgc@gmail.com</strong> / <strong>+92 301 5323689</strong>.
+        Need assistance or custom invoicing? Reply directly to this email or contact 24/7 Support at <strong>mfsmedia.agency@gmail.com</strong> / <strong>+92 301 5323689</strong>.
       </div>
     </div>
 
     <div class="footer">
-      © 2026 MFS Growth Agency. Islamabad, Pakistan.<br>
+      © 2026 MFS Growth Agency.<br>
       Helping Students & Professionals Grow with High-Quality Digital Solutions.
     </div>
   </div>
@@ -358,7 +384,7 @@ export async function sendClientConfirmation(order: OrderCheckoutPayload): Promi
   if (resend) {
     try {
       const isTestDomain = SENDER_EMAIL.includes('onboarding@resend.dev');
-      const targetEmail = isTestDomain ? 'shehrozsultanpgc@gmail.com' : order.clientEmail;
+      const targetEmail = isTestDomain ? 'mfsmedia.agency@gmail.com' : order.clientEmail;
 
       const response = await resend.emails.send({
         from: SENDER_EMAIL,
@@ -371,6 +397,17 @@ export async function sendClientConfirmation(order: OrderCheckoutPayload): Promi
 
       if (response && response.data && response.data.id && !response.error) {
         console.log(`[Resend] Client email dispatched for ${order.orderId}:`, response.data.id);
+        logEmailDispatch({
+          id: `log-${Date.now()}-1`,
+          timestamp: new Date().toISOString(),
+          recipient: order.clientEmail,
+          type: 'order_client',
+          subject,
+          provider: 'resend',
+          status: 'sent',
+          messageId: response.data.id,
+          previewHtml: html,
+        });
         return { success: true, messageId: response.data.id };
       } else {
         const errMsg = response?.error?.message || 'Resend validation constraint';
@@ -392,6 +429,17 @@ export async function sendClientConfirmation(order: OrderCheckoutPayload): Promi
         html: html,
       });
       console.log(`[SMTP] Client email sent for ${order.orderId}:`, info.messageId);
+      logEmailDispatch({
+        id: `log-${Date.now()}-1`,
+        timestamp: new Date().toISOString(),
+        recipient: order.clientEmail,
+        type: 'order_client',
+        subject,
+        provider: 'smtp',
+        status: 'sent',
+        messageId: info.messageId,
+        previewHtml: html,
+      });
       return { success: true, messageId: info.messageId };
     } catch (err: any) {
       console.warn(`[SMTP Error] Failed sending to client:`, err?.message || err);
@@ -399,7 +447,19 @@ export async function sendClientConfirmation(order: OrderCheckoutPayload): Promi
   }
 
   console.log(`[Email Simulation] Simulated Client Confirmation Email queued for ${order.clientEmail} (#${order.orderId})`);
-  return { success: true, messageId: `sim-client-${Date.now()}` };
+  const simId = `sim-client-${Date.now()}`;
+  logEmailDispatch({
+    id: `log-${Date.now()}-1`,
+    timestamp: new Date().toISOString(),
+    recipient: order.clientEmail,
+    type: 'order_client',
+    subject,
+    provider: 'simulation',
+    status: 'simulated',
+    messageId: simId,
+    previewHtml: html,
+  });
+  return { success: true, messageId: simId };
 }
 
 /**
@@ -413,7 +473,7 @@ export async function sendAdminAlert(order: OrderCheckoutPayload): Promise<{ suc
   if (resend) {
     try {
       const isTestDomain = SENDER_EMAIL.includes('onboarding@resend.dev');
-      const targetEmail = isTestDomain ? 'shehrozsultanpgc@gmail.com' : ADMIN_EMAIL;
+      const targetEmail = isTestDomain ? 'mfsmedia.agency@gmail.com' : ADMIN_EMAIL;
 
       const response = await resend.emails.send({
         from: SENDER_EMAIL,
@@ -426,6 +486,17 @@ export async function sendAdminAlert(order: OrderCheckoutPayload): Promise<{ suc
 
       if (response && response.data && response.data.id && !response.error) {
         console.log(`[Resend] Admin alert dispatched for ${order.orderId}:`, response.data.id);
+        logEmailDispatch({
+          id: `log-${Date.now()}-2`,
+          timestamp: new Date().toISOString(),
+          recipient: targetEmail,
+          type: 'order_admin',
+          subject,
+          provider: 'resend',
+          status: 'sent',
+          messageId: response.data.id,
+          previewHtml: html,
+        });
         return { success: true, messageId: response.data.id };
       } else {
         const errMsg = response?.error?.message || 'Resend validation constraint';
@@ -447,6 +518,17 @@ export async function sendAdminAlert(order: OrderCheckoutPayload): Promise<{ suc
         html: html,
       });
       console.log(`[SMTP] Admin alert sent for ${order.orderId}:`, info.messageId);
+      logEmailDispatch({
+        id: `log-${Date.now()}-2`,
+        timestamp: new Date().toISOString(),
+        recipient: ADMIN_EMAIL,
+        type: 'order_admin',
+        subject,
+        provider: 'smtp',
+        status: 'sent',
+        messageId: info.messageId,
+        previewHtml: html,
+      });
       return { success: true, messageId: info.messageId };
     } catch (err: any) {
       console.warn(`[SMTP Error] Failed sending admin alert:`, err?.message || err);
@@ -454,7 +536,19 @@ export async function sendAdminAlert(order: OrderCheckoutPayload): Promise<{ suc
   }
 
   console.log(`[Email Simulation] Simulated Admin Alert Email queued for ${ADMIN_EMAIL} (#${order.orderId})`);
-  return { success: true, messageId: `sim-admin-${Date.now()}` };
+  const simAdminId = `sim-admin-${Date.now()}`;
+  logEmailDispatch({
+    id: `log-${Date.now()}-2`,
+    timestamp: new Date().toISOString(),
+    recipient: ADMIN_EMAIL,
+    type: 'order_admin',
+    subject,
+    provider: 'simulation',
+    status: 'simulated',
+    messageId: simAdminId,
+    previewHtml: html,
+  });
+  return { success: true, messageId: simAdminId };
 }
 
 /**
@@ -541,7 +635,7 @@ export function buildClientActionHtml(action: ActionPayload): string {
     </div>
 
     <div class="footer">
-      © 2026 MFS Growth Agency. Islamabad, Pakistan.<br>
+      © 2026 MFS Growth Agency.<br>
       High-Quality Digital Solutions for Students & Professionals Worldwide.
     </div>
   </div>
@@ -638,7 +732,7 @@ export async function sendClientActionConfirmation(action: ActionPayload): Promi
   if (resend) {
     try {
       const isTestDomain = SENDER_EMAIL.includes('onboarding@resend.dev');
-      const targetEmail = isTestDomain ? 'shehrozsultanpgc@gmail.com' : action.clientEmail;
+      const targetEmail = isTestDomain ? 'mfsmedia.agency@gmail.com' : action.clientEmail;
 
       const response = await resend.emails.send({
         from: SENDER_EMAIL,
@@ -688,7 +782,7 @@ export async function sendAdminActionAlert(action: ActionPayload): Promise<{ suc
   if (resend) {
     try {
       const isTestDomain = SENDER_EMAIL.includes('onboarding@resend.dev');
-      const targetEmail = isTestDomain ? 'shehrozsultanpgc@gmail.com' : ADMIN_EMAIL;
+      const targetEmail = isTestDomain ? 'mfsmedia.agency@gmail.com' : ADMIN_EMAIL;
 
       const response = await resend.emails.send({
         from: SENDER_EMAIL,

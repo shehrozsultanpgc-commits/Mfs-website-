@@ -158,7 +158,7 @@ export const CMSBusinessAutomationEngine: React.FC<CMSBusinessAutomationEnginePr
           triggerSource: 'ORD-MFS-849201',
           result: 'success',
           duration: '120ms',
-          log: 'Email sent to shehrozsultanpgc@gmail.com; Cloud directory initialized.',
+          log: 'Email sent to mfsmedia.agency@gmail.com; Cloud directory initialized.',
         },
         {
           id: 'ex-2',

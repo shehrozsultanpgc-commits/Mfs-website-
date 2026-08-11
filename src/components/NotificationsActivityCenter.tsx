@@ -55,7 +55,7 @@ export interface NotificationItem {
 export const NotificationsActivityCenter: React.FC<NotificationsActivityCenterProps> = ({
   currency,
   customerName = 'Muhammad Shehroz Sultan',
-  customerEmail = 'shehrozsultanpgc@gmail.com',
+  customerEmail = 'mfsmedia.agency@gmail.com',
   clientId = 'CLI-MFS-98421',
   onShowToast,
   onNavigatePage,
@@ -131,7 +131,7 @@ export const NotificationsActivityCenter: React.FC<NotificationsActivityCenterPr
       id: 'notif-6',
       type: 'security',
       title: 'Google SSO Sign-In Verified',
-      description: 'Authenticated from Chrome macOS (Islamabad, PK).',
+      description: 'Authenticated from Chrome macOS (PK).',
       timestamp: '3 days ago',
       dateCategory: 'Earlier',
       isUnread: false,

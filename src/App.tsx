@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Currency, DeliverySpeed } from './types';
+import { SEOManager } from './components/common/SEOManager';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { TrustBadges } from './components/TrustBadges';
@@ -140,6 +142,9 @@ function AppContent() {
 
   return (
     <div className="min-h-screen bg-[#050507] text-white selection:bg-[#E5C158] selection:text-[#050507] relative font-sans">
+      {/* Dynamic Technical SEO & Structured Data */}
+      <SEOManager currentPage={currentPage} />
+
       {/* Toast Notification */}
       <Toast message={toastMessage} />
 
@@ -153,143 +158,161 @@ function AppContent() {
         onNavigatePage={handleNavigatePage}
       />
 
-      {/* Main Content Area */}
-      {currentPage === 'home' ? (
-        <>
-          {/* Hero Section */}
-          <Hero
-            onOpenOrderModal={() => handleNavigatePage('order')}
-            onViewWork={scrollToPortfolio}
-          />
+      {/* Main Content Area with Motion Graphics Page Transition */}
+      <AnimatePresence mode="wait">
+        <motion.main
+          key={currentPage}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -12 }}
+          transition={{ duration: 0.28, ease: 'easeOut' }}
+        >
+          {currentPage === 'home' ? (
+            <>
+              {/* Hero Section */}
+              <Hero
+                onOpenOrderModal={() => handleNavigatePage('order')}
+                onViewWork={scrollToPortfolio}
+              />
 
-          {/* Trust Badges */}
-          <TrustBadges />
+              {/* Trust Badges */}
+              <TrustBadges />
 
-          {/* Popular Services Section */}
-          <ServicesSection
-            currency={currency}
-            onSelectService={handleOpenOrderWithService}
-          />
+              {/* Popular Services Section */}
+              <ServicesSection
+                currency={currency}
+                onSelectService={handleOpenOrderWithService}
+                onOpenCalculator={(serviceId) => {
+                  if (serviceId) setPrefilledService(serviceId);
+                  const el = document.getElementById('calculator');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+              />
 
-          {/* How It Works Timeline */}
-          <HowItWorks />
+              {/* How It Works Timeline */}
+              <HowItWorks />
 
-          {/* Why Choose Us */}
-          <WhyUsSection />
+              {/* Why Choose Us */}
+              <WhyUsSection />
 
-          {/* Live Interactive Price Calculator */}
-          <PriceCalculator
-            currency={currency}
-            setCurrency={setCurrency}
-            selectedServiceId={prefilledService}
-            onBookOrder={handleBookFromCalculator}
-          />
+              {/* Live Interactive Price Calculator */}
+              <PriceCalculator
+                currency={currency}
+                setCurrency={setCurrency}
+                selectedServiceId={prefilledService}
+                onBookOrder={handleBookFromCalculator}
+              />
 
-          {/* Portfolio Deliverables Preview */}
-          <PortfolioSection onShowToast={triggerToast} />
+              {/* Portfolio Deliverables Preview */}
+              <PortfolioSection 
+                onShowToast={triggerToast} 
+                onOpenOrderModal={() => setIsOrderModalOpen(true)}
+              />
 
-          {/* Verified Reviews */}
-          <ReviewsSection onViewAllReviews={() => handleNavigatePage('reviews')} />
+              {/* Verified Reviews */}
+              <ReviewsSection onViewAllReviews={() => handleNavigatePage('reviews')} />
 
-          {/* FAQ Accordion */}
-          <FaqSection />
+              {/* FAQ Accordion */}
+              <FaqSection />
 
-          {/* 5-Card Contact Grid */}
-          <ContactSection onOpenAIChat={handleOpenAIChat} />
-        </>
-      ) : currentPage === 'services' ? (
-        <ServicesPage
-          currency={currency}
-          onSelectService={handleOpenOrderWithService}
-          onOpenCalculator={() => {
-            setCurrentPage('home');
-            setTimeout(() => {
-              const el = document.getElementById('calculator');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }, 100);
-          }}
-        />
-      ) : currentPage === 'pricing' ? (
-        <PricingPage
-          currency={currency}
-          setCurrency={setCurrency}
-          onSelectService={handleOpenOrderWithService}
-          onOpenCalculator={() => {
-            setCurrentPage('home');
-            setTimeout(() => {
-              const el = document.getElementById('calculator');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }, 100);
-          }}
-        />
-      ) : currentPage === 'reviews' ? (
-        <ReviewsPage
-          onOpenOrderModal={() => setIsOrderModalOpen(true)}
-          onShowToast={triggerToast}
-        />
-      ) : currentPage === 'about' ? (
-        <AboutPage
-          onOpenOrderModal={() => setIsOrderModalOpen(true)}
-          onNavigatePage={handleNavigatePage}
-        />
-      ) : currentPage === 'contact' ? (
-        <ContactPage
-          onOpenOrderModal={() => setIsOrderModalOpen(true)}
-          onOpenAIChat={handleOpenAIChat}
-          onShowToast={triggerToast}
-          onNavigatePage={handleNavigatePage}
-        />
-      ) : currentPage === 'order' ? (
-        <OrderPage
-          currency={currency}
-          setCurrency={setCurrency}
-          prefilledServiceId={prefilledService}
-          onShowToast={triggerToast}
-          onNavigatePage={handleNavigatePage}
-          onOpenAIChat={handleOpenAIChat}
-        />
-      ) : currentPage === 'payment' ? (
-        <PaymentPage
-          currency={currency}
-          setCurrency={setCurrency}
-          onShowToast={triggerToast}
-          onNavigatePage={handleNavigatePage}
-          onOpenAIChat={handleOpenAIChat}
-        />
-      ) : currentPage === 'confirmation' ? (
-        <OrderConfirmationPage
-          currency={currency}
-          onShowToast={triggerToast}
-          onNavigatePage={handleNavigatePage}
-          onOpenAIChat={handleOpenAIChat}
-        />
-      ) : currentPage === 'dashboard' ? (
-        <RequireClient>
-          <ClientDashboard
-            currency={currency}
-            setCurrency={setCurrency}
-            onShowToast={triggerToast}
-            onNavigatePage={handleNavigatePage}
-            onOpenAIChat={handleOpenAIChat}
-          />
-        </RequireClient>
-      ) : currentPage === 'admin' ? (
-        <AdminGuard onShowToast={triggerToast}>
-          <AdminDashboard
-            currency={currency}
-            setCurrency={setCurrency}
-            onShowToast={triggerToast}
-            onNavigatePage={handleNavigatePage}
-          />
-        </AdminGuard>
-      ) : (
-        <FaqPage
-          onOpenOrderModal={() => setIsOrderModalOpen(true)}
-          onOpenAIChat={handleOpenAIChat}
-          onShowToast={triggerToast}
-          onNavigatePage={handleNavigatePage}
-        />
-      )}
+              {/* 5-Card Contact Grid */}
+              <ContactSection onOpenAIChat={handleOpenAIChat} />
+            </>
+          ) : currentPage === 'services' ? (
+            <ServicesPage
+              currency={currency}
+              onSelectService={handleOpenOrderWithService}
+              onOpenCalculator={() => {
+                setCurrentPage('home');
+                setTimeout(() => {
+                  const el = document.getElementById('calculator');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+              }}
+            />
+          ) : currentPage === 'pricing' ? (
+            <PricingPage
+              currency={currency}
+              setCurrency={setCurrency}
+              onSelectService={handleOpenOrderWithService}
+              onOpenCalculator={() => {
+                setCurrentPage('home');
+                setTimeout(() => {
+                  const el = document.getElementById('calculator');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+              }}
+            />
+          ) : currentPage === 'reviews' ? (
+            <ReviewsPage
+              onOpenOrderModal={() => setIsOrderModalOpen(true)}
+              onShowToast={triggerToast}
+            />
+          ) : currentPage === 'about' ? (
+            <AboutPage
+              onOpenOrderModal={() => setIsOrderModalOpen(true)}
+              onNavigatePage={handleNavigatePage}
+            />
+          ) : currentPage === 'contact' ? (
+            <ContactPage
+              onOpenOrderModal={() => setIsOrderModalOpen(true)}
+              onOpenAIChat={handleOpenAIChat}
+              onShowToast={triggerToast}
+              onNavigatePage={handleNavigatePage}
+            />
+          ) : currentPage === 'order' ? (
+            <OrderPage
+              currency={currency}
+              setCurrency={setCurrency}
+              prefilledServiceId={prefilledService}
+              onShowToast={triggerToast}
+              onNavigatePage={handleNavigatePage}
+              onOpenAIChat={handleOpenAIChat}
+            />
+          ) : currentPage === 'payment' ? (
+            <PaymentPage
+              currency={currency}
+              setCurrency={setCurrency}
+              onShowToast={triggerToast}
+              onNavigatePage={handleNavigatePage}
+              onOpenAIChat={handleOpenAIChat}
+            />
+          ) : currentPage === 'confirmation' ? (
+            <OrderConfirmationPage
+              currency={currency}
+              onShowToast={triggerToast}
+              onNavigatePage={handleNavigatePage}
+              onOpenAIChat={handleOpenAIChat}
+            />
+          ) : currentPage === 'dashboard' ? (
+            <RequireClient>
+              <ClientDashboard
+                currency={currency}
+                setCurrency={setCurrency}
+                onShowToast={triggerToast}
+                onNavigatePage={handleNavigatePage}
+                onOpenAIChat={handleOpenAIChat}
+              />
+            </RequireClient>
+          ) : currentPage === 'admin' ? (
+            <AdminGuard onShowToast={triggerToast}>
+              <AdminDashboard
+                currency={currency}
+                setCurrency={setCurrency}
+                onShowToast={triggerToast}
+                onNavigatePage={handleNavigatePage}
+              />
+            </AdminGuard>
+          ) : (
+            <FaqPage
+              onOpenOrderModal={() => setIsOrderModalOpen(true)}
+              onOpenAIChat={handleOpenAIChat}
+              onShowToast={triggerToast}
+              onNavigatePage={handleNavigatePage}
+            />
+          )}
+        </motion.main>
+      </AnimatePresence>
 
       {/* Footer */}
       <Footer onOpenOrderModal={() => handleNavigatePage('order')} onNavigatePage={handleNavigatePage} onOpenAIChat={handleOpenAIChat} />

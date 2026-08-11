@@ -67,7 +67,7 @@ export const CMSFormsManager: React.FC<CMSFormsManagerProps> = ({
       totalSubmissions: 142,
       lastSubmission: '10 mins ago',
       assignedTeam: 'Client Support Team',
-      notificationEmail: 'shehrozsultanpgc@gmail.com',
+      notificationEmail: 'mfsmedia.agency@gmail.com',
       spamProtection: 'recaptcha_v3',
       version: 'v2.1',
       fields: [
@@ -107,7 +107,7 @@ export const CMSFormsManager: React.FC<CMSFormsManagerProps> = ({
       totalSubmissions: 64,
       lastSubmission: '3 hours ago',
       assignedTeam: 'Academic Quality Lead',
-      notificationEmail: 'shehrozsultanpgc@gmail.com',
+      notificationEmail: 'mfsmedia.agency@gmail.com',
       spamProtection: 'recaptcha_v3',
       version: 'v1.4',
       fields: [

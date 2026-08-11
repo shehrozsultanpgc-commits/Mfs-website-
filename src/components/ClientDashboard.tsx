@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Currency } from '../types';
 import { fetchClientOrders, subscribeToClientOrders } from '../lib/supabaseOrderService';
 import { DashboardHome } from './DashboardHome';
@@ -75,7 +76,7 @@ export const ClientDashboard: React.FC<ClientDashboardProps> = ({
   currency,
   setCurrency,
   customerName = 'Muhammad Shehroz Sultan',
-  customerEmail = 'shehrozsultanpgc@gmail.com',
+  customerEmail = 'mfsmedia.agency@gmail.com',
   clientId = 'CLI-MFS-98421',
   onShowToast,
   onNavigatePage,

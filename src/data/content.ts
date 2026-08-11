@@ -1,4 +1,4 @@
-import { ServiceItem, ReviewItem, FaqItem, ContactCardItem } from '../types';
+import { ServiceItem, ReviewItem, FaqItem, ContactCardItem, Currency, DeliverySpeed } from '../types';
 
 export const SERVICES: ServiceItem[] = [
   {
@@ -234,6 +234,75 @@ export const SERVICES: ServiceItem[] = [
   }
 ];
 
+export function calculateServicePrice(
+  serviceId: string,
+  quantity: number = 1,
+  speed: DeliverySpeed = 'standard',
+  currency: Currency = 'PKR'
+) {
+  const service = SERVICES.find((s) => s.id === serviceId) || SERVICES[0];
+  const sanitizedQty = Math.max(1, Number(quantity) || 1);
+
+  let basePkr = service.pricePkr;
+  let baseUsd = service.priceUsd;
+  let origPkr = service.originalPricePkr;
+  let origUsd = service.originalPriceUsd;
+
+  if (service.id === 'presentation' || service.id === 'pitch-deck') {
+    const factor = sanitizedQty / 10;
+    basePkr = service.pricePkr * factor;
+    baseUsd = service.priceUsd * factor;
+    origPkr = service.originalPricePkr * factor;
+    origUsd = service.originalPriceUsd * factor;
+  } else if (service.id === 'assignment' || service.id === 'reports' || service.id === 'case-studies') {
+    const factor = sanitizedQty / 1000;
+    basePkr = service.pricePkr * factor;
+    baseUsd = service.priceUsd * factor;
+    origPkr = service.originalPricePkr * factor;
+    origUsd = service.originalPriceUsd * factor;
+  } else if (service.id === 'document-formatting') {
+    const factor = sanitizedQty / 1500;
+    basePkr = service.pricePkr * factor;
+    baseUsd = service.priceUsd * factor;
+    origPkr = service.originalPricePkr * factor;
+    origUsd = service.originalPriceUsd * factor;
+  }
+
+  let speedMultiplier = 1.0;
+  if (speed === 'express') speedMultiplier = 1.30;
+  if (speed === 'priority') speedMultiplier = 1.50;
+  if (speed === 'sameday' || (speed as any) === 'same-day') speedMultiplier = 1.75;
+
+  const calculatedOrigPkr = Math.round(origPkr * speedMultiplier);
+  const calculatedOrigUsd = parseFloat((origUsd * speedMultiplier).toFixed(2));
+  const calculatedPromoPkr = Math.round(basePkr * speedMultiplier);
+  const calculatedPromoUsd = parseFloat((baseUsd * speedMultiplier).toFixed(2));
+
+  const isPkr = currency === 'PKR';
+  const finalPrice = isPkr ? calculatedPromoPkr : calculatedPromoUsd;
+  const originalPrice = isPkr ? calculatedOrigPkr : calculatedOrigUsd;
+  const formattedFinal = isPkr ? `PKR ${calculatedPromoPkr.toLocaleString()}` : `USD ${calculatedPromoUsd.toFixed(2)}`;
+  const formattedOriginal = isPkr ? `PKR ${calculatedOrigPkr.toLocaleString()}` : `USD ${calculatedOrigUsd.toFixed(2)}`;
+
+  return {
+    service,
+    sanitizedQty,
+    finalPrice,
+    originalPrice,
+    calculatedPromoPkr,
+    calculatedPromoUsd,
+    calculatedOrigPkr,
+    calculatedOrigUsd,
+    formattedFinal,
+    formattedOriginal,
+    currencySymbol: isPkr ? 'PKR' : '$'
+  };
+}
+
+export const OFFICIAL_AI_PRICING_PROMPT_TEXT = SERVICES.map(
+  (s) => `- ${s.title} (${s.unit}): Official Base Rate = PKR ${s.originalPricePkr.toLocaleString()} / $${s.originalPriceUsd.toFixed(2)} | Active 50% Grand Launch Discounted Price = PKR ${s.pricePkr.toLocaleString()} / $${s.priceUsd.toFixed(2)}`
+).join('\n');
+
 export const HOW_IT_WORKS_STEPS = [
   {
     number: '01',
@@ -429,7 +498,7 @@ export const REVIEWS: ReviewItem[] = [
   {
     id: 'rev-7',
     name: 'Zainab Chaudhry',
-    location: 'Islamabad, Pakistan',
+    location: 'Pakistan',
     country: 'Pakistan',
     countryFlag: '🇵🇰',
     service: 'CV Design & Cover Letter',
@@ -437,7 +506,7 @@ export const REVIEWS: ReviewItem[] = [
     avatarUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80',
     avatarBg: '#1A1A1D',
     rating: 5,
-    text: 'Super fast turnaround! I needed my CV and cover letter formatted urgently for a job application in Islamabad. Received both files formatted flawlessly in 6 hours.',
+    text: 'Super fast turnaround! I needed my CV and cover letter formatted urgently for a job application. Received both files formatted flawlessly in 6 hours.',
     verified: true,
     orderRef: 'ORD-503912'
   },
@@ -625,17 +694,10 @@ export const FAQS: FaqItem[] = [
 export const CONTACT_CARDS: ContactCardItem[] = [
   {
     id: 'contact-1',
-    title: 'Business Email',
+    title: 'Agency Email',
     value: 'mfsmedia.agency@gmail.com',
     link: 'mailto:mfsmedia.agency@gmail.com',
     iconName: 'mail'
-  },
-  {
-    id: 'contact-2',
-    title: 'Support Email',
-    value: 'shehrozsultanpgc@gmail.com',
-    link: 'mailto:shehrozsultanpgc@gmail.com',
-    iconName: 'support'
   },
   {
     id: 'contact-3',
@@ -649,11 +711,5 @@ export const CONTACT_CARDS: ContactCardItem[] = [
     title: 'Business Hours',
     value: '24 Hours (Online Support)',
     iconName: 'clock'
-  },
-  {
-    id: 'contact-5',
-    title: 'Location',
-    value: 'Islamabad, Pakistan',
-    iconName: 'mapPin'
   }
 ];

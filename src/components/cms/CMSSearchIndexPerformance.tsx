@@ -43,7 +43,7 @@ export const CMSSearchIndexPerformance: React.FC<CMSSearchIndexPerformanceProps>
   const topKeywords = [
     { keyword: 'presentation design pakistan', volume: '2,400/mo', position: '#1 Rank' },
     { keyword: 'apa referencing assignment help', volume: '1,850/mo', position: '#2 Rank' },
-    { keyword: 'ats resume engineering islamabad', volume: '1,200/mo', position: '#1 Rank' },
+    { keyword: 'ats resume engineering pakistan', volume: '1,200/mo', position: '#1 Rank' },
     { keyword: 'pitch deck designer dubai uae', volume: '950/mo', position: '#3 Rank' },
     { keyword: '50 discount assignment agency', volume: '800/mo', position: '#1 Rank' },
   ];

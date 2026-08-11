@@ -20,10 +20,9 @@
   - Body: `Inter` / `Poppins` (Regular)
 
 ## 2. Contact & Payment Configuration
-- **Business Email**: `mfsmedia.agency@gmail.com`
-- **Support Email**: `shehrozsultanpgc@gmail.com`
+- **Agency Email**: `mfsmedia.agency@gmail.com`
 - **Phone / WhatsApp**: `+92 301 5323689`
-- **Location**: Islamabad, Pakistan (PKT Time Zone) — 24 Hours Online Support
+- **Support Availability**: 24 Hours Online Support
 - **Social Accounts**:
   - Instagram: `@mfsgrowth`
   - Facebook: `MFS Growth`
@@ -82,7 +81,7 @@
   - Pricing: Always mention **"Grand Launch Offer – 50% OFF"**. PKR for Pakistan, USD for International.
   - Payment Accounts: EasyPaisa (`03116191234`), JazzCash (`03015323688`), Bank Transfer (Askari Bank Account `00553230017265`).
   - Sample Work Directives: Refer visitors to the "Our Work" section. Remind them downloads are strictly disabled for preview protection.
-  - Support Escalation: For complex issues, escalate gracefully to support via WhatsApp (`+92 301 5323689`) or Email (`shehrozsultanpgc@gmail.com`).
+  - Support Escalation: For complex issues, escalate gracefully to support via WhatsApp (`+92 301 5323689`) or Email (`mfsmedia.agency@gmail.com`).
   - Sales Psychology: Ask discovery questions (deadline, slide/page count, academic/professional), provide honest tailored recommendations, suggest relevant cross-sells (e.g., CV + Cover Letter), and stay calm/polite with upset customers.
 
 ## 8. Official Project Development Methodology (Permanent Project Rule)

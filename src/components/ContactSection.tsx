@@ -73,16 +73,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenAIChat }) 
             <div className="space-y-3 text-xs sm:text-sm">
               <div className="flex items-center gap-3 py-2 border-b border-white/5">
                 <Mail className="w-4 h-4 text-[#E5C158] shrink-0" />
-                <span className="text-neutral-400 font-medium w-28">Business Email:</span>
+                <span className="text-neutral-400 font-medium w-28">Agency Email:</span>
                 <a href="mailto:mfsmedia.agency@gmail.com" className="text-white font-mono hover:text-[#E5C158] transition-colors">
                   mfsmedia.agency@gmail.com
-                </a>
-              </div>
-              <div className="flex items-center gap-3 py-2 border-b border-white/5">
-                <Headset className="w-4 h-4 text-[#E5C158] shrink-0" />
-                <span className="text-neutral-400 font-medium w-28">Support Email:</span>
-                <a href="mailto:shehrozsultanpgc@gmail.com" className="text-white font-mono hover:text-[#E5C158] transition-colors">
-                  shehrozsultanpgc@gmail.com
                 </a>
               </div>
               <div className="flex items-center gap-3 py-2 border-b border-white/5">
@@ -93,9 +86,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenAIChat }) 
                 </a>
               </div>
               <div className="flex items-center gap-3 py-2">
-                <MapPin className="w-4 h-4 text-[#E5C158] shrink-0" />
-                <span className="text-neutral-400 font-medium w-28">Headquarters:</span>
-                <span className="text-white font-medium">Islamabad, Pakistan (24/7 Online Support)</span>
+                <Clock className="w-4 h-4 text-[#E5C158] shrink-0" />
+                <span className="text-neutral-400 font-medium w-28">Support Desk:</span>
+                <span className="text-white font-medium">24/7 Online Support</span>
               </div>
             </div>
           </div>

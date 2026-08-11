@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { X, Mail, Lock, User, Sparkles, Phone, ShieldCheck, ArrowRight } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
@@ -33,11 +34,13 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     setErrorMsg('');
     try {
       const res = await signInWithGoogle({
-        name: 'Muhammad Shehroz',
-        email: 'shehroz.client@gmail.com',
+        fallbackUser: {
+          name: 'Muhammad Shehroz',
+          email: 'shehroz.client@gmail.com',
+        },
       });
       if (res.success) {
-        if (onShowToast) onShowToast('✨ Logged in with Google! Details auto-filled.');
+        if (onShowToast) onShowToast('✨ Logged in with Google! Profile synced.');
         onClose();
       } else {
         setErrorMsg(res.error || 'Google Login failed.');
@@ -54,8 +57,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     setErrorMsg('');
     try {
       const res = await signInWithFacebook({
-        name: 'Facebook Client',
-        email: 'client.fb@facebook.com',
+        fallbackUser: {
+          name: 'Facebook Client',
+          email: 'client.fb@facebook.com',
+        },
       });
       if (res.success) {
         if (onShowToast) onShowToast('✨ Authenticated with Facebook! Account saved.');
@@ -101,18 +106,28 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
-      <div className="relative w-full max-w-md rounded-3xl bg-[#08080C] border border-[#E5C158]/30 shadow-[0_0_50px_rgba(229,193,88,0.15)] p-6 overflow-hidden">
-        {/* Decorative Top Ambient Glow */}
-        <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-64 h-32 bg-[#E5C158]/20 blur-3xl rounded-full pointer-events-none" />
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ duration: 0.25 }}
+            className="relative w-full max-w-md rounded-3xl bg-[#08080C] border border-[#E5C158]/30 shadow-[0_0_50px_rgba(229,193,88,0.15)] p-6 overflow-hidden"
+          >
+            {/* Decorative Top Ambient Glow */}
+            <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-64 h-32 bg-[#E5C158]/20 blur-3xl rounded-full pointer-events-none" />
 
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-neutral-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
-        >
-          <X className="w-5 h-5" />
-        </button>
+            {/* Close Button */}
+            <motion.button
+              whileHover={{ scale: 1.1, rotate: 90 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={onClose}
+              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-neutral-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer z-10"
+            >
+              <X className="w-5 h-5" />
+            </motion.button>
 
         {/* Header */}
         <div className="text-center space-y-1 mb-5">
@@ -263,7 +278,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             </div>
           )}
 
-          <button
+          <motion.button
+            whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+            whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
             type="submit"
             disabled={isSubmitting}
             className="w-full py-3 px-4 rounded-xl bg-[#E5C158] text-black font-extrabold text-xs hover:bg-[#fce888] transition-all cursor-pointer shadow-lg mt-2 flex items-center justify-center gap-2"
@@ -276,7 +293,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 : 'Register & Save Profile'}
             </span>
             <ArrowRight className="w-4 h-4" />
-          </button>
+          </motion.button>
         </form>
 
         <div className="mt-4 pt-3 border-t border-white/10 text-center">
@@ -285,7 +302,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             <span>256-Bit Encrypted & Protected Client Authentication</span>
           </p>
         </div>
-      </div>
-    </div>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
   );
 };

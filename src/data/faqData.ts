@@ -32,20 +32,20 @@ export const COMPREHENSIVE_FAQS: DetailedFaq[] = [
     category: 'General',
     popular: true,
     question: 'What is MFS Growth Agency?',
-    answer: 'MFS Growth Agency is a premium online digital services agency based in Islamabad, Pakistan. We help students and working professionals grow with high-quality digital solutions, including executive presentation design, custom academic assignment assistance, ATS resume engineering, and report formatting.'
+    answer: 'MFS Growth Agency is a premium online digital services agency. We help students and working professionals grow with high-quality digital solutions, including executive presentation design, custom academic assignment assistance, ATS resume engineering, and report formatting.'
   },
   {
     id: 'faq-gen-2',
     category: 'General',
     popular: true,
-    question: 'Where is MFS Growth Agency located and what are your support hours?',
-    answer: 'Our agency headquarters is located in Islamabad, Pakistan. We operate 24 hours a day, 7 days a week online to serve both local Pakistani clients and international clients across the Middle East, UK, USA, Europe, and Asia.'
+    question: 'What are your support hours?',
+    answer: 'We operate 24 hours a day, 7 days a week online to serve both local Pakistani clients and international clients across the Middle East, UK, USA, Europe, and Asia.'
   },
   {
     id: 'faq-gen-3',
     category: 'General',
     question: 'How can I contact MFS Growth Agency directly?',
-    answer: 'You can contact us via WhatsApp or Phone at +92 301 5323689, email us at mfsmedia.agency@gmail.com (Business) or shehrozsultanpgc@gmail.com (Support), or chat with our 24/7 AI Assistant directly on the website.'
+    answer: 'You can contact us via WhatsApp or Phone at +92 301 5323689, email us at mfsmedia.agency@gmail.com, or chat with our 24/7 AI Assistant directly on the website.'
   },
   {
     id: 'faq-gen-4',

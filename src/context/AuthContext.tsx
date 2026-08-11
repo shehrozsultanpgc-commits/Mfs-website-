@@ -224,7 +224,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       if (error) {
         // Fallback for demo sign-in if Supabase credentials are missing or standard demo login
-        if (email === 'shehrozsultanpgc@gmail.com' && password === '@$hehroz1234') {
+        if (email === 'admin@mfsgrowth.com' && password === '@$hehroz1234') {
           setDemoRole('super_admin');
           setProfile({
             id: 'demo-admin-id',
@@ -282,7 +282,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setProfile({
         id: 'demo-user-id',
         full_name: role === 'super_admin' ? 'Muhammad Shehroz Sultan (Admin)' : 'Valued Client',
-        email: 'shehrozsultanpgc@gmail.com',
+        email: role === 'super_admin' ? 'admin@mfsgrowth.com' : 'client@mfsgrowth.com',
         phone: '+92 301 5323689',
         role,
         currency_preference: 'PKR',

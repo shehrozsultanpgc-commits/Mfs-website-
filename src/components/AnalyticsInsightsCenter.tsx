@@ -44,7 +44,7 @@ interface AnalyticsInsightsCenterProps {
 export const AnalyticsInsightsCenter: React.FC<AnalyticsInsightsCenterProps> = ({
   currency,
   customerName = 'Muhammad Shehroz Sultan',
-  customerEmail = 'shehrozsultanpgc@gmail.com',
+  customerEmail = 'mfsmedia.agency@gmail.com',
   clientId = 'CLI-MFS-98421',
   onShowToast,
   onNavigatePage,

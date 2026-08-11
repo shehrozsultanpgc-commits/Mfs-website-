@@ -71,7 +71,7 @@ export interface ProjectFile {
 export const FilesDocumentsCenter: React.FC<FilesDocumentsCenterProps> = ({
   currency,
   customerName = 'Muhammad Shehroz Sultan',
-  customerEmail = 'shehrozsultanpgc@gmail.com',
+  customerEmail = 'mfsmedia.agency@gmail.com',
   clientId = 'CLI-MFS-98421',
   onShowToast,
   onNavigatePage,

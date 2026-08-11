@@ -239,7 +239,7 @@ export const PaymentPage: React.FC<PaymentPageProps> = ({
                     <div className="sm:col-span-2 p-3.5 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-between">
                       <div>
                         <span className="text-[10px] text-neutral-400 font-semibold block">BANK NAME</span>
-                        <strong className="text-white text-xs">Askari Bank Limited (Islamabad Branch)</strong>
+                        <strong className="text-white text-xs">Askari Bank Limited</strong>
                       </div>
                       <span className="text-[10px] text-[#28C76F] font-bold">24/7 IBFT Active</span>
                     </div>

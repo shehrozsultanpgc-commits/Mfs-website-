@@ -75,7 +75,7 @@ export const CMSCaseStudyManager: React.FC<CMSCaseStudyManagerProps> = ({
     },
     {
       id: 'cs-3',
-      clientName: 'Senior Software Architect (Islamabad, PK)',
+      clientName: 'Senior Software Architect (PK)',
       industry: 'Technology & Cloud Engineering',
       challenge: 'Failing automated ATS resume filters for Tier-1 US & European remote enterprise positions.',
       strategy: 'Re-engineered resume with targeted Cloud/DevOps keywords, two-column visual hierarchy, and ATS optimization.',

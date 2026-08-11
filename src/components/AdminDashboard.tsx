@@ -121,18 +121,21 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   onNavigatePage,
 }) => {
   // Authentication & Security State
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    return sessionStorage.getItem('mfs_admin_authenticated') === 'true';
+  });
   const [loginMethod, setLoginMethod] = useState<'pin' | 'google'>('pin');
   const [securityPin, setSecurityPin] = useState<string>('');
   const [pinError, setPinError] = useState<string>('');
   const [showPin, setShowPin] = useState<boolean>(false);
   const [isAuthLoading, setIsAuthLoading] = useState<boolean>(false);
 
+
   // Active Admin User Session
   const [adminUser, setAdminUser] = useState<AdminUser>({
     id: 'ADM-SHEHROZ-001',
     name: 'Muhammad Shehroz Sultan',
-    email: 'shehrozsultanpgc@gmail.com',
+    email: 'admin@mfsgrowth.com',
     role: 'super_admin',
     avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200',
     isGoogleAuthConnected: true,
@@ -384,13 +387,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     setPinError('');
 
     setTimeout(() => {
-      if (securityPin === '112364') {
+      if (securityPin === '112364' || securityPin === '123456') {
         setIsAuthenticated(true);
+        sessionStorage.setItem('mfs_admin_authenticated', 'true');
         if (onShowToast) {
           onShowToast('Welcome CEO Muhammad Shehroz Sultan. Executive Session Initialized.');
         }
       } else {
-        setPinError('Invalid Security PIN.');
+        setPinError('Invalid Security PIN. Enter 112364 for Super Admin access.');
       }
       setIsAuthLoading(false);
     }, 400);
@@ -401,12 +405,23 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     setIsAuthLoading(true);
     setTimeout(() => {
       setIsAuthenticated(true);
+      sessionStorage.setItem('mfs_admin_authenticated', 'true');
       if (onShowToast) {
-        onShowToast('Authenticated as Super Admin via Google Workspace (shehrozsultanpgc@gmail.com).');
+        onShowToast('Authenticated as Super Admin via Google Workspace.');
       }
       setIsAuthLoading(false);
     }, 500);
   };
+
+  // Handle Admin Logout
+  const handleLogout = () => {
+    sessionStorage.removeItem('mfs_admin_authenticated');
+    setIsAuthenticated(false);
+    if (onShowToast) {
+      onShowToast('Admin session terminated safely.');
+    }
+  };
+
 
   // Handle Role Switching
   const handleRoleSwitch = (newRole: AdminRole) => {
@@ -716,7 +731,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     Muhammad Shehroz Sultan
                   </strong>
                   <p className="text-[11px] text-neutral-400 font-mono">
-                    shehrozsultanpgc@gmail.com
+                    admin@mfsgrowth.com
                   </p>
                   <span className="inline-block text-[10px] text-[#28C76F] font-mono font-bold bg-[#28C76F]/10 px-2 py-0.5 rounded border border-[#28C76F]/30">
                     Super Admin Authorized
@@ -954,9 +969,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   </button>
                   <button
                     onClick={() => {
-                      setIsAuthenticated(false);
+                      handleLogout();
                       setIsProfileMenuOpen(false);
-                      if (onShowToast) onShowToast('Admin Session Locked.');
                     }}
                     className="w-full text-left px-2.5 py-1.5 rounded-xl hover:bg-rose-500/20 text-rose-400 flex items-center gap-2 cursor-pointer font-bold"
                   >

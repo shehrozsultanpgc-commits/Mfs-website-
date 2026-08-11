@@ -55,7 +55,7 @@ interface ProjectDetailsCenterProps {
 export const ProjectDetailsCenter: React.FC<ProjectDetailsCenterProps> = ({
   currency,
   customerName = 'Muhammad Shehroz Sultan',
-  customerEmail = 'shehrozsultanpgc@gmail.com',
+  customerEmail = 'mfsmedia.agency@gmail.com',
   clientId = 'CLI-MFS-98421',
   orders = [],
   loadingOrders = false,

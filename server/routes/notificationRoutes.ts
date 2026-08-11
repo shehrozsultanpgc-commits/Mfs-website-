@@ -4,12 +4,31 @@ import {
   sendAdminAlert,
   sendClientActionConfirmation,
   sendAdminActionAlert,
+  getEmailLogs,
   OrderCheckoutPayload,
   ActionPayload,
 } from '../services/emailService';
 import { sanitizeEmail, sanitizeString, sanitizePhone } from '../utils/security';
 
 const router = Router();
+
+/**
+ * GET /api/notifications/logs
+ * Retrieve email dispatch and diagnostic logs for audit dashboard
+ */
+router.get('/logs', (req: Request, res: Response) => {
+  try {
+    const logs = getEmailLogs();
+    return res.status(200).json({
+      success: true,
+      count: logs.length,
+      logs,
+    });
+  } catch (err: any) {
+    return res.status(500).json({ success: false, error: err.message || 'Failed to fetch email logs' });
+  }
+});
+
 
 /**
  * POST /api/notifications/action

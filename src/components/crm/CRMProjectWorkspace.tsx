@@ -164,7 +164,7 @@ export const CRMProjectWorkspace: React.FC<CRMProjectWorkspaceProps> = ({
       name: 'Clinical Trial Research Paper Formatting (APA 7th)',
       clientId: 'MFS-CLI-71204',
       clientName: 'Dr. Tariq Mahmood',
-      clientCompany: 'Islamabad Medical Institute',
+      clientCompany: 'Medical Institute',
       category: 'Assignment Writing',
       assignedTeam: 'Academic Research Desk',
       priority: 'priority',
