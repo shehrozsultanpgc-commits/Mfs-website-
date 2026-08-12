@@ -363,29 +363,29 @@ export const AIAssistantWidget: React.FC<AIAssistantWidgetProps> = ({
 
       {/* Standalone Text Chat Assistant Window - Premium MFS AI Concierge */}
       {isChatOpen && (
-        <div className="fixed bottom-3 sm:bottom-6 right-3 sm:right-6 z-50 w-[calc(100vw-1.5rem)] sm:w-[420px] max-h-[min(640px,calc(100vh-3rem))] bg-[#0A0A0E] border border-[#E5C158]/30 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.9)] flex flex-col overflow-hidden font-sans animate-in zoom-in-95 duration-200">
+        <div className="fixed bottom-2 sm:bottom-6 right-2 sm:right-6 left-2 sm:left-auto z-50 w-[calc(100vw-1rem)] sm:w-[420px] h-[calc(100dvh-1.5rem)] sm:h-auto max-h-[min(640px,calc(100dvh-2rem))] bg-[#0A0A0E] border border-[#E5C158]/30 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.9)] flex flex-col overflow-hidden font-sans animate-in zoom-in-95 duration-200 pb-[env(safe-area-inset-bottom)]">
           {/* Header */}
-          <div className="bg-[#121218]/95 backdrop-blur-md px-4 py-3.5 flex items-center justify-between border-b border-[#232330] flex-shrink-0">
-            <div className="flex items-center gap-3">
-              <div className="relative">
-                <MFSLogo size={36} />
-                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-[#28C76F] rounded-full border-2 border-[#0A0A0E] shadow-[0_0_8px_rgba(40,199,111,0.8)]"></div>
+          <div className="bg-[#121218]/95 backdrop-blur-md px-3.5 sm:px-4 py-3 sm:py-3.5 flex items-center justify-between border-b border-[#232330] flex-shrink-0">
+            <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+              <div className="relative shrink-0">
+                <MFSLogo size={32} />
+                <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-[#28C76F] rounded-full border-2 border-[#0A0A0E] shadow-[0_0_8px_rgba(40,199,111,0.8)]"></div>
               </div>
-              <div className="text-left">
-                <h3 className="text-white font-bold text-sm tracking-wide flex items-center gap-1.5">
+              <div className="text-left min-w-0">
+                <h3 className="text-white font-bold text-xs sm:text-sm tracking-wide truncate flex items-center gap-1.5">
                   MFS AI Concierge
                 </h3>
-                <p className="text-neutral-400 text-[11px] flex items-center gap-1.5 font-normal">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#28C76F]"></span>
-                  Your intelligent Growth assistant
+                <p className="text-neutral-400 text-[10px] sm:text-[11px] flex items-center gap-1.5 font-normal truncate">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#28C76F] shrink-0"></span>
+                  Your Growth Assistant
                 </p>
               </div>
             </div>
             
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
               <button
                 onClick={handleToggleBrief}
-                className={`px-2.5 py-1.5 rounded-xl border transition-all cursor-pointer flex items-center gap-1.5 text-[11px] font-semibold ${
+                className={`px-2 sm:px-2.5 py-1.5 rounded-xl border transition-all cursor-pointer flex items-center gap-1.5 text-[11px] font-semibold ${
                   showReceipt 
                     ? 'bg-[#28C76F]/20 text-[#28C76F] border-[#28C76F]/40 shadow-sm' 
                     : 'bg-[#181820] text-neutral-300 border-white/10 hover:border-[#E5C158]/40 hover:text-[#E5C158]'
@@ -401,7 +401,7 @@ export const AIAssistantWidget: React.FC<AIAssistantWidgetProps> = ({
                   setIsChatOpen(false);
                   setIsVoiceOpen(true);
                 }}
-                className="p-2 rounded-xl bg-[#181820] border border-white/10 text-[#E5C158] hover:bg-[#E5C158]/15 hover:border-[#E5C158]/40 transition-all cursor-pointer flex items-center gap-1.5 text-[11px] font-semibold"
+                className="p-1.5 sm:p-2 rounded-xl bg-[#181820] border border-white/10 text-[#E5C158] hover:bg-[#E5C158]/15 hover:border-[#E5C158]/40 transition-all cursor-pointer flex items-center gap-1.5 text-[11px] font-semibold"
                 title="Switch to Voice Call"
               >
                 <Phone className="w-3.5 h-3.5" />
@@ -410,7 +410,7 @@ export const AIAssistantWidget: React.FC<AIAssistantWidgetProps> = ({
               
               <button 
                 onClick={handleCloseChat}
-                className="text-neutral-400 hover:text-white transition-colors p-1.5 rounded-xl hover:bg-[#181820] cursor-pointer"
+                className="text-neutral-400 hover:text-white transition-colors p-2 rounded-xl hover:bg-[#181820] cursor-pointer min-w-[36px] min-h-[36px] flex items-center justify-center border border-white/5 active:bg-white/10"
                 title="Close AI Concierge"
               >
                 <X className="w-4 h-4" />

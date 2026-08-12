@@ -20,6 +20,7 @@ import {
 import { Currency } from '../types';
 import { useAuth } from '../context/AuthContext';
 import { MFSLogo } from './common/MFSLogo';
+import { useModalHistory } from '../hooks/useModalHistory';
 
 export interface HeaderProps {
   currency: Currency;
@@ -88,38 +89,18 @@ export const Header: React.FC<HeaderProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const isMobileMenuClosingViaBackRef = useRef(false);
-
   // Lock body scroll and handle history stack for mobile navigation drawer
+  useModalHistory(mobileMenuOpen, () => setMobileMenuOpen(false), 'mobileMenu');
+
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
-
-      window.history.pushState(
-        { isOverlay: true, name: 'mobileMenu' },
-        '',
-        window.location.hash || '#'
-      );
-
-      const handlePopState = () => {
-        isMobileMenuClosingViaBackRef.current = true;
-        setMobileMenuOpen(false);
-      };
-
-      window.addEventListener('popstate', handlePopState, { once: true });
-
-      return () => {
-        document.body.style.overflow = '';
-        window.removeEventListener('popstate', handlePopState);
-
-        if (!isMobileMenuClosingViaBackRef.current && window.history.state?.isOverlay) {
-          window.history.back();
-        }
-        isMobileMenuClosingViaBackRef.current = false;
-      };
     } else {
       document.body.style.overflow = '';
     }
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [mobileMenuOpen]);
 
   // Click outside listener for search & dropdown overlays
@@ -583,7 +564,7 @@ export const Header: React.FC<HeaderProps> = ({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className="fixed inset-0 z-[999999] bg-[#050507] text-white flex flex-col justify-between overflow-y-auto px-6 py-6 border-t border-[#E5C158]/30 shadow-[0_30px_90px_rgba(0,0,0,1)]"
+                className="fixed inset-0 z-[999999] bg-[#050507] text-white flex flex-col justify-between overflow-y-auto px-5 sm:px-6 pt-[max(1.25rem,env(safe-area-inset-top))] pb-[max(1.5rem,env(safe-area-inset-bottom))] border-t border-[#E5C158]/30 shadow-[0_30px_90px_rgba(0,0,0,1)] min-h-[100dvh]"
               >
                 {/* Mobile Drawer Top Header Bar */}
                 <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-4">

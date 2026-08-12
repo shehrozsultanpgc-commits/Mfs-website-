@@ -108,13 +108,13 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md overflow-y-auto pt-[max(0.75rem,env(safe-area-inset-top))] pb-[max(0.75rem,env(safe-area-inset-bottom))]">
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.25 }}
-            className="relative w-full max-w-md rounded-3xl bg-[#08080C] border border-[#E5C158]/30 shadow-[0_0_50px_rgba(229,193,88,0.15)] p-6 overflow-hidden"
+            className="relative w-full max-w-md my-auto rounded-3xl bg-[#08080C] border border-[#E5C158]/30 shadow-[0_0_50px_rgba(229,193,88,0.15)] p-4 sm:p-6 overflow-hidden max-h-[calc(100dvh-1.5rem)] overflow-y-auto"
           >
             {/* Decorative Top Ambient Glow */}
             <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-64 h-32 bg-[#E5C158]/20 blur-3xl rounded-full pointer-events-none" />
@@ -124,7 +124,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               whileHover={{ scale: 1.1, rotate: 90 }}
               whileTap={{ scale: 0.9 }}
               onClick={onClose}
-              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-neutral-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer z-10"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-neutral-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer z-10 min-w-[36px] min-h-[36px]"
             >
               <X className="w-5 h-5" />
             </motion.button>

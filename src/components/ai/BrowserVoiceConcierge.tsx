@@ -502,35 +502,35 @@ export const BrowserVoiceConcierge: React.FC<BrowserVoiceConciergeProps> = ({ on
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-xl max-h-[92vh] bg-[#0A0A0E] border border-[#E5C158]/40 rounded-2xl shadow-[0_25px_60px_rgba(0,0,0,0.95)] flex flex-col overflow-hidden font-sans">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6 bg-black/85 backdrop-blur-md animate-in fade-in duration-200 pt-[max(0.5rem,env(safe-area-inset-top))] pb-[max(0.5rem,env(safe-area-inset-bottom))]">
+      <div className="relative w-full max-w-xl max-h-[calc(100dvh-1rem)] sm:max-h-[92vh] bg-[#0A0A0E] border border-[#E5C158]/40 rounded-2xl shadow-[0_25px_60px_rgba(0,0,0,0.95)] flex flex-col overflow-hidden font-sans">
         
         {/* Header Bar */}
-        <div className="bg-[#121218]/95 px-5 py-4 flex items-center justify-between border-b border-[#232330]">
-          <div className="flex items-center gap-3">
-            <div className="relative">
-              <MFSLogo size={38} />
-              <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-[#28C76F] rounded-full border-2 border-[#0A0A0E] shadow-[0_0_8px_rgba(40,199,111,0.8)]"></div>
+        <div className="bg-[#121218]/95 px-3.5 sm:px-5 py-3 sm:py-4 flex items-center justify-between border-b border-[#232330] shrink-0">
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+            <div className="relative shrink-0">
+              <MFSLogo size={34} />
+              <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-[#28C76F] rounded-full border-2 border-[#0A0A0E] shadow-[0_0_8px_rgba(40,199,111,0.8)]"></div>
             </div>
-            <div>
-              <h3 className="text-white font-bold text-base tracking-wide flex items-center gap-2">
+            <div className="min-w-0">
+              <h3 className="text-white font-bold text-xs sm:text-base tracking-wide truncate flex items-center gap-1.5 sm:gap-2">
                 MFS Voice Concierge
-                <span className="text-[10px] bg-[#E5C158]/15 text-[#E5C158] border border-[#E5C158]/30 px-2 py-0.5 rounded-full font-semibold">
-                  100% Free Voice AI
+                <span className="hidden xs:inline-block text-[9px] sm:text-[10px] bg-[#E5C158]/15 text-[#E5C158] border border-[#E5C158]/30 px-2 py-0.5 rounded-full font-semibold">
+                  100% Free
                 </span>
               </h3>
-              <p className="text-xs text-[#9FA0A7] flex items-center gap-1.5 mt-0.5">
-                <ShieldCheck size={12} className="text-[#28C76F]" />
-                Browser Native • Roman Urdu & English
+              <p className="text-[10px] sm:text-xs text-[#9FA0A7] flex items-center gap-1.5 mt-0.5 truncate">
+                <ShieldCheck size={12} className="text-[#28C76F] shrink-0" />
+                Roman Urdu & English
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 shrink-0">
             {onSwitchToChat && (
               <button
                 onClick={onSwitchToChat}
-                className="p-2 text-[#9FA0A7] hover:text-[#E5C158] bg-[#181820] hover:bg-[#20202C] border border-[#232330] rounded-xl transition-all text-xs flex items-center gap-1.5"
+                className="p-1.5 sm:p-2 text-[#9FA0A7] hover:text-[#E5C158] bg-[#181820] hover:bg-[#20202C] border border-[#232330] rounded-xl transition-all text-xs flex items-center gap-1.5 cursor-pointer"
                 title="Switch to Text Chat"
               >
                 <MessageSquare size={16} />
@@ -540,7 +540,7 @@ export const BrowserVoiceConcierge: React.FC<BrowserVoiceConciergeProps> = ({ on
 
             <button
               onClick={toggleMute}
-              className={`p-2 border rounded-xl transition-all ${
+              className={`p-1.5 sm:p-2 border rounded-xl transition-all cursor-pointer ${
                 isMuted
                   ? 'text-red-400 bg-red-500/10 border-red-500/30'
                   : 'text-[#E5C158] bg-[#E5C158]/10 border-[#E5C158]/30 hover:bg-[#E5C158]/20'
@@ -556,7 +556,7 @@ export const BrowserVoiceConcierge: React.FC<BrowserVoiceConciergeProps> = ({ on
                 stopSpeechRecognition();
                 onClose();
               }}
-              className="p-2 text-[#9FA0A7] hover:text-white bg-[#181820] hover:bg-[#20202C] border border-[#232330] rounded-xl transition-all"
+              className="p-2 text-[#9FA0A7] hover:text-white bg-[#181820] hover:bg-[#20202C] border border-[#232330] rounded-xl transition-all cursor-pointer min-w-[36px] min-h-[36px] flex items-center justify-center"
               title="Close Voice Assistant"
             >
               <PhoneOff size={18} className="text-red-400" />

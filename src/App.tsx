@@ -28,6 +28,7 @@ import { Footer } from './components/Footer';
 import { AIAssistantWidget } from './components/ai/AIAssistantWidget';
 import { OrderModal } from './components/OrderModal';
 import { AuthModal } from './components/AuthModal';
+import { useModalHistory } from './hooks/useModalHistory';
 import { Toast } from './components/Toast';
 import { AuthProvider } from './context/AuthContext';
 import { RequireAdmin, RequireClient } from './components/AuthGuards';
@@ -262,49 +263,9 @@ function AppContent() {
     };
   }, []);
 
-  // Order Modal History Integration for Mobile Back Button
-  useEffect(() => {
-    if (isOrderModalOpen) {
-      window.history.pushState({ isOverlay: true, name: 'orderModal' }, '', window.location.hash || '#');
-
-      const handlePopState = () => {
-        isOrderModalClosingViaBack.current = true;
-        setIsOrderModalOpen(false);
-      };
-
-      window.addEventListener('popstate', handlePopState, { once: true });
-
-      return () => {
-        window.removeEventListener('popstate', handlePopState);
-        if (!isOrderModalClosingViaBack.current && window.history.state?.isOverlay) {
-          window.history.back();
-        }
-        isOrderModalClosingViaBack.current = false;
-      };
-    }
-  }, [isOrderModalOpen]);
-
-  // Auth Modal History Integration for Mobile Back Button
-  useEffect(() => {
-    if (isAuthModalOpen) {
-      window.history.pushState({ isOverlay: true, name: 'authModal' }, '', window.location.hash || '#');
-
-      const handlePopState = () => {
-        isAuthModalClosingViaBack.current = true;
-        setIsAuthModalOpen(false);
-      };
-
-      window.addEventListener('popstate', handlePopState, { once: true });
-
-      return () => {
-        window.removeEventListener('popstate', handlePopState);
-        if (!isAuthModalClosingViaBack.current && window.history.state?.isOverlay) {
-          window.history.back();
-        }
-        isAuthModalClosingViaBack.current = false;
-      };
-    }
-  }, [isAuthModalOpen]);
+  // Order & Auth Modal History Integration for Mobile Physical Back Button
+  useModalHistory(isOrderModalOpen, () => setIsOrderModalOpen(false), 'orderModal');
+  useModalHistory(isAuthModalOpen, () => setIsAuthModalOpen(false), 'authModal');
 
   const triggerToast = (msg: string) => {
     setToastMessage(msg);

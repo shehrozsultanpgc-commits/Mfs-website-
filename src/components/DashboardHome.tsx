@@ -1055,21 +1055,21 @@ export const DashboardHome: React.FC<DashboardHomeProps> = ({
 
       {/* REVISION REQUEST MODAL */}
       {showRevisionModal && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn">
-          <div className="glass-card max-w-lg w-full rounded-3xl border border-[#E5C158]/40 p-6 space-y-5 relative">
+        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 animate-fadeIn pt-[max(0.5rem,env(safe-area-inset-top))] pb-[max(0.5rem,env(safe-area-inset-bottom))] overflow-y-auto">
+          <div className="glass-card max-w-lg w-full rounded-3xl border border-[#E5C158]/40 p-5 sm:p-6 space-y-5 relative my-auto max-h-[calc(100dvh-1.5rem)] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <div className="flex items-center gap-2">
-                <div className="p-2 rounded-xl bg-indigo-500/20 text-indigo-400">
+                <div className="p-2 rounded-xl bg-indigo-500/20 text-indigo-400 shrink-0">
                   <RefreshCw className="w-5 h-5" />
                 </div>
-                <div>
-                  <h3 className="font-poppins font-bold text-white text-sm">Request Free Revision</h3>
-                  <p className="text-[11px] text-neutral-400">Project: PRJ-MFS-849201</p>
+                <div className="min-w-0">
+                  <h3 className="font-poppins font-bold text-white text-sm truncate">Request Free Revision</h3>
+                  <p className="text-[11px] text-neutral-400 truncate">Project: PRJ-MFS-849201</p>
                 </div>
               </div>
               <button
                 onClick={() => setShowRevisionModal(false)}
-                className="p-1 rounded-lg text-neutral-400 hover:text-white"
+                className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white transition-colors cursor-pointer min-w-[36px] min-h-[36px] flex items-center justify-center"
               >
                 ✕
               </button>
@@ -1118,25 +1118,25 @@ export const DashboardHome: React.FC<DashboardHomeProps> = ({
 
       {/* PHASE 2 STATUS & ROADMAP MODAL */}
       {showChecklistModal && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn">
-          <div className="glass-card max-w-xl w-full rounded-3xl border border-[#E5C158]/50 p-6 space-y-6 relative max-h-[85vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 animate-fadeIn pt-[max(0.5rem,env(safe-area-inset-top))] pb-[max(0.5rem,env(safe-area-inset-bottom))] overflow-y-auto">
+          <div className="glass-card max-w-xl w-full rounded-3xl border border-[#E5C158]/50 p-5 sm:p-6 space-y-6 relative max-h-[calc(100dvh-1.5rem)] overflow-y-auto my-auto">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <div className="flex items-center gap-2">
-                <div className="p-2 rounded-xl bg-[#28C76F]/20 text-[#28C76F]">
+                <div className="p-2 rounded-xl bg-[#28C76F]/20 text-[#28C76F] shrink-0">
                   <CheckCircle2 className="w-5 h-5" />
                 </div>
-                <div>
-                  <h3 className="font-poppins font-bold text-white text-base">
+                <div className="min-w-0">
+                  <h3 className="font-poppins font-bold text-white text-sm sm:text-base truncate">
                     Client Dashboard — Phase 2 Completion
                   </h3>
-                  <span className="text-[10px] text-[#28C76F] font-bold">
+                  <span className="text-[10px] text-[#28C76F] font-bold block truncate">
                     Phase 2 (Dashboard Home) Fully Completed & Production Ready
                   </span>
                 </div>
               </div>
               <button
                 onClick={() => setShowChecklistModal(false)}
-                className="p-1 rounded-lg text-neutral-400 hover:text-white text-sm"
+                className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white transition-colors cursor-pointer min-w-[36px] min-h-[36px] flex items-center justify-center shrink-0"
               >
                 ✕
               </button>

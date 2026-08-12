@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Currency } from '../types';
+import { useModalHistory } from '../hooks/useModalHistory';
 import { fetchClientOrders, subscribeToClientOrders } from '../lib/supabaseOrderService';
 import { DashboardHome } from './DashboardHome';
 import { AILiveProjectTracking } from './AILiveProjectTracking';
@@ -85,33 +86,9 @@ export const ClientDashboard: React.FC<ClientDashboardProps> = ({
   // Sidebar Collapse State (Desktop) & Mobile Open
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState<boolean>(false);
-  const isMobileSidebarClosingViaBack = React.useRef(false);
 
   // Overlay history management for client mobile sidebar
-  useEffect(() => {
-    if (mobileSidebarOpen) {
-      window.history.pushState(
-        { isOverlay: true, name: 'clientMobileSidebar' },
-        '',
-        window.location.hash || '#'
-      );
-
-      const handlePopState = () => {
-        isMobileSidebarClosingViaBack.current = true;
-        setMobileSidebarOpen(false);
-      };
-
-      window.addEventListener('popstate', handlePopState, { once: true });
-
-      return () => {
-        window.removeEventListener('popstate', handlePopState);
-        if (!isMobileSidebarClosingViaBack.current && window.history.state?.isOverlay) {
-          window.history.back();
-        }
-        isMobileSidebarClosingViaBack.current = false;
-      };
-    }
-  }, [mobileSidebarOpen]);
+  useModalHistory(mobileSidebarOpen, () => setMobileSidebarOpen(false), 'clientMobileSidebar');
 
   // Active Tab View in Dashboard
   const [activeTab, setActiveTab] = useState<

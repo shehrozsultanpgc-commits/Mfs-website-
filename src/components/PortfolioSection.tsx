@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { PORTFOLIO_SAMPLES } from '../data/content';
+import { useModalHistory } from '../hooks/useModalHistory';
 import {
   Lock,
   Eye,
@@ -26,6 +27,9 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
 }) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [selectedSample, setSelectedSample] = useState<typeof PORTFOLIO_SAMPLES[0] | null>(null);
+
+  // Physical/gesture back button support on mobile for preview modal
+  useModalHistory(!!selectedSample, () => setSelectedSample(null), 'portfolioSampleModal');
 
   const categories = [
     'All',
@@ -258,13 +262,13 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
         {/* 5. PREVIEW LIGHTBOX MODAL */}
         <AnimatePresence>
           {selectedSample && (
-            <div className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md p-3 xs:p-4 sm:p-6 overflow-y-auto flex items-center justify-center pt-[max(0.75rem,env(safe-area-inset-top))] pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+            <div className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md p-2 xs:p-3 sm:p-6 overflow-y-auto flex items-center justify-center pt-[max(0.5rem,env(safe-area-inset-top))] pb-[max(0.5rem,env(safe-area-inset-bottom))]">
               <motion.div
                 initial={{ opacity: 0, scale: 0.95, y: 15 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 15 }}
                 transition={{ duration: 0.25 }}
-                className="bg-[#08080C] border border-[#E5C158]/40 rounded-2xl xs:rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl relative max-h-[85vh] sm:max-h-[90vh] flex flex-col my-auto"
+                className="bg-[#08080C] border border-[#E5C158]/40 rounded-2xl xs:rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl relative max-h-[calc(100dvh-1rem)] sm:max-h-[90vh] flex flex-col my-auto"
               >
                 {/* Modal Header - Sticky & Cleanly Positioned */}
                 <div className="p-4 xs:p-5 sm:p-6 border-b border-white/10 flex items-center justify-between bg-[#08080C] shrink-0 sticky top-0 z-20">

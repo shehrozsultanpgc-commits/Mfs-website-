@@ -23,6 +23,7 @@ import {
   Zap,
   Star,
   Check,
+  X,
   Copy,
   ExternalLink
 } from 'lucide-react';
@@ -350,8 +351,15 @@ export const OrderConfirmationPage: React.FC<OrderConfirmationPageProps> = ({
 
       {/* Interactive MFS AI Welcome Gift Modal */}
       {showGiftModal && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn">
-          <div className="glass-card max-w-xl w-full rounded-3xl border-2 border-[#E5C158] p-6 sm:p-8 bg-gradient-to-b from-[#121212] via-black to-[#050507] shadow-[0_0_50px_rgba(229,193,88,0.25)] space-y-6 relative overflow-hidden">
+        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 animate-fadeIn pt-[max(0.5rem,env(safe-area-inset-top))] pb-[max(0.5rem,env(safe-area-inset-bottom))] overflow-y-auto">
+          <div className="glass-card max-w-xl w-full rounded-3xl border-2 border-[#E5C158] p-5 sm:p-8 bg-gradient-to-b from-[#121212] via-black to-[#050507] shadow-[0_0_50px_rgba(229,193,88,0.25)] space-y-6 relative overflow-hidden my-auto max-h-[calc(100dvh-1.5rem)] overflow-y-auto">
+            <button
+              onClick={() => setShowGiftModal(false)}
+              className="absolute top-4 right-4 p-2 rounded-xl bg-white/10 text-neutral-400 hover:text-white transition-colors cursor-pointer min-w-[36px] min-h-[36px] flex items-center justify-center z-10"
+              title="Close Perks Modal"
+            >
+              <X className="w-5 h-5" />
+            </button>
             <div className="text-center space-y-3">
               <div className="w-16 h-16 rounded-full bg-[#E5C158]/20 border border-[#E5C158]/40 text-[#E5C158] flex items-center justify-center mx-auto shadow-lg">
                 <Gift className="w-8 h-8" />

@@ -1103,15 +1103,15 @@ export const InvoicesFinancialCenter: React.FC<InvoicesFinancialCenterProps> = (
       {/* MODAL 1: PREVIEW INVOICE WORKSPACE */}
       <AnimatePresence>
         {showPreviewModal && selectedInvoice && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-fadeIn pt-[max(0.5rem,env(safe-area-inset-top))] pb-[max(0.5rem,env(safe-area-inset-bottom))] overflow-y-auto">
             <div
-              className="w-full max-w-3xl rounded-3xl bg-[#0D0D12] border border-[#E5C158]/50 p-6 md:p-8 space-y-6 shadow-2xl relative max-h-[90vh] overflow-y-auto"
+              className="w-full max-w-3xl rounded-3xl bg-[#0D0D12] border border-[#E5C158]/50 p-5 md:p-8 space-y-6 shadow-2xl relative max-h-[calc(100dvh-1.5rem)] overflow-y-auto my-auto"
               onClick={(e) => e.stopPropagation()}
             >
               {/* CLOSE BUTTON */}
               <button
                 onClick={() => setShowPreviewModal(false)}
-                className="absolute top-6 right-6 p-2 rounded-xl bg-white/10 text-neutral-400 hover:text-white cursor-pointer"
+                className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 rounded-xl bg-white/10 text-neutral-400 hover:text-white cursor-pointer min-w-[36px] min-h-[36px] flex items-center justify-center z-10"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -1246,14 +1246,14 @@ export const InvoicesFinancialCenter: React.FC<InvoicesFinancialCenterProps> = (
       {/* MODAL 2: CREATE NEW INVOICE FORM */}
       <AnimatePresence>
         {showCreateModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-fadeIn pt-[max(0.5rem,env(safe-area-inset-top))] pb-[max(0.5rem,env(safe-area-inset-bottom))] overflow-y-auto">
             <div
-              className="w-full max-w-lg rounded-3xl bg-[#0D0D12] border border-[#E5C158]/50 p-6 space-y-5 shadow-2xl relative"
+              className="w-full max-w-lg rounded-3xl bg-[#0D0D12] border border-[#E5C158]/50 p-5 sm:p-6 space-y-5 shadow-2xl relative my-auto max-h-[calc(100dvh-1.5rem)] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={() => setShowCreateModal(false)}
-                className="absolute top-5 right-5 p-2 rounded-xl bg-white/10 text-neutral-400 hover:text-white cursor-pointer"
+                className="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-xl bg-white/10 text-neutral-400 hover:text-white cursor-pointer min-w-[36px] min-h-[36px] flex items-center justify-center z-10"
               >
                 <X className="w-5 h-5" />
               </button>

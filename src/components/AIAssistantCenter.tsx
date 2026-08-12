@@ -642,15 +642,15 @@ export const AIAssistantCenter: React.FC<AIAssistantCenterProps> = ({
 
       {/* VOICE ASSISTANT INTERACTIVE MODAL */}
       {showVoiceModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
-          <div className="glass-card rounded-3xl border border-[#28C76F]/40 p-6 sm:p-8 max-w-lg w-full space-y-6 bg-[#050507] relative shadow-[0_0_50px_rgba(40,199,111,0.2)] text-center">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-fadeIn pt-[max(0.5rem,env(safe-area-inset-top))] pb-[max(0.5rem,env(safe-area-inset-bottom))] overflow-y-auto">
+          <div className="glass-card rounded-3xl border border-[#28C76F]/40 p-5 sm:p-8 max-w-lg w-full space-y-6 bg-[#050507] relative shadow-[0_0_50px_rgba(40,199,111,0.2)] text-center my-auto max-h-[calc(100dvh-1.5rem)] overflow-y-auto">
             
             <button
               onClick={() => {
                 setShowVoiceModal(false);
                 setIsMicActive(false);
               }}
-              className="absolute top-4 right-4 p-2 rounded-xl bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white transition-colors cursor-pointer"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 p-2 rounded-xl bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white transition-colors cursor-pointer min-w-[36px] min-h-[36px] flex items-center justify-center"
             >
               <X className="w-5 h-5" />
             </button>
@@ -721,25 +721,25 @@ export const AIAssistantCenter: React.FC<AIAssistantCenterProps> = ({
 
       {/* PHASE 5 ROADMAP CHECKLIST MODAL */}
       {showRoadmapModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
-          <div className="glass-card rounded-3xl border border-[#E5C158]/40 p-6 sm:p-8 max-w-2xl w-full space-y-6 bg-[#0F0F0F] relative shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-fadeIn pt-[max(0.5rem,env(safe-area-inset-top))] pb-[max(0.5rem,env(safe-area-inset-bottom))] overflow-y-auto">
+          <div className="glass-card rounded-3xl border border-[#E5C158]/40 p-5 sm:p-8 max-w-2xl w-full space-y-6 bg-[#0F0F0F] relative shadow-2xl my-auto max-h-[calc(100dvh-1.5rem)] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
               <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-xl bg-[#E5C158]/20 text-[#E5C158]">
+                <div className="p-2.5 rounded-xl bg-[#E5C158]/20 text-[#E5C158] shrink-0">
                   <CheckCircle2 className="w-6 h-6 text-[#28C76F]" />
                 </div>
-                <div>
-                  <span className="text-[10px] font-bold text-[#E5C158] uppercase tracking-wider block">
-                    CLIENT DASHBOARD ROADMAP COMPLETE
+                <div className="min-w-0">
+                  <span className="text-[10px] font-bold text-[#E5C158] uppercase tracking-wider block truncate">
+                    CLIENT DASHBOARD ROADMAP
                   </span>
-                  <h3 className="text-xl font-poppins font-bold text-white">
+                  <h3 className="text-base sm:text-xl font-poppins font-bold text-white truncate">
                     Phase 5 Completed • All Phases Delivered
                   </h3>
                 </div>
               </div>
               <button
                 onClick={() => setShowRoadmapModal(false)}
-                className="text-neutral-400 hover:text-white text-xs px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 cursor-pointer"
+                className="text-neutral-400 hover:text-white text-xs px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 cursor-pointer min-w-[36px] min-h-[36px] flex items-center justify-center border border-white/10 shrink-0"
               >
                 Close ✕
               </button>

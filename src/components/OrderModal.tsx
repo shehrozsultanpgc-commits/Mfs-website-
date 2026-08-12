@@ -26,18 +26,18 @@ export const OrderModal: React.FC<OrderModalProps> = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/85 backdrop-blur-md overflow-y-auto pt-[max(0.5rem,env(safe-area-inset-top))] pb-[max(0.5rem,env(safe-area-inset-bottom))]">
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 15 }}
             transition={{ duration: 0.2 }}
-            className="relative w-full max-w-5xl bg-[#08080C] border-2 border-[#E5C158]/50 rounded-2xl sm:rounded-3xl shadow-[0_0_80px_rgba(229,193,88,0.2)] my-auto max-h-[92vh] overflow-y-auto p-2 sm:p-4 text-left"
+            className="relative w-full max-w-5xl bg-[#08080C] border-2 border-[#E5C158]/50 rounded-2xl sm:rounded-3xl shadow-[0_0_80px_rgba(229,193,88,0.2)] my-auto max-h-[calc(100dvh-1rem)] sm:max-h-[92vh] overflow-y-auto p-2 sm:p-4 text-left"
           >
             {/* Top Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-50 w-9 h-9 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 text-neutral-300 hover:text-white flex items-center justify-center transition-all cursor-pointer shadow-lg"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 z-50 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#181820] border border-white/20 hover:bg-white/20 text-neutral-300 hover:text-white flex items-center justify-center transition-all cursor-pointer shadow-lg min-w-[36px] min-h-[36px]"
               title="Close Order Window"
             >
               <X className="w-5 h-5" />
