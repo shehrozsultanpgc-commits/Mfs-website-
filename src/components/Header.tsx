@@ -88,16 +88,38 @@ export const Header: React.FC<HeaderProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Lock body scroll when mobile navigation drawer is open
+  const isMobileMenuClosingViaBackRef = useRef(false);
+
+  // Lock body scroll and handle history stack for mobile navigation drawer
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
+
+      window.history.pushState(
+        { isOverlay: true, name: 'mobileMenu' },
+        '',
+        window.location.hash || '#'
+      );
+
+      const handlePopState = () => {
+        isMobileMenuClosingViaBackRef.current = true;
+        setMobileMenuOpen(false);
+      };
+
+      window.addEventListener('popstate', handlePopState, { once: true });
+
+      return () => {
+        document.body.style.overflow = '';
+        window.removeEventListener('popstate', handlePopState);
+
+        if (!isMobileMenuClosingViaBackRef.current && window.history.state?.isOverlay) {
+          window.history.back();
+        }
+        isMobileMenuClosingViaBackRef.current = false;
+      };
     } else {
       document.body.style.overflow = '';
     }
-    return () => {
-      document.body.style.overflow = '';
-    };
   }, [mobileMenuOpen]);
 
   // Click outside listener for search & dropdown overlays

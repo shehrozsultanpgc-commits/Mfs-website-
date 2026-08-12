@@ -85,6 +85,33 @@ export const ClientDashboard: React.FC<ClientDashboardProps> = ({
   // Sidebar Collapse State (Desktop) & Mobile Open
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState<boolean>(false);
+  const isMobileSidebarClosingViaBack = React.useRef(false);
+
+  // Overlay history management for client mobile sidebar
+  useEffect(() => {
+    if (mobileSidebarOpen) {
+      window.history.pushState(
+        { isOverlay: true, name: 'clientMobileSidebar' },
+        '',
+        window.location.hash || '#'
+      );
+
+      const handlePopState = () => {
+        isMobileSidebarClosingViaBack.current = true;
+        setMobileSidebarOpen(false);
+      };
+
+      window.addEventListener('popstate', handlePopState, { once: true });
+
+      return () => {
+        window.removeEventListener('popstate', handlePopState);
+        if (!isMobileSidebarClosingViaBack.current && window.history.state?.isOverlay) {
+          window.history.back();
+        }
+        isMobileSidebarClosingViaBack.current = false;
+      };
+    }
+  }, [mobileSidebarOpen]);
 
   // Active Tab View in Dashboard
   const [activeTab, setActiveTab] = useState<

@@ -33,8 +33,58 @@ import { AuthProvider } from './context/AuthContext';
 import { RequireAdmin, RequireClient } from './components/AuthGuards';
 import { AdminGuard } from './components/admin/AdminGuard';
 
+type PageType =
+  | 'home'
+  | 'services'
+  | 'pricing'
+  | 'reviews'
+  | 'about'
+  | 'contact'
+  | 'faq'
+  | 'order'
+  | 'payment'
+  | 'confirmation'
+  | 'dashboard'
+  | 'admin';
+
+const VALID_PAGES: PageType[] = [
+  'home',
+  'services',
+  'pricing',
+  'reviews',
+  'about',
+  'contact',
+  'faq',
+  'order',
+  'payment',
+  'confirmation',
+  'dashboard',
+  'admin',
+];
+
+function getPageFromRoute(): { page: PageType; targetSection?: string } {
+  const hashRaw = window.location.hash.toLowerCase().replace(/^#\/?/, '');
+  const pathRaw = window.location.pathname.toLowerCase().replace(/^\//, '');
+
+  const [hashPart] = hashRaw.split('?');
+  const [pathPart] = pathRaw.split('/');
+
+  if (VALID_PAGES.includes(hashPart as PageType)) {
+    return { page: hashPart as PageType };
+  }
+  if (VALID_PAGES.includes(pathPart as PageType)) {
+    return { page: pathPart as PageType };
+  }
+  if (hashPart === 'portfolio' || hashPart === 'calculator' || hashPart === 'reviews-section') {
+    return { page: 'home', targetSection: hashPart };
+  }
+
+  return { page: 'home' };
+}
+
 function AppContent() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'services' | 'pricing' | 'reviews' | 'about' | 'contact' | 'faq' | 'order' | 'payment' | 'confirmation' | 'dashboard' | 'admin'>('home');
+  const initialRoute = getPageFromRoute();
+  const [currentPage, setCurrentPage] = useState<PageType>(initialRoute.page);
   const [currency, setCurrency] = useState<Currency>('PKR');
 
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
@@ -48,29 +98,71 @@ function AppContent() {
     mode: 'chat',
   });
 
-  // URL Hash & Admin Shortcut Listener for Private Admin Access
-  useEffect(() => {
-    const checkRoute = () => {
-      const hash = window.location.hash.toLowerCase();
-      const pathname = window.location.pathname.toLowerCase();
+  // Track modal closing via hardware back button vs manual UI click
+  const isOrderModalClosingViaBack = React.useRef(false);
+  const isAuthModalClosingViaBack = React.useRef(false);
 
-      if (hash === '#admin' || hash === '#/admin' || pathname.startsWith('/admin')) {
-        setCurrentPage('admin');
-      } else if (hash === '#dashboard' || hash === '#/dashboard' || pathname.startsWith('/dashboard')) {
-        setCurrentPage('dashboard');
+  // Main Page Navigation & Browser History Stack Sync
+  const handleNavigatePage = (
+    page: PageType,
+    targetSection?: string,
+    isFromHistoryPop = false
+  ) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (!isFromHistoryPop) {
+      const targetHash =
+        page === 'home'
+          ? targetSection
+            ? `#${targetSection}`
+            : '#home'
+          : `#${page}`;
+
+      if (window.location.hash !== targetHash) {
+        window.history.pushState({ page, targetSection }, '', targetHash);
       }
+    }
+
+    if (page === 'home' && targetSection) {
+      setTimeout(() => {
+        const el = document.getElementById(targetSection);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  };
+
+  // URL Hash, PopState & Secret Admin Shortcut Listener
+  useEffect(() => {
+    const handleRouteSync = (e?: PopStateEvent) => {
+      if (e?.state?.isOverlay) {
+        return;
+      }
+      const { page, targetSection } = getPageFromRoute();
+      handleNavigatePage(page, targetSection || e?.state?.targetSection, true);
     };
 
-    checkRoute();
-    window.addEventListener('hashchange', checkRoute);
-    window.addEventListener('popstate', checkRoute);
+    // Ensure initial history state is registered
+    const route = getPageFromRoute();
+    const initialHash =
+      route.page === 'home'
+        ? route.targetSection
+          ? `#${route.targetSection}`
+          : '#home'
+        : `#${route.page}`;
+
+    if (!window.location.hash || window.location.hash === '#') {
+      window.history.replaceState({ page: route.page, targetSection: route.targetSection }, '', initialHash);
+    }
+
+    window.addEventListener('hashchange', handleRouteSync);
+    window.addEventListener('popstate', handleRouteSync);
 
     // Secret Admin Shortcut (Ctrl+Shift+A or Cmd+Shift+A)
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
         e.preventDefault();
-        setCurrentPage('admin');
-        window.location.hash = 'admin';
+        handleNavigatePage('admin');
         triggerToast('🔒 Private MFS Admin HQ Activated');
       }
     };
@@ -78,11 +170,55 @@ function AppContent() {
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      window.removeEventListener('hashchange', checkRoute);
-      window.removeEventListener('popstate', checkRoute);
+      window.removeEventListener('hashchange', handleRouteSync);
+      window.removeEventListener('popstate', handleRouteSync);
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
+
+  // Order Modal History Integration for Mobile Back Button
+  useEffect(() => {
+    if (isOrderModalOpen) {
+      window.history.pushState({ isOverlay: true, name: 'orderModal' }, '', window.location.hash || '#');
+
+      const handlePopState = () => {
+        isOrderModalClosingViaBack.current = true;
+        setIsOrderModalOpen(false);
+      };
+
+      window.addEventListener('popstate', handlePopState, { once: true });
+
+      return () => {
+        window.removeEventListener('popstate', handlePopState);
+        if (!isOrderModalClosingViaBack.current && window.history.state?.isOverlay) {
+          window.history.back();
+        }
+        isOrderModalClosingViaBack.current = false;
+      };
+    }
+  }, [isOrderModalOpen]);
+
+  // Auth Modal History Integration for Mobile Back Button
+  useEffect(() => {
+    if (isAuthModalOpen) {
+      window.history.pushState({ isOverlay: true, name: 'authModal' }, '', window.location.hash || '#');
+
+      const handlePopState = () => {
+        isAuthModalClosingViaBack.current = true;
+        setIsAuthModalOpen(false);
+      };
+
+      window.addEventListener('popstate', handlePopState, { once: true });
+
+      return () => {
+        window.removeEventListener('popstate', handlePopState);
+        if (!isAuthModalClosingViaBack.current && window.history.state?.isOverlay) {
+          window.history.back();
+        }
+        isAuthModalClosingViaBack.current = false;
+      };
+    }
+  }, [isAuthModalOpen]);
 
   const triggerToast = (msg: string) => {
     setToastMessage(msg);
@@ -97,8 +233,7 @@ function AppContent() {
 
   const handleOpenOrderWithService = (serviceId: string) => {
     setPrefilledService(serviceId);
-    setCurrentPage('order');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    handleNavigatePage('order');
   };
 
   const handleBookFromCalculator = (details: {
@@ -109,35 +244,11 @@ function AppContent() {
     finalPrice: number;
   }) => {
     setPrefilledService(details.service);
-    setCurrentPage('order');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleNavigatePage = (
-    page: 'home' | 'services' | 'pricing' | 'reviews' | 'about' | 'contact' | 'faq' | 'order' | 'payment' | 'confirmation' | 'dashboard' | 'admin',
-    targetSection?: string
-  ) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (page === 'home' && targetSection) {
-      setTimeout(() => {
-        const el = document.getElementById(targetSection);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    }
+    handleNavigatePage('order');
   };
 
   const scrollToPortfolio = () => {
-    if (currentPage !== 'home') {
-      setCurrentPage('home');
-      setTimeout(() => {
-        const el = document.getElementById('portfolio');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    } else {
-      const el = document.getElementById('portfolio');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }
+    handleNavigatePage('home', 'portfolio');
   };
 
   return (
