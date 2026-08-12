@@ -47,6 +47,7 @@ export const HeroCinematicBackground: React.FC<HeroCinematicBackgroundProps> = (
         <div className="absolute inset-0 z-[1] w-full h-full overflow-hidden opacity-75 sm:opacity-85 transition-opacity duration-700">
           <video
             ref={videoRef}
+            src={videoUrl}
             autoPlay
             loop
             muted
@@ -59,7 +60,6 @@ export const HeroCinematicBackground: React.FC<HeroCinematicBackgroundProps> = (
             className="w-full h-full object-cover object-center filter brightness-95 contrast-105 saturate-105 pointer-events-none"
           >
             <source src={videoUrl} type="video/mp4" />
-            <source src="/videos/hero.mp4" type="video/mp4" />
           </video>
         </div>
       )}
