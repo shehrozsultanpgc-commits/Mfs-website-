@@ -7,7 +7,7 @@ interface HeroCinematicBackgroundProps {
 }
 
 export const HeroCinematicBackground: React.FC<HeroCinematicBackgroundProps> = ({
-  videoUrl = 'https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-41555-large.mp4',
+  videoUrl = '/videos/hero.mp4',
   className = '',
 }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -42,7 +42,7 @@ export const HeroCinematicBackground: React.FC<HeroCinematicBackgroundProps> = (
       {/* Fallback & Ambient Layer: Dark Gold Gradient for Maximum Contrast */}
       <div className="absolute inset-0 z-0 bg-gradient-to-r from-black/80 via-black/50 to-black/80 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#E5C158]/20 via-[#0A0A0F] to-[#050507]" />
 
-      {/* HTML5 Video Layer: 100% Cross-Device Responsive Campus Interview Video */}
+      {/* HTML5 Video Layer: 100% Cross-Device Responsive Campus Video */}
       {!hasVideoError && (
         <div className="absolute inset-0 z-[1] w-full h-full overflow-hidden opacity-75 sm:opacity-85 transition-opacity duration-700">
           <video
@@ -53,13 +53,13 @@ export const HeroCinematicBackground: React.FC<HeroCinematicBackgroundProps> = (
             playsInline
             preload="auto"
             onError={() => {
-              console.warn('Hero campus interview video load error, displaying dark gold gradient fallback.');
+              console.warn('Hero video load error, displaying dark gold gradient fallback.');
               setHasVideoError(true);
             }}
             className="w-full h-full object-cover object-center filter brightness-95 contrast-105 saturate-105 pointer-events-none"
           >
             <source src={videoUrl} type="video/mp4" />
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-41555-large.mp4" type="video/mp4" />
+            <source src="/videos/hero.mp4" type="video/mp4" />
           </video>
         </div>
       )}

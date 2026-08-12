@@ -9,7 +9,7 @@ import { sanitizeRequestMiddleware } from './utils/security';
 
 const app = express();
 
-// Trust proxy for Cloud Run & Netlify reverse proxy layer
+// Trust proxy for Cloud Run & Vercel reverse proxy layer
 app.set('trust proxy', 1);
 
 // 1. CORS Security Configuration
@@ -41,7 +41,7 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // 4. Global Input Sanitization Middleware
-app.use(['/api', '/.netlify/functions/api'], sanitizeRequestMiddleware);
+app.use('/api', sanitizeRequestMiddleware);
 
 // 5. Rate Limiters
 const generalLimiter = rateLimit({
@@ -78,22 +78,22 @@ const aiLimiter = rateLimit({
 });
 
 // Apply General Limiter
-app.use(['/api', '/.netlify/functions/api'], generalLimiter);
+app.use('/api', generalLimiter);
 
 // API Health Endpoint
-app.get(['/api/health', '/.netlify/functions/api/health'], (req, res) => {
+app.get('/api/health', (req, res) => {
   res.json({
     status: 'ok',
     service: 'MFS Growth Agency API Engine',
-    security: 'Enterprise Hardened (CORS, Helmet, RateLimit, Sanitization)',
+    security: 'Enterprise Hardened (Vercel Ready)',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development',
   });
 });
 
-// Mount Routes with Dual Base Path Support (Local Express + Netlify Serverless Functions)
-app.use(['/api/orders', '/.netlify/functions/api/orders'], strictCheckoutLimiter, orderRoutes);
-app.use(['/api/notifications', '/.netlify/functions/api/notifications'], strictCheckoutLimiter, notificationRoutes);
-app.use(['/api/ai', '/.netlify/functions/api/ai'], aiLimiter, aiRoutes);
+// Mount Routes
+app.use('/api/orders', strictCheckoutLimiter, orderRoutes);
+app.use('/api/notifications', strictCheckoutLimiter, notificationRoutes);
+app.use('/api/ai', aiLimiter, aiRoutes);
 
 export default app;
