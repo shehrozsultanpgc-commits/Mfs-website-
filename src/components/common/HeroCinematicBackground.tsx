@@ -7,7 +7,7 @@ interface HeroCinematicBackgroundProps {
 }
 
 export const HeroCinematicBackground: React.FC<HeroCinematicBackgroundProps> = ({
-  videoUrl = 'https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-41555-large.mp4',
+  videoUrl = '/videos/hero.mp4',
   className = '',
 }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);

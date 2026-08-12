@@ -16,7 +16,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenOrderModal, onViewWork }) => {
     <section id="hero" className="pt-24 xs:pt-28 sm:pt-36 pb-12 xs:pb-16 sm:pb-20 md:pt-44 md:pb-28 relative overflow-hidden bg-[#050507]">
       {/* 1. Cinematic Background Layer with HTML5 Canvas Mesh, Video Player & Vignettes */}
       <HeroCinematicBackground
-        videoUrl="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-41555-large.mp4"
+        videoUrl="/videos/hero.mp4"
       />
 
       {/* 2. Background Ambient Light Orb */}
