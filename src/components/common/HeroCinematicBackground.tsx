@@ -23,11 +23,12 @@ export const HeroCinematicBackground: React.FC<HeroCinematicBackgroundProps> = (
     videoEl.muted = true;
     videoEl.defaultMuted = true;
 
-    const attemptPlay = async () => {
-      try {
-        await videoEl.play();
-      } catch (err) {
-        console.warn('Hero background video autoplay deferred by browser policy:', err);
+    const attemptPlay = () => {
+      const playPromise = videoEl.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.warn('Hero background video autoplay deferred by browser policy:', err);
+        });
       }
     };
 
@@ -47,7 +48,6 @@ export const HeroCinematicBackground: React.FC<HeroCinematicBackgroundProps> = (
         <div className="absolute inset-0 z-[1] w-full h-full overflow-hidden opacity-75 sm:opacity-85 transition-opacity duration-700">
           <video
             ref={videoRef}
-            src={videoUrl}
             autoPlay
             loop
             muted
