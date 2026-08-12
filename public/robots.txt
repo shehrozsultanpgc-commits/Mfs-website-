@@ -10,4 +10,4 @@ Disallow: /confirmation
 Disallow: /#confirmation
 Disallow: /api/
 
-Sitemap: https://mfsgrowthpk.netlify.app/sitemap.xml
+Sitemap: https://mfsgrowth.online/sitemap.xml
