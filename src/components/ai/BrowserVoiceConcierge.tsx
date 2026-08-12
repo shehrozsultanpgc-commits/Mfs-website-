@@ -14,6 +14,103 @@ export interface VoiceMessage {
   timestamp: Date;
 }
 
+/**
+ * Intelligent Local Smart Fallback Reply Generator
+ * Used when network connection fails or API endpoint is unreachable
+ */
+function generateSmartFallbackReply(message: string, currentState?: any) {
+  const lower = (message || '').toLowerCase().trim();
+  let text = '';
+  let newState = currentState ? { ...currentState } : {};
+
+  if (
+    lower.includes('rate') ||
+    lower.includes('price') ||
+    lower.includes('kitne') ||
+    lower.includes('cost') ||
+    lower.includes('charge') ||
+    lower.includes('discount')
+  ) {
+    text =
+      "🏷️ **MFS Growth Agency - Grand Launch Rates (50% OFF Applied)**:\n\n" +
+      "• 📊 **Presentation Design**: PKR 1,250 ($7.50 USD) / 10 slides *(Was PKR 2,500)*\n" +
+      "• ✍️ **Assignment Writing**: PKR 1,000 ($7.50 USD) / 1,000 words *(Was PKR 2,000)*\n" +
+      "• 👔 **Resume Writing**: PKR 1,250 ($10.00 USD) / Resume *(Was PKR 2,500)*\n" +
+      "• ⚡ **ATS Resume Engineering**: PKR 1,500 ($12.00 USD) / ATS Standard *(Was PKR 3,000)*\n" +
+      "• 📄 **Report Formatting**: PKR 1,000 ($7.50 USD) / 1,000 words\n\n" +
+      "Aap kis service ke baare mein mazeed details chahte hain?";
+  } else if (lower.includes('presentation') || lower.includes('slide') || lower.includes('deck') || lower.includes('ppt')) {
+    newState.serviceRequired = 'Presentation Design';
+    newState.estimatedPrice = 'PKR 1,250 (50% OFF)';
+    text =
+      "Zabardast! **Presentation Design** humari top-rated service hai. 🎨\n\n" +
+      "Hum executive pitch decks aur academic presentations custom layouts, typography, aur charts ke saath create karte hain.\n\n" +
+      "• **Price**: PKR 1,250 per 10 slides (50% OFF Applied!)\n" +
+      "• **Delivery**: Standard (24-48h) or Express (<24h)\n\n" +
+      "Aap ki presentation mein kitni slides required hain?";
+  } else if (lower.includes('assignment') || lower.includes('paper') || lower.includes('essay') || lower.includes('thesis')) {
+    newState.serviceRequired = 'Assignment Writing';
+    newState.estimatedPrice = 'PKR 1,000 (50% OFF)';
+    text =
+      "Understood! Our **Assignment Writing** service guarantees 100% original, plagiarism-free research with strict APA/Harvard/MLA referencing and Turnitin check. 📚\n\n" +
+      "• **Price**: PKR 1,000 per 1,000 words (50% OFF Applied!)\n\n" +
+      "Aap ka assignment topic aur word count/deadline kya hai?";
+  } else if (lower.includes('resume') || lower.includes('cv') || lower.includes('cover') || lower.includes('ats')) {
+    newState.serviceRequired = 'ATS Resume & CV Engineering';
+    newState.estimatedPrice = 'PKR 1,500 (50% OFF)';
+    text =
+      "Awesome! Our **ATS Resume & CV Engineering** ensures 95%+ ATS scanner compatibility to get you hired faster. 💼\n\n" +
+      "• **Professional Resume**: PKR 1,250\n" +
+      "• **ATS Engineered Resume**: PKR 1,500\n\n" +
+      "Aap kis position ya industry ke liye apply kar rahe hain?";
+  } else if (lower.includes('report') || lower.includes('format') || lower.includes('document')) {
+    newState.serviceRequired = 'Corporate Report Formatting';
+    newState.estimatedPrice = 'PKR 1,000 (50% OFF)';
+    text =
+      "Got it! Our **Corporate Report Formatting** delivers executive-ready document design. 📊\n\n" +
+      "• **Price**: PKR 1,000 per 1,000 words\n\n" +
+      "Aap ke report ke kitne pages ya words hain?";
+  } else if (lower.includes('easypaisa') || lower.includes('jazzcash') || lower.includes('bank') || lower.includes('payment') || lower.includes('pay')) {
+    text =
+      "💳 **Official MFS Growth Agency Payment Accounts**:\n\n" +
+      "• **EasyPaisa**: `03116191234` (Title: Muhammad Shehroz Sultan)\n" +
+      "• **JazzCash**: `03015323688` (Title: Muhammad Shehroz Sultan)\n" +
+      "• **Askari Bank**: Account `00553230017265` (Title: Muhammad Shehroz Sultan)\n\n" +
+      "Payment ke baad aap screenshot upload kar sakte hain ya humein WhatsApp (`+92 301 5323689`) par send kar sakte hain!";
+  } else if (lower.includes('contact') || lower.includes('whatsapp') || lower.includes('number') || lower.includes('email') || lower.includes('phone')) {
+    text =
+      "📞 **MFS Growth Agency Official Support Channels**:\n\n" +
+      "• **WhatsApp**: **+92 301 5323689** (24/7 Support)\n" +
+      "• **Agency Email**: **mfsmedia.agency@gmail.com**\n" +
+      "• **Official Website**: **https://mfsgrowth.online/**\n\n" +
+      "How can we help you further today?";
+  } else if (
+    lower.includes('kya haal') ||
+    lower.includes('kaise ho') ||
+    lower.includes('kese ho') ||
+    lower.includes('assalam') ||
+    lower.includes('hello') ||
+    lower.includes('hi') ||
+    lower.includes('hey')
+  ) {
+    text =
+      "Walaikum Assalam! Main bilkul theek hoon, aap bataayein kaise hain? 😊\n\n" +
+      "Welcome to **MFS Growth Agency**! Main aap ki kis service mein madad kar sakta hoon?\n" +
+      "• 📊 **Presentation Design** (Executive Pitch Decks)\n" +
+      "• ✍️ **Assignment Writing** (APA / Harvard References)\n" +
+      "• 👔 **ATS Resume Engineering** (95%+ ATS Score)\n" +
+      "• 📄 **Corporate Report Formatting**\n\n" +
+      "🎉 Abhi humara **50% Grand Launch Offer** active hai!";
+  } else {
+    text =
+      `Aap ki query "${message}" ke silsile mein **MFS Growth Agency** aap ki mukammal rehnumai ke liye hazir hai! 😊\n\n` +
+      `Aap humari Presentation Design, Assignment Writing, ATS Resumes, ya Corporate Reports mein se kis service ke baare mein janana chahte hain?\n\n` +
+      `Direct assistance ke liye WhatsApp par connect karein: **+92 301 5323689**!`;
+  }
+
+  return { text, newState };
+}
+
 export const BrowserVoiceConcierge: React.FC<BrowserVoiceConciergeProps> = ({ onClose, onSwitchToChat }) => {
   // Speech Recognition & Synthesis States
   const [isListening, setIsListening] = useState(false);
@@ -30,7 +127,8 @@ export const BrowserVoiceConcierge: React.FC<BrowserVoiceConciergeProps> = ({ on
     {
       id: 'init-1',
       role: 'assistant',
-      content: "Assalam-o-Alaikum! Welcome to **MFS Growth Agency**. 👋 I am your Voice AI Concierge.\n\nTap the microphone and ask me anything about our **Presentation Design**, **Assignment Writing**, **ATS Resumes**, **Report Formatting**, or **50% Grand Launch Offer**!",
+      content:
+        "Assalam-o-Alaikum! Welcome to **MFS Growth Agency**. 👋 I am your Voice AI Concierge.\n\nTap the microphone and ask me anything about our **Presentation Design**, **Assignment Writing**, **ATS Resumes**, **Report Formatting**, or **50% Grand Launch Offer**!",
       timestamp: new Date(),
     },
   ]);
@@ -39,10 +137,23 @@ export const BrowserVoiceConcierge: React.FC<BrowserVoiceConciergeProps> = ({ on
   // Language Preference
   const [selectedLang, setSelectedLang] = useState<'ur-PK' | 'en-US' | 'auto'>('auto');
 
-  // References
+  // References for Async & State Consistency
+  const messagesRef = useRef<VoiceMessage[]>(messages);
+  useEffect(() => {
+    messagesRef.current = messages;
+  }, [messages]);
+
+  const extractedStateRef = useRef<any>(extractedState);
+  useEffect(() => {
+    extractedStateRef.current = extractedState;
+  }, [extractedState]);
+
   const recognitionRef = useRef<any>(null);
   const synthRef = useRef<SpeechSynthesis | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const lastTranscriptRef = useRef<string>('');
+  const hasSubmittedRef = useRef<boolean>(false);
 
   // Scroll to bottom of message list
   const scrollToBottom = () => {
@@ -53,10 +164,19 @@ export const BrowserVoiceConcierge: React.FC<BrowserVoiceConciergeProps> = ({ on
     scrollToBottom();
   }, [messages, liveTranscript, isProcessing]);
 
-  // Check Speech Synthesis availability
+  // Check and initialize Speech Synthesis with voice listener
   useEffect(() => {
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       synthRef.current = window.speechSynthesis;
+      const loadVoices = () => {
+        if (synthRef.current) {
+          synthRef.current.getVoices();
+        }
+      };
+      loadVoices();
+      if (synthRef.current.onvoiceschanged !== undefined) {
+        synthRef.current.onvoiceschanged = loadVoices;
+      }
     }
   }, []);
 
@@ -71,7 +191,9 @@ export const BrowserVoiceConcierge: React.FC<BrowserVoiceConciergeProps> = ({ on
   // Stop Speech Synthesis
   const stopSpeechSynthesis = () => {
     if (synthRef.current) {
-      synthRef.current.cancel();
+      try {
+        synthRef.current.cancel();
+      } catch (e) {}
     }
     setIsSpeaking(false);
   };
@@ -95,50 +217,56 @@ export const BrowserVoiceConcierge: React.FC<BrowserVoiceConciergeProps> = ({ on
     if (!synthRef.current || isMuted) return;
 
     // Stop any ongoing speech
-    synthRef.current.cancel();
+    stopSpeechSynthesis();
 
     const cleanText = cleanMarkdownForSpeech(text);
     if (!cleanText) return;
 
-    const utterance = new SpeechSynthesisUtterance(cleanText);
-    utterance.rate = 1.0;
-    utterance.pitch = 1.0;
-    utterance.volume = 1.0;
+    try {
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.rate = 1.0;
+      utterance.pitch = 1.0;
+      utterance.volume = 1.0;
 
-    // Select natural voice
-    const voices = synthRef.current.getVoices();
-    let preferredVoice = voices.find(
-      (v) => (v.lang.includes('ur') || v.lang.includes('en-PK') || v.lang.includes('en-US') || v.lang.includes('en-GB')) && v.name.includes('Google')
-    );
-    if (!preferredVoice) {
-      preferredVoice = voices.find(
-        (v) => v.lang.startsWith('en') || v.lang.startsWith('ur')
+      // Select natural voice
+      const voices = synthRef.current.getVoices();
+      let preferredVoice = voices.find(
+        (v) => (v.lang.includes('ur') || v.lang.includes('en-PK') || v.lang.includes('en-US') || v.lang.includes('en-GB')) && v.name.includes('Google')
       );
-    }
-    if (preferredVoice) {
-      utterance.voice = preferredVoice;
-    }
+      if (!preferredVoice) {
+        preferredVoice = voices.find(
+          (v) => v.lang.startsWith('en') || v.lang.startsWith('ur')
+        );
+      }
+      if (preferredVoice) {
+        utterance.voice = preferredVoice;
+      }
 
-    utterance.onstart = () => {
-      setIsSpeaking(true);
-      setStatusText('MFS AI Concierge Speaking...');
-    };
+      utterance.onstart = () => {
+        setIsSpeaking(true);
+        setStatusText('MFS AI Concierge Speaking...');
+      };
 
-    utterance.onend = () => {
+      utterance.onend = () => {
+        setIsSpeaking(false);
+        setStatusText('Tap microphone to speak');
+      };
+
+      utterance.onerror = (e) => {
+        console.warn('[SpeechSynthesis Error]:', e);
+        setIsSpeaking(false);
+        setStatusText('Tap microphone to speak');
+      };
+
+      synthRef.current.speak(utterance);
+    } catch (err) {
+      console.error('[SpeechSynthesis Exception]:', err);
       setIsSpeaking(false);
       setStatusText('Tap microphone to speak');
-    };
-
-    utterance.onerror = (e) => {
-      console.warn('[SpeechSynthesis Error]:', e);
-      setIsSpeaking(false);
-      setStatusText('Tap microphone to speak');
-    };
-
-    synthRef.current.speak(utterance);
+    }
   };
 
-  // Stop Speech Recognition
+  // Stop Speech Recognition cleanly
   const stopSpeechRecognition = () => {
     if (recognitionRef.current) {
       try {
@@ -164,6 +292,10 @@ export const BrowserVoiceConcierge: React.FC<BrowserVoiceConciergeProps> = ({ on
     }
 
     try {
+      if (recognitionRef.current) {
+        try { recognitionRef.current.abort(); } catch (e) {}
+      }
+
       const recognition = new SpeechRecognition();
       recognitionRef.current = recognition;
 
@@ -177,13 +309,15 @@ export const BrowserVoiceConcierge: React.FC<BrowserVoiceConciergeProps> = ({ on
       } else if (selectedLang === 'en-US') {
         recognition.lang = 'en-US';
       } else {
-        recognition.lang = 'en-US'; // Default captures Roman Urdu & English best
+        recognition.lang = 'en-US'; // Captures Roman Urdu and English best
       }
 
       recognition.onstart = () => {
         setIsListening(true);
         setStatusText('Listening... Speak now naturally in Roman Urdu or English');
         setLiveTranscript('');
+        lastTranscriptRef.current = '';
+        hasSubmittedRef.current = false;
       };
 
       recognition.onresult = (event: any) => {
@@ -191,19 +325,25 @@ export const BrowserVoiceConcierge: React.FC<BrowserVoiceConciergeProps> = ({ on
         let final = '';
 
         for (let i = event.resultIndex; i < event.results.length; i++) {
-          const transcriptChunk = event.results[i][0].transcript;
+          const chunk = event.results[i][0].transcript;
           if (event.results[i].isFinal) {
-            final += transcriptChunk;
+            final += chunk;
           } else {
-            interim += transcriptChunk;
+            interim += chunk;
           }
         }
 
         const currentText = final || interim;
-        setLiveTranscript(currentText);
+        if (currentText.trim()) {
+          lastTranscriptRef.current = currentText.trim();
+          setLiveTranscript(currentText.trim());
+        }
 
-        if (final) {
-          handleVoiceSubmit(final);
+        if (final.trim() && !hasSubmittedRef.current) {
+          hasSubmittedRef.current = true;
+          const textToSubmit = final.trim();
+          stopSpeechRecognition();
+          handleVoiceSubmit(textToSubmit);
         }
       };
 
@@ -222,6 +362,13 @@ export const BrowserVoiceConcierge: React.FC<BrowserVoiceConciergeProps> = ({ on
 
       recognition.onend = () => {
         setIsListening(false);
+        // If final wasn't caught during onresult, but transcript was captured before onend
+        if (!hasSubmittedRef.current && lastTranscriptRef.current.trim()) {
+          hasSubmittedRef.current = true;
+          const textToSubmit = lastTranscriptRef.current.trim();
+          lastTranscriptRef.current = '';
+          handleVoiceSubmit(textToSubmit);
+        }
       };
 
       recognition.start();
@@ -235,7 +382,7 @@ export const BrowserVoiceConcierge: React.FC<BrowserVoiceConciergeProps> = ({ on
   // Process Query via /api/ai/chat Backend
   const handleVoiceSubmit = async (queryText: string) => {
     const textToSend = queryText.trim();
-    if (!textToSend) return;
+    if (!textToSend || isProcessing) return;
 
     stopSpeechRecognition();
     stopSpeechSynthesis();
@@ -255,7 +402,7 @@ export const BrowserVoiceConcierge: React.FC<BrowserVoiceConciergeProps> = ({ on
     setStatusText('MFS AI Concierge is thinking...');
 
     try {
-      const historyPayload = messages.map((m) => ({
+      const historyPayload = messagesRef.current.slice(-10).map((m) => ({
         role: m.role,
         content: m.content,
       }));
@@ -266,22 +413,25 @@ export const BrowserVoiceConcierge: React.FC<BrowserVoiceConciergeProps> = ({ on
         body: JSON.stringify({
           message: textToSend,
           history: historyPayload,
-          currentState: extractedState,
+          currentState: extractedStateRef.current,
         }),
       });
 
       let replyText = '';
-      let newState = extractedState;
 
       if (res.ok) {
         const data = await res.json();
         replyText = data.reply || 'Assalam-o-Alaikum! How can I assist you with MFS Growth Agency today?';
         if (data.extractedState) {
-          newState = { ...extractedState, ...data.extractedState };
+          const newState = { ...extractedStateRef.current, ...data.extractedState };
           setExtractedState(newState);
         }
       } else {
-        replyText = 'Assalam-o-Alaikum! Welcome to MFS Growth Agency. How can I help you with our presentation, assignment, or resume services?';
+        const fallback = generateSmartFallbackReply(textToSend, extractedStateRef.current);
+        replyText = fallback.text;
+        if (fallback.newState) {
+          setExtractedState(fallback.newState);
+        }
       }
 
       // Add AI reply to UI
@@ -295,23 +445,26 @@ export const BrowserVoiceConcierge: React.FC<BrowserVoiceConciergeProps> = ({ on
       setMessages((prev) => [...prev, aiMsg]);
       setIsProcessing(false);
 
-      // Speak response aloud
+      // Speak dynamic response aloud
       speakText(replyText);
     } catch (err) {
       console.error('[Voice Concierge API Error]:', err);
       setIsProcessing(false);
 
-      const fallbackText = "Assalam-o-Alaikum! Welcome to **MFS Growth Agency**. 😊\n\nAap humari kis service ke baare mein janana chahte hain? (Presentation Design, Assignment Writing, ATS Resumes, Corporate Reports).\n\nAap WhatsApp par bhi +92 301 5323689 par direct contact kar sakte hain!";
-      
+      const fallback = generateSmartFallbackReply(textToSend, extractedStateRef.current);
       const aiMsg: VoiceMessage = {
         id: Math.random().toString(36).substring(7),
         role: 'assistant',
-        content: fallbackText,
+        content: fallback.text,
         timestamp: new Date(),
       };
 
+      if (fallback.newState) {
+        setExtractedState(fallback.newState);
+      }
+
       setMessages((prev) => [...prev, aiMsg]);
-      speakText(fallbackText);
+      speakText(fallback.text);
     }
   };
 

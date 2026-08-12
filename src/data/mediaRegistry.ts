@@ -15,7 +15,7 @@ export const MEDIA_REGISTRY: MediaAsset[] = [
     id: 'hero-ambient-video',
     name: 'Cinematic MFS Growth Dark Tech Loop',
     type: 'video',
-    url: '/videos/hero-cinematic.mp4',
+    url: '/videos/hero.mp4',
     source: 'Custom CSS/Canvas',
     license: 'Commercial Free (No Attribution Required)',
     usedIn: ['Hero Section', 'Landing Page Ambient Header'],
