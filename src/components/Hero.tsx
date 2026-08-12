@@ -23,16 +23,16 @@ export const Hero: React.FC<HeroProps> = ({ onOpenOrderModal, onViewWork }) => {
           shouldReduceMotion
             ? {}
             : {
-                scale: [1, 1.2, 1],
-                opacity: [0.12, 0.22, 0.12],
+                scale: [1, 1.25, 1],
+                opacity: [0.22, 0.38, 0.22],
               }
         }
         transition={{
-          duration: 7,
+          duration: 6,
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[500px] md:w-[650px] h-[320px] sm:h-[500px] md:h-[650px] bg-[#E5C158] blur-[100px] sm:blur-[140px] rounded-full pointer-events-none z-[2]"
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] sm:w-[580px] md:w-[750px] h-[380px] sm:h-[580px] md:h-[750px] bg-gradient-to-br from-[#E5C158] to-[#D4AF37] blur-[110px] sm:blur-[150px] rounded-full pointer-events-none z-[2]"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
