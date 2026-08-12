@@ -81,10 +81,30 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
             <h4 className="font-poppins font-bold uppercase tracking-wider text-white text-xs mb-2">
               Quick Links
             </h4>
-            <a href="#services" className="hover:text-[#E5C158] transition-colors">Our Services</a>
-            <a href="#portfolio" className="hover:text-[#E5C158] transition-colors">Our Work</a>
-            <a href="#calculator" className="hover:text-[#E5C158] transition-colors">Pricing Tool</a>
-            <a href="#faq" className="hover:text-[#E5C158] transition-colors">FAQ</a>
+            <button
+              onClick={() => onNavigatePage ? onNavigatePage('services') : undefined}
+              className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
+            >
+              Our Services
+            </button>
+            <button
+              onClick={() => onNavigatePage ? onNavigatePage('home', 'portfolio') : undefined}
+              className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
+            >
+              Our Work
+            </button>
+            <button
+              onClick={() => onNavigatePage ? onNavigatePage('pricing') : undefined}
+              className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
+            >
+              Pricing Tool
+            </button>
+            <button
+              onClick={() => onNavigatePage ? onNavigatePage('faq') : undefined}
+              className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
+            >
+              FAQ
+            </button>
           </div>
 
           {/* Col 4: Contact Info */}

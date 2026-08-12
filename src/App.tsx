@@ -102,44 +102,130 @@ function AppContent() {
   const isOrderModalClosingViaBack = React.useRef(false);
   const isAuthModalClosingViaBack = React.useRef(false);
 
+  // Scroll positions cache by page key
+  const pageScrollPositions = React.useRef<Record<string, number>>({});
+
+  // Enforce manual scroll restoration
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
+  // Continuously record scroll position for current active page
+  useEffect(() => {
+    const handleScrollSave = () => {
+      const scrollY = window.scrollY;
+      pageScrollPositions.current[currentPage] = scrollY;
+      if (window.history.state && !window.history.state.isOverlay) {
+        window.history.replaceState(
+          { ...window.history.state, scrollY },
+          '',
+          window.location.hash || undefined
+        );
+      }
+    };
+
+    window.addEventListener('scroll', handleScrollSave, { passive: true });
+    return () => window.removeEventListener('scroll', handleScrollSave);
+  }, [currentPage]);
+
   // Main Page Navigation & Browser History Stack Sync
   const handleNavigatePage = (
     page: PageType,
     targetSection?: string,
-    isFromHistoryPop = false
+    isFromHistoryPop = false,
+    restoredY?: number
   ) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // 1. Save scroll position of page being left
+    const currentY = window.scrollY;
+    pageScrollPositions.current[currentPage] = currentY;
 
-    if (!isFromHistoryPop) {
-      const targetHash =
-        page === 'home'
-          ? targetSection
-            ? `#${targetSection}`
-            : '#home'
-          : `#${page}`;
-
-      if (window.location.hash !== targetHash) {
-        window.history.pushState({ page, targetSection }, '', targetHash);
-      }
+    if (window.history.state && !window.history.state.isOverlay) {
+      window.history.replaceState(
+        { ...window.history.state, scrollY: currentY },
+        '',
+        window.location.hash || undefined
+      );
     }
 
-    if (page === 'home' && targetSection) {
-      setTimeout(() => {
-        const el = document.getElementById(targetSection);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
+    // 2. Switch current page view
+    setCurrentPage(page);
+
+    const targetHash =
+      page === 'home'
+        ? targetSection
+          ? `#${targetSection}`
+          : '#home'
+        : `#${page}`;
+
+    if (!isFromHistoryPop) {
+      // If navigating to the exact same page & section, replace state instead of pushing duplicate
+      if (
+        window.history.state?.page === page &&
+        window.history.state?.targetSection === targetSection
+      ) {
+        window.history.replaceState({ page, targetSection, scrollY: 0 }, '', targetHash);
+      } else {
+        // ALWAYS push state for sequential multi-step navigation trail (e.g., Home -> Pricing -> Reviews)
+        window.history.pushState({ page, targetSection, scrollY: 0 }, '', targetHash);
+      }
+
+      if (page === 'home' && targetSection) {
+        setTimeout(() => {
+          const el = document.getElementById(targetSection);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+    } else {
+      // 3. Handle Back/Forward History Pop State Restoration
+      const targetY = restoredY ?? window.history.state?.scrollY ?? pageScrollPositions.current[page];
+
+      if (targetY !== undefined && targetY > 0) {
+        setTimeout(() => {
+          window.scrollTo({ top: targetY, behavior: 'instant' });
+        }, 50);
+      } else if (page === 'home' && targetSection) {
+        setTimeout(() => {
+          const el = document.getElementById(targetSection);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
     }
   };
 
   // URL Hash, PopState & Secret Admin Shortcut Listener
   useEffect(() => {
-    const handleRouteSync = (e?: PopStateEvent) => {
-      if (e?.state?.isOverlay) {
+    const handleRouteSync = (e?: Event) => {
+      const popState = (e as PopStateEvent)?.state || window.history.state;
+      if (popState?.isOverlay) {
         return;
       }
-      const { page, targetSection } = getPageFromRoute();
-      handleNavigatePage(page, targetSection || e?.state?.targetSection, true);
+
+      let targetPage: PageType;
+      let targetSection: string | undefined;
+      let restoredY: number | undefined;
+
+      if (popState?.page && VALID_PAGES.includes(popState.page as PageType)) {
+        targetPage = popState.page as PageType;
+        targetSection = popState.targetSection;
+        restoredY = popState.scrollY;
+      } else {
+        const route = getPageFromRoute();
+        targetPage = route.page;
+        targetSection = route.targetSection;
+      }
+
+      handleNavigatePage(
+        targetPage,
+        targetSection,
+        true,
+        restoredY
+      );
     };
 
     // Ensure initial history state is registered
@@ -151,8 +237,8 @@ function AppContent() {
           : '#home'
         : `#${route.page}`;
 
-    if (!window.location.hash || window.location.hash === '#') {
-      window.history.replaceState({ page: route.page, targetSection: route.targetSection }, '', initialHash);
+    if (!window.history.state || !window.history.state.page) {
+      window.history.replaceState({ page: route.page, targetSection: route.targetSection, scrollY: window.scrollY }, '', initialHash);
     }
 
     window.addEventListener('hashchange', handleRouteSync);
