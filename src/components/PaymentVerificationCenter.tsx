@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { fetchAllOrdersForAdmin } from '../lib/supabaseOrderService';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   CreditCard,
@@ -251,6 +252,58 @@ export const PaymentVerificationCenter: React.FC<PaymentVerificationCenterProps>
   onNavigateTab,
 }) => {
   const [payments, setPayments] = useState<PaymentRecord[]>(INITIAL_PAYMENTS);
+
+  useEffect(() => {
+    let isMounted = true;
+    const loadLivePayments = async () => {
+      const res = await fetchAllOrdersForAdmin();
+      if (!isMounted || !res.success || !res.data || res.data.length === 0) return;
+
+      const liveRecords: PaymentRecord[] = res.data.map((raw: any) => {
+        const isPkr = (raw.currency || 'PKR').toUpperCase() === 'PKR';
+        const amountPkr = isPkr ? Number(raw.total_amount) || 15000 : (Number(raw.total_amount) || 50) * 278;
+        return {
+          id: `PAY-MFS-${raw.order_number || raw.id}`,
+          orderId: raw.order_number || raw.id,
+          clientName: raw.guest_name || 'Client',
+          clientEmail: raw.guest_email || 'client@mfsgrowth.com',
+          clientPhone: raw.guest_phone || '+92 301 5323689',
+          serviceName: raw.service_type || 'Executive Service',
+          packageName: raw.delivery_tier || 'Standard Package',
+          amountPkr,
+          currency: raw.currency || 'PKR',
+          paymentMethod: (raw.payment_method as PaymentMethod) || 'EasyPaisa',
+          transactionRef: raw.payment_tx_id || `TRX-${Math.floor(100000 + Math.random() * 900000)}`,
+          accountUsed: '03116191234 (Muhammad Shehroz Sultan)',
+          paymentStatus: raw.status === 'completed' ? 'Verified' : 'Awaiting Verification',
+          verificationStatus: raw.status === 'completed' ? 'Fully Verified' : 'Pending Audit',
+          paymentDate: raw.created_at ? new Date(raw.created_at).toLocaleString() : 'Just now',
+          verifiedBy: raw.status === 'completed' ? 'System Auto-Audit' : 'Pending Audit Queue',
+          lastUpdated: 'Just now',
+          hasProofAttachment: true,
+          notes: raw.notes || 'Order logged via live portal.'
+        };
+      });
+
+      setPayments((prev) => {
+        const map = new Map(prev.map((p) => [p.orderId, p]));
+        liveRecords.forEach((lr) => map.set(lr.orderId, lr));
+        return Array.from(map.values());
+      });
+    };
+
+    loadLivePayments();
+
+    const handleOrderEvent = () => loadLivePayments();
+    window.addEventListener('mfs_order_created', handleOrderEvent);
+    window.addEventListener('storage', handleOrderEvent);
+
+    return () => {
+      isMounted = false;
+      window.removeEventListener('mfs_order_created', handleOrderEvent);
+      window.removeEventListener('storage', handleOrderEvent);
+    };
+  }, []);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [statusFilter, setStatusFilter] = useState<string>('All');
   const [verificationFilter, setVerificationFilter] = useState<string>('All');

@@ -2,7 +2,7 @@ import { createClient } from '@supabase/supabase-js';
 import type { Database } from './database.types';
 
 const DEFAULT_SUPABASE_URL = 'https://qmkobasgawahwqoxygkn.supabase.co';
-const DEFAULT_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFta29iYXNnYXdhaHdxb3h5Z2tuIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzczODE2MDAsImV4cCI6MTk5Mjk1NzYwMH0.placeholder';
+const DEFAULT_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFta29iYXNnYXdhaHdxb3h5Z2tuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUxNzI2ODksImV4cCI6MjEwMDc0ODY4OX0.dfLGgfGJJGbdrpJNwugz1KfMpxZSl8THdOuSZqCrZcU';
 
 function getValidSupabaseUrl(): string {
   const envUrl = import.meta.env.VITE_SUPABASE_URL;

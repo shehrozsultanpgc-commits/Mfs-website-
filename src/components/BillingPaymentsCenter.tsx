@@ -64,9 +64,9 @@ export interface InvoiceRecord {
 
 export const BillingPaymentsCenter: React.FC<BillingPaymentsCenterProps> = ({
   currency,
-  customerName = 'Muhammad Shehroz Sultan',
-  customerEmail = 'mfsmedia.agency@gmail.com',
-  clientId = 'CLI-MFS-98421',
+  customerName = 'Valued Client',
+  customerEmail = 'client@mfsgrowth.com',
+  clientId = 'CLI-MFS-CLIENT',
   onShowToast,
   onNavigatePage,
   setActiveTab,

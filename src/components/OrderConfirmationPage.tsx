@@ -44,7 +44,7 @@ interface OrderConfirmationPageProps {
 export const OrderConfirmationPage: React.FC<OrderConfirmationPageProps> = ({
   currency,
   orderId = 'MFS-849201',
-  customerEmail = 'mfsmedia.agency@gmail.com',
+  customerEmail = 'client@mfsgrowth.com',
   onShowToast,
   onNavigatePage,
   onOpenAIChat,

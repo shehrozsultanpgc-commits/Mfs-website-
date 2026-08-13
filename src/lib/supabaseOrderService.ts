@@ -44,6 +44,16 @@ export async function createRealOrder(orderData: OrderInsert): Promise<{ success
   // Always save to local fallback storage first for instant client availability
   saveToLocalOrders(fullOrder);
 
+  // Dispatch real-time sync event across window/tabs
+  if (typeof window !== 'undefined') {
+    try {
+      window.dispatchEvent(new CustomEvent('mfs_order_created', { detail: fullOrder }));
+      window.dispatchEvent(new Event('storage'));
+    } catch (e) {
+      // Ignore event dispatch errors
+    }
+  }
+
   try {
     const { data, error } = await (supabase.from('orders') as any)
       .insert({
@@ -60,6 +70,12 @@ export async function createRealOrder(orderData: OrderInsert): Promise<{ success
 
     if (data) {
       saveToLocalOrders(data);
+      if (typeof window !== 'undefined') {
+        try {
+          window.dispatchEvent(new CustomEvent('mfs_order_created', { detail: data }));
+          window.dispatchEvent(new Event('storage'));
+        } catch (e) {}
+      }
     }
 
     return { success: true, data: data || fullOrder };

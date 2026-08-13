@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Currency } from '../types';
 import { useModalHistory } from '../hooks/useModalHistory';
+import { useAuth } from '../context/AuthContext';
 import { fetchClientOrders, subscribeToClientOrders } from '../lib/supabaseOrderService';
 import { DashboardHome } from './DashboardHome';
 import { AILiveProjectTracking } from './AILiveProjectTracking';
@@ -76,13 +77,36 @@ interface ClientDashboardProps {
 export const ClientDashboard: React.FC<ClientDashboardProps> = ({
   currency,
   setCurrency,
-  customerName = 'Muhammad Shehroz Sultan',
-  customerEmail = 'mfsmedia.agency@gmail.com',
-  clientId = 'CLI-MFS-98421',
+  customerName: customerNameProp,
+  customerEmail: customerEmailProp,
+  clientId: clientIdProp,
   onShowToast,
   onNavigatePage,
   onOpenAIChat,
 }) => {
+  const { user, profile } = useAuth();
+
+  // Dynamic user & auth handling (zero hardcoded fallback user names)
+  const dynamicName =
+    profile?.full_name ||
+    user?.user_metadata?.full_name ||
+    (user?.email ? user.email.split('@')[0] : null);
+
+  const customerName =
+    customerNameProp && customerNameProp !== 'Muhammad Shehroz Sultan'
+      ? customerNameProp
+      : (dynamicName || (user ? 'Valued Client' : 'Valued Client'));
+
+  const customerEmail =
+    customerEmailProp && customerEmailProp !== 'mfsmedia.agency@gmail.com'
+      ? customerEmailProp
+      : (profile?.email || user?.email || 'client@mfsgrowth.com');
+
+  const clientId =
+    clientIdProp && clientIdProp !== 'CLI-MFS-98421'
+      ? clientIdProp
+      : (profile?.id ? `CLI-MFS-${profile.id.substring(0, 6).toUpperCase()}` : 'CLI-MFS-ACTIVE');
+
   // Sidebar Collapse State (Desktop) & Mobile Open
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState<boolean>(false);
@@ -169,8 +193,18 @@ export const ClientDashboard: React.FC<ClientDashboardProps> = ({
     const unsubscribe = subscribeToClientOrders(customerEmail, () => {
       loadClientOrders();
     });
+
+    const handleRealtimeOrderCreated = () => {
+      loadClientOrders();
+    };
+
+    window.addEventListener('mfs_order_created', handleRealtimeOrderCreated);
+    window.addEventListener('storage', handleRealtimeOrderCreated);
+
     return () => {
       unsubscribe();
+      window.removeEventListener('mfs_order_created', handleRealtimeOrderCreated);
+      window.removeEventListener('storage', handleRealtimeOrderCreated);
     };
   }, [customerEmail, loadClientOrders]);
 

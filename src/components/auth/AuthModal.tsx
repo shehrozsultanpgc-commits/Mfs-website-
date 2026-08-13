@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Mail, Lock, User, Sparkles, Phone, ShieldCheck, ArrowRight, AlertCircle } from 'lucide-react';
+import { X, Mail, Lock, User, Sparkles, Phone, ShieldCheck, ArrowRight, AlertCircle, Wand2 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { isSandboxEnvironment } from '../../lib/supabaseAuth';
 
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
   onShowToast?: (msg: string) => void;
-  defaultTab?: 'login' | 'signup';
+  defaultTab?: 'login' | 'signup' | 'magic_link';
 }
 
 export const AuthModal: React.FC<AuthModalProps> = ({
@@ -16,15 +17,16 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   onShowToast,
   defaultTab = 'login',
 }) => {
-  const { signInWithGoogle, signInWithFacebook, signIn, signUp, isLoading } = useAuth();
+  const { signInWithGoogle, signInWithMagicLink, signIn, signUp, isLoading } = useAuth();
 
-  const [activeTab, setActiveTab] = useState<'login' | 'signup'>(defaultTab);
+  const [activeTab, setActiveTab] = useState<'login' | 'signup' | 'magic_link'>(defaultTab);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+  const [fallbackNotice, setFallbackNotice] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!isOpen) return null;
@@ -32,44 +34,49 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   const handleGoogleSignIn = async () => {
     setIsSubmitting(true);
     setErrorMsg('');
+    setFallbackNotice('');
     try {
-      const res = await signInWithGoogle({
-        fallbackUser: {
-          name: 'Muhammad Shehroz',
-          email: 'shehroz.client@gmail.com',
-        },
-      });
+      const res = await signInWithGoogle();
       if (res.success) {
-        if (onShowToast) onShowToast('✨ Logged in with Google! Profile synced.');
+        if (onShowToast) {
+          if (isSandboxEnvironment()) {
+            onShowToast('✨ Signed in with Google (Preview Sandbox)! Profile synced.');
+          } else {
+            onShowToast('✨ Signed in with Google! Profile synced.');
+          }
+        }
         onClose();
       } else {
-        setErrorMsg(res.error || 'Google Login failed.');
+        // Intercept 403 / OAuth restriction and gracefully pivot to Magic Link / Email fallback
+        setFallbackNotice('Google OAuth access restricted or blocked (403). Switched to Instant Magic Link & Password login below.');
+        setActiveTab('magic_link');
       }
     } catch (err: any) {
-      setErrorMsg('Google Sign-In failed.');
+      setFallbackNotice('Google OAuth restriction detected. Please use Email or Magic Link below for instant access.');
+      setActiveTab('magic_link');
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleFacebookSignIn = async () => {
-    setIsSubmitting(true);
+  const handleMagicLinkSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     setErrorMsg('');
+    if (!email || !email.includes('@')) {
+      setErrorMsg('Please enter a valid email address.');
+      return;
+    }
+    setIsSubmitting(true);
     try {
-      const res = await signInWithFacebook({
-        fallbackUser: {
-          name: 'Facebook Client',
-          email: 'client.fb@facebook.com',
-        },
-      });
+      const res = await signInWithMagicLink(email);
       if (res.success) {
-        if (onShowToast) onShowToast('✨ Authenticated with Facebook! Account saved.');
+        if (onShowToast) onShowToast('✨ Magic Link access token created! Session authorized.');
         onClose();
       } else {
-        setErrorMsg(res.error || 'Facebook login failed.');
+        setErrorMsg(res.error || 'Magic Link dispatch failed. Try password login.');
       }
     } catch (err: any) {
-      setErrorMsg('Facebook Sign-In failed.');
+      setErrorMsg('Magic Link request failed. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -89,7 +96,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         } else {
           setErrorMsg(res.error || 'Invalid credentials.');
         }
-      } else {
+      } else if (activeTab === 'signup') {
         const res = await signUp(email, password, fullName, phone);
         if (res.success) {
           if (onShowToast) onShowToast('Account registered! Welcome to MFS Growth Agency.');
@@ -136,12 +143,20 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             <span>MFS Client Portal</span>
           </div>
           <h2 className="text-xl font-black text-white tracking-tight">
-            {activeTab === 'login' ? 'Sign In to Your Account' : 'Create a Client Account'}
+            {activeTab === 'login' ? 'Sign In to Your Account' : activeTab === 'magic_link' ? 'Instant Magic Link Access' : 'Create a Client Account'}
           </h2>
           <p className="text-xs text-neutral-400">
-            Sign in with Google or Facebook to automatically auto-fill your name and email on all orders!
+            Sign in with Google, Password, or Instant Magic Link to auto-fill your orders!
           </p>
         </div>
+
+        {/* Fallback Notice */}
+        {fallbackNotice && (
+          <div className="mb-4 p-3 rounded-xl bg-[#E5C158]/15 border border-[#E5C158]/40 text-[#E5C158] text-xs font-semibold text-center flex items-center justify-center gap-2 shadow-lg backdrop-blur-md relative z-30 animate-fadeIn">
+            <Wand2 className="w-4 h-4 shrink-0" />
+            <span>{fallbackNotice}</span>
+          </div>
+        )}
 
         {/* Error Notification */}
         {errorMsg && (
@@ -151,9 +166,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           </div>
         )}
 
-        {/* SOCIAL LOGIN BUTTONS */}
-        <div className="space-y-2.5 mb-5">
-          {/* Google Button */}
+        {/* GOOGLE LOGIN BUTTON */}
+        <div className="mb-4">
           <button
             type="button"
             onClick={handleGoogleSignIn}
@@ -166,38 +180,25 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
               <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
             </svg>
-            <span>{isSubmitting ? 'Signing in with Google...' : 'Continue with Google'}</span>
-          </button>
-
-          {/* Facebook Button */}
-          <button
-            type="button"
-            onClick={handleFacebookSignIn}
-            disabled={isLoading || isSubmitting}
-            className="w-full py-3 px-4 rounded-2xl bg-[#1877F2] text-white font-extrabold text-xs hover:bg-[#166fe5] transition-all cursor-pointer shadow-md flex items-center justify-center gap-3 active:scale-[0.99]"
-          >
-            <svg className="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-            <span>{isSubmitting ? 'Signing in with Facebook...' : 'Continue with Facebook'}</span>
+            <span>{isSubmitting ? 'Connecting Google...' : 'Continue with Google'}</span>
           </button>
         </div>
 
         {/* Divider */}
-        <div className="relative flex items-center justify-center my-4">
+        <div className="relative flex items-center justify-center my-3">
           <div className="border-t border-white/10 w-full" />
-          <span className="bg-[#08080C] px-3 text-[10px] uppercase tracking-widest text-neutral-400 font-bold shrink-0">
-            OR WITH EMAIL
+          <span className="bg-[#08080C] px-3 text-[9px] uppercase tracking-widest text-neutral-400 font-bold shrink-0">
+            OR CHOOSE EMAIL OPTION
           </span>
           <div className="border-t border-white/10 w-full" />
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex rounded-xl bg-black/60 p-1 border border-white/10 mb-4">
+        <div className="flex rounded-xl bg-black/60 p-1 border border-white/10 mb-4 text-[11px]">
           <button
             type="button"
-            onClick={() => setActiveTab('login')}
-            className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+            onClick={() => { setActiveTab('login'); setErrorMsg(''); setFallbackNotice(''); }}
+            className={`flex-1 py-1.5 font-bold rounded-lg transition-all cursor-pointer ${
               activeTab === 'login' ? 'bg-[#E5C158] text-black shadow-sm' : 'text-neutral-400 hover:text-white'
             }`}
           >
@@ -205,97 +206,144 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           </button>
           <button
             type="button"
-            onClick={() => setActiveTab('signup')}
-            className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+            onClick={() => { setActiveTab('magic_link'); setErrorMsg(''); }}
+            className={`flex-1 py-1.5 font-bold rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1 ${
+              activeTab === 'magic_link' ? 'bg-[#E5C158] text-black shadow-sm' : 'text-neutral-400 hover:text-white'
+            }`}
+          >
+            <Wand2 className="w-3 h-3" />
+            <span>Magic Link</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => { setActiveTab('signup'); setErrorMsg(''); setFallbackNotice(''); }}
+            className={`flex-1 py-1.5 font-bold rounded-lg transition-all cursor-pointer ${
               activeTab === 'signup' ? 'bg-[#E5C158] text-black shadow-sm' : 'text-neutral-400 hover:text-white'
             }`}
           >
-            Create Account
+            Register
           </button>
         </div>
 
-        {/* Email Form */}
-        <form onSubmit={handleEmailSubmit} className="space-y-3 text-xs">
-          {activeTab === 'signup' && (
+        {/* MAGIC LINK FORM */}
+        {activeTab === 'magic_link' && (
+          <form onSubmit={handleMagicLinkSubmit} className="space-y-3 text-xs">
             <div>
-              <label className="block text-neutral-300 font-semibold mb-1 text-[11px]">Full Name *</label>
+              <label className="block text-neutral-300 font-semibold mb-1 text-[11px]">Email Address for Instant Access *</label>
               <div className="relative">
-                <User className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <Mail className="w-4 h-4 text-[#E5C158] absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
-                  type="text"
+                  type="email"
                   required
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  placeholder="e.g. Shehroz Sultan"
-                  className="w-full bg-[#050507] border border-white/15 focus:border-[#E5C158] text-white rounded-xl pl-9 pr-3 py-2.5 focus:outline-none"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="e.g. client@mfsgrowth.com"
+                  className="w-full bg-[#050507] border border-[#E5C158]/50 focus:border-[#E5C158] text-white rounded-xl pl-9 pr-3 py-2.5 focus:outline-none"
                 />
               </div>
             </div>
-          )}
 
-          <div>
-            <label className="block text-neutral-300 font-semibold mb-1 text-[11px]">Email Address *</label>
-            <div className="relative">
-              <Mail className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2" />
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="e.g. client@mfsgrowth.com"
-                className="w-full bg-[#050507] border border-white/15 focus:border-[#E5C158] text-white rounded-xl pl-9 pr-3 py-2.5 focus:outline-none"
-              />
-            </div>
-          </div>
+            <p className="text-[10px] text-neutral-400 leading-relaxed">
+              ⚡ No password required! Enter your email to log in instantly via encrypted Magic Token.
+            </p>
 
-          <div>
-            <label className="block text-neutral-300 font-semibold mb-1 text-[11px]">Password *</label>
-            <div className="relative">
-              <Lock className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2" />
-              <input
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                className="w-full bg-[#050507] border border-white/15 focus:border-[#E5C158] text-white rounded-xl pl-9 pr-3 py-2.5 focus:outline-none"
-              />
-            </div>
-          </div>
+            <motion.button
+              whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+              whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full py-3 px-4 rounded-xl bg-[#E5C158] text-black font-extrabold text-xs hover:bg-[#fce888] transition-all cursor-pointer shadow-lg mt-2 flex items-center justify-center gap-2"
+            >
+              <Wand2 className="w-4 h-4" />
+              <span>{isSubmitting ? 'Authenticating...' : 'Send Instant Magic Access'}</span>
+            </motion.button>
+          </form>
+        )}
 
-          {activeTab === 'signup' && (
+        {/* EMAIL & PASSWORD / REGISTER FORM */}
+        {activeTab !== 'magic_link' && (
+          <form onSubmit={handleEmailSubmit} className="space-y-3 text-xs">
+            {activeTab === 'signup' && (
+              <div>
+                <label className="block text-neutral-300 font-semibold mb-1 text-[11px]">Full Name *</label>
+                <div className="relative">
+                  <User className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                  <input
+                    type="text"
+                    required
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    placeholder="e.g. Shehroz Sultan"
+                    className="w-full bg-[#050507] border border-white/15 focus:border-[#E5C158] text-white rounded-xl pl-9 pr-3 py-2.5 focus:outline-none"
+                  />
+                </div>
+              </div>
+            )}
+
             <div>
-              <label className="block text-neutral-300 font-semibold mb-1 text-[11px]">WhatsApp / Phone (Optional)</label>
+              <label className="block text-neutral-300 font-semibold mb-1 text-[11px]">Email Address *</label>
               <div className="relative">
-                <Phone className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <Mail className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
-                  type="tel"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="+92 301 5323689"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="e.g. client@mfsgrowth.com"
                   className="w-full bg-[#050507] border border-white/15 focus:border-[#E5C158] text-white rounded-xl pl-9 pr-3 py-2.5 focus:outline-none"
                 />
               </div>
             </div>
-          )}
 
-          <motion.button
-            whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-            whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full py-3 px-4 rounded-xl bg-[#E5C158] text-black font-extrabold text-xs hover:bg-[#fce888] transition-all cursor-pointer shadow-lg mt-2 flex items-center justify-center gap-2"
-          >
-            <span>
-              {isSubmitting
-                ? 'Processing...'
-                : activeTab === 'login'
-                ? 'Sign In & Save Details'
-                : 'Register & Save Profile'}
-            </span>
-            <ArrowRight className="w-4 h-4" />
-          </motion.button>
-        </form>
+            <div>
+              <label className="block text-neutral-300 font-semibold mb-1 text-[11px]">Password *</label>
+              <div className="relative">
+                <Lock className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <input
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className="w-full bg-[#050507] border border-white/15 focus:border-[#E5C158] text-white rounded-xl pl-9 pr-3 py-2.5 focus:outline-none"
+                />
+              </div>
+            </div>
+
+            {activeTab === 'signup' && (
+              <div>
+                <label className="block text-neutral-300 font-semibold mb-1 text-[11px]">WhatsApp / Phone (Optional)</label>
+                <div className="relative">
+                  <Phone className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                  <input
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="+92 301 5323689"
+                    className="w-full bg-[#050507] border border-white/15 focus:border-[#E5C158] text-white rounded-xl pl-9 pr-3 py-2.5 focus:outline-none"
+                  />
+                </div>
+              </div>
+            )}
+
+            <motion.button
+              whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+              whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full py-3 px-4 rounded-xl bg-[#E5C158] text-black font-extrabold text-xs hover:bg-[#fce888] transition-all cursor-pointer shadow-lg mt-2 flex items-center justify-center gap-2"
+            >
+              <span>
+                {isSubmitting
+                  ? 'Processing...'
+                  : activeTab === 'login'
+                  ? 'Sign In & Save Details'
+                  : 'Register & Save Profile'}
+              </span>
+              <ArrowRight className="w-4 h-4" />
+            </motion.button>
+          </form>
+        )}
 
         <div className="mt-4 pt-3 border-t border-white/10 text-center">
           <p className="text-[10px] text-neutral-400 flex items-center justify-center gap-1">

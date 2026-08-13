@@ -295,18 +295,35 @@ export const OrderWorkspace360: React.FC<OrderWorkspace360Props> = ({
 
   useEffect(() => {
     let isMounted = true;
-    fetchAllOrdersForAdmin().then((res) => {
-      if (!isMounted || !res.success || !res.data || res.data.length === 0) return;
-      const dynamic360 = res.data.map(convertRawToOrder360);
-      setOrders((prev) => {
-        const existingMap = new Map(prev.map((o) => [o.id, o]));
-        dynamic360.forEach((d) => {
-          existingMap.set(d.id, d);
+
+    const loadAdminOrders = () => {
+      fetchAllOrdersForAdmin().then((res) => {
+        if (!isMounted || !res.success || !res.data || res.data.length === 0) return;
+        const dynamic360 = res.data.map(convertRawToOrder360);
+        setOrders((prev) => {
+          const existingMap = new Map(prev.map((o) => [o.id, o]));
+          dynamic360.forEach((d) => {
+            existingMap.set(d.id, d);
+          });
+          return Array.from(existingMap.values());
         });
-        return Array.from(existingMap.values());
       });
-    });
-    return () => { isMounted = false; };
+    };
+
+    loadAdminOrders();
+
+    const handleRealtimeOrder = () => {
+      loadAdminOrders();
+    };
+
+    window.addEventListener('mfs_order_created', handleRealtimeOrder);
+    window.addEventListener('storage', handleRealtimeOrder);
+
+    return () => {
+      isMounted = false;
+      window.removeEventListener('mfs_order_created', handleRealtimeOrder);
+      window.removeEventListener('storage', handleRealtimeOrder);
+    };
   }, []);
   
   // Modals for Quick Actions
