@@ -24,7 +24,6 @@ export const AIAssistantWidget: React.FC<AIAssistantWidgetProps> = ({
 
   useModalHistory(isChatOpen, () => setIsChatOpen(false), 'aiChatDrawer');
   useModalHistory(isVoiceOpen, () => setIsVoiceOpen(false), 'aiVoiceDrawer');
-  useModalHistory(isQuickMenuOpen, () => setIsQuickMenuOpen(false), 'aiQuickMenu');
   const [briefNotice, setBriefNotice] = useState<string | null>(null);
 
   const handleToggleBrief = () => {
@@ -83,19 +82,30 @@ export const AIAssistantWidget: React.FC<AIAssistantWidgetProps> = ({
     recognition.start();
   };
 
+  const prevExternalRef = useRef<{ isOpen?: boolean; mode?: 'chat' | 'voice' }>({
+    isOpen: externalIsOpen,
+    mode: externalMode
+  });
+
   useEffect(() => {
     if (externalIsOpen !== undefined) {
-      if (externalIsOpen) {
-        if (externalMode === 'voice') {
-          setIsVoiceOpen(true);
-          setIsChatOpen(false);
+      if (
+        externalIsOpen !== prevExternalRef.current.isOpen ||
+        externalMode !== prevExternalRef.current.mode
+      ) {
+        prevExternalRef.current = { isOpen: externalIsOpen, mode: externalMode };
+        if (externalIsOpen) {
+          if (externalMode === 'voice') {
+            setIsVoiceOpen(true);
+            setIsChatOpen(false);
+          } else {
+            setIsChatOpen(true);
+            setIsVoiceOpen(false);
+          }
         } else {
-          setIsChatOpen(true);
+          setIsChatOpen(false);
           setIsVoiceOpen(false);
         }
-      } else {
-        setIsChatOpen(false);
-        setIsVoiceOpen(false);
       }
     }
   }, [externalIsOpen, externalMode]);
@@ -567,8 +577,12 @@ export const AIAssistantWidget: React.FC<AIAssistantWidgetProps> = ({
                       MFS AI & Live Concierge
                     </span>
                     <button
-                      onClick={() => setIsQuickMenuOpen(false)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsQuickMenuOpen(false);
+                      }}
                       className="text-neutral-400 hover:text-white p-1 rounded-md cursor-pointer"
+                      title="Close support options"
                     >
                       <X className="w-3.5 h-3.5" />
                     </button>
@@ -577,10 +591,12 @@ export const AIAssistantWidget: React.FC<AIAssistantWidgetProps> = ({
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
                       setIsQuickMenuOpen(false);
-                      setIsChatOpen(true);
                       setIsVoiceOpen(false);
+                      setIsChatOpen(true);
                     }}
                     className="w-full flex items-center gap-3 p-2.5 rounded-xl bg-white/[0.03] hover:bg-[#E5C158]/10 hover:border-[#E5C158]/40 border border-white/5 transition-all text-left text-xs font-semibold text-white group cursor-pointer"
                   >
@@ -596,10 +612,12 @@ export const AIAssistantWidget: React.FC<AIAssistantWidgetProps> = ({
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
                       setIsQuickMenuOpen(false);
-                      setIsVoiceOpen(true);
                       setIsChatOpen(false);
+                      setIsVoiceOpen(true);
                     }}
                     className="w-full flex items-center gap-3 p-2.5 rounded-xl bg-white/[0.03] hover:bg-[#E5C158]/10 hover:border-[#E5C158]/40 border border-white/5 transition-all text-left text-xs font-semibold text-white group cursor-pointer"
                   >
@@ -618,7 +636,10 @@ export const AIAssistantWidget: React.FC<AIAssistantWidgetProps> = ({
                     href="https://wa.me/923015323689"
                     target="_blank"
                     rel="noreferrer"
-                    onClick={() => setIsQuickMenuOpen(false)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsQuickMenuOpen(false);
+                    }}
                     className="w-full flex items-center gap-3 p-2.5 rounded-xl bg-[#28C76F]/10 hover:bg-[#28C76F]/20 border border-[#28C76F]/30 transition-all text-left text-xs font-semibold text-white group cursor-pointer"
                   >
                     <div className="w-8 h-8 rounded-lg bg-[#28C76F] text-black flex items-center justify-center font-bold">
@@ -637,7 +658,10 @@ export const AIAssistantWidget: React.FC<AIAssistantWidgetProps> = ({
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => setIsQuickMenuOpen(!isQuickMenuOpen)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsQuickMenuOpen((prev) => !prev);
+              }}
               className="h-11 sm:h-12 px-3.5 sm:px-4 rounded-full bg-[#0C0C10] border-2 border-[#E5C158] shadow-[0_0_25px_rgba(229,193,88,0.25)] flex items-center gap-2.5 cursor-pointer group"
               title="MFS AI & Live Support"
             >

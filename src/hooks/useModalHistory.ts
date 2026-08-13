@@ -1,5 +1,8 @@
 import { useEffect, useRef } from 'react';
 
+// Global counter for programmatic history.back() calls from overlay cleanup
+let pendingProgrammaticBacks = 0;
+
 /**
  * Custom React hook for robust modal and popup history management across mobile and desktop.
  * Pushes an overlay state into `window.history` when the modal/popup opens.
@@ -22,16 +25,21 @@ export function useModalHistory(
       );
 
       const handlePopState = () => {
+        if (pendingProgrammaticBacks > 0) {
+          pendingProgrammaticBacks--;
+          return;
+        }
         isClosingViaBackRef.current = true;
         onClose();
       };
 
-      window.addEventListener('popstate', handlePopState, { once: true });
+      window.addEventListener('popstate', handlePopState);
 
       return () => {
         window.removeEventListener('popstate', handlePopState);
 
         if (!isClosingViaBackRef.current && window.history.state?.isOverlay) {
+          pendingProgrammaticBacks++;
           window.history.back();
         }
         isClosingViaBackRef.current = false;
