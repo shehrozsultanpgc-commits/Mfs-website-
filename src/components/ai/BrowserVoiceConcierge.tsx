@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Mic, MicOff, Volume2, VolumeX, PhoneOff, MessageSquare, Send, Sparkles, Loader2, RefreshCw, CheckCircle2, ShieldCheck, ArrowRight } from 'lucide-react';
 import { MFSLogo } from '../common/MFSLogo';
+import { useModalHistory } from '../../hooks/useModalHistory';
 
 export interface BrowserVoiceConciergeProps {
   onClose: () => void;
@@ -112,6 +113,7 @@ function generateSmartFallbackReply(message: string, currentState?: any) {
 }
 
 export const BrowserVoiceConcierge: React.FC<BrowserVoiceConciergeProps> = ({ onClose, onSwitchToChat }) => {
+  useModalHistory(true, onClose, 'voiceConciergeModal');
   // Speech Recognition & Synthesis States
   const [isListening, setIsListening] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);

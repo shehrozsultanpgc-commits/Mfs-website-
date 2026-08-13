@@ -5,6 +5,7 @@ import { AIAssistantEngine, ChatMessage } from '../../lib/aiAssistantEngine';
 import { AIOrderReceipt } from './AIOrderReceipt';
 import { AIVoiceAssistant } from './AIVoiceAssistant';
 import { MFSLogo } from '../common/MFSLogo';
+import { useModalHistory } from '../../hooks/useModalHistory';
 
 interface AIAssistantWidgetProps {
   externalIsOpen?: boolean;
@@ -20,6 +21,10 @@ export const AIAssistantWidget: React.FC<AIAssistantWidgetProps> = ({
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isVoiceOpen, setIsVoiceOpen] = useState(false);
   const [isQuickMenuOpen, setIsQuickMenuOpen] = useState(false);
+
+  useModalHistory(isChatOpen, () => setIsChatOpen(false), 'aiChatDrawer');
+  useModalHistory(isVoiceOpen, () => setIsVoiceOpen(false), 'aiVoiceDrawer');
+  useModalHistory(isQuickMenuOpen, () => setIsQuickMenuOpen(false), 'aiQuickMenu');
   const [briefNotice, setBriefNotice] = useState<string | null>(null);
 
   const handleToggleBrief = () => {

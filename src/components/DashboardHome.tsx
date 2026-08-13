@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Currency } from '../types';
+import { useModalHistory } from '../hooks/useModalHistory';
 import {
   Sparkles,
   Bot,
@@ -124,6 +125,9 @@ export const DashboardHome: React.FC<DashboardHomeProps> = ({
 
   // Phase 2 Checklist Modal State
   const [showChecklistModal, setShowChecklistModal] = useState(false);
+
+  useModalHistory(showRevisionModal, () => setShowRevisionModal(false), 'dashboardRevisionModal');
+  useModalHistory(showChecklistModal, () => setShowChecklistModal(false), 'dashboardChecklistModal');
 
   // Time-based Greeting
   const getGreeting = () => {

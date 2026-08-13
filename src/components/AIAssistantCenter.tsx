@@ -35,6 +35,8 @@ import {
   Plus
 } from 'lucide-react';
 
+import { useModalHistory } from '../hooks/useModalHistory';
+
 interface AIAssistantCenterProps {
   currency: Currency;
   customerName?: string;
@@ -97,6 +99,9 @@ export const AIAssistantCenter: React.FC<AIAssistantCenterProps> = ({
 
   // Phase 5 Roadmap Checklist Modal
   const [showRoadmapModal, setShowRoadmapModal] = useState(false);
+
+  useModalHistory(showVoiceModal, () => setShowVoiceModal(false), 'aiAssistantVoiceModal');
+  useModalHistory(showRoadmapModal, () => setShowRoadmapModal(false), 'aiAssistantRoadmapModal');
 
   // Initial Conversation History with Authentic MFS Agency Data
   const [messages, setMessages] = useState<ChatMessage[]>([

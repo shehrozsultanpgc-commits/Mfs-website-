@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Currency } from '../types';
+import { useModalHistory } from '../hooks/useModalHistory';
 import {
   CheckCircle2,
   Sparkles,
@@ -50,6 +51,7 @@ export const OrderConfirmationPage: React.FC<OrderConfirmationPageProps> = ({
 }) => {
   // State for Welcome Gift Reveal
   const [showGiftModal, setShowGiftModal] = useState<boolean>(true);
+  useModalHistory(showGiftModal, () => setShowGiftModal(false), 'orderConfirmationGiftModal');
   const [copiedOrderId, setCopiedOrderId] = useState<boolean>(false);
   const [downloadingInvoice, setDownloadingInvoice] = useState<boolean>(false);
 

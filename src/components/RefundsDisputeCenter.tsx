@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useModalHistory } from '../hooks/useModalHistory';
 import { sendActionNotificationEmail } from '../lib/emailNotificationService';
 import {
   RotateCcw,
@@ -241,6 +242,9 @@ export const RefundsDisputeCenter: React.FC<RefundsDisputeCenterProps> = ({
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [showAdvancedFilters, setShowAdvancedFilters] = useState<boolean>(false);
   const [newNoteText, setNewNoteText] = useState<string>('');
+
+  useModalHistory(showWorkspaceModal, () => setShowWorkspaceModal(false), 'refundWorkspaceModal');
+  useModalHistory(showCreateModal, () => setShowCreateModal(false), 'refundCreateModal');
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState<number>(1);

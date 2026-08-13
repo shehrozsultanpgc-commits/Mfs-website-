@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useModalHistory } from '../hooks/useModalHistory';
 import {
   FileText,
   Search,
@@ -366,6 +367,10 @@ export const InvoicesFinancialCenter: React.FC<InvoicesFinancialCenterProps> = (
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [showFiltersDrawer, setShowFiltersDrawer] = useState<boolean>(false);
   const [isLoadingState, setIsLoadingState] = useState<boolean>(false);
+
+  useModalHistory(showPreviewModal, () => setShowPreviewModal(false), 'invoicePreviewModal');
+  useModalHistory(showCreateModal, () => setShowCreateModal(false), 'invoiceCreateModal');
+  useModalHistory(showFiltersDrawer, () => setShowFiltersDrawer(false), 'invoiceFiltersDrawer');
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState<number>(1);
