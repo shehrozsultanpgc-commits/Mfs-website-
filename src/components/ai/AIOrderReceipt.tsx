@@ -22,10 +22,13 @@ export const AIOrderReceipt: React.FC<AIOrderReceiptProps> = ({ orderState, onDo
 
   const payload: OrderReceiptPayload = {
     orderId,
-    clientName: stateAny.clientName || stateAny.customerName || 'Client Name Pending',
+    clientName: stateAny.clientName || stateAny.customerName || 'Valued Client',
     serviceName: stateAny.serviceRequired || stateAny.serviceName || stateAny.serviceTitle || 'MFS Digital Service',
-    deadline: stateAny.deadline || stateAny.urgency || 'Standard Delivery (50% OFF)',
     quantity: String(stateAny.quantity || 'Scope as discussed'),
+    turnaroundSpeed: stateAny.turnaroundSpeed || stateAny.deadline || 'Standard Delivery (24-48h)',
+    deadline: stateAny.deadline || stateAny.urgency || 'Standard Delivery (50% OFF)',
+    basePrice: stateAny.basePrice ? String(stateAny.basePrice) : undefined,
+    rushFee: stateAny.rushFee ? String(stateAny.rushFee) : undefined,
     totalPrice: formattedPrice.includes('PKR') || formattedPrice.includes('USD') || formattedPrice.includes('EUR') || formattedPrice.includes('GBP') || formattedPrice.includes('AED') ? formattedPrice : `${stateAny.currency || 'PKR'} ${formattedPrice}`,
     projectBrief: stateAny.projectBrief || stateAny.notes || 'Standard MFS project guidelines.'
   };
@@ -75,16 +78,31 @@ export const AIOrderReceipt: React.FC<AIOrderReceiptProps> = ({ orderState, onDo
         </div>
         <div className="flex justify-between items-center text-xs">
           <span className="text-gray-400">Service</span>
-          <span className="text-[#E5C158] font-bold text-right max-w-[150px] truncate">{payload.serviceName}</span>
+          <span className="text-[#E5C158] font-bold text-right max-w-[170px] truncate">{payload.serviceName}</span>
         </div>
         <div className="flex justify-between items-center text-xs">
           <span className="text-gray-400">Scope / Quantity</span>
           <span className="text-white font-medium">{payload.quantity}</span>
         </div>
         <div className="flex justify-between items-center text-xs">
-          <span className="text-gray-400">Deadline</span>
-          <span className="text-white font-medium">{payload.deadline}</span>
+          <span className="text-gray-400">Turnaround Speed</span>
+          <span className="text-white font-medium text-right max-w-[170px] truncate">{payload.turnaroundSpeed}</span>
         </div>
+
+        {payload.basePrice && (
+          <div className="flex justify-between items-center text-xs">
+            <span className="text-gray-400">Base Price (50% OFF)</span>
+            <span className="text-gray-300 font-medium">{payload.basePrice}</span>
+          </div>
+        )}
+
+        {payload.rushFee && (
+          <div className="flex justify-between items-center text-xs">
+            <span className="text-gray-400">Rush Delivery Fee</span>
+            <span className="text-amber-400 font-medium">{payload.rushFee}</span>
+          </div>
+        )}
+
         <div className="flex justify-between items-center pt-2 border-t border-[#2A2B35]">
           <span className="text-white font-bold text-xs">Total Price</span>
           <span className="text-[#28C76F] font-bold text-xs sm:text-sm">
@@ -144,16 +162,14 @@ export const AIOrderReceipt: React.FC<AIOrderReceiptProps> = ({ orderState, onDo
         </div>
 
         {/* Download Receipt Image */}
-        {onDownload && (
-          <button 
-            onClick={onDownload}
-            type="button"
-            className="w-full bg-[#1A1A1F] text-gray-300 hover:text-white border border-[#2A2B35] py-2 rounded-xl text-[11px] font-semibold hover:border-[#E5C158] transition-colors flex items-center justify-center gap-2 cursor-pointer mt-0.5"
-          >
-            <Download className="w-3.5 h-3.5 text-[#E5C158]" />
-            Download Order Brief PNG
-          </button>
-        )}
+        <button 
+          onClick={onDownload || (() => setShowLuxuryReceipt(true))}
+          type="button"
+          className="w-full bg-[#1A1A1F] text-gray-300 hover:text-white border border-[#2A2B35] py-2 rounded-xl text-[11px] font-semibold hover:border-[#E5C158] transition-colors flex items-center justify-center gap-2 cursor-pointer mt-0.5"
+        >
+          <Download className="w-3.5 h-3.5 text-[#E5C158]" />
+          Download Order Brief PNG
+        </button>
       </div>
 
       {/* Luxury Order Receipt Modal */}

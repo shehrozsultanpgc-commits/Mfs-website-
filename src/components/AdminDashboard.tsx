@@ -122,7 +122,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 }) => {
   // Authentication & Security State
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
-    return sessionStorage.getItem('mfs_admin_authenticated') === 'true';
+    return (
+      sessionStorage.getItem('mfs_admin_authenticated') === 'true' ||
+      sessionStorage.getItem('adminPinVerified') === 'true'
+    );
   });
   const [loginMethod, setLoginMethod] = useState<'pin' | 'google'>('pin');
   const [securityPin, setSecurityPin] = useState<string>('');
@@ -416,6 +419,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   // Handle Admin Logout
   const handleLogout = () => {
     sessionStorage.removeItem('mfs_admin_authenticated');
+    sessionStorage.removeItem('adminPinVerified');
     setIsAuthenticated(false);
     if (onShowToast) {
       onShowToast('Admin session terminated safely.');

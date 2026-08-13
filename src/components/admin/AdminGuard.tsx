@@ -42,24 +42,7 @@ export const AdminGuard: React.FC<AdminGuardProps> = ({ children, onShowToast })
     );
   }
 
-  // If not logged in as admin via Supabase, show access denied
-  if (!isManager && !isSuperAdmin) {
-    return (
-      <div className="min-h-screen flex items-center justify-center p-8 bg-[#050507]">
-        <div className="max-w-md w-full bg-[#120D0D] border border-red-900/40 rounded-2xl p-8 text-center space-y-4">
-          <div className="w-12 h-12 bg-red-500/10 border border-red-500/30 rounded-full flex items-center justify-center mx-auto text-red-400">
-            <AlertTriangle className="w-6 h-6" />
-          </div>
-          <h2 className="text-xl font-bold text-white">Access Denied</h2>
-          <p className="text-sm text-[#CFCFCF]">
-            This section requires Executive Admin or Operational Manager authorization privileges.
-          </p>
-        </div>
-      </div>
-    );
-  }
-
-  // If valid Supabase admin but PIN not yet entered
+  // If PIN not yet verified, render AdminLogin (the Decoy System Status page with secret PIN trapdoor)
   if (!isAuthenticated) {
     return <AdminLogin onLoginSuccess={() => setIsAuthenticated(true)} />;
   }

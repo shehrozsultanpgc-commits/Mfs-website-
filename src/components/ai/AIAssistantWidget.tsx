@@ -593,11 +593,11 @@ export const AIAssistantWidget: React.FC<AIAssistantWidgetProps> = ({
                     whileTap={{ scale: 0.98 }}
                     onClick={(e) => {
                       e.stopPropagation();
-                      e.preventDefault();
                       setIsQuickMenuOpen(false);
                       setIsVoiceOpen(false);
                       setIsChatOpen(true);
                     }}
+                    type="button"
                     className="w-full flex items-center gap-3 p-2.5 rounded-xl bg-white/[0.03] hover:bg-[#E5C158]/10 hover:border-[#E5C158]/40 border border-white/5 transition-all text-left text-xs font-semibold text-white group cursor-pointer"
                   >
                     <div className="w-8 h-8 rounded-lg bg-[#E5C158]/10 border border-[#E5C158]/30 flex items-center justify-center text-[#E5C158]">
@@ -614,11 +614,11 @@ export const AIAssistantWidget: React.FC<AIAssistantWidgetProps> = ({
                     whileTap={{ scale: 0.98 }}
                     onClick={(e) => {
                       e.stopPropagation();
-                      e.preventDefault();
                       setIsQuickMenuOpen(false);
                       setIsChatOpen(false);
                       setIsVoiceOpen(true);
                     }}
+                    type="button"
                     className="w-full flex items-center gap-3 p-2.5 rounded-xl bg-white/[0.03] hover:bg-[#E5C158]/10 hover:border-[#E5C158]/40 border border-white/5 transition-all text-left text-xs font-semibold text-white group cursor-pointer"
                   >
                     <div className="w-8 h-8 rounded-lg bg-[#E5C158]/10 border border-[#E5C158]/30 flex items-center justify-center text-[#E5C158]">

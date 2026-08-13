@@ -279,6 +279,13 @@ export function calculateServicePrice(
   const calculatedPromoUsd = parseFloat((baseUsd * speedMultiplier).toFixed(2));
 
   const isPkr = currency === 'PKR';
+  const basePromoPkr = Math.round(basePkr);
+  const basePromoUsd = parseFloat(baseUsd.toFixed(2));
+  const basePromoPrice = isPkr ? basePromoPkr : basePromoUsd;
+  const rushFeePkr = Math.max(0, calculatedPromoPkr - basePromoPkr);
+  const rushFeeUsd = Math.max(0, parseFloat((calculatedPromoUsd - basePromoUsd).toFixed(2)));
+  const rushFee = isPkr ? rushFeePkr : rushFeeUsd;
+
   const finalPrice = isPkr ? calculatedPromoPkr : calculatedPromoUsd;
   const originalPrice = isPkr ? calculatedOrigPkr : calculatedOrigUsd;
   const formattedFinal = isPkr ? `PKR ${calculatedPromoPkr.toLocaleString()}` : `USD ${calculatedPromoUsd.toFixed(2)}`;
@@ -287,6 +294,8 @@ export function calculateServicePrice(
   return {
     service,
     sanitizedQty,
+    basePromoPrice,
+    rushFee,
     finalPrice,
     originalPrice,
     calculatedPromoPkr,

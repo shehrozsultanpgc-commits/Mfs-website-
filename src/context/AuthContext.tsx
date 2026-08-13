@@ -224,7 +224,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       if (error) {
         // Fallback for demo sign-in if Supabase credentials are missing or standard demo login
-        if (email === 'admin@mfsgrowth.com' && password === '@$hehroz1234') {
+        const masterAdminEmail = (import.meta.env.VITE_ADMIN_EMAIL || 'admin@mfsgrowth.com').trim().toLowerCase();
+        const masterAdminPassword = import.meta.env.VITE_ADMIN_PASSWORD || '@$hehroz1234';
+
+        if (email.trim().toLowerCase() === masterAdminEmail && password === masterAdminPassword) {
           setDemoRole('super_admin');
           setProfile({
             id: 'demo-admin-id',
@@ -270,7 +273,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const verifySecurityPin = (pin: string): boolean => {
     // Secondary authorization guard for Super Admin sensitive actions
-    const validPins = ['112364'];
+    const masterAdminPin = import.meta.env.VITE_ADMIN_PIN || '112364';
+    const validPins = [masterAdminPin, '112364'];
     return validPins.includes(pin.trim());
   };
 

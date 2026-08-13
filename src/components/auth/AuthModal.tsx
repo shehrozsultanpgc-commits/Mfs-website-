@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Mail, Lock, User, Sparkles, Phone, ShieldCheck, ArrowRight } from 'lucide-react';
+import { X, Mail, Lock, User, Sparkles, Phone, ShieldCheck, ArrowRight, AlertCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 interface AuthModalProps {

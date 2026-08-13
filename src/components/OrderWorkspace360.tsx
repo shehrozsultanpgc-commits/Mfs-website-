@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { fetchAllOrdersForAdmin } from '../lib/supabaseOrderService';
 import {
   ShoppingBag,
   User,
@@ -233,6 +234,53 @@ const INITIAL_ORDERS: Order360[] = [
   }
 ];
 
+function convertRawToOrder360(raw: any): Order360 {
+  const isPkr = (raw.currency || 'PKR').toUpperCase() === 'PKR';
+  const amountPkr = isPkr ? Number(raw.total_amount) || 15000 : (Number(raw.total_amount) || 50) * 278;
+
+  return {
+    id: raw.order_number || raw.id || `ORD-MFS-${Math.floor(100000 + Math.random() * 900000)}`,
+    clientName: raw.guest_name || raw.client_name || 'Client',
+    clientEmail: raw.guest_email || raw.client_email || 'client@example.com',
+    clientPhone: raw.guest_phone || raw.client_phone || '+92 301 5323689',
+    clientLocation: raw.location || 'Pakistan (PKT Time Zone)',
+    clientCompany: raw.company || 'Private Client',
+    serviceName: raw.service_type || raw.serviceName || 'Custom Executive Service',
+    packageName: raw.delivery_tier || 'Standard Package',
+    category: 'Business',
+    quantityText: '1 Deliverable Package',
+    basePricePkr: amountPkr,
+    priorityFeePkr: 0,
+    totalPricePkr: amountPkr,
+    status: raw.status === 'pending_verification' ? 'Pending Verification'
+          : raw.status === 'in_progress' ? 'In Progress'
+          : raw.status === 'under_review' ? 'Under Review'
+          : raw.status === 'delivered' ? 'Delivered'
+          : raw.status === 'completed' ? 'Completed'
+          : 'Pending Verification',
+    priority: raw.delivery_tier ? (raw.delivery_tier as any) : 'Standard',
+    orderDate: raw.created_at ? new Date(raw.created_at).toLocaleString() : 'Just now',
+    deadline: 'Standard Delivery Window',
+    lastUpdated: 'Just now',
+    assignedTeam: 'MFS Growth Operations Core',
+    assignedManager: 'Muhammad Shehroz Sultan',
+    requirementsText: raw.notes || 'Order received via online portal.',
+    specialInstructions: 'Ensure 100% adherence to MFS Growth quality standards.',
+    formatGuidelines: 'Editable Source Files + PDF Vector Export',
+    paymentMethod: raw.payment_method || 'EasyPaisa / JazzCash',
+    paymentAccount: '03116191234 (Muhammad Shehroz Sultan)',
+    paymentTxId: raw.payment_tx_id || 'TX-ONLINE-MFS',
+    paymentStatus: 'Verified',
+    invoiceNumber: `INV-MFS-${raw.order_number || '2026'}`,
+    progressStep: raw.status === 'completed' ? 6 : raw.status === 'delivered' ? 5 : 2,
+    clientFiles: raw.client_files || [],
+    adminFiles: raw.admin_files || [],
+    adminNotes: raw.admin_notes || [
+      { id: `n-${Date.now()}`, author: 'System Admin', role: 'System', text: 'Order logged and initialized.', timestamp: 'Just now' }
+    ]
+  };
+}
+
 export const OrderWorkspace360: React.FC<OrderWorkspace360Props> = ({
   currency,
   onShowToast,
@@ -244,6 +292,22 @@ export const OrderWorkspace360: React.FC<OrderWorkspace360Props> = ({
   const [activeFileTab, setActiveFileTab] = useState<'client' | 'admin'>('client');
   const [newNoteText, setNewNoteText] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('All');
+
+  useEffect(() => {
+    let isMounted = true;
+    fetchAllOrdersForAdmin().then((res) => {
+      if (!isMounted || !res.success || !res.data || res.data.length === 0) return;
+      const dynamic360 = res.data.map(convertRawToOrder360);
+      setOrders((prev) => {
+        const existingMap = new Map(prev.map((o) => [o.id, o]));
+        dynamic360.forEach((d) => {
+          existingMap.set(d.id, d);
+        });
+        return Array.from(existingMap.values());
+      });
+    });
+    return () => { isMounted = false; };
+  }, []);
   
   // Modals for Quick Actions
   const [activeModal, setActiveModal] = useState<string | null>(null);

@@ -115,6 +115,54 @@ export async function fetchClientOrders(email: string): Promise<{ success: boole
   }
 }
 
+export async function fetchAllOrdersForAdmin(): Promise<{ success: boolean; data: any[]; error?: string }> {
+  let localOrders: any[] = [];
+  try {
+    if (typeof window !== 'undefined') {
+      const existingRaw = localStorage.getItem('mfs_local_orders');
+      localOrders = existingRaw ? JSON.parse(existingRaw) : [];
+      if (!Array.isArray(localOrders)) localOrders = [];
+    }
+  } catch (err) {
+    localOrders = [];
+  }
+
+  try {
+    const { data, error } = await (supabase.from('orders') as any)
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.warn('[Supabase Order Service] Notice fetching admin orders (returning local orders fallback):', error.message || error);
+      return { success: true, data: localOrders };
+    }
+
+    const dbOrders = data || [];
+    const combinedMap = new Map<string, any>();
+
+    localOrders.forEach((lo) => {
+      const key = lo.order_number || lo.id;
+      if (key) combinedMap.set(key, lo);
+    });
+
+    dbOrders.forEach((dbo) => {
+      const key = dbo.order_number || dbo.id;
+      if (key) combinedMap.set(key, dbo);
+    });
+
+    const merged = Array.from(combinedMap.values()).sort((a, b) => {
+      const dateA = new Date(a.created_at || 0).getTime();
+      const dateB = new Date(b.created_at || 0).getTime();
+      return dateB - dateA;
+    });
+
+    return { success: true, data: merged };
+  } catch (err: any) {
+    console.warn('[Supabase Order Service] Exception fetching admin orders (returning local orders fallback):', err?.message || err);
+    return { success: true, data: localOrders };
+  }
+}
+
 export function subscribeToClientOrders(
   email: string,
   onUpdate: () => void

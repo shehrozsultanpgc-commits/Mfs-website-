@@ -39,37 +39,63 @@ function generateSmartFallbackReply(message: string, currentState?: any) {
       "• 👔 **Resume Writing**: PKR 1,250 ($10.00 USD) / Resume *(Was PKR 2,500)*\n" +
       "• ⚡ **ATS Resume Engineering**: PKR 1,500 ($12.00 USD) / ATS Standard *(Was PKR 3,000)*\n" +
       "• 📄 **Report Formatting**: PKR 1,000 ($7.50 USD) / 1,000 words\n\n" +
-      "Aap kis service ke baare mein mazeed details chahte hain?";
+      "⚡ **Turnaround Speed Options**:\n" +
+      "• Standard Delivery (24-48 Hours): Base Rate\n" +
+      "• Express 24-Hour: +30% Rush Fee\n" +
+      "• Priority 12-24 Hours: +50% Rush Fee\n" +
+      "• 1-Hour Urgent Express / Same-Day: +75% Rush Fee\n\n" +
+      "Which service would you like to place an order for?";
   } else if (lower.includes('presentation') || lower.includes('slide') || lower.includes('deck') || lower.includes('ppt')) {
     newState.serviceRequired = 'Presentation Design';
-    newState.estimatedPrice = 'PKR 1,250 (50% OFF)';
+    newState.quantity = '10 Slides';
+    newState.turnaroundSpeed = lower.includes('urgent') || lower.includes('1-hour') || lower.includes('express') ? '1-Hour Urgent Express (+75% Rush)' : 'Standard Delivery (24-48h)';
+    newState.basePrice = 'PKR 1,250';
+    newState.rushFee = lower.includes('urgent') || lower.includes('1-hour') || lower.includes('express') ? 'PKR 938' : 'PKR 0 (Standard)';
+    newState.estimatedPrice = lower.includes('urgent') || lower.includes('1-hour') || lower.includes('express') ? 'PKR 2,188' : 'PKR 1,250';
     text =
       "Zabardast! **Presentation Design** humari top-rated service hai. 🎨\n\n" +
-      "Hum executive pitch decks aur academic presentations custom layouts, typography, aur charts ke saath create karte hain.\n\n" +
-      "• **Price**: PKR 1,250 per 10 slides (50% OFF Applied!)\n" +
-      "• **Delivery**: Standard (24-48h) or Express (<24h)\n\n" +
-      "Aap ki presentation mein kitni slides required hain?";
+      `• **Base Price**: ${newState.basePrice} (50% OFF Applied!)\n` +
+      `• **Speed**: ${newState.turnaroundSpeed}\n` +
+      `• **Total Amount**: **${newState.estimatedPrice}**\n\n` +
+      "Aap Standard Delivery (24-48 Hours) chahte hain ya 1-Hour Urgent Express?";
   } else if (lower.includes('assignment') || lower.includes('paper') || lower.includes('essay') || lower.includes('thesis')) {
     newState.serviceRequired = 'Assignment Writing';
-    newState.estimatedPrice = 'PKR 1,000 (50% OFF)';
+    newState.quantity = '1,000 Words';
+    newState.turnaroundSpeed = lower.includes('urgent') || lower.includes('1-hour') || lower.includes('express') ? '1-Hour Urgent Express (+75% Rush)' : 'Standard Delivery (24-48h)';
+    newState.basePrice = 'PKR 1,000';
+    newState.rushFee = lower.includes('urgent') || lower.includes('1-hour') || lower.includes('express') ? 'PKR 750' : 'PKR 0 (Standard)';
+    newState.estimatedPrice = lower.includes('urgent') || lower.includes('1-hour') || lower.includes('express') ? 'PKR 1,750' : 'PKR 1,000';
     text =
       "Understood! Our **Assignment Writing** service guarantees 100% original, plagiarism-free research with strict APA/Harvard/MLA referencing and Turnitin check. 📚\n\n" +
-      "• **Price**: PKR 1,000 per 1,000 words (50% OFF Applied!)\n\n" +
-      "Aap ka assignment topic aur word count/deadline kya hai?";
+      `• **Base Price**: ${newState.basePrice} (50% OFF Applied!)\n` +
+      `• **Speed**: ${newState.turnaroundSpeed}\n` +
+      `• **Total Amount**: **${newState.estimatedPrice}**\n\n` +
+      "Aap ka topic aur word count kya hai?";
   } else if (lower.includes('resume') || lower.includes('cv') || lower.includes('cover') || lower.includes('ats')) {
     newState.serviceRequired = 'ATS Resume & CV Engineering';
-    newState.estimatedPrice = 'PKR 1,500 (50% OFF)';
+    newState.quantity = '1 ATS Resume';
+    newState.turnaroundSpeed = lower.includes('urgent') || lower.includes('1-hour') || lower.includes('express') ? '1-Hour Urgent Express (+75% Rush)' : 'Standard Delivery (24h)';
+    newState.basePrice = 'PKR 1,500';
+    newState.rushFee = lower.includes('urgent') || lower.includes('1-hour') || lower.includes('express') ? 'PKR 1,125' : 'PKR 0 (Standard)';
+    newState.estimatedPrice = lower.includes('urgent') || lower.includes('1-hour') || lower.includes('express') ? 'PKR 2,625' : 'PKR 1,500';
     text =
       "Awesome! Our **ATS Resume & CV Engineering** ensures 95%+ ATS scanner compatibility to get you hired faster. 💼\n\n" +
-      "• **Professional Resume**: PKR 1,250\n" +
-      "• **ATS Engineered Resume**: PKR 1,500\n\n" +
-      "Aap kis position ya industry ke liye apply kar rahe hain?";
+      `• **Base Price**: ${newState.basePrice} (50% OFF Applied!)\n` +
+      `• **Speed**: ${newState.turnaroundSpeed}\n` +
+      `• **Total Amount**: **${newState.estimatedPrice}**\n\n` +
+      "Aap kis job role ke liye apply kar rahe hain?";
   } else if (lower.includes('report') || lower.includes('format') || lower.includes('document')) {
     newState.serviceRequired = 'Corporate Report Formatting';
-    newState.estimatedPrice = 'PKR 1,000 (50% OFF)';
+    newState.quantity = '1,000 Words';
+    newState.turnaroundSpeed = lower.includes('urgent') || lower.includes('1-hour') || lower.includes('express') ? '1-Hour Urgent Express (+75% Rush)' : 'Standard Delivery (2-3 Days)';
+    newState.basePrice = 'PKR 1,000';
+    newState.rushFee = lower.includes('urgent') || lower.includes('1-hour') || lower.includes('express') ? 'PKR 750' : 'PKR 0 (Standard)';
+    newState.estimatedPrice = lower.includes('urgent') || lower.includes('1-hour') || lower.includes('express') ? 'PKR 1,750' : 'PKR 1,000';
     text =
       "Got it! Our **Corporate Report Formatting** delivers executive-ready document design. 📊\n\n" +
-      "• **Price**: PKR 1,000 per 1,000 words\n\n" +
+      `• **Base Price**: ${newState.basePrice} (50% OFF Applied!)\n` +
+      `• **Speed**: ${newState.turnaroundSpeed}\n` +
+      `• **Total Amount**: **${newState.estimatedPrice}**\n\n` +
       "Aap ke report ke kitne pages ya words hain?";
   } else if (lower.includes('easypaisa') || lower.includes('jazzcash') || lower.includes('bank') || lower.includes('payment') || lower.includes('pay')) {
     text =
@@ -96,7 +122,7 @@ function generateSmartFallbackReply(message: string, currentState?: any) {
   ) {
     text =
       "Walaikum Assalam! Main bilkul theek hoon, aap bataayein kaise hain? 😊\n\n" +
-      "Welcome to **MFS Growth Agency**! Main aap ki kis service mein madad kar sakta hoon?\n" +
+      "Welcome to **MFS Growth Agency**! May I know your name so I can address you properly, or feel free to let me know which service you need:\n" +
       "• 📊 **Presentation Design** (Executive Pitch Decks)\n" +
       "• ✍️ **Assignment Writing** (APA / Harvard References)\n" +
       "• 👔 **ATS Resume Engineering** (95%+ ATS Score)\n" +

@@ -2,15 +2,19 @@ import { WebSocketServer, WebSocket } from 'ws';
 import { GoogleGenAI, Modality, Type } from '@google/genai';
 import { OFFICIAL_AI_PRICING_PROMPT_TEXT } from '../../src/data/content';
 
-const SYSTEM_PROMPT = `You are MFS Growth Agency's professional, highly articulate AI voice assistant (mfsmedia.agency@gmail.com, WhatsApp: +92 301 5323689).
+const SYSTEM_PROMPT = `You are MFS Growth Agency's professional, highly articulate AI voice assistant & Sales Closing Agent (mfsmedia.agency@gmail.com, WhatsApp: +92 301 5323689).
 Speak naturally, conversationally, and concisely like a human consultant.
 
 STRICT CONVERSATION FLOW (Step-by-Step Intake):
-You MUST follow this exact 4-step sequence when a caller inquires or places an order:
-1. STEP 1 (Client Name): Politely ask for the caller's name first if not already known.
+You MUST follow this sequence when a caller inquires or places an order:
+1. STEP 1 (Client Name): Politely ask for the caller's name first. IF THE CALLER SKIPS or asks directly about a service/rate, accept gracefully ("No problem!") and proceed without friction.
 2. STEP 2 (Service Selection): Ask which specific MFS service they need: Presentation Design, Assignment Writing, ATS Resume & CV Engineering, or Corporate Report Formatting.
-3. STEP 3 (Deadline & Scope): Ask for their required project scope (e.g. slide count, word count) AND delivery deadline (Standard, Express 24-48h +30%, Priority 12-24h +50%, Same-Day <12h +75%).
-4. STEP 4 (Order Brief & Official Fixed Price Summary): Summarize all order details, quote the exact official price with active 50% Grand Launch discount, and inform them that pre-filled 1-click WhatsApp (+923015323689) and Email action buttons are now rendered directly on their screen.
+3. STEP 3 (Speed & Scope): Ask for their required project scope (e.g. slide count, word count) AND delivery speed preference:
+   • Standard Delivery (24-48 Hours) - Base Rate (50% OFF)
+   • Express 24-Hour - +30% Rush Fee
+   • Priority 12-24 Hours - +50% Rush Fee
+   • 1-Hour Urgent Express / Same-Day - +75% Rush Fee
+4. STEP 4 (Order Brief & Official Price Summary): Summarize all order details, calculate base price + rush fee = total price (50% Grand Launch OFF), call the confirmOrder tool, and inform them that pre-filled 1-click WhatsApp (+923015323689), Email, and Downloadable Receipt buttons are rendered directly on their screen.
 
 FIXED OFFICIAL PRICING RULES (STRICT - NEVER INVENT PRICES):
 ${OFFICIAL_AI_PRICING_PROMPT_TEXT}
@@ -78,12 +82,15 @@ export function setupLiveAssistant(wss: WebSocketServer) {
                   clientName: { type: Type.STRING, description: 'Caller full name' },
                   serviceRequired: { type: Type.STRING, description: 'Requested MFS service' },
                   quantity: { type: Type.STRING, description: 'Scope e.g. 10 slides or 2000 words' },
+                  turnaroundSpeed: { type: Type.STRING, description: 'Turnaround speed e.g. Standard or 1-Hour Urgent Express' },
                   deadline: { type: Type.STRING, description: 'Delivery deadline' },
-                  totalPrice: { type: Type.STRING, description: 'Official price e.g. PKR 2,500' },
+                  basePrice: { type: Type.STRING, description: 'Base price e.g. PKR 1,250' },
+                  rushFee: { type: Type.STRING, description: 'Rush fee e.g. PKR 938' },
+                  totalPrice: { type: Type.STRING, description: 'Official price e.g. PKR 2,188' },
                   currency: { type: Type.STRING, description: 'Currency e.g. PKR' },
                   projectBrief: { type: Type.STRING, description: 'Caller notes/brief' }
                 },
-                required: ['clientName', 'serviceRequired']
+                required: ['serviceRequired']
               }
             }]
           }]
@@ -100,12 +107,15 @@ export function setupLiveAssistant(wss: WebSocketServer) {
                     action: 'order_confirmed',
                     orderDetails: {
                       orderId: 'MFS-AI-' + Math.floor(1000 + Math.random() * 9000),
-                      clientName: args.clientName || '',
-                      customerName: args.clientName || '',
-                      serviceRequired: args.serviceRequired || '',
-                      serviceName: args.serviceRequired || '',
+                      clientName: args.clientName || 'Valued Client',
+                      customerName: args.clientName || 'Valued Client',
+                      serviceRequired: args.serviceRequired || 'Digital Solution',
+                      serviceName: args.serviceRequired || 'Digital Solution',
                       quantity: args.quantity || 'Scope as discussed',
+                      turnaroundSpeed: args.turnaroundSpeed || args.deadline || 'Standard Delivery',
                       deadline: args.deadline || 'Standard Delivery (50% OFF)',
+                      basePrice: args.basePrice || '',
+                      rushFee: args.rushFee || '',
                       totalPrice: args.totalPrice || 'PKR 2,500',
                       currency: args.currency || 'PKR',
                       projectBrief: args.projectBrief || 'Voice Consultation Order Brief'
