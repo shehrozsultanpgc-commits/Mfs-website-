@@ -251,7 +251,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-[9999] transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
         isScrolled
           ? 'bg-[#050507]/95 backdrop-blur-2xl border-b border-[#E5C158]/20 shadow-[0_12px_40px_rgba(0,0,0,0.85)] py-2.5 sm:py-3'
           : 'bg-[#050507]/75 backdrop-blur-md border-b border-white/[0.08] py-3.5 sm:py-4'

@@ -25,7 +25,8 @@ import {
   X,
   FileText,
   PhoneCall,
-  ExternalLink
+  ExternalLink,
+  AlertCircle
 } from 'lucide-react';
 
 interface ContactPageProps {
@@ -52,6 +53,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
 
   // Mini FAQ Accordion State
   const [openFaqId, setOpenFaqId] = useState<string | null>('faq-1');
@@ -71,10 +73,17 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!fullName || !email || !message) {
-      if (onShowToast) onShowToast('Please fill in all required fields.');
+    const errors: { [key: string]: string } = {};
+    if (!fullName.trim()) errors.fullName = 'Please enter your full name.';
+    if (!email.trim() || !email.includes('@')) errors.email = 'Please enter a valid email address.';
+    if (!message.trim()) errors.message = 'Please describe your project guidelines or inquiry.';
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      if (onShowToast) onShowToast('⚠️ Please complete all required inquiry fields below.');
       return;
     }
+    setFormErrors({});
 
     setIsSubmitting(true);
 
@@ -388,10 +397,21 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                         type="text"
                         required
                         value={fullName}
-                        onChange={(e) => setFullName(e.target.value)}
+                        onChange={(e) => {
+                          setFullName(e.target.value);
+                          if (formErrors.fullName) setFormErrors(prev => ({ ...prev, fullName: '' }));
+                        }}
                         placeholder="e.g. Shehroz Sultan"
-                        className="w-full bg-black/50 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#E5C158]"
+                        className={`w-full bg-black/50 border rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none transition-colors ${
+                          formErrors.fullName ? 'border-red-500/80 focus:border-red-500' : 'border-white/10 focus:border-[#E5C158]'
+                        }`}
                       />
+                      {formErrors.fullName && (
+                        <div className="mt-1.5 p-2 rounded-xl bg-red-500/15 border border-red-500/40 text-red-200 text-[11px] font-semibold flex items-center gap-1.5 shadow-lg backdrop-blur-md relative z-30 animate-fadeIn">
+                          <AlertCircle className="w-3.5 h-3.5 text-red-400 shrink-0" />
+                          <span>{formErrors.fullName}</span>
+                        </div>
+                      )}
                     </div>
 
                     <div>
@@ -400,10 +420,21 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                         type="email"
                         required
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                          if (formErrors.email) setFormErrors(prev => ({ ...prev, email: '' }));
+                        }}
                         placeholder="e.g. name@example.com"
-                        className="w-full bg-black/50 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#E5C158]"
+                        className={`w-full bg-black/50 border rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none transition-colors ${
+                          formErrors.email ? 'border-red-500/80 focus:border-red-500' : 'border-white/10 focus:border-[#E5C158]'
+                        }`}
                       />
+                      {formErrors.email && (
+                        <div className="mt-1.5 p-2 rounded-xl bg-red-500/15 border border-red-500/40 text-red-200 text-[11px] font-semibold flex items-center gap-1.5 shadow-lg backdrop-blur-md relative z-30 animate-fadeIn">
+                          <AlertCircle className="w-3.5 h-3.5 text-red-400 shrink-0" />
+                          <span>{formErrors.email}</span>
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -473,10 +504,21 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       required
                       rows={4}
                       value={message}
-                      onChange={(e) => setMessage(e.target.value)}
+                      onChange={(e) => {
+                        setMessage(e.target.value);
+                        if (formErrors.message) setFormErrors(prev => ({ ...prev, message: '' }));
+                      }}
                       placeholder="Describe your project deadline, word/slide count, academic referencing style, or formatting guidelines..."
-                      className="w-full bg-black/50 border border-white/10 rounded-xl p-3.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#E5C158]"
+                      className={`w-full bg-black/50 border rounded-xl p-3.5 text-xs text-white placeholder-neutral-500 focus:outline-none transition-colors ${
+                        formErrors.message ? 'border-red-500/80 focus:border-red-500' : 'border-white/10 focus:border-[#E5C158]'
+                      }`}
                     />
+                    {formErrors.message && (
+                      <div className="mt-1.5 p-2 rounded-xl bg-red-500/15 border border-red-500/40 text-red-200 text-[11px] font-semibold flex items-center gap-1.5 shadow-lg backdrop-blur-md relative z-30 animate-fadeIn">
+                        <AlertCircle className="w-3.5 h-3.5 text-red-400 shrink-0" />
+                        <span>{formErrors.message}</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* File Upload Attachment */}

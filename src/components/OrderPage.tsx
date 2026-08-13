@@ -127,6 +127,7 @@ export const OrderPage: React.FC<OrderPageProps> = ({
   const [isOrderSubmitted, setIsOrderSubmitted] = useState<boolean>(false);
   const [isSubmittingOrder, setIsSubmittingOrder] = useState<boolean>(false);
   const [submissionError, setSubmissionError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
 
   // Modal State
   const [showLuxuryReceipt, setShowLuxuryReceipt] = useState<boolean>(false);
@@ -245,33 +246,43 @@ export const OrderPage: React.FC<OrderPageProps> = ({
 
   // Step Validation & Navigation
   const validateStep = (step: number): boolean => {
+    const errors: { [key: string]: string } = {};
     if (step === 1) {
       if (slideOrWordCount <= 0) {
+        errors.scope = 'Please enter a valid scope quantity (minimum 1).';
+        setFieldErrors(errors);
         if (onShowToast) onShowToast('Please enter a valid scope quantity.');
         return false;
       }
+      setFieldErrors({});
       return true;
     }
     if (step === 2) {
       if (!projectDescription.trim() && !projectTitle.trim()) {
+        errors.project = 'Please provide a brief description or title for your project.';
+        setFieldErrors(errors);
         if (onShowToast) onShowToast('Please provide a brief description or title for your project.');
         return false;
       }
+      setFieldErrors({});
       return true;
     }
     if (step === 3) {
       if (!customerName.trim()) {
-        if (onShowToast) onShowToast('Please enter your full name.');
-        return false;
+        errors.customerName = 'Please enter your full name.';
       }
       if (!customerEmail.trim() || !customerEmail.includes('@')) {
-        if (onShowToast) onShowToast('Please enter a valid email address.');
-        return false;
+        errors.customerEmail = 'Please enter a valid email address.';
       }
       if (!customerPhone.trim()) {
-        if (onShowToast) onShowToast('Please enter your WhatsApp / phone number.');
+        errors.customerPhone = 'Please enter your WhatsApp or phone number.';
+      }
+      if (Object.keys(errors).length > 0) {
+        setFieldErrors(errors);
+        if (onShowToast) onShowToast('⚠️ Please complete all required contact details.');
         return false;
       }
+      setFieldErrors({});
       return true;
     }
     return true;
@@ -912,9 +923,20 @@ export const OrderPage: React.FC<OrderPageProps> = ({
                           required
                           placeholder="e.g. John Doe"
                           value={customerName}
-                          onChange={(e) => setCustomerName(e.target.value)}
-                          className="w-full bg-[#050507] border border-white/15 focus:border-[#E5C158] text-white text-xs rounded-xl px-4 py-3 focus:outline-none"
+                          onChange={(e) => {
+                            setCustomerName(e.target.value);
+                            if (fieldErrors.customerName) setFieldErrors(prev => ({ ...prev, customerName: '' }));
+                          }}
+                          className={`w-full bg-[#050507] border text-white text-xs rounded-xl px-4 py-3 focus:outline-none transition-colors ${
+                            fieldErrors.customerName ? 'border-red-500/80 focus:border-red-500' : 'border-white/15 focus:border-[#E5C158]'
+                          }`}
                         />
+                        {fieldErrors.customerName && (
+                          <div className="mt-1.5 p-2 rounded-xl bg-red-500/15 border border-red-500/40 text-red-200 text-[11px] font-semibold flex items-center gap-1.5 shadow-lg backdrop-blur-md relative z-30 animate-fadeIn">
+                            <AlertCircle className="w-3.5 h-3.5 text-red-400 shrink-0" />
+                            <span>{fieldErrors.customerName}</span>
+                          </div>
+                        )}
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -925,9 +947,20 @@ export const OrderPage: React.FC<OrderPageProps> = ({
                             required
                             placeholder="e.g. john@example.com"
                             value={customerEmail}
-                            onChange={(e) => setCustomerEmail(e.target.value)}
-                            className="w-full bg-[#050507] border border-white/15 focus:border-[#E5C158] text-white text-xs rounded-xl px-4 py-3 focus:outline-none"
+                            onChange={(e) => {
+                              setCustomerEmail(e.target.value);
+                              if (fieldErrors.customerEmail) setFieldErrors(prev => ({ ...prev, customerEmail: '' }));
+                            }}
+                            className={`w-full bg-[#050507] border text-white text-xs rounded-xl px-4 py-3 focus:outline-none transition-colors ${
+                              fieldErrors.customerEmail ? 'border-red-500/80 focus:border-red-500' : 'border-white/15 focus:border-[#E5C158]'
+                            }`}
                           />
+                          {fieldErrors.customerEmail && (
+                            <div className="mt-1.5 p-2 rounded-xl bg-red-500/15 border border-red-500/40 text-red-200 text-[11px] font-semibold flex items-center gap-1.5 shadow-lg backdrop-blur-md relative z-30 animate-fadeIn">
+                              <AlertCircle className="w-3.5 h-3.5 text-red-400 shrink-0" />
+                              <span>{fieldErrors.customerEmail}</span>
+                            </div>
+                          )}
                         </div>
                         <div>
                           <label className="block text-neutral-300 font-semibold text-xs mb-1">WhatsApp / Phone *</label>
@@ -936,9 +969,20 @@ export const OrderPage: React.FC<OrderPageProps> = ({
                             required
                             placeholder="+92 301 5323689"
                             value={customerPhone}
-                            onChange={(e) => setCustomerPhone(e.target.value)}
-                            className="w-full bg-[#050507] border border-white/15 focus:border-[#E5C158] text-white text-xs rounded-xl px-4 py-3 focus:outline-none"
+                            onChange={(e) => {
+                              setCustomerPhone(e.target.value);
+                              if (fieldErrors.customerPhone) setFieldErrors(prev => ({ ...prev, customerPhone: '' }));
+                            }}
+                            className={`w-full bg-[#050507] border text-white text-xs rounded-xl px-4 py-3 focus:outline-none transition-colors ${
+                              fieldErrors.customerPhone ? 'border-red-500/80 focus:border-red-500' : 'border-white/15 focus:border-[#E5C158]'
+                            }`}
                           />
+                          {fieldErrors.customerPhone && (
+                            <div className="mt-1.5 p-2 rounded-xl bg-red-500/15 border border-red-500/40 text-red-200 text-[11px] font-semibold flex items-center gap-1.5 shadow-lg backdrop-blur-md relative z-30 animate-fadeIn">
+                              <AlertCircle className="w-3.5 h-3.5 text-red-400 shrink-0" />
+                              <span>{fieldErrors.customerPhone}</span>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
