@@ -33,6 +33,7 @@ import { Toast } from './components/Toast';
 import { AuthProvider } from './context/AuthContext';
 import { RequireAdmin, RequireClient } from './components/AuthGuards';
 import { AdminGuard } from './components/admin/AdminGuard';
+import { NotFoundPage } from './components/NotFoundPage';
 
 type PageType =
   | 'home'
@@ -46,7 +47,8 @@ type PageType =
   | 'payment'
   | 'confirmation'
   | 'dashboard'
-  | 'admin';
+  | 'admin'
+  | 'notFound';
 
 const VALID_PAGES: PageType[] = [
   'home',
@@ -461,13 +463,15 @@ function AppContent() {
                 onNavigatePage={handleNavigatePage}
               />
             </AdminGuard>
-          ) : (
+          ) : currentPage === 'faq' ? (
             <FaqPage
               onOpenOrderModal={() => setIsOrderModalOpen(true)}
               onOpenAIChat={handleOpenAIChat}
               onShowToast={triggerToast}
               onNavigatePage={handleNavigatePage}
             />
+          ) : (
+            <NotFoundPage onNavigatePage={handleNavigatePage} />
           )}
         </motion.main>
       </AnimatePresence>

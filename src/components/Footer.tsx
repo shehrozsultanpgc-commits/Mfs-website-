@@ -62,18 +62,34 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
             <h4 className="font-poppins font-bold uppercase tracking-wider text-white text-xs mb-2">
               Services
             </h4>
-            <button onClick={onOpenOrderModal} className="text-left hover:text-[#E5C158] transition-colors">
+            <a
+              href="/services"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('services') : onOpenOrderModal(); }}
+              className="text-left hover:text-[#E5C158] transition-colors"
+            >
               Presentation Design
-            </button>
-            <button onClick={onOpenOrderModal} className="text-left hover:text-[#E5C158] transition-colors">
+            </a>
+            <a
+              href="/services"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('services') : onOpenOrderModal(); }}
+              className="text-left hover:text-[#E5C158] transition-colors"
+            >
               Assignment Writing
-            </button>
-            <button onClick={onOpenOrderModal} className="text-left hover:text-[#E5C158] transition-colors">
+            </a>
+            <a
+              href="/services"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('services') : onOpenOrderModal(); }}
+              className="text-left hover:text-[#E5C158] transition-colors"
+            >
               Resume Optimization
-            </button>
-            <button onClick={onOpenOrderModal} className="text-left hover:text-[#E5C158] transition-colors">
+            </a>
+            <a
+              href="/services"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('services') : onOpenOrderModal(); }}
+              className="text-left hover:text-[#E5C158] transition-colors"
+            >
               Report Formatting
-            </button>
+            </a>
           </div>
 
           {/* Col 3: Quick Links */}
@@ -81,30 +97,55 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
             <h4 className="font-poppins font-bold uppercase tracking-wider text-white text-xs mb-2">
               Quick Links
             </h4>
-            <button
-              onClick={() => onNavigatePage ? onNavigatePage('services') : undefined}
+            <a
+              href="/services"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('services') : undefined; }}
               className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
             >
               Our Services
-            </button>
-            <button
-              onClick={() => onNavigatePage ? onNavigatePage('home', 'portfolio') : undefined}
+            </a>
+            <a
+              href="/#portfolio"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('home', 'portfolio') : undefined; }}
               className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
             >
               Our Work
-            </button>
-            <button
-              onClick={() => onNavigatePage ? onNavigatePage('pricing') : undefined}
+            </a>
+            <a
+              href="/pricing"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('pricing') : undefined; }}
               className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
             >
               Pricing Tool
-            </button>
-            <button
-              onClick={() => onNavigatePage ? onNavigatePage('faq') : undefined}
+            </a>
+            <a
+              href="/reviews"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('reviews') : undefined; }}
               className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
             >
-              FAQ
-            </button>
+              Client Reviews
+            </a>
+            <a
+              href="/about"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('about') : undefined; }}
+              className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
+            >
+              About Agency
+            </a>
+            <a
+              href="/faq"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('faq') : undefined; }}
+              className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
+            >
+              FAQ & Support
+            </a>
+            <a
+              href="/contact"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('contact') : undefined; }}
+              className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
+            >
+              Contact Us
+            </a>
           </div>
 
           {/* Col 4: Contact Info */}

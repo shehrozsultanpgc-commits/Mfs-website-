@@ -680,23 +680,38 @@ export const REVIEWS: ReviewItem[] = [
 export const FAQS: FaqItem[] = [
   {
     id: 'faq-1',
-    question: 'What payment methods do you accept?',
-    answer: 'Currently, we accept manual payments through EasyPaisa, JazzCash, and direct Bank Transfers. You upload the screenshot on checkout, and our admins process verified status immediately.'
+    question: 'What digital services does MFS Growth Agency offer?',
+    answer: 'MFS Growth Agency provides executive presentation design (PowerPoint & pitch decks), custom academic assignment writing, ATS-compliant resume & CV engineering, cover letters, corporate report formatting, and custom infographics for students and professionals.'
   },
   {
     id: 'faq-2',
-    question: 'Can I request revisions after delivery?',
-    answer: 'Yes, free revisions are supported if the delivered work does not match the original instructions. Revisions must align with your initial project submission.'
+    question: 'What payment methods do you accept?',
+    answer: 'We accept local and international payment proof submissions via EasyPaisa (03116191234), JazzCash (03015323688), and Askari Bank direct transfer. Simply upload your transaction screenshot during checkout for instant admin verification.'
   },
   {
     id: 'faq-3',
-    question: 'Is my transaction and data secure?',
-    answer: 'Absolutely. All transactions, uploads, and data sheets are strictly protected. We never distribute your project files or customer details to third parties.'
+    question: 'Are academic assignments plagiarism-free and formatted with proper references?',
+    answer: 'Yes, 100%. Every academic assignment is written and formatted from scratch according to your required referencing schema (APA 7th, Harvard, MLA, Chicago) and undergoes strict Turnitin originality verification.'
   },
   {
     id: 'faq-4',
-    question: 'How fast can you complete express orders?',
-    answer: 'We offer Express, Priority, and Same-Day delivery schedules. Same-Day delivery completes your project within 12-24 hours depending on complexity.'
+    question: 'How fast can you complete express project orders?',
+    answer: 'We offer Flexible (3-4 Days), Express (48 Hours), Priority (24 Hours), and Same-Day (12-24 Hours) turnaround schedules to accommodate urgent deadlines.'
+  },
+  {
+    id: 'faq-5',
+    question: 'Can I request revisions after project delivery?',
+    answer: 'Yes, free revisions are supported if the delivered work requires minor adjustments to align with your original project submission instructions.'
+  },
+  {
+    id: 'faq-6',
+    question: 'How are completed files delivered to clients?',
+    answer: 'Final project files (PPTX, DOCX, PDF) are delivered directly to your confidential Client Dashboard, where you can preview and download them securely 24/7.'
+  },
+  {
+    id: 'faq-7',
+    question: 'Is my personal information and project data confidential?',
+    answer: 'All client guidelines, uploaded documents, and contact details are strictly encrypted and protected under our non-disclosure policy. We never share files or details with third parties.'
   }
 ];
 
