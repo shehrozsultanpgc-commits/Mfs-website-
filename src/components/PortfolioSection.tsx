@@ -74,7 +74,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
           </div>
 
           <h2 className="text-3xl xs:text-4xl sm:text-5xl font-extrabold font-poppins text-white tracking-tight mb-4">
-            Work That <span className="gold-pure-gradient">Speaks for Itself</span>.
+            Our Work — <span className="gold-pure-gradient">Sample Presentations & Academic Writing</span>
           </h2>
 
           <p className="text-neutral-300 text-xs sm:text-base leading-relaxed max-w-2xl mx-auto font-normal">

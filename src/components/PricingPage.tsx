@@ -145,7 +145,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-3xl sm:text-5xl lg:text-6xl font-poppins font-bold tracking-tight text-white mb-5 max-w-4xl mx-auto leading-tight"
         >
-          Professional work, <span className="gradient-gold-text">transparently priced.</span>
+          MFS Growth Agency Pricing — <span className="gradient-gold-text">Transparent Rates & 50% Off Offer</span>
         </motion.h1>
 
         <motion.p

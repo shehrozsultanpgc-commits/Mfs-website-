@@ -134,7 +134,7 @@ export const FaqPage: React.FC<FaqPageProps> = ({
         </div>
 
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-poppins font-bold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-tight">
-          How Can We <span className="gradient-gold-text">Help You Today?</span>
+          MFS Growth Agency FAQ — <span className="gradient-gold-text">Answers & Support</span>
         </h1>
 
         <p className="text-neutral-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-8">

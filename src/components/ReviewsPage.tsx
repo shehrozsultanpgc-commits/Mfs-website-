@@ -186,7 +186,7 @@ export const ReviewsPage: React.FC<ReviewsPageProps> = ({
         </div>
 
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-poppins font-bold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-tight">
-          What Our <span className="gradient-gold-text">Global Clients</span> Say About Our Work
+          MFS Growth Agency Reviews — <span className="gradient-gold-text">Verified Client Feedback</span>
         </h1>
 
         <p className="text-neutral-300 text-xs sm:text-base max-w-2xl mx-auto leading-relaxed mb-8">

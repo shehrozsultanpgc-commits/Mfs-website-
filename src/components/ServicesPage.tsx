@@ -58,7 +58,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
         </div>
 
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-poppins font-bold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-tight">
-          Comprehensive <span className="gradient-gold-text">Digital Services</span> Built for High-Performing Students & Professionals
+          Digital Services in Pakistan — <span className="gradient-gold-text">Presentations, Assignments & ATS Resumes</span>
         </h1>
 
         <p className="text-neutral-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-8">

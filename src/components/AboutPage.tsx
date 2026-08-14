@@ -167,7 +167,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           transition={{ duration: 0.55, delay: 0.1 }}
           className="text-3xl sm:text-5xl lg:text-6xl font-poppins font-bold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-tight"
         >
-          Empowering <span className="gradient-gold-text">Students & Professionals</span> Globally
+          About MFS Growth Agency — <span className="gradient-gold-text">Digital Services for Students & Professionals</span>
         </motion.h1>
 
         <motion.p

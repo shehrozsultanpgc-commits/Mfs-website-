@@ -415,7 +415,7 @@ export const OrderPage: React.FC<OrderPageProps> = ({
         </div>
 
         <h1 className="text-2xl sm:text-4xl md:text-5xl font-poppins font-bold text-white tracking-tight leading-tight mb-2">
-          Place Your <span className="gradient-gold-text">Project Order</span>
+          Order MFS Growth Agency Services — <span className="gradient-gold-text">50% Off Checkout</span>
         </h1>
         <p className="text-neutral-300 text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed">
           Complete the 4 simple steps below to register your requirements, verify your payment, and track your deliverable in real time.

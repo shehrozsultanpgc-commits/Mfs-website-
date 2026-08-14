@@ -55,12 +55,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenOrderModal, onViewWork }) => {
             </motion.div>
 
             <h1 className="text-[1.6rem] xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight font-poppins leading-[1.22] xs:leading-[1.18] sm:leading-[1.15] mb-3.5 sm:mb-6 text-white">
-              Professional Presentations &{' '}
-              <span className="gold-pure-gradient">Assignments</span> Delivered with Excellence.
+              Presentation Design, Academic Writing &{' '}
+              <span className="gold-pure-gradient">ATS Resumes</span> in Pakistan
             </h1>
 
             <p className="text-xs xs:text-sm sm:text-base md:text-lg max-w-xs xs:max-w-xl sm:max-w-2xl mx-auto lg:mx-0 leading-relaxed mb-6 sm:mb-8 font-normal text-neutral-300/90 sm:text-neutral-300">
-              MFS Growth Agency delivers premium, custom-formatted documents, presentations, resumes, and reports to help students and professionals excel globally.
+              MFS Growth Agency delivers premium, custom-formatted documents, presentation decks, academic assignments, ATS resumes, and reports to help students and professionals excel in Pakistan and worldwide.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 w-full sm:w-auto">
