@@ -64,20 +64,20 @@ const VALID_PAGES: PageType[] = [
 ];
 
 function getPageFromRoute(): { page: PageType; targetSection?: string } {
+  const pathRaw = window.location.pathname.toLowerCase().replace(/^\/+|\/+$/g, '');
   const hashRaw = window.location.hash.toLowerCase().replace(/^#\/?/, '');
-  const pathRaw = window.location.pathname.toLowerCase().replace(/^\//, '');
 
-  const [hashPart] = hashRaw.split('?');
   const [pathPart] = pathRaw.split('/');
+  const [hashPart] = hashRaw.split('?');
 
-  if (VALID_PAGES.includes(hashPart as PageType)) {
-    return { page: hashPart as PageType };
-  }
-  if (VALID_PAGES.includes(pathPart as PageType)) {
+  if (pathPart && VALID_PAGES.includes(pathPart as PageType) && pathPart !== 'home') {
     return { page: pathPart as PageType };
   }
-  if (hashPart === 'portfolio' || hashPart === 'calculator' || hashPart === 'reviews-section') {
-    return { page: 'home', targetSection: hashPart };
+  if (hashPart && VALID_PAGES.includes(hashPart as PageType) && hashPart !== 'home') {
+    return { page: hashPart as PageType };
+  }
+  if (hashPart === 'portfolio' || hashPart === 'our-work' || hashPart === 'calculator' || hashPart === 'reviews-section') {
+    return { page: 'home', targetSection: hashPart === 'our-work' ? 'portfolio' : hashPart };
   }
 
   return { page: 'home' };
@@ -122,7 +122,7 @@ function AppContent() {
         window.history.replaceState(
           { ...window.history.state, scrollY },
           '',
-          window.location.hash || undefined
+          window.location.pathname + window.location.hash + window.location.search
         );
       }
     };
@@ -146,19 +146,19 @@ function AppContent() {
       window.history.replaceState(
         { ...window.history.state, scrollY: currentY },
         '',
-        window.location.hash || undefined
+        window.location.pathname + window.location.hash + window.location.search
       );
     }
 
     // 2. Switch current page view
     setCurrentPage(page);
 
-    const targetHash =
+    const targetUrl =
       page === 'home'
         ? targetSection
-          ? `#${targetSection}`
-          : '#home'
-        : `#${page}`;
+          ? `/#${targetSection}`
+          : '/'
+        : `/${page}`;
 
     if (!isFromHistoryPop) {
       // If navigating to the exact same page & section, replace state instead of pushing duplicate
@@ -166,10 +166,10 @@ function AppContent() {
         window.history.state?.page === page &&
         window.history.state?.targetSection === targetSection
       ) {
-        window.history.replaceState({ page, targetSection, scrollY: 0 }, '', targetHash);
+        window.history.replaceState({ page, targetSection, scrollY: 0 }, '', targetUrl);
       } else {
         // ALWAYS push state for sequential multi-step navigation trail (e.g., Home -> Pricing -> Reviews)
-        window.history.pushState({ page, targetSection, scrollY: 0 }, '', targetHash);
+        window.history.pushState({ page, targetSection, scrollY: 0 }, '', targetUrl);
       }
 
       if (page === 'home' && targetSection) {
@@ -231,15 +231,15 @@ function AppContent() {
 
     // Ensure initial history state is registered
     const route = getPageFromRoute();
-    const initialHash =
+    const initialUrl =
       route.page === 'home'
         ? route.targetSection
-          ? `#${route.targetSection}`
-          : '#home'
-        : `#${route.page}`;
+          ? `/#${route.targetSection}`
+          : '/'
+        : `/${route.page}`;
 
     if (!window.history.state || !window.history.state.page) {
-      window.history.replaceState({ page: route.page, targetSection: route.targetSection, scrollY: window.scrollY }, '', initialHash);
+      window.history.replaceState({ page: route.page, targetSection: route.targetSection, scrollY: window.scrollY }, '', initialUrl);
     }
 
     window.addEventListener('hashchange', handleRouteSync);
