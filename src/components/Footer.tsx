@@ -92,6 +92,73 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
             </a>
           </div>
 
+          {/* Col 3: Knowledge Center / Our Guides */}
+          <div className="lg:col-span-2 flex flex-col gap-3">
+            <h4 className="font-poppins font-bold uppercase tracking-wider text-white text-xs mb-2">
+              Our Guides
+            </h4>
+            <a
+              href="/guides/ats-resume-engineering"
+              onClick={(e) => {
+                e.preventDefault();
+                if (onNavigatePage) {
+                  onNavigatePage('guide-ats-resume');
+                } else {
+                  window.history.pushState({ page: 'guide-ats-resume' }, '', '/guides/ats-resume-engineering');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                }
+              }}
+              className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
+            >
+              ATS Resume Guide
+            </a>
+            <a
+              href="/guides/executive-pitch-deck-structure"
+              onClick={(e) => {
+                e.preventDefault();
+                if (onNavigatePage) {
+                  onNavigatePage('guide-pitch-deck');
+                } else {
+                  window.history.pushState({ page: 'guide-pitch-deck' }, '', '/guides/executive-pitch-deck-structure');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                }
+              }}
+              className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
+            >
+              Pitch Deck Guide
+            </a>
+            <a
+              href="/guides/academic-formatting-citation"
+              onClick={(e) => {
+                e.preventDefault();
+                if (onNavigatePage) {
+                  onNavigatePage('guide-academic-formatting');
+                } else {
+                  window.history.pushState({ page: 'guide-academic-formatting' }, '', '/guides/academic-formatting-citation');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                }
+              }}
+              className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
+            >
+              Academic Formatting
+            </a>
+            <a
+              href="/guides/corporate-report-formatting-standards"
+              onClick={(e) => {
+                e.preventDefault();
+                if (onNavigatePage) {
+                  onNavigatePage('guide-corporate-report');
+                } else {
+                  window.history.pushState({ page: 'guide-corporate-report' }, '', '/guides/corporate-report-formatting-standards');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                }
+              }}
+              className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
+            >
+              Corporate Reports
+            </a>
+          </div>
+
           {/* Col 3: Quick Links */}
           <div className="lg:col-span-2 flex flex-col gap-3">
             <h4 className="font-poppins font-bold uppercase tracking-wider text-white text-xs mb-2">

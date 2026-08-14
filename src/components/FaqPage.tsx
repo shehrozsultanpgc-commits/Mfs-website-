@@ -25,8 +25,60 @@ import {
   Award,
   Zap,
   Globe,
-  Headphones
+  Headphones,
+  BookOpen
 } from 'lucide-react';
+
+const FAQ_GUIDE_MAP: Record<string, { title: string; label: string; url: string; page: string }> = {
+  'faq-ats-1': {
+    title: 'ATS Resume Engineering Guide',
+    label: 'For a deeper explanation, read our ATS Resume Engineering Guide.',
+    url: '/guides/ats-resume-engineering',
+    page: 'guide-ats-resume',
+  },
+  'faq-ats-2': {
+    title: 'ATS Resume Engineering Guide',
+    label: 'For a deeper explanation, read our ATS Resume Engineering Guide.',
+    url: '/guides/ats-resume-engineering',
+    page: 'guide-ats-resume',
+  },
+  'faq-prs-1': {
+    title: 'Executive Pitch Deck Structure Guide',
+    label: 'For a deeper explanation, read our Executive Pitch Deck Structure Guide.',
+    url: '/guides/executive-pitch-deck-structure',
+    page: 'guide-pitch-deck',
+  },
+  'faq-prs-2': {
+    title: 'Executive Pitch Deck Structure Guide',
+    label: 'For a deeper explanation, read our Executive Pitch Deck Structure Guide.',
+    url: '/guides/executive-pitch-deck-structure',
+    page: 'guide-pitch-deck',
+  },
+  'faq-srv-2': {
+    title: 'Executive Pitch Deck Structure Guide',
+    label: 'For a deeper explanation, read our Executive Pitch Deck Structure Guide.',
+    url: '/guides/executive-pitch-deck-structure',
+    page: 'guide-pitch-deck',
+  },
+  'faq-asg-1': {
+    title: 'Academic Formatting & Citation Guide',
+    label: 'For a deeper explanation, read our Academic Formatting & Citation Guide.',
+    url: '/guides/academic-formatting-citation',
+    page: 'guide-academic-formatting',
+  },
+  'faq-asg-2': {
+    title: 'Academic Formatting & Citation Guide',
+    label: 'For a deeper explanation, read our Academic Formatting & Citation Guide.',
+    url: '/guides/academic-formatting-citation',
+    page: 'guide-academic-formatting',
+  },
+  'faq-rpt-1': {
+    title: 'Corporate Report Formatting Standards Guide',
+    label: 'For a deeper explanation, read our Corporate Report Formatting Standards Guide.',
+    url: '/guides/corporate-report-formatting-standards',
+    page: 'guide-corporate-report',
+  },
+};
 
 interface FaqPageProps {
   onOpenOrderModal: () => void;
@@ -347,6 +399,33 @@ export const FaqPage: React.FC<FaqPageProps> = ({
                   {isOpen && (
                     <div className="px-5 pb-6 sm:px-6 text-xs sm:text-sm text-neutral-300 leading-relaxed border-t border-white/5 pt-4 animate-fadeIn space-y-4">
                       <p>{faq.answer}</p>
+
+                      {/* Contextual Deep Link to Guide */}
+                      {FAQ_GUIDE_MAP[faq.id] && (
+                        <div className="p-3.5 rounded-xl bg-[#E5C158]/10 border border-[#E5C158]/25 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+                          <span className="text-neutral-200 font-medium">
+                            {FAQ_GUIDE_MAP[faq.id].label}
+                          </span>
+                          <a
+                            href={FAQ_GUIDE_MAP[faq.id].url}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              const targetPage = FAQ_GUIDE_MAP[faq.id].page;
+                              if (onNavigatePage) {
+                                onNavigatePage(targetPage);
+                              } else {
+                                window.history.pushState({ page: targetPage }, '', FAQ_GUIDE_MAP[faq.id].url);
+                                window.dispatchEvent(new PopStateEvent('popstate'));
+                              }
+                            }}
+                            className="shrink-0 px-3 py-1.5 rounded-lg bg-[#E5C158] hover:bg-[#fce888] text-[#050507] text-[11px] font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow"
+                          >
+                            <BookOpen className="w-3.5 h-3.5 text-[#050507]" />
+                            <span>Read Guide</span>
+                            <ArrowRight className="w-3 h-3" />
+                          </a>
+                        </div>
+                      )}
 
                       {/* "Did You Find This Helpful?" Widget */}
                       <div className="pt-4 border-t border-white/5 flex flex-wrap items-center justify-between gap-3 text-xs">

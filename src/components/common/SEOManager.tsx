@@ -2,7 +2,28 @@ import React, { useEffect } from 'react';
 import { FAQS } from '../../data/content';
 
 interface SEOProps {
-  currentPage: 'home' | 'services' | 'pricing' | 'reviews' | 'about' | 'contact' | 'faq' | 'order' | 'payment' | 'confirmation' | 'dashboard' | 'admin' | 'privacy' | 'terms' | 'refund-policy' | 'refundpolicy' | 'notFound';
+  currentPage:
+    | 'home'
+    | 'services'
+    | 'pricing'
+    | 'reviews'
+    | 'about'
+    | 'contact'
+    | 'faq'
+    | 'order'
+    | 'payment'
+    | 'confirmation'
+    | 'dashboard'
+    | 'admin'
+    | 'privacy'
+    | 'terms'
+    | 'refund-policy'
+    | 'refundpolicy'
+    | 'guide-ats-resume'
+    | 'guide-pitch-deck'
+    | 'guide-academic-formatting'
+    | 'guide-corporate-report'
+    | 'notFound';
 }
 
 const PAGE_SEO_DATA: Record<string, {
@@ -108,6 +129,38 @@ const PAGE_SEO_DATA: Record<string, {
     canonical: 'https://mfsgrowth.online/refund-policy',
     robots: 'index, follow',
     pageName: 'Refund Policy',
+  },
+  'guide-ats-resume': {
+    title: 'ATS Resume Engineering Master Guide: How to Pass Recruiter Filters | MFS Growth',
+    description: 'Learn how Applicant Tracking Systems (ATS) parse resumes. Discover single-column formatting rules, keyword optimization, and common layout mistakes to improve ATS readability and recruiter visibility.',
+    keywords: 'ATS resume formatting guide, ATS resume template, how ATS scanners work, single column resume ATS, CV vs resume ATS, ATS resume engineering, applicant tracking system resume, ATS-friendly resume',
+    canonical: 'https://mfsgrowth.online/guides/ats-resume-engineering',
+    robots: 'index, follow',
+    pageName: 'ATS Resume Engineering Master Guide',
+  },
+  'guide-pitch-deck': {
+    title: 'Executive Pitch Deck Structure Guide: The Essential 10-Slide Framework | MFS Growth',
+    description: 'Master the essential investor pitch deck structure. Learn slide sequencing, narrative flow, data visualization principles, and executive presentation rules for startup fundraising and professional meetings.',
+    keywords: 'investor pitch deck structure, 10 slide pitch deck, executive presentation design, pitch deck slide sequence, startup pitch deck structure, investor presentation, pitch deck framework, executive pitch deck',
+    canonical: 'https://mfsgrowth.online/guides/executive-pitch-deck-structure',
+    robots: 'index, follow',
+    pageName: 'Executive Pitch Deck Structure Guide',
+  },
+  'guide-academic-formatting': {
+    title: 'Academic Formatting & Citation Standards Guide: APA 7, Harvard & MLA | MFS Growth',
+    description: 'Complete guide to academic formatting and citation standards. Learn APA 7th edition, Harvard, MLA, IEEE and Oxford referencing principles, literature review structure, and common citation mistakes.',
+    keywords: 'academic citation and formatting guide, APA 7th edition formatting, Harvard referencing guide, MLA citation rules, IEEE citation guide, Oxford referencing, literature review structure, academic formatting guide',
+    canonical: 'https://mfsgrowth.online/guides/academic-formatting-citation',
+    robots: 'index, follow',
+    pageName: 'Academic Formatting & Citation Standards Guide',
+  },
+  'guide-corporate-report': {
+    title: 'Corporate Report Formatting Standards Guide: Professional Structure & Layout | MFS Growth',
+    description: 'Learn professional corporate report formatting standards, including report structure, typography, page layout, tables, charts, executive summaries, and quality-control rules.',
+    keywords: 'corporate report formatting standards, corporate report formatting guide, business report formatting, professional report layout, executive report structure, corporate document formatting, professional report design, business report structure',
+    canonical: 'https://mfsgrowth.online/guides/corporate-report-formatting-standards',
+    robots: 'index, follow',
+    pageName: 'Corporate Report Formatting Standards Guide',
   },
   payment: {
     title: 'Secure Payment Submission | MFS Growth Agency',
@@ -317,6 +370,80 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
             'text': faq.answer
           }
         }))
+      });
+    }
+
+    // Append Article Schema for Guide routes
+    if (currentPage === 'guide-ats-resume') {
+      graphElements.push({
+        '@type': 'Article',
+        '@id': 'https://mfsgrowth.online/guides/ats-resume-engineering#article',
+        'headline': 'ATS Resume Engineering Master Guide: How Applicant Tracking Systems Parse Your Resume',
+        'description': 'Learn how Applicant Tracking Systems (ATS) parse resumes, including single-column formatting, keyword optimization, and ATS readability principles.',
+        'mainEntityOfPage': {
+          '@type': 'WebPage',
+          '@id': 'https://mfsgrowth.online/guides/ats-resume-engineering'
+        },
+        'author': {
+          '@id': 'https://mfsgrowth.online/#organization'
+        },
+        'publisher': {
+          '@id': 'https://mfsgrowth.online/#organization'
+        },
+        'inLanguage': 'en-US'
+      });
+    } else if (currentPage === 'guide-pitch-deck') {
+      graphElements.push({
+        '@type': 'Article',
+        '@id': 'https://mfsgrowth.online/guides/executive-pitch-deck-structure#article',
+        'headline': 'Executive Pitch Deck Structure Guide: The Essential 10-Slide Framework for Investors',
+        'description': 'Learn the essential investor pitch deck sequence, narrative structure, visual hierarchy, and data presentation principles.',
+        'mainEntityOfPage': {
+          '@type': 'WebPage',
+          '@id': 'https://mfsgrowth.online/guides/executive-pitch-deck-structure'
+        },
+        'author': {
+          '@id': 'https://mfsgrowth.online/#organization'
+        },
+        'publisher': {
+          '@id': 'https://mfsgrowth.online/#organization'
+        },
+        'inLanguage': 'en-US'
+      });
+    } else if (currentPage === 'guide-academic-formatting') {
+      graphElements.push({
+        '@type': 'Article',
+        '@id': 'https://mfsgrowth.online/guides/academic-formatting-citation#article',
+        'headline': 'Academic Formatting & Citation Standards Guide: APA 7, Harvard, MLA & IEEE',
+        'description': 'Learn academic formatting and citation principles across APA 7, Harvard, MLA, IEEE and Oxford referencing systems.',
+        'mainEntityOfPage': {
+          '@type': 'WebPage',
+          '@id': 'https://mfsgrowth.online/guides/academic-formatting-citation'
+        },
+        'author': {
+          '@id': 'https://mfsgrowth.online/#organization'
+        },
+        'publisher': {
+          '@id': 'https://mfsgrowth.online/#organization'
+        },
+        'inLanguage': 'en-US'
+      });
+    } else if (currentPage === 'guide-corporate-report') {
+      graphElements.push({
+        '@type': 'Article',
+        '@id': 'https://mfsgrowth.online/guides/corporate-report-formatting-standards#article',
+        'headline': 'Corporate Report Formatting Standards Guide: Professional Structure, Layout & Presentation Rules',
+        'description': 'Learn professional corporate report formatting standards, including report structure, typography, page layout, tables, charts, executive summaries, and quality-control rules.',
+        'mainEntityOfPage': 'https://mfsgrowth.online/guides/corporate-report-formatting-standards',
+        'author': {
+          '@type': 'Organization',
+          'name': 'MFS Growth Agency',
+          '@id': 'https://mfsgrowth.online/#organization'
+        },
+        'publisher': {
+          '@id': 'https://mfsgrowth.online/#organization'
+        },
+        'inLanguage': 'en-US'
       });
     }
 

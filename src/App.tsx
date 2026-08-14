@@ -37,6 +37,10 @@ import { NotFoundPage } from './components/NotFoundPage';
 import { PrivacyPolicyPage } from './components/PrivacyPolicyPage';
 import { TermsOfServicePage } from './components/TermsOfServicePage';
 import { RefundPolicyPage } from './components/RefundPolicyPage';
+import AtsResumeGuidePage from './components/guides/AtsResumeGuidePage';
+import PitchDeckGuidePage from './components/guides/PitchDeckGuidePage';
+import AcademicFormattingGuidePage from './components/guides/AcademicFormattingGuidePage';
+import CorporateReportGuidePage from './components/guides/CorporateReportGuidePage';
 
 type PageType =
   | 'home'
@@ -55,6 +59,10 @@ type PageType =
   | 'terms'
   | 'refund-policy'
   | 'refundpolicy'
+  | 'guide-ats-resume'
+  | 'guide-pitch-deck'
+  | 'guide-academic-formatting'
+  | 'guide-corporate-report'
   | 'notFound';
 
 const VALID_PAGES: PageType[] = [
@@ -74,11 +82,28 @@ const VALID_PAGES: PageType[] = [
   'terms',
   'refund-policy',
   'refundpolicy',
+  'guide-ats-resume',
+  'guide-pitch-deck',
+  'guide-academic-formatting',
+  'guide-corporate-report',
 ];
 
 function getPageFromRoute(): { page: PageType; targetSection?: string } {
   const pathRaw = window.location.pathname.toLowerCase().replace(/^\/+|\/+$/g, '');
   const hashRaw = window.location.hash.toLowerCase().replace(/^#\/?/, '');
+
+    if (pathRaw === 'guides/ats-resume-engineering') {
+      return { page: 'guide-ats-resume' };
+    }
+    if (pathRaw === 'guides/executive-pitch-deck-structure') {
+      return { page: 'guide-pitch-deck' };
+    }
+    if (pathRaw === 'guides/academic-formatting-citation') {
+      return { page: 'guide-academic-formatting' };
+    }
+    if (pathRaw === 'guides/corporate-report-formatting-standards') {
+      return { page: 'guide-corporate-report' };
+    }
 
   const [pathPart] = pathRaw.split('/');
   const [hashPart] = hashRaw.split('?');
@@ -171,6 +196,14 @@ function AppContent() {
         ? targetSection
           ? `/#${targetSection}`
           : '/'
+        : page === 'guide-ats-resume'
+        ? '/guides/ats-resume-engineering'
+        : page === 'guide-pitch-deck'
+        ? '/guides/executive-pitch-deck-structure'
+        : page === 'guide-academic-formatting'
+        ? '/guides/academic-formatting-citation'
+        : page === 'guide-corporate-report'
+        ? '/guides/corporate-report-formatting-standards'
         : `/${page}`;
 
     if (!isFromHistoryPop) {
@@ -249,6 +282,12 @@ function AppContent() {
         ? route.targetSection
           ? `/#${route.targetSection}`
           : '/'
+        : route.page === 'guide-ats-resume'
+        ? '/guides/ats-resume-engineering'
+        : route.page === 'guide-pitch-deck'
+        ? '/guides/executive-pitch-deck-structure'
+        : route.page === 'guide-academic-formatting'
+        ? '/guides/academic-formatting-citation'
         : `/${route.page}`;
 
     if (!window.history.state || !window.history.state.page) {
@@ -499,6 +538,14 @@ function AppContent() {
               onOpenAIChat={handleOpenAIChat}
               onShowToast={triggerToast}
             />
+          ) : currentPage === 'guide-ats-resume' ? (
+            <AtsResumeGuidePage />
+          ) : currentPage === 'guide-pitch-deck' ? (
+            <PitchDeckGuidePage />
+          ) : currentPage === 'guide-academic-formatting' ? (
+            <AcademicFormattingGuidePage />
+          ) : currentPage === 'guide-corporate-report' ? (
+            <CorporateReportGuidePage />
           ) : (
             <NotFoundPage onNavigatePage={handleNavigatePage} />
           )}

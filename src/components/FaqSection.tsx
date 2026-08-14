@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { FAQS } from '../data/content';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ArrowRight, BookOpen } from 'lucide-react';
 
 export const FaqSection: React.FC = () => {
   const [openId, setOpenId] = useState<string | null>('faq-1');
@@ -76,6 +76,23 @@ export const FaqSection: React.FC = () => {
               </motion.div>
             );
           })}
+        </div>
+
+        {/* Knowledge Center / Guides Callout */}
+        <div className="mt-10 text-center">
+          <a
+            href="/faq"
+            onClick={(e) => {
+              e.preventDefault();
+              window.history.pushState({ page: 'faq' }, '', '/faq');
+              window.dispatchEvent(new PopStateEvent('popstate'));
+            }}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#E5C158]/10 hover:bg-[#E5C158]/20 border border-[#E5C158]/30 text-xs font-semibold text-[#E5C158] transition-all cursor-pointer"
+          >
+            <BookOpen className="w-4 h-4 text-[#E5C158]" />
+            <span>Explore Full Knowledge Center & In-Depth Guides</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </a>
         </div>
 
       </div>

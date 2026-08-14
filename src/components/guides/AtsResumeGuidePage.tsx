@@ -915,6 +915,21 @@ export const AtsResumeGuidePage: React.FC<AtsResumeGuidePageProps> = ({
                       <ChevronRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
+
+                  <div className="pt-4 mt-4 border-t border-white/10 flex flex-wrap items-center gap-2 text-xs text-[#9FA0A7]">
+                    <BookOpen className="w-3.5 h-3.5 text-[#E5C158]" />
+                    <span>Preparing an academic CV or research application? Read our </span>
+                    <a
+                      href="/guides/academic-formatting-citation"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleNavClick('/guides/academic-formatting-citation', 'guide-academic-formatting');
+                      }}
+                      className="text-[#E5C158] hover:underline font-semibold"
+                    >
+                      Academic Formatting & Citation Guide →
+                    </a>
+                  </div>
                 </div>
               </div>
             </section>

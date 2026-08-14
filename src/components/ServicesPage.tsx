@@ -1,18 +1,63 @@
 import React, { useState } from 'react';
 import { Currency, ServiceItem } from '../types';
 import { SERVICES, FAQS, WHY_US_ITEMS } from '../data/content';
-import { Sparkles, ArrowRight, CheckCircle2, Clock, Star, Eye, ShieldCheck, FileText, ChevronDown, HelpCircle, X, Zap } from 'lucide-react';
+import { Sparkles, ArrowRight, CheckCircle2, Clock, Star, Eye, ShieldCheck, FileText, ChevronDown, HelpCircle, X, Zap, BookOpen } from 'lucide-react';
 
 interface ServicesPageProps {
   currency: Currency;
   onSelectService: (serviceId: string) => void;
   onOpenCalculator?: () => void;
+  onNavigatePage?: (page: string) => void;
 }
+
+const SERVICE_GUIDE_MAP: Record<string, { page: string; url: string; label: string }> = {
+  'presentation': {
+    page: 'guide-pitch-deck',
+    url: '/guides/executive-pitch-deck-structure',
+    label: 'Explore Pitch Deck Guide',
+  },
+  'pitch-deck': {
+    page: 'guide-pitch-deck',
+    url: '/guides/executive-pitch-deck-structure',
+    label: 'Explore Pitch Deck Guide',
+  },
+  'assignment': {
+    page: 'guide-academic-formatting',
+    url: '/guides/academic-formatting-citation',
+    label: 'Read Academic Formatting Guide',
+  },
+  'case-studies': {
+    page: 'guide-academic-formatting',
+    url: '/guides/academic-formatting-citation',
+    label: 'Read Academic Formatting Guide',
+  },
+  'ats-resume': {
+    page: 'guide-ats-resume',
+    url: '/guides/ats-resume-engineering',
+    label: 'Read ATS Resume Guide',
+  },
+  'resume': {
+    page: 'guide-ats-resume',
+    url: '/guides/ats-resume-engineering',
+    label: 'Read ATS Resume Guide',
+  },
+  'cv-design': {
+    page: 'guide-ats-resume',
+    url: '/guides/ats-resume-engineering',
+    label: 'Read ATS Resume Guide',
+  },
+  'reports': {
+    page: 'guide-corporate-report',
+    url: '/guides/corporate-report-formatting-standards',
+    label: 'Explore Corporate Report Guide',
+  },
+};
 
 export const ServicesPage: React.FC<ServicesPageProps> = ({
   currency,
   onSelectService,
   onOpenCalculator,
+  onNavigatePage,
 }) => {
   const [activeTab, setActiveTab] = useState<'All' | 'Academic' | 'Career' | 'Business'>('All');
   const [selectedDetailService, setSelectedDetailService] = useState<ServiceItem | null>(null);
@@ -150,7 +195,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
 
                 {/* Deliverable Features List */}
                 {service.features && (
-                  <ul className="space-y-2 mb-6 border-t border-white/5 pt-4 text-xs text-neutral-300">
+                  <ul className="space-y-2 mb-4 border-t border-white/5 pt-4 text-xs text-neutral-300">
                     {service.features.map((feat, idx) => (
                       <li key={idx} className="flex items-start gap-2">
                         <CheckCircle2 className="w-3.5 h-3.5 text-[#28C76F] shrink-0 mt-0.5" />
@@ -158,6 +203,30 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                       </li>
                     ))}
                   </ul>
+                )}
+
+                {/* Contextual Inbound Guide Link */}
+                {SERVICE_GUIDE_MAP[service.id] && (
+                  <div className="pt-3 mb-2 border-t border-white/5">
+                    <a
+                      href={SERVICE_GUIDE_MAP[service.id].url}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const guideInfo = SERVICE_GUIDE_MAP[service.id];
+                        if (onNavigatePage) {
+                          onNavigatePage(guideInfo.page);
+                        } else {
+                          window.history.pushState({ page: guideInfo.page }, '', guideInfo.url);
+                          window.dispatchEvent(new PopStateEvent('popstate'));
+                        }
+                      }}
+                      className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#E5C158] hover:text-[#fce888] hover:underline transition-colors cursor-pointer"
+                    >
+                      <BookOpen className="w-3.5 h-3.5 text-[#E5C158]" />
+                      <span>{SERVICE_GUIDE_MAP[service.id].label}</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </a>
+                  </div>
                 )}
               </div>
 

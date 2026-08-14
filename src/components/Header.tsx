@@ -233,6 +233,7 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'services', label: 'Services', hasDropdown: true },
     { id: 'portfolio', label: 'Our Work', isScroll: true, targetSection: 'portfolio' },
     { id: 'pricing', label: 'Pricing' },
+    { id: 'guide-ats-resume', label: 'Guides' },
     { id: 'about', label: 'About' },
     { id: 'reviews', label: 'Reviews' },
     { id: 'contact', label: 'Contact' },
@@ -243,6 +244,7 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'services', label: 'Services' },
     { id: 'portfolio', label: 'Our Work', isScroll: true, targetSection: 'portfolio' },
     { id: 'pricing', label: 'Pricing' },
+    { id: 'guide-ats-resume', label: 'Guides' },
     { id: 'about', label: 'About' },
     { id: 'reviews', label: 'Reviews' },
     { id: 'faq', label: 'FAQ & Support' },
@@ -283,8 +285,16 @@ export const Header: React.FC<HeaderProps> = ({
         <nav className="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="Main Navigation">
           {desktopNavItems.map((item) => {
             const isActive =
-              currentPage === item.id && item.id !== 'portfolio';
-            const itemHref = item.isScroll ? '/#portfolio' : item.id === 'home' ? '/' : `/${item.id}`;
+              (currentPage === item.id || (item.id === 'guide-ats-resume' && currentPage.startsWith('guide-'))) &&
+              item.id !== 'portfolio';
+            const itemHref =
+              item.id === 'guide-ats-resume'
+                ? '/guides/ats-resume-engineering'
+                : item.isScroll
+                ? '/#portfolio'
+                : item.id === 'home'
+                ? '/'
+                : `/${item.id}`;
 
             return (
               <div
