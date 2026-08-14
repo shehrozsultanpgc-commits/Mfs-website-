@@ -259,8 +259,12 @@ export const Header: React.FC<HeaderProps> = ({
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo Anchor */}
-        <button
-          onClick={() => handleNavClick('home')}
+        <a
+          href="/"
+          onClick={(e) => {
+            e.preventDefault();
+            handleNavClick('home');
+          }}
           className="flex items-center gap-2.5 group text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5C158] rounded-lg p-1"
           aria-label="MFS Growth Agency - Return to Home"
         >
@@ -273,13 +277,14 @@ export const Header: React.FC<HeaderProps> = ({
               Digital Agency
             </span>
           </div>
-        </button>
+        </a>
 
         {/* Desktop Navigation Link Hierarchy */}
         <nav className="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="Main Navigation">
           {desktopNavItems.map((item) => {
             const isActive =
               currentPage === item.id && item.id !== 'portfolio';
+            const itemHref = item.isScroll ? '/#portfolio' : item.id === 'home' ? '/' : `/${item.id}`;
 
             return (
               <div
@@ -289,8 +294,10 @@ export const Header: React.FC<HeaderProps> = ({
                 onMouseEnter={() => item.hasDropdown && setShowServicesDropdown(true)}
                 onMouseLeave={() => item.hasDropdown && setShowServicesDropdown(false)}
               >
-                <button
-                  onClick={() => {
+                <a
+                  href={itemHref}
+                  onClick={(e) => {
+                    e.preventDefault();
                     if (item.isScroll) {
                       handleNavClick('home', item.targetSection);
                     } else {
@@ -318,7 +325,7 @@ export const Header: React.FC<HeaderProps> = ({
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
-                </button>
+                </a>
 
                 {/* Services Hover Dropdown */}
                 {item.hasDropdown && showServicesDropdown && (
@@ -627,10 +634,13 @@ export const Header: React.FC<HeaderProps> = ({
                       {mobileNavLinks.map((link) => {
                         const isActive =
                           currentPage === link.id && link.id !== 'portfolio';
+                        const linkHref = link.isScroll ? '/#portfolio' : link.id === 'home' ? '/' : `/${link.id}`;
                         return (
-                          <button
+                          <a
                             key={link.id}
-                            onClick={() => {
+                            href={linkHref}
+                            onClick={(e) => {
+                              e.preventDefault();
                               if (link.isScroll) {
                                 handleNavClick('home', link.targetSection);
                               } else {
@@ -649,7 +659,7 @@ export const Header: React.FC<HeaderProps> = ({
                                 isActive ? 'text-[#E5C158]' : 'text-neutral-500'
                               }`}
                             />
-                          </button>
+                          </a>
                         );
                       })}
                     </div>
