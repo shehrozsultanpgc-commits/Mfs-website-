@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
 import { REVIEWS } from '../data/content';
+import { ReviewSubmissionModal } from './ReviewsPage';
 import {
   Star,
   CheckCircle2,
@@ -10,6 +11,7 @@ import {
   ShieldCheck,
   Filter,
   MessageSquare,
+  MessageSquarePlus,
   Award,
   ChevronRight,
 } from 'lucide-react';
@@ -61,6 +63,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
   onOpenOrderModal,
 }) => {
   const [selectedServiceFilter, setSelectedServiceFilter] = useState<string>('All');
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
 
   // Dynamic Metrics derived strictly from existing dataset
   const metrics = useMemo(() => {
@@ -292,28 +295,48 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
           ))}
         </div>
 
-        {/* 5. Navigation Action CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          {onNavigatePage && (
+        {/* 5. Navigation & Review Action CTAs */}
+        <div className="flex flex-col items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
             <button
-              onClick={() => onNavigatePage('reviews')}
-              className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#E5C158] text-[#050507] font-bold text-xs sm:text-sm hover:bg-[#fce888] transition-all shadow-[0_0_25px_rgba(229,193,88,0.25)] cursor-pointer flex items-center justify-center gap-2"
+              onClick={() => setIsReviewModalOpen(true)}
+              className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#E5C158] text-[#050507] font-bold text-xs sm:text-sm hover:bg-[#fce888] transition-all shadow-[0_0_25px_rgba(229,193,88,0.25)] cursor-pointer flex items-center justify-center gap-2 min-h-[44px]"
             >
-              <span>View All Verified Reviews</span>
-              <ArrowRight className="w-4 h-4" />
+              <MessageSquarePlus className="w-4 h-4" />
+              <span>Write a Review</span>
             </button>
-          )}
 
-          {onOpenOrderModal && (
-            <button
-              onClick={() => onOpenOrderModal('presentation')}
-              className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white/10 text-white hover:bg-white/20 border border-white/15 font-bold text-xs sm:text-sm transition-all cursor-pointer flex items-center justify-center gap-2"
-            >
-              <span>Place Your Project Order</span>
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          )}
+            {onNavigatePage && (
+              <button
+                onClick={() => onNavigatePage('reviews')}
+                className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white/10 text-white hover:bg-white/20 border border-white/15 font-bold text-xs sm:text-sm transition-all cursor-pointer flex items-center justify-center gap-2 min-h-[44px]"
+              >
+                <span>View All Verified Reviews</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            )}
+
+            {onOpenOrderModal && (
+              <button
+                onClick={() => onOpenOrderModal('presentation')}
+                className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white/10 text-white hover:bg-white/20 border border-white/15 font-bold text-xs sm:text-sm transition-all cursor-pointer flex items-center justify-center gap-2 min-h-[44px]"
+              >
+                <span>Place Your Project Order</span>
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            )}
+          </div>
+
+          <p className="text-xs text-neutral-400 text-center">
+            Completed an order with MFS Growth? Share your experience.
+          </p>
         </div>
+
+        {/* 6. Review Submission Modal */}
+        <ReviewSubmissionModal
+          isOpen={isReviewModalOpen}
+          onClose={() => setIsReviewModalOpen(false)}
+        />
 
       </div>
     </section>

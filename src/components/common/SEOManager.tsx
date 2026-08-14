@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { FAQS } from '../../data/content';
 
 interface SEOProps {
-  currentPage: 'home' | 'services' | 'pricing' | 'reviews' | 'about' | 'contact' | 'faq' | 'order' | 'payment' | 'confirmation' | 'dashboard' | 'admin' | 'notFound';
+  currentPage: 'home' | 'services' | 'pricing' | 'reviews' | 'about' | 'contact' | 'faq' | 'order' | 'payment' | 'confirmation' | 'dashboard' | 'admin' | 'privacy' | 'terms' | 'refund-policy' | 'refundpolicy' | 'notFound';
 }
 
 const PAGE_SEO_DATA: Record<string, {
@@ -76,6 +76,38 @@ const PAGE_SEO_DATA: Record<string, {
     canonical: 'https://mfsgrowth.online/order',
     robots: 'index, follow',
     pageName: 'Order Online',
+  },
+  privacy: {
+    title: 'Privacy Policy | MFS Growth Agency',
+    description: 'Read the MFS Growth Agency privacy policy covering customer information, project files, payment information, communications, and data security.',
+    keywords: 'MFS Growth Agency privacy policy, data security, client confidentiality, project file protection',
+    canonical: 'https://mfsgrowth.online/privacy',
+    robots: 'index, follow',
+    pageName: 'Privacy Policy',
+  },
+  terms: {
+    title: 'Terms of Service | MFS Growth Agency',
+    description: 'Review the MFS Growth Agency terms of service covering orders, payments, services, revisions, delivery, responsibilities, and service policies.',
+    keywords: 'MFS Growth Agency terms of service, service agreement, revision policy, payment terms',
+    canonical: 'https://mfsgrowth.online/terms',
+    robots: 'index, follow',
+    pageName: 'Terms of Service',
+  },
+  'refund-policy': {
+    title: 'Refund & Cancellation Policy | MFS Growth Agency',
+    description: 'Review MFS Growth Agency refund, cancellation, revision, payment, and service dispute policies.',
+    keywords: 'MFS Growth Agency refund policy, cancellation policy, revision guarantee, order refund',
+    canonical: 'https://mfsgrowth.online/refund-policy',
+    robots: 'index, follow',
+    pageName: 'Refund Policy',
+  },
+  refundpolicy: {
+    title: 'Refund & Cancellation Policy | MFS Growth Agency',
+    description: 'Review MFS Growth Agency refund, cancellation, revision, payment, and service dispute policies.',
+    keywords: 'MFS Growth Agency refund policy, cancellation policy, revision guarantee, order refund',
+    canonical: 'https://mfsgrowth.online/refund-policy',
+    robots: 'index, follow',
+    pageName: 'Refund Policy',
   },
   payment: {
     title: 'Secure Payment Submission | MFS Growth Agency',

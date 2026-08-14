@@ -348,50 +348,145 @@ export const AboutPage: React.FC<AboutPageProps> = ({
         </div>
       </section>
 
-      {/* 4. Quality Assurance Infrastructure */}
+      {/* 4. Quality Assurance & Data Confidentiality Standards */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        <div className="glass-card rounded-3xl border border-white/10 p-8 sm:p-12 relative overflow-hidden bg-gradient-to-br from-black via-[#0F0F0F] to-black">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="font-poppins text-xs font-bold uppercase tracking-widest text-[#E5C158] block mb-2">
-              AGENCY PROTOCOLS
-            </span>
+        <div className="glass-card rounded-3xl border border-[#E5C158]/30 p-8 sm:p-12 relative overflow-hidden bg-gradient-to-br from-[#0A0A0F] via-[#050507] to-black shadow-2xl">
+          {/* Header */}
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E5C158]/10 border border-[#E5C158]/30 text-[#E5C158] text-xs font-bold uppercase tracking-widest mb-4">
+              <ShieldCheck className="w-4 h-4 text-[#E5C158]" />
+              <span>AGENCY STANDARDS & CONFIDENTIALITY</span>
+            </div>
             <h2 className="text-2xl sm:text-4xl font-poppins font-bold text-white mb-4">
-              Our Quality Assurance Infrastructure
+              Quality Assurance & Data Confidentiality Standards
             </h2>
-            <p className="text-neutral-300 text-xs sm:text-sm">
-              Every deliverable passes through a dual-tier editorial pipeline combining senior subject matter experts with AI-assisted formatting verification.
+            <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed">
+              Our multi-phase quality control pipeline ensures every deliverable meets rigorous formatting standards while your personal files and project details remain strictly confidential.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 space-y-3">
-              <span className="inline-block text-[10px] font-bold text-[#E5C158] bg-[#E5C158]/10 border border-[#E5C158]/20 px-2.5 py-1 rounded">
-                Tier 1: Subject Matter Drafting
-              </span>
-              <h3 className="font-poppins font-bold text-white text-base">Expert Content Development</h3>
+          {/* 3 QA Stages */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 space-y-3 relative hover:border-[#E5C158]/40 transition-colors group">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-mono font-bold text-[#E5C158] bg-[#E5C158]/10 border border-[#E5C158]/30 px-2.5 py-1 rounded-full uppercase">
+                  Stage 01
+                </span>
+                <FileCheck className="w-5 h-5 text-[#E5C158]" />
+              </div>
+              <h3 className="font-poppins font-bold text-white text-base group-hover:text-[#E5C158] transition-colors">
+                Format & Rubric Verification
+              </h3>
               <p className="text-xs text-neutral-300 leading-relaxed">
-                Projects are assigned strictly to discipline-matched specialists (MBA strategists, academic researchers, or ATS certified resume engineers) who craft the core narrative and slide structure.
+                Submitted requirements, formatting instructions, academic rubrics, citation styles (APA, Harvard, MLA, IEEE, Oxford), slide layouts, and project scope are thoroughly reviewed before work begins to guarantee alignment with your brief.
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 space-y-3">
-              <span className="inline-block text-[10px] font-bold text-[#28C76F] bg-[#28C76F]/10 border border-[#28C76F]/20 px-2.5 py-1 rounded">
-                Tier 2: Plagiarism & Citation Audit
-              </span>
-              <h3 className="font-poppins font-bold text-white text-base">Integrity & Style Verification</h3>
+            <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 space-y-3 relative hover:border-[#28C76F]/40 transition-colors group">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-mono font-bold text-[#28C76F] bg-[#28C76F]/10 border border-[#28C76F]/30 px-2.5 py-1 rounded-full uppercase">
+                  Stage 02
+                </span>
+                <CheckCircle2 className="w-5 h-5 text-[#28C76F]" />
+              </div>
+              <h3 className="font-poppins font-bold text-white text-base group-hover:text-[#28C76F] transition-colors">
+                Custom Originality Audit
+              </h3>
               <p className="text-xs text-neutral-300 leading-relaxed">
-                Submissions undergo Turnitin plagiarism verification and citation auditing (APA, Harvard, MLA) to guarantee 100% original academic and executive standards.
+                Presentations, research reports, ATS resumes, and formatting deliverables are prepared custom according to your specific guidelines. All projects are drafted from scratch to deliver original, authentic work tailored to your objectives.
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 space-y-3">
-              <span className="inline-block text-[10px] font-bold text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2.5 py-1 rounded">
-                Tier 3: Gold Polish & Visual Polish
-              </span>
-              <h3 className="font-poppins font-bold text-white text-base">Typography & Layout Review</h3>
+            <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 space-y-3 relative hover:border-[#E5C158]/40 transition-colors group">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-mono font-bold text-[#E5C158] bg-[#E5C158]/10 border border-[#E5C158]/30 px-2.5 py-1 rounded-full uppercase">
+                  Stage 03
+                </span>
+                <ShieldCheck className="w-5 h-5 text-[#E5C158]" />
+              </div>
+              <h3 className="font-poppins font-bold text-white text-base group-hover:text-[#E5C158] transition-colors">
+                Pre-Delivery Quality Check
+              </h3>
               <p className="text-xs text-neutral-300 leading-relaxed">
-                Design leads adjust font hierarchy, spacing, contrast ratios, and color palettes according to strict visual guidelines before final delivery to your dashboard.
+                Deliverables receive a comprehensive final inspection for visual hierarchy, typography, data graphics, and reference accuracy before being released through the Client Dashboard, WhatsApp, or Email.
               </p>
+            </div>
+          </div>
+
+          {/* Data Confidentiality Subsection */}
+          <div className="pt-8 border-t border-white/10">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-[#28C76F]/10 border border-[#28C76F]/30 flex items-center justify-center text-[#28C76F] shrink-0">
+                <Lock className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="font-poppins font-bold text-white text-lg">
+                  Data Confidentiality & File Privacy
+                </h3>
+                <p className="text-xs text-neutral-400">
+                  How we protect your project materials, personal data, and payment verification proofs.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-xs text-neutral-300">
+              <div className="p-4 rounded-xl bg-black/40 border border-white/5 space-y-2">
+                <span className="font-bold text-white block">Project File Protection</span>
+                <p className="leading-relaxed">
+                  Uploaded guidelines, briefs, and source files are handled confidentially and accessed strictly by assigned project specialists during execution.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-black/40 border border-white/5 space-y-2">
+                <span className="font-bold text-white block">Payment Verification Security</span>
+                <p className="leading-relaxed">
+                  Payment transfer screenshots uploaded during manual checkout (EasyPaisa, JazzCash, Askari Bank) are used solely for invoice validation and accounting.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-black/40 border border-white/5 space-y-2">
+                <span className="font-bold text-white block">Portfolio Anonymization</span>
+                <p className="leading-relaxed">
+                  Client identities, academic institutions, and personal details are never published publicly or showcased without explicit consent and anonymization.
+                </p>
+              </div>
+            </div>
+
+            <p className="text-[11px] text-neutral-400 italic mb-8 bg-white/[0.01] p-3 rounded-lg border border-white/5">
+              * Safety Note: While no internet data transmission can guarantee 100% absolute security, MFS Growth Agency adheres to strict internal file confidentiality and operational privacy protocols.
+            </p>
+
+            {/* Internal CTA Links */}
+            <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/5">
+              <div className="flex items-center gap-6">
+                <a
+                  href="/services"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigatePage('services');
+                  }}
+                  className="inline-flex items-center gap-2 text-xs font-bold text-[#E5C158] hover:underline cursor-pointer"
+                >
+                  <span>Explore Our Services</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+
+                <a
+                  href="/contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigatePage('contact' as any);
+                  }}
+                  className="inline-flex items-center gap-2 text-xs font-semibold text-neutral-300 hover:text-white transition-colors cursor-pointer"
+                >
+                  <span>Contact the Quality Team</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+
+              <span className="text-[10px] font-mono text-neutral-500">
+                QA-SLA-VERIFIED • MFS GROWTH
+              </span>
             </div>
           </div>
         </div>

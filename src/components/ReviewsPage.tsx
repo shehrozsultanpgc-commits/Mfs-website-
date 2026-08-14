@@ -63,23 +63,283 @@ const ReviewAvatar: React.FC<{
   );
 };
 
+export interface ReviewSubmissionModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onShowToast?: (msg: string) => void;
+}
+
+export const ReviewSubmissionModal: React.FC<ReviewSubmissionModalProps> = ({
+  isOpen,
+  onClose,
+  onShowToast,
+}) => {
+  const [displayName, setDisplayName] = useState('');
+  const [service, setService] = useState('Presentation Design');
+  const [rating, setRating] = useState(5);
+  const [review, setReview] = useState('');
+  const [orderId, setOrderId] = useState('');
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+
+  if (!isOpen) return null;
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMessage('');
+
+    if (!displayName.trim()) {
+      setErrorMessage('Please enter your full name or display name.');
+      return;
+    }
+    if (!service) {
+      setErrorMessage('Please select the service purchased.');
+      return;
+    }
+    if (rating < 1 || rating > 5) {
+      setErrorMessage('Please select a star rating between 1 and 5.');
+      return;
+    }
+    if (review.trim().length < 10) {
+      setErrorMessage('Please write a review with at least 10 characters.');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const submissionItem = {
+        id: `rev-sub-${Date.now()}`,
+        displayName: displayName.trim(),
+        service,
+        rating,
+        review: review.trim(),
+        orderId: orderId.trim() || undefined,
+        email: email.trim() || undefined,
+        submittedAt: new Date().toISOString(),
+        status: 'pending',
+      };
+
+      try {
+        const existingRaw = localStorage.getItem('mfs_growth_review_submissions');
+        const existing = existingRaw ? JSON.parse(existingRaw) : [];
+        const updated = [submissionItem, ...existing];
+        localStorage.setItem('mfs_growth_review_submissions', JSON.stringify(updated));
+      } catch (err) {
+        console.warn('LocalStorage unavailable for review queue', err);
+      }
+
+      const msg =
+        'Thank you! Your review has been submitted for moderation. Verified reviews may be published after moderation.';
+      setSuccessMessage(msg);
+
+      if (onShowToast) {
+        onShowToast(msg);
+      }
+
+      setDisplayName('');
+      setService('Presentation Design');
+      setRating(5);
+      setReview('');
+      setOrderId('');
+      setEmail('');
+
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setSuccessMessage('');
+        onClose();
+      }, 2500);
+    } catch (error) {
+      setIsSubmitting(false);
+      setErrorMessage('An unexpected error occurred. Please try again.');
+    }
+  };
+
+  return (
+    <AnimatePresence>
+      <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md overflow-y-auto pt-[max(0.75rem,env(safe-area-inset-top))] pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: 10 }}
+          transition={{ duration: 0.2 }}
+          className="bg-[#0D0D12] rounded-3xl border border-white/20 p-6 sm:p-8 max-w-md w-full relative shadow-2xl overflow-y-auto max-h-[90vh]"
+        >
+          <button
+            onClick={onClose}
+            aria-label="Close review modal"
+            className="absolute top-5 right-5 text-neutral-400 hover:text-white p-2 rounded-full hover:bg-white/10 transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
+          >
+            <X className="w-5 h-5" />
+          </button>
+
+          <div className="flex items-center gap-2 mb-2">
+            <ShieldCheck className="w-5 h-5 text-[#E5C158]" />
+            <h3 className="text-xl font-poppins font-bold text-white">Write a Review</h3>
+          </div>
+          <p className="text-xs text-neutral-400 mb-6">
+            Completed an order with MFS Growth? Share your experience with our team.
+          </p>
+
+          {successMessage ? (
+            <div className="p-4 rounded-2xl bg-[#28C76F]/10 border border-[#28C76F]/30 text-[#28C76F] text-xs leading-relaxed text-center space-y-2 my-4">
+              <CheckCircle2 className="w-8 h-8 mx-auto text-[#28C76F]" />
+              <p className="font-bold">{successMessage}</p>
+              <p className="text-[11px] text-neutral-300">
+                Verified reviews are published to the site after moderation.
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4 text-left">
+              {errorMessage && (
+                <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs">
+                  {errorMessage}
+                </div>
+              )}
+
+              <div>
+                <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                  Display Name <span className="text-[#E5C158]">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={displayName}
+                  onChange={(e) => setDisplayName(e.target.value)}
+                  placeholder="e.g. Ali Hassan or Fatima K."
+                  className="w-full bg-black/60 border border-white/10 rounded-2xl px-4 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#E5C158] transition-colors"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                  Service Category <span className="text-[#E5C158]">*</span>
+                </label>
+                <select
+                  value={service}
+                  onChange={(e) => setService(e.target.value)}
+                  className="w-full bg-black/60 border border-white/10 rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#E5C158] transition-colors cursor-pointer"
+                >
+                  <option value="Presentation Design">Presentation Design</option>
+                  <option value="Assignment Writing">Assignment Writing</option>
+                  <option value="ATS Resume Engineering">ATS Resume Engineering</option>
+                  <option value="Corporate Report Formatting">Corporate Report Formatting</option>
+                  <option value="Investor Pitch Decks">Investor Pitch Decks</option>
+                  <option value="Research & Case Studies">Research & Case Studies</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                  Rating <span className="text-[#E5C158]">*</span>
+                </label>
+                <div className="flex items-center gap-1.5 bg-black/40 p-2.5 rounded-2xl border border-white/10">
+                  {[1, 2, 3, 4, 5].map((s) => (
+                    <button
+                      type="button"
+                      key={s}
+                      onClick={() => setRating(s)}
+                      aria-label={`Select ${s} star${s > 1 ? 's' : ''}`}
+                      className="p-1 cursor-pointer transition-transform hover:scale-110 min-h-[44px] min-w-[44px] flex items-center justify-center"
+                    >
+                      <Star
+                        className={`w-6 h-6 ${
+                          s <= rating
+                            ? 'text-[#E5C158] fill-[#E5C158]'
+                            : 'text-neutral-600'
+                        }`}
+                      />
+                    </button>
+                  ))}
+                  <span className="text-xs font-bold text-[#E5C158] ml-2">
+                    {rating}.0 / 5.0
+                  </span>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                  Your Review <span className="text-[#E5C158]">*</span>
+                </label>
+                <textarea
+                  required
+                  rows={4}
+                  value={review}
+                  onChange={(e) => setReview(e.target.value)}
+                  placeholder="Describe your experience with our quality, turnaround time, and overall service..."
+                  className="w-full bg-black/60 border border-white/10 rounded-2xl p-3.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#E5C158] transition-colors resize-none"
+                />
+                <span className="text-[10px] text-neutral-500 block mt-1">
+                  Minimum 10 characters required.
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                <div>
+                  <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                    Order ID <span className="text-neutral-500 font-normal">(Optional)</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={orderId}
+                    onChange={(e) => setOrderId(e.target.value)}
+                    placeholder="#MFS-XXXXX"
+                    className="w-full bg-black/60 border border-white/10 rounded-2xl px-3.5 py-2 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#E5C158] transition-colors"
+                  />
+                  <span className="text-[9px] text-neutral-500 block mt-0.5">
+                    For verification only. Never published publicly.
+                  </span>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                    Email Address <span className="text-neutral-500 font-normal">(Optional)</span>
+                  </label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="your.email@example.com"
+                    className="w-full bg-black/60 border border-white/10 rounded-2xl px-3.5 py-2 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#E5C158] transition-colors"
+                  />
+                  <span className="text-[9px] text-neutral-500 block mt-0.5">
+                    For moderation updates. Never published publicly.
+                  </span>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full py-3.5 rounded-2xl bg-[#E5C158] text-[#050507] font-bold text-xs hover:bg-[#fce888] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg mt-2 min-h-[44px] disabled:opacity-50"
+              >
+                <Send className="w-4 h-4" />
+                <span>{isSubmitting ? 'Submitting...' : 'Submit Review for Moderation'}</span>
+              </button>
+
+              <p className="text-[10px] text-neutral-400 text-center pt-1">
+                Verified reviews are published to the site after moderation.
+              </p>
+            </form>
+          )}
+        </motion.div>
+      </div>
+    </AnimatePresence>
+  );
+};
+
 export const ReviewsPage: React.FC<ReviewsPageProps> = ({
   onOpenOrderModal,
   onShowToast,
 }) => {
-  const [reviewsList, setReviewsList] = useState<ReviewItem[]>(REVIEWS);
+  const [reviewsList] = useState<ReviewItem[]>(REVIEWS);
   const [activeFilter, setActiveFilter] = useState<
     'all' | 'pakistan' | 'me' | 'western' | 'academic' | 'career'
   >('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
-
-  // New review form state
-  const [newReviewName, setNewReviewName] = useState('');
-  const [newReviewCountry, setNewReviewCountry] = useState('Pakistan');
-  const [newReviewService, setNewReviewService] = useState('Presentation Design');
-  const [newReviewRating, setNewReviewRating] = useState(5);
-  const [newReviewText, setNewReviewText] = useState('');
 
   // Dynamic Trust Metrics calculated strictly from dataset
   const metrics = useMemo(() => {
@@ -147,34 +407,6 @@ export const ReviewsPage: React.FC<ReviewsPageProps> = ({
       return true;
     });
   }, [reviewsList, searchQuery, activeFilter]);
-
-  const handleAddReview = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newReviewName.trim() || !newReviewText.trim()) return;
-
-    const newRev: ReviewItem = {
-      id: `rev-custom-${Date.now()}`,
-      name: newReviewName.trim(),
-      location: `${newReviewCountry}`,
-      country: newReviewCountry,
-      countryFlag: newReviewCountry === 'Pakistan' ? '🇵🇰' : '🌐',
-      service: newReviewService,
-      date: 'Just now',
-      rating: newReviewRating,
-      text: newReviewText.trim(),
-      verified: true,
-      avatarBg: '#1A1A1D',
-    };
-
-    setReviewsList([newRev, ...reviewsList]);
-    setIsSubmitModalOpen(false);
-    setNewReviewName('');
-    setNewReviewText('');
-
-    if (onShowToast) {
-      onShowToast('Thank you! Your verified review has been published successfully.');
-    }
-  };
 
   return (
     <div className="w-full pt-28 sm:pt-32 pb-20 bg-[#050507] text-white min-h-screen">
@@ -253,14 +485,19 @@ export const ReviewsPage: React.FC<ReviewsPageProps> = ({
             )}
           </div>
 
-          {/* Action Button */}
-          <button
-            onClick={() => setIsSubmitModalOpen(true)}
-            className="w-full md:w-auto px-6 py-3 rounded-2xl bg-[#E5C158] text-[#050507] font-bold text-xs hover:bg-[#fce888] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shrink-0"
-          >
-            <MessageSquarePlus className="w-4 h-4" />
-            <span>Leave a Review</span>
-          </button>
+          {/* Action Button & Supporting Copy */}
+          <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+            <span className="text-xs text-neutral-400 hidden lg:inline">
+              Completed an order with MFS Growth? Share your experience.
+            </span>
+            <button
+              onClick={() => setIsSubmitModalOpen(true)}
+              className="w-full md:w-auto px-6 py-3 rounded-2xl bg-[#E5C158] text-[#050507] font-bold text-xs hover:bg-[#fce888] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shrink-0 min-h-[44px]"
+            >
+              <MessageSquarePlus className="w-4 h-4" />
+              <span>Write a Review</span>
+            </button>
+          </div>
         </div>
 
         {/* Filter Chips */}
@@ -400,141 +637,11 @@ export const ReviewsPage: React.FC<ReviewsPageProps> = ({
       </section>
 
       {/* 5. Submit Review Modal */}
-      <AnimatePresence>
-        {isSubmitModalOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md overflow-y-auto pt-[max(0.75rem,env(safe-area-inset-top))] pb-[max(0.75rem,env(safe-area-inset-bottom))]">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              transition={{ duration: 0.2 }}
-              className="bg-[#0D0D12] rounded-3xl border border-white/20 p-6 sm:p-8 max-w-md w-full relative shadow-2xl overflow-y-auto max-h-[90vh]"
-            >
-              <button
-                onClick={() => setIsSubmitModalOpen(false)}
-                className="absolute top-5 right-5 text-neutral-400 hover:text-white p-2 rounded-full hover:bg-white/10 transition-colors cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              <div className="flex items-center gap-2 mb-2">
-                <ShieldCheck className="w-5 h-5 text-[#E5C158]" />
-                <h3 className="text-xl font-poppins font-bold text-white">Leave a Review</h3>
-              </div>
-              <p className="text-xs text-neutral-400 mb-6">
-                Share your experience with MFS Growth Agency services.
-              </p>
-
-              <form onSubmit={handleAddReview} className="space-y-4 text-left">
-                <div>
-                  <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
-                    Your Full Name <span className="text-[#E5C158]">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={newReviewName}
-                    onChange={(e) => setNewReviewName(e.target.value)}
-                    placeholder="e.g. Sarah Ahmed"
-                    className="w-full bg-black/60 border border-white/10 rounded-2xl px-4 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#E5C158] transition-colors"
-                  />
-                </div>
-
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
-                      Country
-                    </label>
-                    <select
-                      value={newReviewCountry}
-                      onChange={(e) => setNewReviewCountry(e.target.value)}
-                      className="w-full bg-black/60 border border-white/10 rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#E5C158] transition-colors cursor-pointer"
-                    >
-                      <option value="Pakistan">Pakistan 🇵🇰</option>
-                      <option value="UAE">UAE 🇦🇪</option>
-                      <option value="Saudi Arabia">Saudi Arabia 🇸🇦</option>
-                      <option value="United Kingdom">United Kingdom 🇬🇧</option>
-                      <option value="United States">United States 🇺🇸</option>
-                      <option value="Canada">Canada 🇨🇦</option>
-                      <option value="Australia">Australia 🇦🇺</option>
-                      <option value="Germany">Germany 🇩🇪</option>
-                      <option value="Malaysia">Malaysia 🇲🇾</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
-                      Service
-                    </label>
-                    <select
-                      value={newReviewService}
-                      onChange={(e) => setNewReviewService(e.target.value)}
-                      className="w-full bg-black/60 border border-white/10 rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#E5C158] transition-colors cursor-pointer"
-                    >
-                      <option value="Presentation Design">Presentation Design</option>
-                      <option value="Assignment Writing">Assignment Writing</option>
-                      <option value="ATS Resume Engineering">ATS Resume Engineering</option>
-                      <option value="CV Design & Cover Letter">CV Design & Cover Letter</option>
-                      <option value="Research Reports">Research Reports</option>
-                      <option value="Investor Pitch Decks">Investor Pitch Decks</option>
-                      <option value="Proposal Writing">Proposal Writing</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
-                    Rating
-                  </label>
-                  <div className="flex items-center gap-1.5 bg-black/40 p-2.5 rounded-2xl border border-white/10">
-                    {[1, 2, 3, 4, 5].map((s) => (
-                      <button
-                        type="button"
-                        key={s}
-                        onClick={() => setNewReviewRating(s)}
-                        className="p-1 cursor-pointer transition-transform hover:scale-110 min-h-[44px] min-w-[44px] flex items-center justify-center"
-                      >
-                        <Star
-                          className={`w-6 h-6 ${
-                            s <= newReviewRating
-                              ? 'text-[#E5C158] fill-[#E5C158]'
-                              : 'text-neutral-600'
-                          }`}
-                        />
-                      </button>
-                    ))}
-                    <span className="text-xs font-bold text-[#E5C158] ml-2">
-                      {newReviewRating}.0 / 5.0
-                    </span>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
-                    Review Experience <span className="text-[#E5C158]">*</span>
-                  </label>
-                  <textarea
-                    required
-                    rows={4}
-                    value={newReviewText}
-                    onChange={(e) => setNewReviewText(e.target.value)}
-                    placeholder="Describe your project quality, delivery speed, and overall satisfaction..."
-                    className="w-full bg-black/60 border border-white/10 rounded-2xl p-3.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#E5C158] transition-colors resize-none"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full py-3.5 rounded-2xl bg-[#E5C158] text-[#050507] font-bold text-xs hover:bg-[#fce888] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg mt-2 min-h-[44px]"
-                >
-                  <Send className="w-4 h-4" />
-                  <span>Submit Verified Review</span>
-                </button>
-              </form>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+      <ReviewSubmissionModal
+        isOpen={isSubmitModalOpen}
+        onClose={() => setIsSubmitModalOpen(false)}
+        onShowToast={onShowToast}
+      />
     </div>
   );
 };

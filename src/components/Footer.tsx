@@ -16,7 +16,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-16">
           
           {/* Col 1: Brand & Desc */}
-          <div className="lg:col-span-4 flex flex-col gap-4">
+          <div className="lg:col-span-3 flex flex-col gap-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#E5C158] to-[#C5A847] flex items-center justify-center text-[#050507] font-extrabold text-sm shadow-md">
                 MFS
@@ -58,7 +58,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
           </div>
 
           {/* Col 2: Services */}
-          <div className="lg:col-span-3 flex flex-col gap-3">
+          <div className="lg:col-span-2 flex flex-col gap-3">
             <h4 className="font-poppins font-bold uppercase tracking-wider text-white text-xs mb-2">
               Services
             </h4>
@@ -148,7 +148,35 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
             </a>
           </div>
 
-          {/* Col 4: Contact Info */}
+          {/* Col 4: Legal & Policies */}
+          <div className="lg:col-span-2 flex flex-col gap-3">
+            <h4 className="font-poppins font-bold uppercase tracking-wider text-white text-xs mb-2">
+              Legal & Policies
+            </h4>
+            <a
+              href="/privacy"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('privacy') : undefined; }}
+              className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
+            >
+              Privacy Policy
+            </a>
+            <a
+              href="/terms"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('terms') : undefined; }}
+              className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
+            >
+              Terms of Service
+            </a>
+            <a
+              href="/refund-policy"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('refund-policy') : undefined; }}
+              className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
+            >
+              Refund Policy
+            </a>
+          </div>
+
+          {/* Col 5: Contact Info */}
           <div className="lg:col-span-3 flex flex-col gap-3">
             <h4 className="font-poppins font-bold uppercase tracking-wider text-white text-xs mb-2">
               Contact Info
@@ -181,9 +209,27 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
         <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-neutral-500 text-[11px]">
           <p>© 2026 MFS Growth Agency. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-[#E5C158] transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-[#E5C158] transition-colors">Terms & Conditions</a>
-            <a href="#" className="hover:text-[#E5C158] transition-colors">Refund Policy</a>
+            <a
+              href="/privacy"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('privacy') : undefined; }}
+              className="hover:text-[#E5C158] transition-colors"
+            >
+              Privacy Policy
+            </a>
+            <a
+              href="/terms"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('terms') : undefined; }}
+              className="hover:text-[#E5C158] transition-colors"
+            >
+              Terms of Service
+            </a>
+            <a
+              href="/refund-policy"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('refund-policy') : undefined; }}
+              className="hover:text-[#E5C158] transition-colors"
+            >
+              Refund Policy
+            </a>
             {onNavigatePage && (
               <button
                 onClick={() => onNavigatePage('admin')}

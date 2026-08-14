@@ -34,6 +34,9 @@ import { AuthProvider } from './context/AuthContext';
 import { RequireAdmin, RequireClient } from './components/AuthGuards';
 import { AdminGuard } from './components/admin/AdminGuard';
 import { NotFoundPage } from './components/NotFoundPage';
+import { PrivacyPolicyPage } from './components/PrivacyPolicyPage';
+import { TermsOfServicePage } from './components/TermsOfServicePage';
+import { RefundPolicyPage } from './components/RefundPolicyPage';
 
 type PageType =
   | 'home'
@@ -48,6 +51,10 @@ type PageType =
   | 'confirmation'
   | 'dashboard'
   | 'admin'
+  | 'privacy'
+  | 'terms'
+  | 'refund-policy'
+  | 'refundpolicy'
   | 'notFound';
 
 const VALID_PAGES: PageType[] = [
@@ -63,6 +70,10 @@ const VALID_PAGES: PageType[] = [
   'confirmation',
   'dashboard',
   'admin',
+  'privacy',
+  'terms',
+  'refund-policy',
+  'refundpolicy',
 ];
 
 function getPageFromRoute(): { page: PageType; targetSection?: string } {
@@ -469,6 +480,24 @@ function AppContent() {
               onOpenAIChat={handleOpenAIChat}
               onShowToast={triggerToast}
               onNavigatePage={handleNavigatePage}
+            />
+          ) : currentPage === 'privacy' ? (
+            <PrivacyPolicyPage
+              onNavigatePage={handleNavigatePage}
+              onOpenAIChat={handleOpenAIChat}
+              onShowToast={triggerToast}
+            />
+          ) : currentPage === 'terms' ? (
+            <TermsOfServicePage
+              onNavigatePage={handleNavigatePage}
+              onOpenAIChat={handleOpenAIChat}
+              onShowToast={triggerToast}
+            />
+          ) : currentPage === 'refund-policy' || currentPage === 'refundpolicy' ? (
+            <RefundPolicyPage
+              onNavigatePage={handleNavigatePage}
+              onOpenAIChat={handleOpenAIChat}
+              onShowToast={triggerToast}
             />
           ) : (
             <NotFoundPage onNavigatePage={handleNavigatePage} />
