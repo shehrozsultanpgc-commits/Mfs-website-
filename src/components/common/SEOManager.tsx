@@ -180,13 +180,17 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         '@id': 'https://mfsgrowth.online/#organization',
         'name': 'MFS Growth Agency',
         'alternateName': ['MFS Growth Agency Pakistan', 'MFS Growth Online'],
-        'url': 'https://mfsgrowth.online',
+        'url': 'https://mfsgrowth.online/',
         'logo': 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=200&q=80',
         'description': 'MFS Growth Agency provides executive presentation design, custom academic assignment writing, ATS resume engineering, and corporate report formatting for students and professionals in Pakistan and globally.',
         'telephone': '+923015323689',
         'email': 'mfsmedia.agency@gmail.com',
         'priceRange': '$$',
         'paymentAccepted': 'EasyPaisa, JazzCash, Bank Transfer',
+        'sameAs': [
+          'https://www.instagram.com/mfsgrowth',
+          'https://www.facebook.com/MFSGrowth'
+        ],
         'areaServed': [
           { '@type': 'Country', 'name': 'Pakistan' },
           { '@type': 'Country', 'name': 'United States' },
@@ -242,7 +246,7 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
       {
         '@type': 'WebSite',
         '@id': 'https://mfsgrowth.online/#website',
-        'url': 'https://mfsgrowth.online',
+        'url': 'https://mfsgrowth.online/',
         'name': 'MFS Growth Agency',
         'publisher': {
           '@id': 'https://mfsgrowth.online/#organization'

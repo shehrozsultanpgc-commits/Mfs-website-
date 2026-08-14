@@ -35,7 +35,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
               <motion.a
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
-                href="https://instagram.com/mfsgrowth"
+                href="https://www.instagram.com/mfsgrowth"
                 target="_blank"
                 rel="noreferrer"
                 className="w-9 h-9 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center text-neutral-400 hover:text-[#050507] hover:bg-[#E5C158] hover:border-[#E5C158] transition-all"
@@ -46,7 +46,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
               <motion.a
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
-                href="https://facebook.com/MFSGrowth"
+                href="https://www.facebook.com/MFSGrowth"
                 target="_blank"
                 rel="noreferrer"
                 className="w-9 h-9 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center text-neutral-400 hover:text-[#050507] hover:bg-[#E5C158] hover:border-[#E5C158] transition-all"

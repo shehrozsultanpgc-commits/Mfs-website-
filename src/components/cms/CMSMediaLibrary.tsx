@@ -701,12 +701,12 @@ export const CMSMediaLibrary: React.FC<CMSMediaLibraryProps> = ({
                     <input
                       type="text"
                       readOnly
-                      value={`https://cdn.mfsgrowth.agency${selectedAsset.url}`}
+                      value={`https://cdn.mfsgrowth.online${selectedAsset.url}`}
                       className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-3 py-1.5 text-[10px] font-mono text-neutral-300"
                     />
                     <button
                       onClick={() => {
-                        navigator.clipboard.writeText(`https://cdn.mfsgrowth.agency${selectedAsset.url}`);
+                        navigator.clipboard.writeText(`https://cdn.mfsgrowth.online${selectedAsset.url}`);
                         if (onShowToast) onShowToast('Copied CDN URL to clipboard!');
                       }}
                       className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white cursor-pointer"

@@ -78,7 +78,7 @@ export const CMSAnalyticsCommandCenter: React.FC<CMSAnalyticsCommandCenterProps>
     {
       id: 'plausible',
       name: 'Plausible Analytics',
-      measurementId: 'mfsgrowth.agency',
+      measurementId: 'mfsgrowth.online',
       status: 'ready',
       description: 'Lightweight, privacy-first cookie-free analytics suite.',
     },

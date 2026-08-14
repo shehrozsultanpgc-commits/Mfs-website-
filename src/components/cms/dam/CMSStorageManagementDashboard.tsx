@@ -42,7 +42,7 @@ export const CMSStorageManagementDashboard: React.FC<CMSStorageManagementDashboa
       role: 'Global Edge Cache (280+ PoPs)',
       status: 'active',
       used: '1.42 GB (Synced)',
-      bucketName: 'cdn.mfsgrowth.agency',
+      bucketName: 'cdn.mfsgrowth.online',
       region: 'Global Anycast Edge',
     },
     {

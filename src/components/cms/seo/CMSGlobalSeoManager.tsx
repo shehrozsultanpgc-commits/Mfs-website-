@@ -56,9 +56,9 @@ export const CMSGlobalSeoManager: React.FC<CMSGlobalSeoManagerProps> = ({
       secondaryKeywords: ['Presentation Design', 'Assignment Writing', 'ATS Resume', 'Pakistan Digital Agency'],
       ogTitle: 'MFS Growth Agency | Premium Digital Services',
       ogDescription: 'Executive presentation design, custom academic assignments, and ATS-engineered resumes.',
-      ogImage: 'https://mfsgrowth.agency/og-home.png',
+      ogImage: 'https://mfsgrowth.online/og-home.png',
       twitterCard: 'summary_large_image',
-      canonicalUrl: 'https://mfsgrowth.agency/',
+      canonicalUrl: 'https://mfsgrowth.online/',
       robotsDirective: 'index, follow',
       schemaType: 'ProfessionalService',
       seoScore: 98,
@@ -73,9 +73,9 @@ export const CMSGlobalSeoManager: React.FC<CMSGlobalSeoManagerProps> = ({
       secondaryKeywords: ['Presentation Samples', 'Assignment Samples', 'CV Portfolio'],
       ogTitle: 'Our Work Samples | MFS Growth Agency',
       ogDescription: 'Verified client presentation and assignment work samples.',
-      ogImage: 'https://mfsgrowth.agency/og-work.png',
+      ogImage: 'https://mfsgrowth.online/og-work.png',
       twitterCard: 'summary_large_image',
-      canonicalUrl: 'https://mfsgrowth.agency/our-work',
+      canonicalUrl: 'https://mfsgrowth.online/our-work',
       robotsDirective: 'index, follow',
       schemaType: 'Organization',
       seoScore: 95,
@@ -90,9 +90,9 @@ export const CMSGlobalSeoManager: React.FC<CMSGlobalSeoManagerProps> = ({
       secondaryKeywords: ['Presentation Rates PKR', 'Assignment Cost', 'ATS Resume Price'],
       ogTitle: 'Services & Rates | MFS Growth Agency',
       ogDescription: 'Calculate instant service prices with express delivery options.',
-      ogImage: 'https://mfsgrowth.agency/og-services.png',
+      ogImage: 'https://mfsgrowth.online/og-services.png',
       twitterCard: 'summary_large_image',
-      canonicalUrl: 'https://mfsgrowth.agency/services',
+      canonicalUrl: 'https://mfsgrowth.online/services',
       robotsDirective: 'index, follow',
       schemaType: 'ProfessionalService',
       seoScore: 94,
@@ -404,7 +404,7 @@ export const CMSGlobalSeoManager: React.FC<CMSGlobalSeoManagerProps> = ({
             <div className="text-xs font-mono text-neutral-400">GOOGLE SERP SNIPPET PREVIEW</div>
             <div className="p-4 rounded-xl bg-[#1A1A1A] border border-white/10 space-y-1 font-sans">
               <div className="text-xs text-[#8AB4F8] font-medium flex items-center gap-1">
-                <span>mfsgrowth.agency</span>
+                <span>mfsgrowth.online</span>
                 <span className="text-neutral-500">›</span>
                 <span className="text-neutral-400">{currentPage.urlSlug.replace('/', '')}</span>
               </div>

@@ -713,7 +713,7 @@ export const CMSPageManager: React.FC<CMSPageManagerProps> = ({
                       <span className="text-[#E5C158]">{selectedPage.title}</span>
                     </h3>
                     <p className="text-[11px] font-mono text-neutral-400">
-                      URL: https://mfsgrowth.agency{selectedPage.slug} • Version: {selectedPage.version}
+                      URL: https://mfsgrowth.online{selectedPage.slug} • Version: {selectedPage.version}
                     </p>
                   </div>
                 </div>

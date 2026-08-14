@@ -332,7 +332,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               <h4 className="text-xs font-bold text-neutral-300 uppercase tracking-wider mb-4">Official Social Handles</h4>
               <div className="flex items-center gap-4">
                 <a
-                  href="https://instagram.com/mfsgrowth"
+                  href="https://www.instagram.com/mfsgrowth"
                   target="_blank"
                   rel="noreferrer"
                   className="flex-1 p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#E5C158] flex items-center justify-center gap-2 text-xs text-white hover:text-[#E5C158] transition-all"
@@ -341,7 +341,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                   <span>@mfsgrowth</span>
                 </a>
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/MFSGrowth"
                   target="_blank"
                   rel="noreferrer"
                   className="flex-1 p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#E5C158] flex items-center justify-center gap-2 text-xs text-white hover:text-[#E5C158] transition-all"

@@ -87,16 +87,16 @@ export const CMSSearchConsoleCenter: React.FC<CMSSearchConsoleCenterProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="glass-card rounded-2xl border border-white/10 p-5 space-y-2 bg-black/40">
           <div className="text-[10px] font-mono text-neutral-400 uppercase">SITEMAP STATUS</div>
-          <div className="text-lg font-bold text-white font-poppins">https://mfsgrowth.agency/sitemap.xml</div>
+          <div className="text-lg font-bold text-white font-poppins">https://mfsgrowth.online/sitemap.xml</div>
           <div className="text-xs text-[#28C76F] font-mono font-bold flex items-center gap-1">
             <CheckCircle2 className="w-3.5 h-3.5 text-[#28C76F]" />
-            <span>Status: Success (18 Discovered URLs)</span>
+            <span>Status: Success (8 Core Public URLs)</span>
           </div>
         </div>
 
         <div className="glass-card rounded-2xl border border-white/10 p-5 space-y-2 bg-black/40">
           <div className="text-[10px] font-mono text-neutral-400 uppercase">CRAWL COVERAGE</div>
-          <div className="text-2xl font-black text-white font-poppins">18 Valid / 0 Errors</div>
+          <div className="text-2xl font-black text-white font-poppins">8 Valid / 0 Errors</div>
           <div className="text-xs text-[#28C76F] font-mono font-bold flex items-center gap-1">
             <CheckCircle2 className="w-3.5 h-3.5 text-[#28C76F]" />
             <span>0 Excluded & 0 Server 5xx Errors</span>
@@ -105,7 +105,7 @@ export const CMSSearchConsoleCenter: React.FC<CMSSearchConsoleCenterProps> = ({
 
         <div className="glass-card rounded-2xl border border-white/10 p-5 space-y-2 bg-black/40">
           <div className="text-[10px] font-mono text-neutral-400 uppercase">GOOGLE BOT LAST CRAWL</div>
-          <div className="text-2xl font-black text-[#E5C158] font-poppins">2 Hours Ago</div>
+          <div className="text-2xl font-black text-[#E5C158] font-poppins">Active</div>
           <div className="text-xs text-neutral-400 font-mono">Googlebot Desktop & Smartphone</div>
         </div>
       </div>
@@ -122,7 +122,7 @@ export const CMSSearchConsoleCenter: React.FC<CMSSearchConsoleCenterProps> = ({
             required
             value={indexUrl}
             onChange={(e) => setIndexUrl(e.target.value)}
-            placeholder="https://mfsgrowth.agency/our-work/new-case-study"
+            placeholder="https://mfsgrowth.online/services"
             className="flex-1 w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:border-[#E5C158] focus:outline-none font-mono"
           />
           <button

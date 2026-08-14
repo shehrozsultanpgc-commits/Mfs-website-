@@ -33,22 +33,50 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "MFS Growth Agency",
-      "alternateName": "MFS Growth",
-      "url": "https://mfsgrowth.online",
-      "logo": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=200&q=80",
-      "description": "Helping Students & Professionals Grow with High-Quality Digital Solutions including Presentation Design, Assignment Writing, ATS Resumes, and Corporate Reports.",
-      "telephone": "+923015323689",
-      "email": "mfsmedia.agency@gmail.com",
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        "opens": "00:00",
-        "closes": "23:59"
-      },
-      "paymentAccepted": "EasyPaisa, JazzCash, Bank Transfer, Credit Card",
-      "priceRange": "$$"
+      "@graph": [
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://mfsgrowth.online/#organization",
+          "name": "MFS Growth Agency",
+          "alternateName": [
+            "MFS Growth Agency Pakistan",
+            "MFS Growth Online"
+          ],
+          "url": "https://mfsgrowth.online/",
+          "logo": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=200&q=80",
+          "description": "MFS Growth Agency is a digital services agency providing executive presentation design, custom academic assignment writing, ATS resume engineering, and corporate report formatting for students and professionals in Pakistan and worldwide.",
+          "telephone": "+923015323689",
+          "email": "mfsmedia.agency@gmail.com",
+          "priceRange": "$$",
+          "paymentAccepted": "EasyPaisa, JazzCash, Bank Transfer",
+          "sameAs": [
+            "https://www.instagram.com/mfsgrowth",
+            "https://www.facebook.com/MFSGrowth"
+          ],
+          "areaServed": [
+            { "@type": "Country", "name": "Pakistan" },
+            { "@type": "Country", "name": "United States" },
+            { "@type": "Country", "name": "United Kingdom" },
+            { "@type": "Country", "name": "United Arab Emirates" },
+            { "@type": "Country", "name": "Saudi Arabia" }
+          ],
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "00:00",
+            "closes": "23:59"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://mfsgrowth.online/#website",
+          "url": "https://mfsgrowth.online/",
+          "name": "MFS Growth Agency",
+          "publisher": {
+            "@id": "https://mfsgrowth.online/#organization"
+          }
+        }
+      ]
     }
     </script>
   </head>
