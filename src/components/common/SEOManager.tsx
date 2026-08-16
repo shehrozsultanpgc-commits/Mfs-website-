@@ -266,7 +266,7 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         'name': 'MFS Growth Agency',
         'alternateName': ['MFS Growth Agency Pakistan', 'MFS Growth Online'],
         'url': 'https://mfsgrowth.online/',
-        'logo': 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=200&q=80',
+        'logo': 'https://mfsgrowth.online/android-chrome-512x512.png',
         'description': 'MFS Growth Agency provides executive presentation design, custom academic assignment writing, ATS resume engineering, and corporate report formatting for students and professionals in Pakistan and globally.',
         'telephone': '+923015323689',
         'email': 'mfsmedia.agency@gmail.com',

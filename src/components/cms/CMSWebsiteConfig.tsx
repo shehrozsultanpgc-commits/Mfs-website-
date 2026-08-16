@@ -61,7 +61,7 @@ export const CMSWebsiteConfig: React.FC<CMSWebsiteConfigProps> = ({
     companyName: 'MFS Growth Agency',
     shortName: 'MFS Growth',
     tagline: 'Helping Students & Professionals Grow with High-Quality Digital Solutions.',
-    logoUrl: '/icons/mfs-gold-logo.png',
+    logoUrl: '/mfs-logo.png',
     primaryGoldColor: '#E5C158',
     darkCanvasColor: '#050507',
     businessEmail: 'mfsmedia.agency@gmail.com',

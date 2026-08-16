@@ -201,7 +201,7 @@ export const AIAssistantWidget: React.FC<AIAssistantWidgetProps> = ({
     }
   };
 
-  const downloadReceipt = () => {
+  const downloadReceipt = async () => {
     const state = engine.getState();
     try {
       const canvas = document.createElement('canvas');
@@ -234,21 +234,37 @@ export const AIAssistantWidget: React.FC<AIAssistantWidgetProps> = ({
       ctx.fillStyle = goldGrad;
       ctx.fillRect(40, 40, 520, 8);
 
-      // MFS Gold Circle Logo
-      const logoGrad = ctx.createRadialGradient(300, 120, 10, 300, 120, 36);
-      logoGrad.addColorStop(0, '#F5D77F');
-      logoGrad.addColorStop(0.5, '#E5C158');
-      logoGrad.addColorStop(1, '#906D14');
-      ctx.fillStyle = logoGrad;
-      ctx.beginPath();
-      ctx.arc(300, 120, 36, 0, Math.PI * 2);
-      ctx.fill();
+      // Draw official MFS master logo image on canvas
+      const logoImg = new Image();
+      logoImg.src = '/mfs-logo.png';
+      await new Promise((resolve) => {
+        logoImg.onload = resolve;
+        logoImg.onerror = resolve;
+      });
 
-      ctx.fillStyle = '#000000';
-      ctx.font = '900 24px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('MFS', 300, 121);
+      if (logoImg.complete && logoImg.naturalWidth > 0) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(300, 120, 36, 0, Math.PI * 2);
+        ctx.clip();
+        ctx.drawImage(logoImg, 264, 84, 72, 72);
+        ctx.restore();
+      } else {
+        const logoGrad = ctx.createRadialGradient(300, 120, 10, 300, 120, 36);
+        logoGrad.addColorStop(0, '#F5D77F');
+        logoGrad.addColorStop(0.5, '#E5C158');
+        logoGrad.addColorStop(1, '#906D14');
+        ctx.fillStyle = logoGrad;
+        ctx.beginPath();
+        ctx.arc(300, 120, 36, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#000000';
+        ctx.font = '900 24px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('MFS', 300, 121);
+      }
 
       // Title & Header
       ctx.fillStyle = '#FFFFFF';

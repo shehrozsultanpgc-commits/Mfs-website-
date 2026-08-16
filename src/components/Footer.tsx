@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Instagram, Facebook, Mail, Phone, MapPin, Bot, Mic } from 'lucide-react';
+import { MFSLogo } from './common/MFSLogo';
 
 interface FooterProps {
   onOpenOrderModal: () => void;
@@ -18,9 +19,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
           {/* Col 1: Brand & Desc */}
           <div className="lg:col-span-3 flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#E5C158] to-[#C5A847] flex items-center justify-center text-[#050507] font-extrabold text-sm shadow-md">
-                MFS
-              </div>
+              <MFSLogo size={40} />
               <span className="font-bold text-lg text-white font-poppins">
                 MFS <span className="gold-pure-gradient">Growth</span>
               </span>
