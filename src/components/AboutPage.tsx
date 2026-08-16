@@ -318,6 +318,89 @@ export const AboutPage: React.FC<AboutPageProps> = ({
         </div>
       </section>
 
+      {/* 2.5 Official Agency Entity & Knowledge Layer */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+        <div className="glass-card rounded-3xl border border-[#E5C158]/30 p-8 sm:p-10 relative overflow-hidden bg-gradient-to-br from-[#0A0A0F] via-[#050507] to-black">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-8 pb-6 border-b border-white/10">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#E5C158]/10 border border-[#E5C158]/30 text-[#E5C158] text-[11px] font-semibold mb-3">
+                <Globe className="w-3.5 h-3.5" />
+                <span>OFFICIAL AGENCY ENTITY & KNOWLEDGE PROFILE</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-poppins font-bold text-white">
+                MFS Growth Agency — Brand Profile & Global Reach
+              </h2>
+            </div>
+            <span className="text-xs font-mono text-neutral-400 bg-white/5 px-3 py-1.5 rounded-full border border-white/10 shrink-0">
+              Verified Entity • 24/7 Global Service
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-xs text-neutral-300">
+            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-2">
+              <span className="text-[10px] font-bold uppercase text-[#E5C158] block tracking-wider">FOUNDER & LEADERSHIP</span>
+              <p className="font-poppins font-bold text-white text-sm">Muhammad Shehroz Sultan</p>
+              <p className="text-neutral-400 text-[11px] leading-relaxed">
+                Founder & Lead Director overseeing agency operations, document quality standards, and digital service architecture.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-2">
+              <span className="text-[10px] font-bold uppercase text-[#28C76F] block tracking-wider">HEADQUARTERS & DESK</span>
+              <p className="font-poppins font-bold text-white text-sm">Pakistan HQ (Worldwide Desk)</p>
+              <p className="text-neutral-400 text-[11px] leading-relaxed">
+                Headquartered in Pakistan with 24/7 online delivery operations serving 15+ countries globally across all timezones.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-2">
+              <span className="text-[10px] font-bold uppercase text-[#E5C158] block tracking-wider">CORE COMPETENCIES</span>
+              <p className="font-poppins font-bold text-white text-sm">4 Primary Pillars</p>
+              <p className="text-neutral-400 text-[11px] leading-relaxed">
+                Presentation Design, Academic Assignment Writing (APA/Harvard/MLA), ATS Resume Engineering, and Corporate Reports.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-2">
+              <span className="text-[10px] font-bold uppercase text-[#28C76F] block tracking-wider">TOPIC CLUSTERS & GUIDES</span>
+              <p className="font-poppins font-bold text-white text-sm">4 Master Guides</p>
+              <p className="text-neutral-400 text-[11px] leading-relaxed">
+                Educational research hubs covering ATS parsing mechanics, 10-slide pitch decks, academic referencing, and corporate layouts.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs">
+            <div className="flex flex-wrap items-center gap-4">
+              <button
+                onClick={() => onNavigatePage('services')}
+                className="text-[#E5C158] font-bold hover:underline cursor-pointer inline-flex items-center gap-1"
+              >
+                <span>View All Services</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+              <button
+                onClick={() => onNavigatePage('guides' as any)}
+                className="text-neutral-300 font-semibold hover:text-white transition-colors cursor-pointer inline-flex items-center gap-1"
+              >
+                <span>Explore Knowledge Guides</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+              <button
+                onClick={() => onNavigatePage('faq' as any)}
+                className="text-neutral-300 font-semibold hover:text-white transition-colors cursor-pointer inline-flex items-center gap-1"
+              >
+                <span>Read Agency FAQs</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+            <span className="text-[10px] text-neutral-500 font-mono">
+              OFFICIAL-ENTITY-ID: https://mfsgrowth.online/#organization
+            </span>
+          </div>
+        </div>
+      </section>
+
       {/* 3. Our Core Values */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
         <div className="text-center max-w-2xl mx-auto mb-14">

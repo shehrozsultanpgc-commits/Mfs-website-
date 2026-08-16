@@ -48,7 +48,9 @@ const ReviewAvatar: React.FC<{
       ) : (
         <img
           src={avatarUrl}
-          alt={name}
+          alt={`${name} - Verified Testimonial for MFS Growth Agency`}
+          loading="lazy"
+          decoding="async"
           onError={() => setHasError(true)}
           referrerPolicy="no-referrer"
           className={`${size} rounded-full object-cover border border-[#E5C158]/30 shrink-0 shadow-sm`}

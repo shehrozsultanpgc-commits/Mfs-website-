@@ -34,6 +34,7 @@ const PAGE_SEO_DATA: Record<string, {
   canonical: string;
   robots: string;
   pageName: string;
+  ogImage?: string;
 }> = {
   home: {
     title: 'MFS Growth Agency | Academic Assignments, Presentations & ATS Resumes in Pakistan',
@@ -240,19 +241,21 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
     // 4. Meta Robots
     setMetaTag('meta[name="robots"]', 'name', 'robots', seo.robots);
 
+    const ogImg = seo.ogImage || 'https://mfsgrowth.online/android-chrome-512x512.png';
+
     // 5. OpenGraph Tags
     setMetaTag('meta[property="og:title"]', 'property', 'og:title', seo.title);
     setMetaTag('meta[property="og:description"]', 'property', 'og:description', seo.description);
     setMetaTag('meta[property="og:url"]', 'property', 'og:url', seo.canonical);
     setMetaTag('meta[property="og:site_name"]', 'property', 'og:site_name', 'MFS Growth Agency');
     setMetaTag('meta[property="og:type"]', 'property', 'og:type', currentPage.startsWith('guide-') ? 'article' : 'website');
-    setMetaTag('meta[property="og:image"]', 'property', 'og:image', 'https://mfsgrowth.online/android-chrome-512x512.png');
+    setMetaTag('meta[property="og:image"]', 'property', 'og:image', ogImg);
 
     // 6. Twitter Card Tags
     setMetaTag('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image');
     setMetaTag('meta[name="twitter:title"]', 'name', 'twitter:title', seo.title);
     setMetaTag('meta[name="twitter:description"]', 'name', 'twitter:description', seo.description);
-    setMetaTag('meta[name="twitter:image"]', 'name', 'twitter:image', 'https://mfsgrowth.online/android-chrome-512x512.png');
+    setMetaTag('meta[name="twitter:image"]', 'name', 'twitter:image', ogImg);
 
     // 7. Canonical URL Link
     let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;

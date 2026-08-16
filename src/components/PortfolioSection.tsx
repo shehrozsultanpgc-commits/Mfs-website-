@@ -99,9 +99,10 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
               <div className="lg:col-span-7 relative h-64 xs:h-72 sm:h-80 md:h-96 lg:h-full min-h-[280px] bg-neutral-900 overflow-hidden">
                 <img
                   src={featuredSample.image}
-                  alt={featuredSample.title}
+                  alt={`${featuredSample.title} — Executive Deliverable Showcase by MFS Growth Agency`}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-85 group-hover:opacity-100"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[#050507] opacity-90" />
 
@@ -207,9 +208,10 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
                   <div className="w-full h-48 xs:h-52 relative overflow-hidden bg-neutral-900">
                     <img
                       src={sample.image}
-                      alt={sample.title}
+                      alt={`${sample.title} — Work Deliverable Sample by MFS Growth Agency`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100"
                       loading="lazy"
+                      decoding="async"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-transparent to-transparent opacity-80" />
 
@@ -301,8 +303,10 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
                   <div className="relative h-48 xs:h-56 sm:h-72 bg-black overflow-hidden border-b border-white/10 select-none shrink-0">
                     <img
                       src={selectedSample.image}
-                      alt={selectedSample.title}
+                      alt={`${selectedSample.title} — Secured Work Preview by MFS Growth Agency`}
                       className="w-full h-full object-cover"
+                      loading="eager"
+                      decoding="async"
                       onContextMenu={handleProtectedDownload}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#08080C] via-transparent to-transparent" />

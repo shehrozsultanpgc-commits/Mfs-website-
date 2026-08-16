@@ -30,6 +30,30 @@ import {
 } from 'lucide-react';
 
 const FAQ_GUIDE_MAP: Record<string, { title: string; label: string; url: string; page: string }> = {
+  'faq-gen-1': {
+    title: 'About MFS Growth Agency',
+    label: 'Learn more about our agency mission, founder, and global service scope on our About page.',
+    url: '/about',
+    page: 'about',
+  },
+  'faq-gen-founder': {
+    title: 'Founder & Leadership',
+    label: 'Discover how Founder Muhammad Shehroz Sultan established MFS Growth Agency.',
+    url: '/about',
+    page: 'about',
+  },
+  'faq-gen-location': {
+    title: 'Pakistan HQ & Global Desk',
+    label: 'View details on our Pakistan headquarters and international 24/7 support desk.',
+    url: '/contact',
+    page: 'contact',
+  },
+  'faq-srv-1': {
+    title: 'Explore Our Digital Services',
+    label: 'View all 11+ specialized presentation, assignment, resume, and report services.',
+    url: '/services',
+    page: 'services',
+  },
   'faq-ats-1': {
     title: 'ATS Resume Engineering Guide',
     label: 'For a deeper explanation, read our ATS Resume Engineering Guide.',
