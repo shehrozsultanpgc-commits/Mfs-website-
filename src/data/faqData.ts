@@ -32,7 +32,21 @@ export const COMPREHENSIVE_FAQS: DetailedFaq[] = [
     category: 'General',
     popular: true,
     question: 'What is MFS Growth Agency?',
-    answer: 'MFS Growth Agency is a premium online digital services agency. We help students and working professionals grow with high-quality digital solutions, including executive presentation design, custom academic assignment assistance, ATS resume engineering, and report formatting.'
+    answer: 'MFS Growth Agency is a premium online digital services agency based in Pakistan operating 24/7 globally. We assist students and working professionals with executive presentation design, custom academic assignment writing, ATS resume engineering, and corporate report formatting.'
+  },
+  {
+    id: 'faq-gen-founder',
+    category: 'General',
+    popular: true,
+    question: 'Who founded MFS Growth Agency?',
+    answer: 'MFS Growth Agency was founded by Muhammad Shehroz Sultan, who serves as Founder & Lead Director. The agency operates internationally providing specialized digital document engineering, presentation design, and academic research solutions.'
+  },
+  {
+    id: 'faq-gen-location',
+    category: 'General',
+    popular: true,
+    question: 'Where is MFS Growth Agency located and what regions are served?',
+    answer: 'MFS Growth Agency is headquartered in Pakistan and operates 24/7 online worldwide. We serve clients across Pakistan, the United States, the United Kingdom, the United Arab Emirates, Saudi Arabia, Canada, Australia, Germany, and 15+ countries internationally.'
   },
   {
     id: 'faq-gen-2',
@@ -45,7 +59,7 @@ export const COMPREHENSIVE_FAQS: DetailedFaq[] = [
     id: 'faq-gen-3',
     category: 'General',
     question: 'How can I contact MFS Growth Agency directly?',
-    answer: 'You can contact us via WhatsApp or Phone at +92 301 5323689, email us at mfsmedia.agency@gmail.com, or chat with our 24/7 AI Assistant directly on the website.'
+    answer: 'You can contact MFS Growth Agency via WhatsApp or Phone at +92 301 5323689, email us at mfsmedia.agency@gmail.com, or chat with our 24/7 AI Assistant directly on the website.'
   },
   {
     id: 'faq-gen-4',
@@ -56,10 +70,10 @@ export const COMPREHENSIVE_FAQS: DetailedFaq[] = [
 
   // Services
   {
-    id: 'faq-[#srv-1]',
+    id: 'faq-srv-1',
     category: 'Services',
     popular: true,
-    question: 'What core services do you offer?',
+    question: 'What core services does MFS Growth Agency offer?',
     answer: 'We specialize in 4 core service pillars: 1) Presentation Design & Slide Decks, 2) Custom Academic Assignment Writing & Editing, 3) ATS Resume Engineering & CV Design, and 4) Corporate Report & Proposal Formatting.'
   },
   {

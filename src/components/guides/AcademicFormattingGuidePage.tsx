@@ -242,7 +242,7 @@ export default function AcademicFormattingGuidePage() {
                 Guide Scope & Academic Principles
               </h2>
               <p className="text-sm text-[#9FA0A7] leading-relaxed">
-                Academic citation systems provide the foundational architecture for scholarly attribution, intellectual traceability, and peer-reviewed rigor. This guide presents objective formatting rules for APA 7, Harvard, MLA 9, IEEE, and Oxford referencing. All concepts are designed to support legitimate academic research, literature synthesis, and structural editing in accordance with university academic integrity frameworks.
+                Academic citation systems provide the foundational architecture for scholarly attribution, intellectual traceability, and peer-reviewed rigor. This guide presents objective formatting rules for APA 7, Harvard, MLA 9, IEEE, and Oxford referencing. All concepts are designed to support legitimate academic research, literature synthesis, and structural editing in accordance with university academic integrity frameworks. For specialized editing or manuscript prep, explore our <a href="/services#assignments" className="text-[#E5C158] font-medium underline hover:text-white transition-colors">academic assignment writing and thesis formatting service</a>.
               </p>
             </div>
           </div>
@@ -710,7 +710,7 @@ export default function AcademicFormattingGuidePage() {
                     Need Professional Academic Formatting or Reference Editing?
                   </h2>
                   <p className="text-sm text-[#9FA0A7] leading-relaxed mb-6">
-                    MFS Growth Agency provides academic manuscript formatting, reference list audits, citation style conversion, and structural editing designed to align your research paper with institutional guidelines.
+                    MFS Growth Agency provides specialized <a href="/services#assignments" className="text-[#E5C158] font-semibold underline hover:text-white transition-colors">academic assignment writing and reference editing services</a>, manuscript formatting, reference list audits, citation style conversion, and structural editing designed to align your research paper with institutional guidelines.
                   </p>
 
                   <div className="flex flex-wrap items-center gap-4">
@@ -718,7 +718,7 @@ export default function AcademicFormattingGuidePage() {
                       href="/services#assignments"
                       className="py-3 px-6 rounded-xl bg-gradient-to-r from-[#E5C158] to-[#D4AF37] text-black font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-opacity flex items-center gap-2 shadow-lg shadow-[#E5C158]/20"
                     >
-                      <span>Explore Academic Assistance</span>
+                      <span>Academic Assignment Writing & Formatting Service</span>
                       <ArrowRight className="w-4 h-4" />
                     </a>
 

@@ -23,6 +23,7 @@ import {
   Eye,
   Sliders,
   AlignLeft,
+  ChevronRight,
   Briefcase,
   Globe,
   Award,
@@ -253,7 +254,7 @@ export default function CorporateReportGuidePage() {
           </p>
 
           <p className="text-sm sm:text-base leading-relaxed text-[#CFCFCF]">
-            Decision-makers at board and executive levels digest dozens of complex reports weekly. Professional formatting translates dense raw business data into structured, highly readable intelligence—drastically reducing cognitive friction, accelerating comprehension, and building organizational credibility.
+            Decision-makers at board and executive levels digest dozens of complex reports weekly. Professional formatting translates dense raw business data into structured, highly readable intelligence—drastically reducing cognitive friction, accelerating comprehension, and building organizational credibility. For custom document design and template creation, explore MFS Growth Agency's <a href="/services#reports" className="text-[#E5C158] font-medium underline hover:text-white transition-colors">business & corporate report formatting service</a>.
           </p>
 
           {/* At a Glance Callout Box */}
@@ -880,7 +881,7 @@ export default function CorporateReportGuidePage() {
             </h3>
             
             <p className="text-xs sm:text-sm text-[#9FA0A7] max-w-2xl mx-auto leading-relaxed">
-              If your team requires executive document formatting, financial report polishing, or corporate proposal design with 24–48 hour turnaround, explore our specialized agency solutions.
+              If your team requires executive document formatting, financial report polishing, or corporate proposal design with 24–48 hour turnaround, explore our specialized <a href="/services#reports" className="text-[#E5C158] font-semibold underline hover:text-white transition-colors">corporate report formatting and document design services</a>.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-3 pt-2 text-xs">
@@ -888,7 +889,7 @@ export default function CorporateReportGuidePage() {
                 href="/services#reports"
                 className="inline-flex items-center gap-2 bg-[#E5C158] hover:bg-[#D4AF37] text-[#050507] font-semibold px-5 py-2.5 rounded-lg transition-colors"
               >
-                Explore Report Formatting Services <ArrowRight className="w-3.5 h-3.5" />
+                <span>Corporate Report Formatting & Layout Service</span> <ArrowRight className="w-3.5 h-3.5" />
               </a>
               <a
                 href="/pricing"

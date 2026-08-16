@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { FAQS } from '../../data/content';
+import { COMPREHENSIVE_FAQS } from '../../data/faqData';
 
 interface SEOProps {
   currentPage:
@@ -245,10 +245,14 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
     setMetaTag('meta[property="og:description"]', 'property', 'og:description', seo.description);
     setMetaTag('meta[property="og:url"]', 'property', 'og:url', seo.canonical);
     setMetaTag('meta[property="og:site_name"]', 'property', 'og:site_name', 'MFS Growth Agency');
+    setMetaTag('meta[property="og:type"]', 'property', 'og:type', currentPage.startsWith('guide-') ? 'article' : 'website');
+    setMetaTag('meta[property="og:image"]', 'property', 'og:image', 'https://mfsgrowth.online/android-chrome-512x512.png');
 
     // 6. Twitter Card Tags
+    setMetaTag('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image');
     setMetaTag('meta[name="twitter:title"]', 'name', 'twitter:title', seo.title);
     setMetaTag('meta[name="twitter:description"]', 'name', 'twitter:description', seo.description);
+    setMetaTag('meta[name="twitter:image"]', 'name', 'twitter:image', 'https://mfsgrowth.online/android-chrome-512x512.png');
 
     // 7. Canonical URL Link
     let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
@@ -381,12 +385,132 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
       }
     ];
 
-    // Append FAQPage Schema if on FAQ page
-    if (currentPage === 'faq') {
+    // Append Page-Specific Schemas
+    if (currentPage === 'home') {
+      graphElements.push({
+        '@type': 'WebPage',
+        '@id': 'https://mfsgrowth.online/#webpage',
+        'url': 'https://mfsgrowth.online/',
+        'name': 'MFS Growth Agency | Academic Assignments, Presentations & ATS Resumes in Pakistan',
+        'isPartOf': { '@id': 'https://mfsgrowth.online/#website' },
+        'about': { '@id': 'https://mfsgrowth.online/#organization' },
+        'primaryImageOfPage': 'https://mfsgrowth.online/android-chrome-512x512.png'
+      });
+    } else if (currentPage === 'services') {
+      graphElements.push(
+        {
+          '@type': 'WebPage',
+          '@id': 'https://mfsgrowth.online/services#webpage',
+          'url': 'https://mfsgrowth.online/services',
+          'name': 'Digital Services — Presentation Design, Assignment Writing & ATS Resumes',
+          'isPartOf': { '@id': 'https://mfsgrowth.online/#website' },
+          'about': { '@id': 'https://mfsgrowth.online/#organization' }
+        },
+        {
+          '@type': 'Service',
+          '@id': 'https://mfsgrowth.online/services#presentation',
+          'name': 'Executive Presentation Design & Pitch Decks',
+          'description': 'Executive pitch decks and academic slide presentations engineered with modern visual structures, custom layouts, and compelling data graphics.',
+          'provider': { '@id': 'https://mfsgrowth.online/#organization' },
+          'serviceType': 'Presentation Design',
+          'offers': {
+            '@type': 'Offer',
+            'price': '1250',
+            'priceCurrency': 'PKR',
+            'priceValidUntil': '2026-12-31',
+            'availability': 'https://schema.org/InStock'
+          }
+        },
+        {
+          '@type': 'Service',
+          '@id': 'https://mfsgrowth.online/services#assignment',
+          'name': 'Academic Assignment Writing & Referencing',
+          'description': 'Custom academic assignments, case studies, and research writing with APA, Harvard, MLA, and IEEE references.',
+          'provider': { '@id': 'https://mfsgrowth.online/#organization' },
+          'serviceType': 'Academic Writing Assistance',
+          'offers': {
+            '@type': 'Offer',
+            'price': '1000',
+            'priceCurrency': 'PKR',
+            'priceValidUntil': '2026-12-31',
+            'availability': 'https://schema.org/InStock'
+          }
+        },
+        {
+          '@type': 'Service',
+          '@id': 'https://mfsgrowth.online/services#resume',
+          'name': 'ATS Resume & CV Engineering',
+          'description': 'ATS-compliant resume engineering, CV design, cover letters, and LinkedIn profile optimization.',
+          'provider': { '@id': 'https://mfsgrowth.online/#organization' },
+          'serviceType': 'Resume & Career Engineering',
+          'offers': {
+            '@type': 'Offer',
+            'price': '1500',
+            'priceCurrency': 'PKR',
+            'priceValidUntil': '2026-12-31',
+            'availability': 'https://schema.org/InStock'
+          }
+        },
+        {
+          '@type': 'Service',
+          '@id': 'https://mfsgrowth.online/services#reports',
+          'name': 'Corporate Document Formatting & Layout',
+          'description': 'Executive and corporate document formatting, business proposals, financial briefs, and whitepapers.',
+          'provider': { '@id': 'https://mfsgrowth.online/#organization' },
+          'serviceType': 'Document Formatting',
+          'offers': {
+            '@type': 'Offer',
+            'price': '1500',
+            'priceCurrency': 'PKR',
+            'priceValidUntil': '2026-12-31',
+            'availability': 'https://schema.org/InStock'
+          }
+        }
+      );
+    } else if (currentPage === 'about') {
+      graphElements.push({
+        '@type': 'AboutPage',
+        '@id': 'https://mfsgrowth.online/about#webpage',
+        'url': 'https://mfsgrowth.online/about',
+        'name': 'About Us — MFS Growth Agency Pakistan',
+        'isPartOf': { '@id': 'https://mfsgrowth.online/#website' },
+        'about': { '@id': 'https://mfsgrowth.online/#organization' },
+        'author': { '@id': 'https://mfsgrowth.online/#founder' }
+      });
+    } else if (currentPage === 'contact') {
+      graphElements.push({
+        '@type': 'ContactPage',
+        '@id': 'https://mfsgrowth.online/contact#webpage',
+        'url': 'https://mfsgrowth.online/contact',
+        'name': 'Contact Us — 24/7 Support & WhatsApp | MFS Growth Agency',
+        'isPartOf': { '@id': 'https://mfsgrowth.online/#website' },
+        'mainEntity': { '@id': 'https://mfsgrowth.online/#organization' }
+      });
+    } else if (currentPage === 'pricing') {
+      graphElements.push({
+        '@type': 'WebPage',
+        '@id': 'https://mfsgrowth.online/pricing#webpage',
+        'url': 'https://mfsgrowth.online/pricing',
+        'name': 'Pricing & Rates — 50% Grand Launch Discount | MFS Growth Agency',
+        'isPartOf': { '@id': 'https://mfsgrowth.online/#website' },
+        'mainEntity': { '@id': 'https://mfsgrowth.online/#organization' }
+      });
+    } else if (currentPage === 'reviews') {
+      graphElements.push({
+        '@type': 'ItemPage',
+        '@id': 'https://mfsgrowth.online/reviews#webpage',
+        'url': 'https://mfsgrowth.online/reviews',
+        'name': 'Client Reviews & Verified Testimonials | MFS Growth Agency',
+        'isPartOf': { '@id': 'https://mfsgrowth.online/#website' },
+        'itemReviewed': { '@id': 'https://mfsgrowth.online/#organization' }
+      });
+    } else if (currentPage === 'faq') {
       graphElements.push({
         '@type': 'FAQPage',
         '@id': 'https://mfsgrowth.online/faq#faqpage',
-        'mainEntity': FAQS.map((faq) => ({
+        'isPartOf': { '@id': 'https://mfsgrowth.online/#website' },
+        'publisher': { '@id': 'https://mfsgrowth.online/#organization' },
+        'mainEntity': COMPREHENSIVE_FAQS.map((faq) => ({
           '@type': 'Question',
           'name': faq.question,
           'acceptedAnswer': {
@@ -395,10 +519,17 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
           }
         }))
       });
-    }
-
-    // Append Article Schema for Guide routes
-    if (currentPage === 'guide-ats-resume') {
+    } else if (currentPage === 'guides') {
+      graphElements.push({
+        '@type': 'CollectionPage',
+        '@id': 'https://mfsgrowth.online/guides#webpage',
+        'url': 'https://mfsgrowth.online/guides',
+        'name': 'Knowledge & Resource Guides | MFS Growth Agency',
+        'isPartOf': { '@id': 'https://mfsgrowth.online/#website' },
+        'publisher': { '@id': 'https://mfsgrowth.online/#organization' },
+        'author': { '@id': 'https://mfsgrowth.online/#founder' }
+      });
+    } else if (currentPage === 'guide-ats-resume') {
       graphElements.push({
         '@type': 'Article',
         '@id': 'https://mfsgrowth.online/guides/ats-resume-engineering#article',
@@ -416,6 +547,7 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         'publisher': {
           '@id': 'https://mfsgrowth.online/#organization'
         },
+        'isPartOf': { '@id': 'https://mfsgrowth.online/#website' },
         'inLanguage': 'en-US'
       });
     } else if (currentPage === 'guide-pitch-deck') {
@@ -436,6 +568,7 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         'publisher': {
           '@id': 'https://mfsgrowth.online/#organization'
         },
+        'isPartOf': { '@id': 'https://mfsgrowth.online/#website' },
         'inLanguage': 'en-US'
       });
     } else if (currentPage === 'guide-academic-formatting') {
@@ -456,6 +589,7 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         'publisher': {
           '@id': 'https://mfsgrowth.online/#organization'
         },
+        'isPartOf': { '@id': 'https://mfsgrowth.online/#website' },
         'inLanguage': 'en-US'
       });
     } else if (currentPage === 'guide-corporate-report') {
@@ -476,6 +610,7 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         'publisher': {
           '@id': 'https://mfsgrowth.online/#organization'
         },
+        'isPartOf': { '@id': 'https://mfsgrowth.online/#website' },
         'inLanguage': 'en-US'
       });
     }

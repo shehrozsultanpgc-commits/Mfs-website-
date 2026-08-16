@@ -147,7 +147,10 @@ export const FaqPage: React.FC<FaqPageProps> = ({
     const faqSchema = {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
-      mainEntity: COMPREHENSIVE_FAQS.slice(0, 20).map((faq) => ({
+      '@id': 'https://mfsgrowth.online/faq#faqpage',
+      'isPartOf': { '@id': 'https://mfsgrowth.online/#website' },
+      'publisher': { '@id': 'https://mfsgrowth.online/#organization' },
+      mainEntity: COMPREHENSIVE_FAQS.map((faq) => ({
         '@type': 'Question',
         name: faq.question,
         acceptedAnswer: {

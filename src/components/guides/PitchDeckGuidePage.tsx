@@ -331,7 +331,7 @@ export default function PitchDeckGuidePage() {
                 Guide Executive Summary
               </h2>
               <p className="text-sm text-[#9FA0A7] leading-relaxed">
-                Venture capitalists and angel investors review hundreds of pitch decks monthly, spending an average of <strong className="text-white">2 minutes and 30 seconds</strong> per presentation. This guide details the industry-standard 10-slide deck structure, explaining how logical narrative progression, disciplined data visualization, and clear visual hierarchy capture investor interest and communicate business momentum.
+                Venture capitalists and angel investors review hundreds of pitch decks monthly, spending an average of <strong className="text-white">2 minutes and 30 seconds</strong> per presentation. This guide details the industry-standard 10-slide deck structure, explaining how logical narrative progression, disciplined data visualization, and clear visual hierarchy capture investor interest. For bespoke visual slide engineering, explore our <a href="/services#presentations" className="text-[#E5C158] font-medium underline hover:text-white transition-colors">presentation design and pitch deck creation service</a>.
               </p>
             </div>
           </div>
@@ -725,7 +725,7 @@ export default function PitchDeckGuidePage() {
                     Need Professional Executive Pitch Deck Engineering?
                   </h2>
                   <p className="text-sm text-[#9FA0A7] leading-relaxed mb-6">
-                    MFS Growth Agency provides executive presentation design, custom slide layout engineering, and financial data graphic design designed to communicate business narrative clearly to investors and stakeholders.
+                    MFS Growth Agency provides specialized <a href="/services#presentations" className="text-[#E5C158] font-semibold underline hover:text-white transition-colors">executive pitch deck and presentation design services</a>, custom slide layout engineering, and financial data graphic design designed to communicate business narrative clearly to investors and stakeholders.
                   </p>
 
                   <div className="flex flex-wrap items-center gap-4">
@@ -733,7 +733,7 @@ export default function PitchDeckGuidePage() {
                       href="/services#presentations"
                       className="py-3 px-6 rounded-xl bg-gradient-to-r from-[#E5C158] to-[#D4AF37] text-black font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-opacity flex items-center gap-2 shadow-lg shadow-[#E5C158]/20"
                     >
-                      <span>Explore Presentation Services</span>
+                      <span>Executive Pitch Deck & Presentation Service</span>
                       <ArrowRight className="w-4 h-4" />
                     </a>
 

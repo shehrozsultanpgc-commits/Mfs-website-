@@ -251,7 +251,7 @@ export const AtsResumeGuidePage: React.FC<AtsResumeGuidePageProps> = ({
                 This guide provides an objective technical analysis of Applicant Tracking Systems
                 (ATS). It explains how parsing engines ingest document code, tokenize employment
                 data, and rank candidate profiles against job postings. Learn how to format your
-                experience cleanly for both automated ATS scanners and human recruitment managers.
+                experience cleanly for both automated ATS scanners and human recruitment managers, or explore our <a href="/services#resumes" onClick={(e) => { e.preventDefault(); handleNavClick('/services#resumes', 'services'); }} className="text-[#E5C158] font-medium underline hover:text-white transition-colors">professional ATS resume writing service</a> for tailored expert optimization.
               </p>
             </div>
           </div>
@@ -903,7 +903,7 @@ export const AtsResumeGuidePage: React.FC<AtsResumeGuidePageProps> = ({
                     Need Professional ATS Resume Engineering?
                   </h3>
                   <p className="text-sm text-[#9FA0A7] mb-6 leading-relaxed">
-                    MFS Growth Agency provides ATS-focused resume engineering with structured formatting, role-specific keyword alignment, and professional document presentation.
+                    MFS Growth Agency provides specialized <a href="/services#resumes" onClick={(e) => { e.preventDefault(); handleNavClick('/services#resumes', 'services'); }} className="text-[#E5C158] font-semibold underline hover:text-white transition-colors">professional ATS resume writing and CV engineering services</a> with structured formatting, role-specific keyword alignment, and 100% parser compliance.
                   </p>
 
                   <div className="flex flex-wrap items-center gap-4">
@@ -911,7 +911,7 @@ export const AtsResumeGuidePage: React.FC<AtsResumeGuidePageProps> = ({
                       onClick={() => handleNavClick('/services#resumes', 'services')}
                       className="px-6 py-3 rounded-xl bg-[#E5C158] hover:bg-[#D4AF37] text-black font-semibold text-sm transition-all shadow-lg shadow-[#E5C158]/20 flex items-center gap-2 cursor-pointer font-poppins"
                     >
-                      <span>Explore ATS Resume Service</span>
+                      <span>Professional ATS Resume Writing Service</span>
                       <ArrowRight className="w-4 h-4" />
                     </button>
 
