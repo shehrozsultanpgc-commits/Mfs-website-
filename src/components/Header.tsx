@@ -270,15 +270,7 @@ export const Header: React.FC<HeaderProps> = ({
           className="flex items-center gap-2.5 group text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5C158] rounded-lg p-1"
           aria-label="MFS Growth Agency - Return to Home"
         >
-          <MFSLogo size={36} className="group-hover:scale-105 transition-transform duration-300" />
-          <div className="flex flex-col">
-            <span className="font-extrabold text-base sm:text-lg tracking-tight text-white font-poppins flex items-center gap-1.5 leading-none">
-              MFS <span className="gold-pure-gradient">Growth</span>
-            </span>
-            <span className="text-[10px] tracking-widest text-neutral-400 font-medium uppercase mt-0.5">
-              Digital Agency
-            </span>
-          </div>
+          <MFSLogo variant="full" size={38} className="group-hover:scale-105 transition-transform duration-300" />
         </a>
 
         {/* Desktop Navigation Link Hierarchy */}
@@ -589,15 +581,7 @@ export const Header: React.FC<HeaderProps> = ({
                     onClick={() => handleNavClick('home')}
                     className="flex items-center gap-2.5 group text-left cursor-pointer"
                   >
-                    <MFSLogo size={34} />
-                    <div className="flex flex-col">
-                      <span className="font-extrabold text-base tracking-tight text-white font-poppins flex items-center gap-1 leading-none">
-                        MFS <span className="gold-pure-gradient">Growth</span>
-                      </span>
-                      <span className="text-[9px] tracking-widest text-neutral-400 font-medium uppercase mt-0.5">
-                        Digital Agency
-                      </span>
-                    </div>
+                    <MFSLogo variant="full" size={34} />
                   </button>
                   <button
                     onClick={() => setMobileMenuOpen(false)}

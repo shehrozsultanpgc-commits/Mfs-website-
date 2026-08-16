@@ -42,9 +42,9 @@ export const CMSWebsiteAssetMapping: React.FC<CMSWebsiteAssetMappingProps> = ({
   const assetMappings: AssetMapItem[] = [
     {
       assetId: 'map-asset-1',
-      assetName: 'MFS Gold Primary Vector Logo.svg',
+      assetName: 'MFS Primary Master Brand Lockup.svg',
       fileType: 'svg',
-      thumbnailUrl: '/logo.svg',
+      thumbnailUrl: '/mfs-logo.svg',
       referencedPages: [
         { pageName: 'Homepage', section: 'Main Sticky Navigation Bar', url: '/' },
         { pageName: 'Homepage', section: 'Footer Brand Copyright Section', url: '/#footer' },

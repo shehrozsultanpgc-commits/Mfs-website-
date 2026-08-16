@@ -18,12 +18,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
           
           {/* Col 1: Brand & Desc */}
           <div className="lg:col-span-3 flex flex-col gap-4">
-            <div className="flex items-center gap-3">
-              <MFSLogo size={40} />
-              <span className="font-bold text-lg text-white font-poppins">
-                MFS <span className="gold-pure-gradient">Growth</span>
-              </span>
-            </div>
+            <MFSLogo variant="full" size={40} />
 
             <p className="text-neutral-400 text-xs leading-relaxed max-w-sm">
               Premium digital agency focused on delivering executive presentations, custom assignments, ATS resumes, and reports globally with speed and transparency.

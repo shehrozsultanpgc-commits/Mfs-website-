@@ -234,9 +234,9 @@ export const AIAssistantWidget: React.FC<AIAssistantWidgetProps> = ({
       ctx.fillStyle = goldGrad;
       ctx.fillRect(40, 40, 520, 8);
 
-      // Draw official MFS master logo image on canvas
+      // Draw official MFS master brand mark image on canvas
       const logoImg = new Image();
-      logoImg.src = '/mfs-logo.png';
+      logoImg.src = '/mfs-brand-mark.png';
       await new Promise((resolve) => {
         logoImg.onload = resolve;
         logoImg.onerror = resolve;
@@ -244,9 +244,6 @@ export const AIAssistantWidget: React.FC<AIAssistantWidgetProps> = ({
 
       if (logoImg.complete && logoImg.naturalWidth > 0) {
         ctx.save();
-        ctx.beginPath();
-        ctx.arc(300, 120, 36, 0, Math.PI * 2);
-        ctx.clip();
         ctx.drawImage(logoImg, 264, 84, 72, 72);
         ctx.restore();
       } else {
