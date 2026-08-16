@@ -21,6 +21,13 @@ export const MFSLogo: React.FC<MFSLogoProps> = ({ className = '', size = 48 }) =
         alt="MFS Growth Agency Logo"
         className="w-full h-full object-cover rounded-full"
         loading="eager"
+        decoding="async"
+        onError={(e) => {
+          const target = e.currentTarget;
+          if (target.src.includes('mfs-logo.png')) {
+            target.src = '/mfs-logo.svg';
+          }
+        }}
       />
     </div>
   );
