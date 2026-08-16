@@ -19,6 +19,7 @@ interface SEOProps {
     | 'terms'
     | 'refund-policy'
     | 'refundpolicy'
+    | 'guides'
     | 'guide-ats-resume'
     | 'guide-pitch-deck'
     | 'guide-academic-formatting'
@@ -129,6 +130,14 @@ const PAGE_SEO_DATA: Record<string, {
     canonical: 'https://mfsgrowth.online/refund-policy',
     robots: 'index, follow',
     pageName: 'Refund Policy',
+  },
+  guides: {
+    title: 'Knowledge & Resource Guides | MFS Growth Agency',
+    description: 'Explore comprehensive, expert-reviewed master guides on ATS resume engineering, executive pitch decks, academic citation standards (APA, Harvard, MLA), and corporate report formatting.',
+    keywords: 'MFS Growth guides, ATS resume guide, pitch deck framework, academic formatting standards, corporate report standards, professional career guides',
+    canonical: 'https://mfsgrowth.online/guides',
+    robots: 'index, follow',
+    pageName: 'Knowledge & Resource Guides',
   },
   'guide-ats-resume': {
     title: 'ATS Resume Engineering Master Guide: How to Pass Recruiter Filters | MFS Growth',
@@ -268,6 +277,7 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         'url': 'https://mfsgrowth.online/',
         'logo': 'https://mfsgrowth.online/android-chrome-512x512.png',
         'description': 'MFS Growth Agency provides executive presentation design, custom academic assignment writing, ATS resume engineering, and corporate report formatting for students and professionals in Pakistan and globally.',
+        'disambiguatingDescription': 'MFS Growth Agency is a digital services agency providing presentation design, academic writing assistance, ATS resume engineering, and report formatting. It is not affiliated with any financial investment management firm.',
         'telephone': '+923015323689',
         'email': 'mfsmedia.agency@gmail.com',
         'priceRange': '$$',
@@ -276,6 +286,9 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
           'https://www.instagram.com/mfsgrowth',
           'https://www.facebook.com/MFSGrowth'
         ],
+        'founder': {
+          '@id': 'https://mfsgrowth.online/#founder'
+        },
         'areaServed': [
           { '@type': 'Country', 'name': 'Pakistan' },
           { '@type': 'Country', 'name': 'United States' },
@@ -326,6 +339,17 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
               }
             }
           ]
+        }
+      },
+      {
+        '@type': 'Person',
+        '@id': 'https://mfsgrowth.online/#founder',
+        'name': 'Muhammad Shehroz Sultan',
+        'jobTitle': 'Founder & Lead Director',
+        'worksFor': {
+          '@type': 'Organization',
+          'name': 'MFS Growth Agency',
+          'url': 'https://mfsgrowth.online/'
         }
       },
       {
@@ -385,7 +409,9 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
           '@id': 'https://mfsgrowth.online/guides/ats-resume-engineering'
         },
         'author': {
-          '@id': 'https://mfsgrowth.online/#organization'
+          '@type': 'Person',
+          'name': 'Muhammad Shehroz Sultan',
+          '@id': 'https://mfsgrowth.online/#founder'
         },
         'publisher': {
           '@id': 'https://mfsgrowth.online/#organization'
@@ -403,7 +429,9 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
           '@id': 'https://mfsgrowth.online/guides/executive-pitch-deck-structure'
         },
         'author': {
-          '@id': 'https://mfsgrowth.online/#organization'
+          '@type': 'Person',
+          'name': 'Muhammad Shehroz Sultan',
+          '@id': 'https://mfsgrowth.online/#founder'
         },
         'publisher': {
           '@id': 'https://mfsgrowth.online/#organization'
@@ -421,7 +449,9 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
           '@id': 'https://mfsgrowth.online/guides/academic-formatting-citation'
         },
         'author': {
-          '@id': 'https://mfsgrowth.online/#organization'
+          '@type': 'Person',
+          'name': 'Muhammad Shehroz Sultan',
+          '@id': 'https://mfsgrowth.online/#founder'
         },
         'publisher': {
           '@id': 'https://mfsgrowth.online/#organization'
@@ -434,11 +464,14 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         '@id': 'https://mfsgrowth.online/guides/corporate-report-formatting-standards#article',
         'headline': 'Corporate Report Formatting Standards Guide: Professional Structure, Layout & Presentation Rules',
         'description': 'Learn professional corporate report formatting standards, including report structure, typography, page layout, tables, charts, executive summaries, and quality-control rules.',
-        'mainEntityOfPage': 'https://mfsgrowth.online/guides/corporate-report-formatting-standards',
+        'mainEntityOfPage': {
+          '@type': 'WebPage',
+          '@id': 'https://mfsgrowth.online/guides/corporate-report-formatting-standards'
+        },
         'author': {
-          '@type': 'Organization',
-          'name': 'MFS Growth Agency',
-          '@id': 'https://mfsgrowth.online/#organization'
+          '@type': 'Person',
+          'name': 'Muhammad Shehroz Sultan',
+          '@id': 'https://mfsgrowth.online/#founder'
         },
         'publisher': {
           '@id': 'https://mfsgrowth.online/#organization'

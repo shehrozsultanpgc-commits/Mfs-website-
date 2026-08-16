@@ -128,6 +128,19 @@ export default function CorporateReportGuidePage() {
     <div className="min-h-screen bg-[#050507] text-[#CFCFCF] selection:bg-[#E5C158] selection:text-[#050507] py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto space-y-12">
 
+        {/* Breadcrumb Navigation */}
+        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-[#9FA0A7] font-mono">
+          <a href="/" className="hover:text-white transition-colors">
+            Home
+          </a>
+          <ChevronRight className="w-3 h-3 text-[#9FA0A7]/50" />
+          <a href="/guides" className="hover:text-white transition-colors">
+            Guides
+          </a>
+          <ChevronRight className="w-3 h-3 text-[#9FA0A7]/50" />
+          <span className="text-[#E5C158] truncate">Corporate Report Formatting Standards Guide</span>
+        </nav>
+
         {/* HERO SECTION */}
         <header className="relative bg-[#0F0F14] border border-[#22222E] rounded-2xl p-6 sm:p-10 overflow-hidden shadow-2xl">
           <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#E5C158]/10 rounded-full blur-3xl pointer-events-none" />
@@ -189,6 +202,22 @@ export default function CorporateReportGuidePage() {
               {copiedLink ? <Check className="w-3.5 h-3.5 text-[#28C76F]" /> : <Share2 className="w-3.5 h-3.5" />}
               {copiedLink ? 'Link Copied!' : 'Share Guide'}
             </button>
+          </div>
+
+          {/* Top Author Attribution Block */}
+          <div className="mt-6 pt-4 border-t border-[#22222E] flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-full bg-[#E5C158]/20 border border-[#E5C158]/40 flex items-center justify-center text-[#E5C158] font-bold text-xs shrink-0 font-poppins">
+              MS
+            </div>
+            <div className="text-xs">
+              <span className="text-[#9FA0A7] block font-mono">Written & Reviewed by</span>
+              <span className="font-semibold text-white font-poppins flex flex-wrap items-center gap-2">
+                Muhammad Shehroz Sultan
+                <span className="text-[10px] px-2 py-0.5 rounded bg-[#E5C158]/10 text-[#E5C158] border border-[#E5C158]/30 font-mono font-normal">
+                  Founder & Lead Director, MFS Growth Agency
+                </span>
+              </span>
+            </div>
           </div>
         </header>
 
@@ -892,6 +921,29 @@ export default function CorporateReportGuidePage() {
             </div>
           </div>
         </section>
+
+        {/* Bottom Author Bio Card */}
+        <div className="glass-card rounded-2xl p-6 sm:p-8 border border-white/10 bg-gradient-to-br from-[#0F0F12] to-[#050507]">
+          <div className="flex flex-col sm:flex-row items-start gap-5">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#E5C158]/20 to-[#E5C158]/40 border border-[#E5C158]/50 flex items-center justify-center text-[#E5C158] font-bold text-lg shrink-0 font-poppins shadow-lg shadow-[#E5C158]/10">
+              MS
+            </div>
+            <div className="flex-1">
+              <div className="text-xs font-mono text-[#E5C158] uppercase tracking-wider mb-1">
+                Author & Lead Editorial Reviewer
+              </div>
+              <h3 className="text-lg font-bold font-poppins text-white mb-1">
+                Muhammad Shehroz Sultan
+              </h3>
+              <p className="text-xs text-[#E5C158]/80 font-mono mb-3">
+                Founder & Lead Director, MFS Growth Agency
+              </p>
+              <p className="text-xs sm:text-sm text-[#9FA0A7] leading-relaxed">
+                Written & Reviewed by Muhammad Shehroz Sultan, Founder & Lead Director, MFS Growth Agency. Specialist in executive presentation design, academic document formatting, and ATS-optimized career assets helping students and professionals achieve growth worldwide.
+              </p>
+            </div>
+          </div>
+        </div>
 
       </div>
     </div>

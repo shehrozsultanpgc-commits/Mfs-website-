@@ -239,7 +239,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </h2>
 
             <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
-              MFS Growth Agency was founded with a singular mission: to bridge the gap between complex academic/corporate requirements and flawless presentation delivery. We recognized that students and working professionals often face tight deadlines, strict formatting guidelines, and high stakes without reliable support.
+              MFS Growth Agency was founded by Muhammad Shehroz Sultan to provide high-quality digital solutions, marketing, and professional growth services. We recognized that students and working professionals often face tight deadlines, strict formatting guidelines, and high stakes without reliable support.
             </p>
 
             <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">

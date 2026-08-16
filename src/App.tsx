@@ -41,6 +41,7 @@ import AtsResumeGuidePage from './components/guides/AtsResumeGuidePage';
 import PitchDeckGuidePage from './components/guides/PitchDeckGuidePage';
 import AcademicFormattingGuidePage from './components/guides/AcademicFormattingGuidePage';
 import CorporateReportGuidePage from './components/guides/CorporateReportGuidePage';
+import GuidesIndexPage from './components/guides/GuidesIndexPage';
 
 type PageType =
   | 'home'
@@ -59,6 +60,7 @@ type PageType =
   | 'terms'
   | 'refund-policy'
   | 'refundpolicy'
+  | 'guides'
   | 'guide-ats-resume'
   | 'guide-pitch-deck'
   | 'guide-academic-formatting'
@@ -82,6 +84,7 @@ const VALID_PAGES: PageType[] = [
   'terms',
   'refund-policy',
   'refundpolicy',
+  'guides',
   'guide-ats-resume',
   'guide-pitch-deck',
   'guide-academic-formatting',
@@ -92,6 +95,9 @@ function getPageFromRoute(): { page: PageType; targetSection?: string } {
   const pathRaw = window.location.pathname.toLowerCase().replace(/^\/+|\/+$/g, '');
   const hashRaw = window.location.hash.toLowerCase().replace(/^#\/?/, '');
 
+    if (pathRaw === 'guides' || pathRaw === 'guides/') {
+      return { page: 'guides' };
+    }
     if (pathRaw === 'guides/ats-resume-engineering') {
       return { page: 'guide-ats-resume' };
     }
@@ -538,14 +544,31 @@ function AppContent() {
               onOpenAIChat={handleOpenAIChat}
               onShowToast={triggerToast}
             />
+          ) : currentPage === 'guides' ? (
+            <GuidesIndexPage
+              onNavigatePage={handleNavigatePage}
+              onOpenOrderModal={() => setIsOrderModalOpen(true)}
+            />
           ) : currentPage === 'guide-ats-resume' ? (
-            <AtsResumeGuidePage />
+            <AtsResumeGuidePage
+              onNavigatePage={handleNavigatePage}
+              onOpenOrderModal={() => setIsOrderModalOpen(true)}
+            />
           ) : currentPage === 'guide-pitch-deck' ? (
-            <PitchDeckGuidePage />
+            <PitchDeckGuidePage
+              onNavigatePage={handleNavigatePage}
+              onOpenOrderModal={() => setIsOrderModalOpen(true)}
+            />
           ) : currentPage === 'guide-academic-formatting' ? (
-            <AcademicFormattingGuidePage />
+            <AcademicFormattingGuidePage
+              onNavigatePage={handleNavigatePage}
+              onOpenOrderModal={() => setIsOrderModalOpen(true)}
+            />
           ) : currentPage === 'guide-corporate-report' ? (
-            <CorporateReportGuidePage />
+            <CorporateReportGuidePage
+              onNavigatePage={handleNavigatePage}
+              onOpenOrderModal={() => setIsOrderModalOpen(true)}
+            />
           ) : (
             <NotFoundPage onNavigatePage={handleNavigatePage} />
           )}
