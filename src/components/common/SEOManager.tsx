@@ -284,9 +284,14 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         'url': 'https://mfsgrowth.online/',
         'logo': 'https://mfsgrowth.online/android-chrome-512x512.png',
         'description': 'MFS Growth Agency provides executive presentation design, custom academic assignment writing, ATS resume engineering, and corporate report formatting for students and professionals in Pakistan and globally.',
-        'disambiguatingDescription': 'MFS Growth Agency is a digital services agency providing presentation design, academic writing assistance, ATS resume engineering, and report formatting. It is not affiliated with any financial investment management firm.',
+        'disambiguatingDescription': 'MFS Growth Agency is a digital services agency providing presentation design, academic writing assistance, ATS resume engineering, and report formatting based in Islamabad, Pakistan. It is not affiliated with any financial investment management firm.',
         'telephone': '+923015323689',
         'email': 'mfsmedia.agency@gmail.com',
+        'address': {
+          '@type': 'PostalAddress',
+          'addressLocality': 'Islamabad',
+          'addressCountry': 'PK'
+        },
         'priceRange': '$$',
         'paymentAccepted': 'EasyPaisa, JazzCash, Bank Transfer',
         'sameAs': [

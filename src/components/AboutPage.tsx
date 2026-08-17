@@ -239,7 +239,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </h2>
 
             <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
-              MFS Growth Agency was founded by Muhammad Shehroz Sultan to provide high-quality digital solutions, marketing, and professional growth services. We recognized that students and working professionals often face tight deadlines, strict formatting guidelines, and high stakes without reliable support.
+              MFS Growth Agency was founded in Islamabad, Pakistan by <strong>Muhammad Shehroz Sultan</strong> (Founder &amp; Lead Director) to provide high-quality digital solutions, executive presentation design, custom academic assignments, ATS resume engineering, and corporate document formatting. We recognized that students and working professionals often face tight deadlines, strict formatting guidelines, and high stakes without reliable support.
             </p>
 
             <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
@@ -347,9 +347,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({
 
             <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-2">
               <span className="text-[10px] font-bold uppercase text-[#28C76F] block tracking-wider">HEADQUARTERS & DESK</span>
-              <p className="font-poppins font-bold text-white text-sm">Pakistan HQ (Worldwide Desk)</p>
+              <p className="font-poppins font-bold text-white text-sm">Islamabad HQ (Global Digital Desk)</p>
               <p className="text-neutral-400 text-[11px] leading-relaxed">
-                Headquartered in Pakistan with 24/7 online delivery operations serving 15+ countries globally across all timezones.
+                Headquartered in Islamabad, Pakistan with 24/7 online delivery operations serving clients across Pakistan and 15+ countries globally.
               </p>
             </div>
 
@@ -370,7 +370,15 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </div>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs">
+          {/* Disambiguation & Entity Scope Notice */}
+          <div className="mt-6 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 text-[11px] text-neutral-400 leading-relaxed flex items-start gap-2.5">
+            <ShieldCheck className="w-4 h-4 text-[#E5C158] shrink-0 mt-0.5" />
+            <div>
+              <strong className="text-white">Brand &amp; Entity Disambiguation:</strong> MFS Growth Agency is an independent digital services brand based in Islamabad, Pakistan, specializing in executive presentation design, custom academic assignment assistance, ATS resume engineering, and corporate document formatting. MFS Growth Agency is not affiliated with, sponsored by, or connected to any financial investment management or asset management entities.
+            </div>
+          </div>
+
+          <div className="mt-6 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs">
             <div className="flex flex-wrap items-center gap-4">
               <button
                 onClick={() => onNavigatePage('services')}

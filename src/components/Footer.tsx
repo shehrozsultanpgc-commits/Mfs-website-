@@ -21,7 +21,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
             <MFSLogo variant="full" size={40} />
 
             <p className="text-neutral-400 text-xs leading-relaxed max-w-sm">
-              Premium digital agency focused on delivering executive presentations, custom assignments, ATS resumes, and reports globally with speed and transparency.
+              MFS Growth Agency is a digital services agency based in Islamabad, Pakistan, delivering executive presentations, custom academic writing, ATS resumes, and corporate reports globally.
             </p>
 
             {/* Socials */}
@@ -242,6 +242,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
             <h4 className="font-poppins font-bold uppercase tracking-wider text-white text-xs mb-2">
               Contact Info
             </h4>
+            <div className="flex items-center gap-2">
+              <MapPin className="w-3.5 h-3.5 text-[#E5C158]" />
+              <span className="text-neutral-300">Islamabad, Pakistan (Global Desk)</span>
+            </div>
             <div className="flex items-center gap-2">
               <Mail className="w-3.5 h-3.5 text-[#E5C158]" />
               <a href="mailto:mfsmedia.agency@gmail.com" className="hover:text-[#E5C158]">mfsmedia.agency@gmail.com</a>
