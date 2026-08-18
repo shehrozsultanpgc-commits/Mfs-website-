@@ -93,12 +93,22 @@ export const MEDIA_REGISTRY: MediaAsset[] = [
   },
   {
     id: 'about-workspace',
-    name: 'MFS Growth Agency Modern Headquarters',
+    name: 'MFS Growth Agency Digital Studio & Operations Desk',
     type: 'image',
-    url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
-    source: 'Unsplash',
+    url: '/images/about/mfs-digital-agency-studio-workspace.jpg',
+    source: 'Custom CSS/Canvas',
     license: 'Commercial Free (No Attribution Required)',
-    usedIn: ['About Page', 'Agency Overview'],
-    altText: 'Modern agency studio space with collaborative design screens'
+    usedIn: ['About Page', 'Agency Overview', 'Studio Operations'],
+    altText: 'MFS Growth Agency executive digital studio workspace and multi-pillar production desk'
+  },
+  {
+    id: 'guide-ats-og-cover',
+    name: 'ATS Resume Engineering Master Guide Visual Architecture',
+    type: 'image',
+    url: '/images/blog/ats-compliant-executive-resume-og.jpg',
+    source: 'Custom CSS/Canvas',
+    license: 'Commercial Free (No Attribution Required)',
+    usedIn: ['ATS Resume Guide Page', 'Social OpenGraph 1200x630 Banner', 'Knowledge Center'],
+    altText: 'ATS resume engineering diagram showing parser text extraction, Workday and Taleo scoring HUD, and single-column layout benchmarks'
   }
 ];

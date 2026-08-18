@@ -272,21 +272,26 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             {workspaceImg && (
               <motion.div
                 whileHover={{ scale: 1.02 }}
-                className="relative h-48 sm:h-56 rounded-2xl overflow-hidden border border-[#E5C158]/30 shadow-2xl group"
+                className="relative h-56 sm:h-64 rounded-2xl overflow-hidden border border-[#E5C158]/40 shadow-2xl group bg-[#09090D]"
               >
                 <img
                   src={workspaceImg.url}
                   alt={workspaceImg.altText}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 bg-black/75 backdrop-blur-md p-3 rounded-xl border border-white/10 flex items-center justify-between text-xs">
-                  <span className="text-[#E5C158] font-extrabold flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    MFS Digital Agency & Studio
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050507]/90 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3 right-3 bg-[#0E0E14]/90 backdrop-blur-md px-3.5 py-2.5 rounded-xl border border-white/10 flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#28C76F] animate-pulse" />
+                    <span className="text-[#E5C158] font-poppins font-bold flex items-center gap-1.5 text-xs">
+                      <Sparkles className="w-3.5 h-3.5" />
+                      MFS Digital Operations &amp; Studio Desk
+                    </span>
+                  </div>
+                  <span className="text-neutral-400 font-mono text-[10px] bg-white/5 px-2 py-0.5 rounded border border-white/5">
+                    Islamabad HQ • 24/7 Global
                   </span>
-                  <span className="text-neutral-300 font-mono text-[10px]">24/7 Online</span>
                 </div>
               </motion.div>
             )}
