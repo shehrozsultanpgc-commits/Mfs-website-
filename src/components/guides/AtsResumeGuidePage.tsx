@@ -198,7 +198,7 @@ export const AtsResumeGuidePage: React.FC<AtsResumeGuidePageProps> = ({
                 Fact-Checked & Verified
               </span>
               <span className="hidden sm:inline-block text-[#9FA0A7]/40">•</span>
-              <span className="hidden sm:inline-block">Updated February 2026</span>
+              <span className="hidden sm:inline-block">Published &amp; Updated August 2026</span>
             </div>
 
             <button
@@ -219,19 +219,34 @@ export const AtsResumeGuidePage: React.FC<AtsResumeGuidePageProps> = ({
             </button>
           </div>
 
-          {/* Top Author Attribution Block */}
+          {/* Top Author Attribution Block with Verified About Link */}
           <div className="mt-6 pt-4 border-t border-white/05 flex items-center gap-3.5">
-            <div className="w-10 h-10 rounded-full bg-[#E5C158]/20 border border-[#E5C158]/40 flex items-center justify-center text-[#E5C158] font-bold text-xs shrink-0 font-poppins">
+            <button
+              onClick={() => handleNavClick('/about', 'about')}
+              className="w-10 h-10 rounded-full bg-[#E5C158]/20 border border-[#E5C158]/40 flex items-center justify-center text-[#E5C158] font-bold text-xs shrink-0 font-poppins hover:border-[#E5C158] transition-colors cursor-pointer"
+              title="View Founder & Agency Leadership Profile"
+            >
               MS
-            </div>
+            </button>
             <div className="text-xs">
-              <span className="text-[#9FA0A7] block font-mono">Written & Reviewed by</span>
-              <span className="font-semibold text-white font-poppins flex flex-wrap items-center gap-2">
-                Muhammad Shehroz Sultan
+              <span className="text-[#9FA0A7] block font-mono">Written &amp; Reviewed by</span>
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  onClick={() => handleNavClick('/about', 'about')}
+                  className="font-semibold text-white font-poppins hover:text-[#E5C158] transition-colors cursor-pointer text-left"
+                >
+                  Muhammad Shehroz Sultan
+                </button>
                 <span className="text-[10px] px-2 py-0.5 rounded bg-[#E5C158]/10 text-[#E5C158] border border-[#E5C158]/30 font-mono font-normal">
-                  Founder & Lead Director, MFS Growth Agency
+                  Founder &amp; Lead Director, MFS Growth Agency
                 </span>
-              </span>
+                <button
+                  onClick={() => handleNavClick('/about', 'about')}
+                  className="text-[10px] text-[#9FA0A7] hover:text-[#E5C158] font-mono underline transition-colors cursor-pointer"
+                >
+                  (View Founder QA Standards)
+                </button>
+              </div>
             </div>
           </div>
         </header>
@@ -958,21 +973,37 @@ export const AtsResumeGuidePage: React.FC<AtsResumeGuidePageProps> = ({
             {/* Bottom Author Bio Card */}
             <div className="mt-12 glass-card rounded-2xl p-6 sm:p-8 border border-white/10 bg-gradient-to-br from-[#0F0F12] to-[#050507]">
               <div className="flex flex-col sm:flex-row items-start gap-5">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#E5C158]/20 to-[#E5C158]/40 border border-[#E5C158]/50 flex items-center justify-center text-[#E5C158] font-bold text-lg shrink-0 font-poppins shadow-lg shadow-[#E5C158]/10">
+                <button
+                  onClick={() => handleNavClick('/about', 'about')}
+                  className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#E5C158]/20 to-[#E5C158]/40 border border-[#E5C158]/50 flex items-center justify-center text-[#E5C158] font-bold text-lg shrink-0 font-poppins shadow-lg shadow-[#E5C158]/10 hover:border-[#E5C158] transition-colors cursor-pointer"
+                  title="View Founder Profile &amp; Quality Assurance Framework"
+                >
                   MS
-                </div>
+                </button>
                 <div className="flex-1">
                   <div className="text-xs font-mono text-[#E5C158] uppercase tracking-wider mb-1">
-                    Author & Lead Editorial Reviewer
+                    Author &amp; Lead Editorial Reviewer
                   </div>
                   <h3 className="text-lg font-bold font-poppins text-white mb-1">
-                    Muhammad Shehroz Sultan
+                    <button
+                      onClick={() => handleNavClick('/about', 'about')}
+                      className="hover:text-[#E5C158] transition-colors cursor-pointer text-left"
+                    >
+                      Muhammad Shehroz Sultan
+                    </button>
                   </h3>
-                  <p className="text-xs text-[#E5C158]/80 font-mono mb-3">
-                    Founder & Lead Director, MFS Growth Agency
+                  <p className="text-xs text-[#E5C158]/80 font-mono mb-3 flex items-center gap-2">
+                    <span>Founder &amp; Lead Director, MFS Growth Agency</span>
+                    <span className="text-[#9FA0A7]">•</span>
+                    <button
+                      onClick={() => handleNavClick('/about', 'about')}
+                      className="underline text-[#9FA0A7] hover:text-[#E5C158] transition-colors cursor-pointer"
+                    >
+                      Verified Leadership Profile →
+                    </button>
                   </p>
                   <p className="text-xs sm:text-sm text-[#9FA0A7] leading-relaxed">
-                    Written & Reviewed by Muhammad Shehroz Sultan, Founder & Lead Director, MFS Growth Agency. Specialist in executive presentation design, academic document formatting, and ATS-optimized career assets helping students and professionals achieve growth worldwide.
+                    Written &amp; Reviewed by Muhammad Shehroz Sultan, Founder &amp; Lead Director, MFS Growth Agency. Specialist in executive presentation design, academic document formatting, and ATS-optimized career assets helping students and professionals achieve growth worldwide.
                   </p>
                 </div>
               </div>

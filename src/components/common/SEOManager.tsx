@@ -147,6 +147,7 @@ const PAGE_SEO_DATA: Record<string, {
     canonical: 'https://mfsgrowth.online/guides/ats-resume-engineering',
     robots: 'index, follow',
     pageName: 'ATS Resume Engineering Master Guide',
+    ogImage: 'https://mfsgrowth.online/images/blog/ats-compliant-executive-resume-og.jpg',
   },
   'guide-pitch-deck': {
     title: 'Executive Pitch Deck Structure Guide: The Essential 10-Slide Framework | MFS Growth',
@@ -358,6 +359,7 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         '@id': 'https://mfsgrowth.online/#founder',
         'name': 'Muhammad Shehroz Sultan',
         'jobTitle': 'Founder & Lead Director',
+        'url': 'https://mfsgrowth.online/about',
         'worksFor': {
           '@type': 'Organization',
           'name': 'MFS Growth Agency',
@@ -543,6 +545,9 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         '@id': 'https://mfsgrowth.online/guides/ats-resume-engineering#article',
         'headline': 'ATS Resume Engineering Master Guide: How Applicant Tracking Systems Parse Your Resume',
         'description': 'Learn how Applicant Tracking Systems (ATS) parse resumes, including single-column formatting, keyword optimization, and ATS readability principles.',
+        'image': 'https://mfsgrowth.online/images/blog/ats-compliant-executive-resume-og.jpg',
+        'datePublished': '2026-08-18T00:00:00+00:00',
+        'dateModified': '2026-08-18T00:00:00+00:00',
         'mainEntityOfPage': {
           '@type': 'WebPage',
           '@id': 'https://mfsgrowth.online/guides/ats-resume-engineering'
@@ -550,7 +555,8 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         'author': {
           '@type': 'Person',
           'name': 'Muhammad Shehroz Sultan',
-          '@id': 'https://mfsgrowth.online/#founder'
+          '@id': 'https://mfsgrowth.online/#founder',
+          'url': 'https://mfsgrowth.online/about'
         },
         'publisher': {
           '@id': 'https://mfsgrowth.online/#organization'
@@ -564,6 +570,9 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         '@id': 'https://mfsgrowth.online/guides/executive-pitch-deck-structure#article',
         'headline': 'Executive Pitch Deck Structure Guide: The Essential 10-Slide Framework for Investors',
         'description': 'Learn the essential investor pitch deck sequence, narrative structure, visual hierarchy, and data presentation principles.',
+        'image': 'https://mfsgrowth.online/android-chrome-512x512.png',
+        'datePublished': '2026-08-18T00:00:00+00:00',
+        'dateModified': '2026-08-18T00:00:00+00:00',
         'mainEntityOfPage': {
           '@type': 'WebPage',
           '@id': 'https://mfsgrowth.online/guides/executive-pitch-deck-structure'
@@ -571,7 +580,8 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         'author': {
           '@type': 'Person',
           'name': 'Muhammad Shehroz Sultan',
-          '@id': 'https://mfsgrowth.online/#founder'
+          '@id': 'https://mfsgrowth.online/#founder',
+          'url': 'https://mfsgrowth.online/about'
         },
         'publisher': {
           '@id': 'https://mfsgrowth.online/#organization'
@@ -585,6 +595,9 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         '@id': 'https://mfsgrowth.online/guides/academic-formatting-citation#article',
         'headline': 'Academic Formatting & Citation Standards Guide: APA 7, Harvard, MLA & IEEE',
         'description': 'Learn academic formatting and citation principles across APA 7, Harvard, MLA, IEEE and Oxford referencing systems.',
+        'image': 'https://mfsgrowth.online/android-chrome-512x512.png',
+        'datePublished': '2026-08-18T00:00:00+00:00',
+        'dateModified': '2026-08-18T00:00:00+00:00',
         'mainEntityOfPage': {
           '@type': 'WebPage',
           '@id': 'https://mfsgrowth.online/guides/academic-formatting-citation'
@@ -592,7 +605,8 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         'author': {
           '@type': 'Person',
           'name': 'Muhammad Shehroz Sultan',
-          '@id': 'https://mfsgrowth.online/#founder'
+          '@id': 'https://mfsgrowth.online/#founder',
+          'url': 'https://mfsgrowth.online/about'
         },
         'publisher': {
           '@id': 'https://mfsgrowth.online/#organization'
@@ -606,6 +620,9 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         '@id': 'https://mfsgrowth.online/guides/corporate-report-formatting-standards#article',
         'headline': 'Corporate Report Formatting Standards Guide: Professional Structure, Layout & Presentation Rules',
         'description': 'Learn professional corporate report formatting standards, including report structure, typography, page layout, tables, charts, executive summaries, and quality-control rules.',
+        'image': 'https://mfsgrowth.online/android-chrome-512x512.png',
+        'datePublished': '2026-08-18T00:00:00+00:00',
+        'dateModified': '2026-08-18T00:00:00+00:00',
         'mainEntityOfPage': {
           '@type': 'WebPage',
           '@id': 'https://mfsgrowth.online/guides/corporate-report-formatting-standards'
@@ -613,7 +630,8 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         'author': {
           '@type': 'Person',
           'name': 'Muhammad Shehroz Sultan',
-          '@id': 'https://mfsgrowth.online/#founder'
+          '@id': 'https://mfsgrowth.online/#founder',
+          'url': 'https://mfsgrowth.online/about'
         },
         'publisher': {
           '@id': 'https://mfsgrowth.online/#organization'
