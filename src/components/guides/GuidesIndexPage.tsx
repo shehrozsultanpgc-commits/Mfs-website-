@@ -47,7 +47,7 @@ export const GuidesIndexPage: React.FC<GuidesIndexPageProps> = ({
       icon: FileText,
       readTime: '12 Min Read',
       badge: 'Recruiter Filter Standards',
-      updated: 'February 2026',
+      updated: 'August 2026',
       topics: [
         'Single-column vs multi-column parsing',
         'Keyword density & contextual placement',

@@ -12,6 +12,7 @@ import {
   ListChecks,
   ArrowRight,
   Clock,
+  Calendar,
   Sparkles,
   BookOpen,
   ChevronRight,
@@ -186,19 +187,34 @@ export const AtsResumeGuidePage: React.FC<AtsResumeGuidePageProps> = ({
             your resume for optimal parser accuracy in international job markets.
           </p>
 
-          {/* Article Metadata Bar */}
+          {/* Article Metadata Bar with High-Visibility Live Date, Timestamp & Verification */}
           <div className="flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-[#9FA0A7] pt-4 border-t border-white/05">
-            <div className="flex items-center gap-6">
-              <span className="flex items-center gap-1.5">
-                <Clock className="w-4 h-4 text-[#E5C158]" />
-                12 Min Read
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+              {/* Live Status Indicator Chip */}
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#28C76F]/10 border border-[#28C76F]/30 text-[#28C76F] font-semibold text-[11px]">
+                <span className="w-2 h-2 rounded-full bg-[#28C76F] animate-pulse" />
+                <span>LIVE EDITION</span>
+              </div>
+
+              {/* Published & Updated Date */}
+              <span className="flex items-center gap-1.5 text-white font-medium">
+                <Calendar className="w-3.5 h-3.5 text-[#E5C158]" />
+                <time dateTime="2026-08-18">Published: August 18, 2026</time>
               </span>
-              <span className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-[#28C76F]" />
-                Fact-Checked & Verified
+
+              <span className="text-[#9FA0A7]/40 hidden sm:inline-block">•</span>
+
+              <span className="flex items-center gap-1.5 text-[#CFCFCF]">
+                <Clock className="w-3.5 h-3.5 text-[#E5C158]" />
+                <span>12 Min Read</span>
               </span>
-              <span className="hidden sm:inline-block text-[#9FA0A7]/40">•</span>
-              <span className="hidden sm:inline-block">Published &amp; Updated August 2026</span>
+
+              <span className="text-[#9FA0A7]/40 hidden sm:inline-block">•</span>
+
+              <span className="flex items-center gap-1.5 text-[#28C76F]">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#28C76F]" />
+                <span>Fact-Checked &amp; Peer Verified</span>
+              </span>
             </div>
 
             <button

@@ -45,13 +45,22 @@ export const Hero: React.FC<HeroProps> = ({ onOpenOrderModal, onViewWork }) => {
             transition={{ duration: 0.6, ease: 'easeOut' }}
             className="lg:col-span-7 text-center lg:text-left"
           >
-            {/* Top promo badge */}
+            {/* Top promo badge with official MFS AI glowing sparkle insignia */}
             <motion.div
               whileHover={{ scale: 1.04 }}
-              className="inline-flex items-center gap-2 px-3 xs:px-3.5 py-1.5 rounded-full bg-[#E5C158]/10 border border-[#E5C158]/25 text-[#E5C158] text-[11px] xs:text-xs font-semibold mb-3.5 sm:mb-6 shadow-sm cursor-default max-w-full"
+              className="inline-flex items-center gap-2.5 px-3.5 xs:px-4 py-1.5 rounded-full bg-[#E5C158]/10 border border-[#E5C158]/35 text-[#E5C158] text-[11px] xs:text-xs font-semibold mb-3.5 sm:mb-6 shadow-[0_0_20px_rgba(229,193,88,0.22)] cursor-default max-w-full backdrop-blur-md relative overflow-hidden group"
             >
-              <Sparkles className="w-3.5 h-3.5 animate-pulse shrink-0" />
-              <span className="truncate">50% Grand Launch Discount Active</span>
+              {/* Subtle sweeping shimmer highlight */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              
+              {/* Luminous Brand Emblem Icon */}
+              <div className="w-5 h-5 rounded-full bg-gradient-to-tr from-[#E5C158] to-[#D4AF37] text-neutral-950 flex items-center justify-center font-bold shadow-[0_0_10px_rgba(229,193,88,0.6)] shrink-0">
+                <Sparkles className="w-3 h-3 fill-neutral-950 text-neutral-950" />
+              </div>
+              <span className="truncate font-poppins font-medium text-white">
+                <strong className="text-[#E5C158] font-bold">50% Grand Launch</strong> Discount Active
+              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#28C76F] animate-ping shrink-0" />
             </motion.div>
 
             <h1 className="text-[1.6rem] xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight font-poppins leading-[1.22] xs:leading-[1.18] sm:leading-[1.15] mb-3.5 sm:mb-6 text-white">
