@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { MEDIA_REGISTRY } from '../data/mediaRegistry';
+import { AboutStudioCanvasVisual } from './AboutStudioCanvasVisual';
 import {
   Sparkles,
   ShieldCheck,
@@ -268,33 +269,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({
 
           {/* Studio Media & Mission & Vision Cards */}
           <div className="space-y-6">
-            {/* Visual Agency Studio Banner */}
-            {workspaceImg && (
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                className="relative h-56 sm:h-64 rounded-2xl overflow-hidden border border-[#E5C158]/40 shadow-2xl group bg-[#09090D]"
-              >
-                <img
-                  src={workspaceImg.url}
-                  alt={workspaceImg.altText}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050507]/90 via-transparent to-transparent" />
-                <div className="absolute bottom-3 left-3 right-3 bg-[#0E0E14]/90 backdrop-blur-md px-3.5 py-2.5 rounded-xl border border-white/10 flex items-center justify-between text-xs">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#28C76F] animate-pulse" />
-                    <span className="text-[#E5C158] font-poppins font-bold flex items-center gap-1.5 text-xs">
-                      <Sparkles className="w-3.5 h-3.5" />
-                      MFS Digital Operations &amp; Studio Desk
-                    </span>
-                  </div>
-                  <span className="text-neutral-400 font-mono text-[10px] bg-white/5 px-2 py-0.5 rounded border border-white/5">
-                    Islamabad HQ • 24/7 Global
-                  </span>
-                </div>
-              </motion.div>
-            )}
+            {/* Visual Agency Studio Banner - 100% Fail-Safe Enterprise Canvas Visual */}
+            <motion.div
+              whileHover={{ scale: 1.01 }}
+              transition={{ duration: 0.3 }}
+            >
+              <AboutStudioCanvasVisual />
+            </motion.div>
 
             <div className="glass-card rounded-2xl border border-white/10 p-6 relative overflow-hidden group hover:border-[#E5C158]/40 transition-all">
               <div className="flex items-center gap-3 mb-3">

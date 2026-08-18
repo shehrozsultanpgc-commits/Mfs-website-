@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
+import { ATSInteractiveArchitectureGraphic } from './ATSInteractiveArchitectureGraphic';
 import {
   FileText,
   Search,
@@ -266,34 +267,14 @@ export const AtsResumeGuidePage: React.FC<AtsResumeGuidePageProps> = ({
             </div>
           </div>
 
-          {/* Guide Primary Technical Visual / Infographic Banner */}
+          {/* Guide Primary Technical Visual / Interactive Architecture Graphic */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mt-8 rounded-2xl overflow-hidden border border-[#E5C158]/30 shadow-2xl bg-[#0B0B10] group"
+            className="mt-8"
           >
-            <div className="relative aspect-[1200/630] w-full overflow-hidden">
-              <img
-                src="/images/blog/ats-compliant-executive-resume-og.jpg"
-                alt="ATS Resume Engineering Master Guide architectural overview showing parser text extraction, Workday/Taleo compatibility scoring, and single-column layout benchmarks"
-                className="w-full h-full object-cover group-hover:scale-[1.015] transition-transform duration-700"
-                loading="eager"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#050507]/80 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 bg-[#0F0F17]/90 backdrop-blur-md px-4 py-2.5 rounded-xl border border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#28C76F] animate-pulse" />
-                  <span className="text-[#E5C158] font-poppins font-bold flex items-center gap-1.5 text-xs">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    ATS Parser Ingestion &amp; Tokenization Workflow (Interactive Architecture)
-                  </span>
-                </div>
-                <span className="text-neutral-400 font-mono text-[10px] bg-white/5 px-2.5 py-1 rounded border border-white/5">
-                  100% License Free &bull; MFS Engineering Standard
-                </span>
-              </div>
-            </div>
+            <ATSInteractiveArchitectureGraphic />
           </motion.div>
         </header>
 
