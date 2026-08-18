@@ -37,25 +37,25 @@ const PAGE_SEO_DATA: Record<string, {
   ogImage?: string;
 }> = {
   home: {
-    title: 'MFS Growth Agency | Academic Assignments, Presentations & ATS Resumes in Pakistan',
-    description: 'MFS Growth Agency is a digital services agency based in Pakistan offering custom academic assignment writing, executive presentation design, ATS resume engineering, and report formatting worldwide.',
-    keywords: 'MFS Growth Agency, MFS Growth Agency Pakistan, assignment writing service Pakistan, presentation design service, ATS resume writing, CV design, corporate report writing, MFS Growth Online',
+    title: 'MFS Growth Agency | Presentation Design, Academic Assignments & ATS Resumes in Pakistan',
+    description: 'MFS Growth Agency provides executive presentation design, custom academic assignment writing, ATS resume engineering, CV writing, and corporate report formatting in Pakistan & worldwide.',
+    keywords: 'MFS Growth Agency, MFS Growth, MFS Growth Pakistan, Muhammad Shehroz Sultan, presentation design, presentation design services, assignment writing, assignment writing service Pakistan, ATS resume, ATS resume engineering, CV writing, report formatting, infographics design',
     canonical: 'https://mfsgrowth.online/',
     robots: 'index, follow',
     pageName: 'Home',
   },
   services: {
-    title: 'Services — Presentation Design, Assignment Writing & ATS Resumes | MFS Growth Agency',
-    description: 'Explore MFS Growth Agency digital services: executive presentation design, custom assignment writing, ATS resume engineering, and corporate reports with 50% Grand Launch discount.',
-    keywords: 'assignment writing service, presentation design, ATS resume engineering, CV writing, corporate report writing, MFS Growth Agency services',
+    title: 'Digital Services — Presentation Design, Assignment Writing & ATS Resumes | MFS Growth Agency',
+    description: 'Explore digital services by MFS Growth Agency: pitch deck presentation design, academic assignments (APA/Harvard/MLA), ATS resume engineering, CV design, and corporate reports with 50% Grand Launch discount.',
+    keywords: 'MFS Growth Agency services, presentation design, pitch deck design, assignment writing service, ATS resume engineering, CV design, corporate report writing, cover letter writing, document formatting Pakistan',
     canonical: 'https://mfsgrowth.online/services',
     robots: 'index, follow',
     pageName: 'Services',
   },
   pricing: {
-    title: 'Pricing & Rates — 50% Grand Launch Discount | MFS Growth Agency',
-    description: 'View transparent pricing for presentation design, assignment writing, ATS resumes, and reports. 50% Grand Launch discount active across PKR, USD, GBP, EUR, and AED.',
-    keywords: 'MFS Growth Agency pricing, assignment writing cost, presentation design rate, ATS resume price, 50% discount offer',
+    title: 'Pricing & Rates — 50% Grand Launch Offer | MFS Growth Agency',
+    description: 'Transparent pricing calculator for presentation design, assignment writing, ATS resumes, CV design, and business reports. 50% Grand Launch discount active across PKR, USD, GBP, EUR, and AED.',
+    keywords: 'MFS Growth Agency pricing, presentation design rates, assignment writing cost Pakistan, ATS resume price, CV writing rates, report formatting fees',
     canonical: 'https://mfsgrowth.online/pricing',
     robots: 'index, follow',
     pageName: 'Pricing',
@@ -63,15 +63,15 @@ const PAGE_SEO_DATA: Record<string, {
   reviews: {
     title: 'Client Reviews & Verified Testimonials | MFS Growth Agency',
     description: 'Read verified client reviews and feedback for MFS Growth Agency from students, job seekers, and corporate professionals across Pakistan and internationally.',
-    keywords: 'MFS Growth Agency reviews, MFS Growth client feedback, student reviews Pakistan, assignment writing feedback',
+    keywords: 'MFS Growth Agency reviews, MFS Growth client feedback, student reviews Pakistan, assignment writing feedback, presentation design reviews',
     canonical: 'https://mfsgrowth.online/reviews',
     robots: 'index, follow',
     pageName: 'Reviews',
   },
   about: {
-    title: 'About Us — MFS Growth Agency Pakistan',
-    description: 'Learn about MFS Growth Agency, a leading digital services agency in Pakistan dedicated to assisting students and professionals with presentations, assignments, and ATS resumes.',
-    keywords: 'About MFS Growth Agency, MFS Growth Agency Pakistan, digital services team, academic writing team, presentation designers',
+    title: 'About Us — Muhammad Shehroz Sultan & MFS Growth Agency Pakistan',
+    description: 'Learn about MFS Growth Agency, founded by Muhammad Shehroz Sultan. Premium digital services agency in Islamabad, Pakistan offering presentation design, academic writing, and ATS resume engineering.',
+    keywords: 'About MFS Growth Agency, Muhammad Shehroz Sultan, Muhammad Shahroz Sultan, Shehroz Sultan MFS Growth, MFS Growth Agency Pakistan, digital services agency Islamabad',
     canonical: 'https://mfsgrowth.online/about',
     robots: 'index, follow',
     pageName: 'About Us',
@@ -296,8 +296,8 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         'priceRange': '$$',
         'paymentAccepted': 'EasyPaisa, JazzCash, Bank Transfer',
         'sameAs': [
-          'https://www.instagram.com/mfsgrowth',
-          'https://www.facebook.com/MFSGrowth'
+          'https://www.instagram.com/mfsgrowth?igsh=M2JwbWJ5M2txc2Z1',
+          'https://www.facebook.com/share/1DhkbkjT6U/'
         ],
         'founder': {
           '@id': 'https://mfsgrowth.online/#founder'
@@ -358,11 +358,31 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         '@type': 'Person',
         '@id': 'https://mfsgrowth.online/#founder',
         'name': 'Muhammad Shehroz Sultan',
+        'alternateName': ['Shahroz Sultan', 'Muhammad Shahroz Sultan', 'Shehroz Sultan'],
         'jobTitle': 'Founder & Lead Director',
+        'description': 'Muhammad Shehroz Sultan is an entrepreneur, digital agency director, and specialist in executive presentation design, academic document formatting, ATS resume engineering, and corporate report design. He is the Founder & Lead Director of MFS Growth Agency.',
         'url': 'https://mfsgrowth.online/about',
+        'image': 'https://mfsgrowth.online/android-chrome-512x512.png',
+        'nationality': {
+          '@type': 'Country',
+          'name': 'Pakistan'
+        },
+        'knowsAbout': [
+          'Executive Presentation Design',
+          'Pitch Deck Architecture',
+          'ATS Resume Engineering',
+          'Academic Assignment Formatting (APA 7, Harvard, MLA, IEEE)',
+          'Corporate Report Formatting',
+          'Digital Agency Leadership'
+        ],
+        'sameAs': [
+          'https://www.instagram.com/mfsgrowth?igsh=M2JwbWJ5M2txc2Z1',
+          'https://www.facebook.com/share/1DhkbkjT6U/'
+        ],
         'worksFor': {
           '@type': 'Organization',
           'name': 'MFS Growth Agency',
+          '@id': 'https://mfsgrowth.online/#organization',
           'url': 'https://mfsgrowth.online/'
         }
       },
