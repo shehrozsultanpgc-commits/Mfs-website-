@@ -33,6 +33,7 @@ import { createRealOrder } from '../lib/supabaseOrderService';
 import { generateWhatsAppOrderLink } from '../lib/whatsappHandoff';
 import { Database } from '../lib/database.types';
 import { LuxuryOrderReceiptModal } from './common/LuxuryOrderReceiptModal';
+import { dispatchOrderEmailNotification } from '../lib/resendDirect';
 
 export interface OrderPageProps {
   currency: Currency;
@@ -355,7 +356,7 @@ export const OrderPage: React.FC<OrderPageProps> = ({
       const actualOrderNum = dbResult.data?.order_number || generatedId;
       setGeneratedOrderId(actualOrderNum);
 
-      // 2. Dispatch Checkout API (Email notification)
+      // 2. Dispatch Email Notifications (Dual-Channel: Server API + Direct Resend fallback)
       const payload = {
         orderId: actualOrderNum,
         clientName: customerName,
@@ -373,12 +374,8 @@ export const OrderPage: React.FC<OrderPageProps> = ({
         fileNames: uploadedFiles.map((f) => f.name),
       };
 
-      await fetch('/api/orders/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      }).catch((err) => {
-        console.warn('[Checkout Dispatch Warning]:', err);
+      dispatchOrderEmailNotification(payload).catch((err) => {
+        console.warn('[Checkout Email Dispatch Notice]:', err);
       });
 
       setIsSubmittingOrder(false);

@@ -38,7 +38,14 @@ function getAdminEmail(): string {
 }
 
 function getSenderEmail(): string {
-  return process.env.SMTP_FROM_EMAIL || process.env.SENDER_EMAIL || 'MFS Growth Agency <onboarding@resend.dev>';
+  if (process.env.SMTP_FROM_EMAIL && process.env.SMTP_FROM_EMAIL.trim().length > 0) {
+    return process.env.SMTP_FROM_EMAIL.trim();
+  }
+  if (process.env.SENDER_EMAIL && process.env.SENDER_EMAIL.trim().length > 0) {
+    return process.env.SENDER_EMAIL.trim();
+  }
+  // If user verified mfsgrowth.online on Resend, use domain sender
+  return 'MFS Growth Agency <orders@mfsgrowth.online>';
 }
 
 function getWhatsAppNumber(): string {
