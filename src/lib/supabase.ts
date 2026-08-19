@@ -1,8 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './database.types';
 
-const DEFAULT_SUPABASE_URL = 'https://qmkobasgawahwqoxygkn.supabase.co';
-const DEFAULT_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFta29iYXNnYXdhaHdxb3h5Z2tuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUxNzI2ODksImV4cCI6MjEwMDc0ODY4OX0.dfLGgfGJJGbdrpJNwugz1KfMpxZSl8THdOuSZqCrZcU';
+const DEFAULT_SUPABASE_URL = 'https://kbpxgkqyivchssfudcdw.supabase.co';
+const DEFAULT_ANON_KEY = 'sb_publishable_szE5kp2CstV0OCzt9YQmHQ__t4PWGsY';
 
 function getValidSupabaseUrl(): string {
   const envUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -26,7 +26,7 @@ function getValidSupabaseUrl(): string {
 }
 
 function getValidSupabaseAnonKey(): string {
-  const envKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+  const envKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || import.meta.env.VITE_SUPABASE_ANON_KEY;
   if (envKey && typeof envKey === 'string' && envKey.trim().length > 0) {
     const cleaned = envKey.trim().replace(/^["']|["']$/g, '').trim();
     if (cleaned.length > 0 && !cleaned.includes('placeholder')) {
