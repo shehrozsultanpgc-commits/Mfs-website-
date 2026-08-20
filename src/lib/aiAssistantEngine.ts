@@ -283,6 +283,16 @@ export class AIAssistantEngine {
         `• **Official Website**: **https://mfsgrowth.online/**\n\nHow can we help you further today?`;
     }
 
+    // 10.1 Official Social Media & Founder Profile (LinkedIn, Instagram, Facebook)
+    if (lower.includes('linkedin') || lower.includes('social') || lower.includes('instagram') || lower.includes('facebook') || lower.includes('shehroz') || lower.includes('founder') || lower.includes('owner')) {
+      return `🌐 **Official MFS Growth Agency & Founder Social Channels**:\n\n` +
+        `• **Founder Official LinkedIn (Muhammad Shehroz Sultan)**: https://www.linkedin.com/in/muhammad-shehroz-sultan-1237543a9\n` +
+        `• **Official Instagram**: https://www.instagram.com/mfsgrowth?igsh=M2JwbWJ5M2txc2Z1 (@mfsgrowth)\n` +
+        `• **Official Facebook**: https://www.facebook.com/share/1G4CCwakiW/\n` +
+        `• **Official WhatsApp**: +92 301 5323689\n\n` +
+        `Muhammad Shehroz Sultan is the Founder & Executive Director of MFS Growth Agency. Any official inquiry can be directed through these verified channels!`;
+    }
+
     // 11. Our Work / Samples
     if (lower.includes('sample') || lower.includes('work') || lower.includes('portfolio') || lower.includes('example')) {
       return `Aap humare past showcase projects **'Our Work'** section mein explore kar sakte hain! 🌟\n\nHum ne Presentations, Resumes, aur Assignments ke high-resolution secured previews display kiye hue hain. Aap kis service ke samples dekhna chahte hain?`;

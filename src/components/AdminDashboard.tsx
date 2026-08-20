@@ -83,6 +83,7 @@ import { NotificationsActivityCenter } from './NotificationsActivityCenter';
 import { AccountSecurityCenter } from './AccountSecurityCenter';
 import { EnterpriseWebsiteCMS } from './cms/EnterpriseWebsiteCMS';
 import { EnterprisePlatformOperationsCenter } from './EnterprisePlatformOperationsCenter';
+import { InstantIndexingCenter } from './admin/InstantIndexingCenter';
 
 interface AdminDashboardProps {
   currency: Currency;
@@ -615,6 +616,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       title: 'Platform Management',
       items: [
         { id: 'ops_center', label: 'Platform Operations (NOC/SOC)', icon: Server, badge: 'Part 10' },
+        { id: 'indexing', label: 'Schema 3.0 & Indexing', icon: Globe, badge: 'Phase 5' },
         { id: 'ai_control', label: 'AI Control Center', icon: Bot, badge: 'Voice AI' },
         { id: 'website_cms', label: 'Website CMS', icon: Globe },
         { id: 'team', label: 'Staff & Team Access', icon: UserCog },
@@ -1927,8 +1929,15 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 />
               )}
 
+              {/* TAB: TECHNICAL SCHEMA 3.0 & INSTANT INDEXING PROTOCOLS (PHASE 5) */}
+              {activeTab === 'indexing' && (
+                <InstantIndexingCenter
+                  onShowToast={onShowToast}
+                />
+              )}
+
               {/* ARCHITECTURAL SHELLS FOR REMAINING MODULE TABS */}
-              {activeTab !== 'dashboard' && activeTab !== 'orders' && activeTab !== 'payments' && activeTab !== 'payment_verification' && activeTab !== 'invoices' && activeTab !== 'refunds' && activeTab !== 'analytics' && activeTab !== 'reports' && activeTab !== 'ai_control' && activeTab !== 'clients' && activeTab !== 'projects' && activeTab !== 'files' && activeTab !== 'messages' && activeTab !== 'notifications' && activeTab !== 'activity' && activeTab !== 'settings' && activeTab !== 'team' && activeTab !== 'system_health' && activeTab !== 'ops_center' && activeTab !== 'website_cms' && activeTab !== 'services' && (
+              {activeTab !== 'dashboard' && activeTab !== 'orders' && activeTab !== 'payments' && activeTab !== 'payment_verification' && activeTab !== 'invoices' && activeTab !== 'refunds' && activeTab !== 'analytics' && activeTab !== 'reports' && activeTab !== 'ai_control' && activeTab !== 'clients' && activeTab !== 'projects' && activeTab !== 'files' && activeTab !== 'messages' && activeTab !== 'notifications' && activeTab !== 'activity' && activeTab !== 'settings' && activeTab !== 'team' && activeTab !== 'system_health' && activeTab !== 'ops_center' && activeTab !== 'website_cms' && activeTab !== 'services' && activeTab !== 'indexing' && (
                 <div className="glass-card rounded-3xl border border-white/10 p-8 text-center space-y-5 bg-gradient-to-b from-white/[0.02] to-transparent">
                   <div className="w-16 h-16 rounded-full bg-[#E5C158]/10 text-[#E5C158] flex items-center justify-center mx-auto border border-[#E5C158]/30 shadow-[0_0_20px_rgba(229,193,88,0.15)]">
                     <LottieMotion type="ai_neural" size={40} />

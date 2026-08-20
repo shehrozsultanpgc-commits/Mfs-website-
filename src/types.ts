@@ -83,6 +83,7 @@ export type AdminTab =
   | 'analytics'
   | 'ai_control'
   | 'website_cms'
+  | 'indexing'
   | 'team'
   | 'reports'
   | 'activity'

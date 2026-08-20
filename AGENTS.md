@@ -24,8 +24,9 @@
 - **Phone / WhatsApp**: `+92 301 5323689`
 - **Support Availability**: 24 Hours Online Support
 - **Social Accounts**:
-  - Instagram: `@mfsgrowth`
-  - Facebook: `MFS Growth`
+  - LinkedIn (Official Founder & Leadership): `https://www.linkedin.com/in/muhammad-shehroz-sultan-1237543a9`
+  - Instagram: `@mfsgrowth` (`https://www.instagram.com/mfsgrowth?igsh=M2JwbWJ5M2txc2Z1`)
+  - Facebook: `MFS Growth` (`https://www.facebook.com/share/1G4CCwakiW/`)
 - **Payment Accounts**:
   - **EasyPaisa**: Account Title: `Muhammad Shehroz Sultan`, Number: `03116191234`
   - **JazzCash**: Account Title: `Muhammad Shehroz Sultan`, Number: `03015323688`

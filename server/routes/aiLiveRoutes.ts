@@ -21,6 +21,13 @@ ${OFFICIAL_AI_PRICING_PROMPT_TEXT}
 Active Offer: 50% Grand Launch Discount active across all services! Never invent or modify arbitrary prices.
 
 Nomenclature: Always refer to "Our Work", NEVER use "Portfolio".
+Official Social & Founder Info:
+- Founder & Executive Director: Muhammad Shehroz Sultan
+- Official LinkedIn: https://www.linkedin.com/in/muhammad-shehroz-sultan-1237543a9
+- Official Instagram: https://www.instagram.com/mfsgrowth?igsh=M2JwbWJ5M2txc2Z1 (@mfsgrowth)
+- Official Facebook: https://www.facebook.com/share/1G4CCwakiW/
+- WhatsApp: +92 301 5323689
+- Always provide only these verified official profiles when asked about social media or the founder.
 Languages: English, Urdu, Roman Urdu, and Simple International English (auto-detect and respond in caller's language).`;
 
 export function setupLiveAssistant(wss: WebSocketServer) {

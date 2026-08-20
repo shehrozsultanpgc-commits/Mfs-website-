@@ -133,6 +133,24 @@ export const FounderAuthorityProfile: React.FC<FounderAuthorityProfileProps> = (
             </span>
             <div className="grid grid-cols-2 gap-2">
               <a
+                href="https://www.linkedin.com/in/muhammad-shehroz-sultan-1237543a9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 p-2 rounded-lg bg-white/[0.02] hover:bg-white/[0.06] border border-white/5 text-xs text-neutral-300 hover:text-[#E5C158] transition-colors"
+              >
+                <span className="w-2 h-2 rounded-full bg-blue-400" />
+                <span>LinkedIn Profile</span>
+              </a>
+              <a
+                href="https://www.crunchbase.com/person/muhammad-shehroz-sultan"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 p-2 rounded-lg bg-white/[0.02] hover:bg-white/[0.06] border border-white/5 text-xs text-neutral-300 hover:text-[#E5C158] transition-colors"
+              >
+                <span className="w-2 h-2 rounded-full bg-amber-400" />
+                <span>Crunchbase Bio</span>
+              </a>
+              <a
                 href="https://www.instagram.com/mfsgrowth?igsh=M2JwbWJ5M2txc2Z1"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -142,12 +160,12 @@ export const FounderAuthorityProfile: React.FC<FounderAuthorityProfileProps> = (
                 <span>Instagram Profile</span>
               </a>
               <a
-                href="https://www.facebook.com/share/1DhkbkjT6U/"
+                href="https://www.facebook.com/share/1G4CCwakiW/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 p-2 rounded-lg bg-white/[0.02] hover:bg-white/[0.06] border border-white/5 text-xs text-neutral-300 hover:text-[#E5C158] transition-colors"
               >
-                <span className="w-2 h-2 rounded-full bg-blue-500" />
+                <span className="w-2 h-2 rounded-full bg-blue-600" />
                 <span>Facebook Page</span>
               </a>
             </div>

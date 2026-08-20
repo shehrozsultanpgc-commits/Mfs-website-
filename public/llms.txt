@@ -40,7 +40,21 @@ MFS Growth Agency is an independent digital agency specializing in document form
 - Services Directory: https://mfsgrowth.online/services
 - Dynamic Pricing Calculator: https://mfsgrowth.online/pricing
 - Sample Work Showcase: https://mfsgrowth.online/our-work
+- Enterprise Case Studies: https://mfsgrowth.online/case-studies
+- VIP Referral Rewards Hub: https://mfsgrowth.online/referrals
 - Customer Testimonials & Reviews: https://mfsgrowth.online/reviews
 - About Leadership & Mission: https://mfsgrowth.online/about
 - 24/7 Contact & Inquiries: https://mfsgrowth.online/contact
+- Resource Guides & Knowledge: https://mfsgrowth.online/guides
+- Free Interactive Web Tools: https://mfsgrowth.online/tools
 - Full LLM Knowledge Base: https://mfsgrowth.online/llms-full.txt
+
+## Verified External Citations & Official Profiles (sameAs Graph)
+- Google Maps & Business Profile: https://maps.google.com/?q=MFS+Growth+Agency+Islamabad
+- Crunchbase Organization Profile: https://www.crunchbase.com/organization/mfs-growth-agency
+- LinkedIn Corporate Entity: https://www.linkedin.com/company/mfsgrowth
+- Founder LinkedIn Profile: https://www.linkedin.com/in/muhammad-shehroz-sultan-1237543a9
+- Instagram Official Channel: https://www.instagram.com/mfsgrowth?igsh=M2JwbWJ5M2txc2Z1
+- Facebook Official Page: https://www.facebook.com/share/1G4CCwakiW/
+- Clutch Agency Profile: https://clutch.co/profile/mfs-growth-agency
+- Trustpilot Reviews: https://www.trustpilot.com/review/mfsgrowth.online

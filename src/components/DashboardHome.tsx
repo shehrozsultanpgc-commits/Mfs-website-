@@ -45,7 +45,7 @@ interface DashboardHomeProps {
   onRefreshOrders?: () => void;
   onShowToast?: (msg: string) => void;
   onNavigatePage?: (
-    page: 'home' | 'services' | 'pricing' | 'reviews' | 'about' | 'contact' | 'faq' | 'order' | 'payment' | 'confirmation' | 'dashboard',
+    page: any,
     targetSection?: string
   ) => void;
   onOpenAIChat?: (mode?: 'chat' | 'voice') => void;
@@ -791,6 +791,34 @@ export const DashboardHome: React.FC<DashboardHomeProps> = ({
             <div>
               <h4 className="font-poppins font-bold text-white text-xs">Request Revision</h4>
               <p className="text-[10px] text-neutral-400 mt-0.5">Instant design adjustment</p>
+            </div>
+          </button>
+
+          {/* Action 9: VIP Referrals & Rewards */}
+          <button
+            onClick={() => onNavigatePage && onNavigatePage('referrals')}
+            className="p-4 rounded-2xl bg-[#E5C158]/[0.05] hover:bg-[#E5C158]/15 border border-[#E5C158]/30 hover:border-[#E5C158] text-left cursor-pointer transition-all group space-y-2"
+          >
+            <div className="p-2.5 rounded-xl bg-[#E5C158]/20 text-[#E5C158] w-fit group-hover:scale-110 transition-transform">
+              <Award className="w-5 h-5" />
+            </div>
+            <div>
+              <h4 className="font-poppins font-bold text-[#E5C158] text-xs">VIP Referral Rewards</h4>
+              <p className="text-[10px] text-neutral-300 mt-0.5">Earn 15% wallet credit</p>
+            </div>
+          </button>
+
+          {/* Action 10: Interactive Deliverable Review Canvas */}
+          <button
+            onClick={() => onNavigatePage && onNavigatePage('review-canvas')}
+            className="p-4 rounded-2xl bg-emerald-500/[0.05] hover:bg-emerald-500/15 border border-emerald-500/30 hover:border-emerald-500 text-left cursor-pointer transition-all group space-y-2"
+          >
+            <div className="p-2.5 rounded-xl bg-emerald-500/20 text-emerald-400 w-fit group-hover:scale-110 transition-transform">
+              <Eye className="w-5 h-5" />
+            </div>
+            <div>
+              <h4 className="font-poppins font-bold text-emerald-400 text-xs">Interactive Review Canvas</h4>
+              <p className="text-[10px] text-neutral-300 mt-0.5">Pinpoint visual annotations</p>
             </div>
           </button>
         </div>

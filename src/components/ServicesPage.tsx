@@ -53,6 +53,49 @@ const SERVICE_GUIDE_MAP: Record<string, { page: string; url: string; label: stri
   },
 };
 
+const SERVICE_HUB_NAV_MAP: Record<string, { page: string; url: string; label: string }> = {
+  'presentation': {
+    page: 'hub-presentation',
+    url: '/services/presentation-design',
+    label: 'Dedicated Hub & Estimator',
+  },
+  'pitch-deck': {
+    page: 'hub-presentation',
+    url: '/services/presentation-design',
+    label: 'Dedicated Hub & Estimator',
+  },
+  'assignment': {
+    page: 'hub-assignment',
+    url: '/services/assignment-writing',
+    label: 'Dedicated Hub & Estimator',
+  },
+  'case-studies': {
+    page: 'hub-assignment',
+    url: '/services/assignment-writing',
+    label: 'Dedicated Hub & Estimator',
+  },
+  'ats-resume': {
+    page: 'hub-resume',
+    url: '/services/resume-cv-services',
+    label: 'Dedicated Hub & Estimator',
+  },
+  'resume': {
+    page: 'hub-resume',
+    url: '/services/resume-cv-services',
+    label: 'Dedicated Hub & Estimator',
+  },
+  'cv-design': {
+    page: 'hub-resume',
+    url: '/services/resume-cv-services',
+    label: 'Dedicated Hub & Estimator',
+  },
+  'reports': {
+    page: 'hub-formatting',
+    url: '/services/report-formatting',
+    label: 'Dedicated Hub & Estimator',
+  },
+};
+
 export const ServicesPage: React.FC<ServicesPageProps> = ({
   currency,
   onSelectService,
@@ -232,9 +275,30 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
 
               {/* Bottom Price & Actions */}
               <div className="border-t border-white/10 pt-4 mt-auto">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-3">
                   {formatPrice(service)}
                 </div>
+
+                {SERVICE_HUB_NAV_MAP[service.id] && (
+                  <div className="mb-2.5">
+                    <button
+                      onClick={() => {
+                        const hubInfo = SERVICE_HUB_NAV_MAP[service.id];
+                        if (onNavigatePage) {
+                          onNavigatePage(hubInfo.page);
+                        } else {
+                          window.history.pushState({ page: hubInfo.page }, '', hubInfo.url);
+                          window.dispatchEvent(new PopStateEvent('popstate'));
+                        }
+                      }}
+                      className="w-full py-1.5 px-3 rounded-lg bg-[#E5C158]/10 hover:bg-[#E5C158]/20 border border-[#E5C158]/30 text-[11px] font-semibold text-[#E5C158] transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                    >
+                      <Zap className="w-3 h-3 text-[#E5C158]" />
+                      <span>{SERVICE_HUB_NAV_MAP[service.id].label}</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </button>
+                  </div>
+                )}
 
                 <div className="grid grid-cols-2 gap-2">
                   <button

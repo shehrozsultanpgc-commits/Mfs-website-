@@ -5,6 +5,7 @@ import { AboutStudioCanvasVisual } from './AboutStudioCanvasVisual';
 import { FounderAuthorityProfile } from './common/FounderAuthorityProfile';
 import { AIEngineAnswerLayer } from './common/AIEngineAnswerLayer';
 import { BrandAssetVisualGallery } from './common/BrandAssetVisualGallery';
+import { DigitalPRAuthorityFootprint } from './common/DigitalPRAuthorityFootprint';
 import {
   Sparkles,
   ShieldCheck,
@@ -659,6 +660,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
         <BrandAssetVisualGallery />
       </section>
+
+      {/* 6.7 Phase 6: Digital PR & External Authority Network */}
+      <DigitalPRAuthorityFootprint />
 
       {/* 7. Call To Action (CTA) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

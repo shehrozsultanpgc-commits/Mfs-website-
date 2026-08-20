@@ -43,6 +43,18 @@ const PitchDeckGuidePage = React.lazy(() => import('./components/guides/PitchDec
 const AcademicFormattingGuidePage = React.lazy(() => import('./components/guides/AcademicFormattingGuidePage'));
 const CorporateReportGuidePage = React.lazy(() => import('./components/guides/CorporateReportGuidePage'));
 const GuidesIndexPage = React.lazy(() => import('./components/guides/GuidesIndexPage'));
+const PresentationDesignHub = React.lazy(() => import('./components/hubs/PresentationDesignHub').then(m => ({ default: m.PresentationDesignHub })));
+const AssignmentWritingHub = React.lazy(() => import('./components/hubs/AssignmentWritingHub').then(m => ({ default: m.AssignmentWritingHub })));
+const ResumeCvHub = React.lazy(() => import('./components/hubs/ResumeCvHub').then(m => ({ default: m.ResumeCvHub })));
+const ReportFormattingHub = React.lazy(() => import('./components/hubs/ReportFormattingHub').then(m => ({ default: m.ReportFormattingHub })));
+const ToolsIndexPage = React.lazy(() => import('./components/tools/ToolsIndexPage').then(m => ({ default: m.ToolsIndexPage })));
+const AtsResumeScannerTool = React.lazy(() => import('./components/tools/AtsResumeScannerTool').then(m => ({ default: m.AtsResumeScannerTool })));
+const PitchDeckBuilderTool = React.lazy(() => import('./components/tools/PitchDeckBuilderTool').then(m => ({ default: m.PitchDeckBuilderTool })));
+const CitationGeneratorTool = React.lazy(() => import('./components/tools/CitationGeneratorTool').then(m => ({ default: m.CitationGeneratorTool })));
+const DocumentEstimatorTool = React.lazy(() => import('./components/tools/DocumentEstimatorTool').then(m => ({ default: m.DocumentEstimatorTool })));
+const CaseStudiesPage = React.lazy(() => import('./components/growth/CaseStudiesPage').then(m => ({ default: m.CaseStudiesPage })));
+const ClientReferralRewardsHub = React.lazy(() => import('./components/growth/ClientReferralRewardsHub').then(m => ({ default: m.ClientReferralRewardsHub })));
+const ProjectInteractiveReviewCanvas = React.lazy(() => import('./components/growth/ProjectInteractiveReviewCanvas').then(m => ({ default: m.ProjectInteractiveReviewCanvas })));
 const AIAssistantWidget = React.lazy(() => import('./components/ai/AIAssistantWidget').then(m => ({ default: m.AIAssistantWidget })));
 
 const PageSkeleton = () => (
@@ -69,11 +81,23 @@ type PageType =
   | 'terms'
   | 'refund-policy'
   | 'refundpolicy'
+  | 'hub-presentation'
+  | 'hub-assignment'
+  | 'hub-resume'
+  | 'hub-formatting'
   | 'guides'
   | 'guide-ats-resume'
   | 'guide-pitch-deck'
   | 'guide-academic-formatting'
   | 'guide-corporate-report'
+  | 'tools'
+  | 'tool-ats-scanner'
+  | 'tool-pitch-deck'
+  | 'tool-citation-gen'
+  | 'tool-doc-estimator'
+  | 'case-studies'
+  | 'referrals'
+  | 'review-canvas'
   | 'notFound';
 
 const VALID_PAGES: PageType[] = [
@@ -93,16 +117,51 @@ const VALID_PAGES: PageType[] = [
   'terms',
   'refund-policy',
   'refundpolicy',
+  'hub-presentation',
+  'hub-assignment',
+  'hub-resume',
+  'hub-formatting',
   'guides',
   'guide-ats-resume',
   'guide-pitch-deck',
   'guide-academic-formatting',
   'guide-corporate-report',
+  'tools',
+  'tool-ats-scanner',
+  'tool-pitch-deck',
+  'tool-citation-gen',
+  'tool-doc-estimator',
+  'case-studies',
+  'referrals',
+  'review-canvas',
 ];
 
 function getPageFromRoute(): { page: PageType; targetSection?: string } {
   const pathRaw = window.location.pathname.toLowerCase().replace(/^\/+|\/+$/g, '');
   const hashRaw = window.location.hash.toLowerCase().replace(/^#\/?/, '');
+
+    if (pathRaw === 'case-studies' || pathRaw === 'case-study' || pathRaw === 'transformations' || hashRaw === 'case-studies') {
+      return { page: 'case-studies' };
+    }
+    if (pathRaw === 'referrals' || pathRaw === 'referral' || pathRaw === 'rewards' || pathRaw === 'loyalty' || hashRaw === 'referrals') {
+      return { page: 'referrals' };
+    }
+    if (pathRaw === 'review-canvas' || pathRaw === 'review' || pathRaw === 'annotations' || hashRaw === 'review-canvas') {
+      return { page: 'review-canvas' };
+    }
+
+    if (pathRaw === 'services/presentation-design' || pathRaw === 'services/presentation' || hashRaw === 'services/presentation-design') {
+      return { page: 'hub-presentation' };
+    }
+    if (pathRaw === 'services/assignment-writing' || pathRaw === 'services/assignment' || hashRaw === 'services/assignment-writing') {
+      return { page: 'hub-assignment' };
+    }
+    if (pathRaw === 'services/resume-cv-services' || pathRaw === 'services/resume' || pathRaw === 'services/cv' || hashRaw === 'services/resume-cv-services') {
+      return { page: 'hub-resume' };
+    }
+    if (pathRaw === 'services/report-formatting' || pathRaw === 'services/reports' || pathRaw === 'services/formatting' || hashRaw === 'services/report-formatting') {
+      return { page: 'hub-formatting' };
+    }
 
     if (pathRaw === 'guides' || pathRaw === 'guides/') {
       return { page: 'guides' };
@@ -118,6 +177,22 @@ function getPageFromRoute(): { page: PageType; targetSection?: string } {
     }
     if (pathRaw === 'guides/corporate-report-formatting-standards') {
       return { page: 'guide-corporate-report' };
+    }
+
+    if (pathRaw === 'tools' || pathRaw === 'tools/' || hashRaw === 'tools') {
+      return { page: 'tools' };
+    }
+    if (pathRaw === 'tools/ats-resume-scanner' || pathRaw === 'tools/ats-scanner' || pathRaw === 'ats-resume-scanner' || hashRaw === 'tools/ats-resume-scanner') {
+      return { page: 'tool-ats-scanner' };
+    }
+    if (pathRaw === 'tools/pitch-deck-builder' || pathRaw === 'tools/pitch-deck' || pathRaw === 'pitch-deck-builder' || hashRaw === 'tools/pitch-deck-builder') {
+      return { page: 'tool-pitch-deck' };
+    }
+    if (pathRaw === 'tools/citation-generator' || pathRaw === 'tools/citation' || pathRaw === 'citation-generator' || hashRaw === 'tools/citation-generator') {
+      return { page: 'tool-citation-gen' };
+    }
+    if (pathRaw === 'tools/document-estimator' || pathRaw === 'tools/estimator' || pathRaw === 'document-estimator' || hashRaw === 'tools/document-estimator') {
+      return { page: 'tool-doc-estimator' };
     }
 
   const [pathPart] = pathRaw.split('/');
@@ -219,6 +294,22 @@ function AppContent() {
         ? '/guides/academic-formatting-citation'
         : page === 'guide-corporate-report'
         ? '/guides/corporate-report-formatting-standards'
+        : page === 'tools'
+        ? '/tools'
+        : page === 'tool-ats-scanner'
+        ? '/tools/ats-resume-scanner'
+        : page === 'tool-pitch-deck'
+        ? '/tools/pitch-deck-builder'
+        : page === 'tool-citation-gen'
+        ? '/tools/citation-generator'
+        : page === 'tool-doc-estimator'
+        ? '/tools/document-estimator'
+        : page === 'case-studies'
+        ? '/case-studies'
+        : page === 'referrals'
+        ? '/referrals'
+        : page === 'review-canvas'
+        ? '/review-canvas'
         : `/${page}`;
 
     if (!isFromHistoryPop) {
@@ -303,6 +394,18 @@ function AppContent() {
         ? '/guides/executive-pitch-deck-structure'
         : route.page === 'guide-academic-formatting'
         ? '/guides/academic-formatting-citation'
+        : route.page === 'guide-corporate-report'
+        ? '/guides/corporate-report-formatting-standards'
+        : route.page === 'tools'
+        ? '/tools'
+        : route.page === 'tool-ats-scanner'
+        ? '/tools/ats-resume-scanner'
+        : route.page === 'tool-pitch-deck'
+        ? '/tools/pitch-deck-builder'
+        : route.page === 'tool-citation-gen'
+        ? '/tools/citation-generator'
+        : route.page === 'tool-doc-estimator'
+        ? '/tools/document-estimator'
         : `/${route.page}`;
 
     if (!window.history.state || !window.history.state.page) {
@@ -413,6 +516,7 @@ function AppContent() {
                     const el = document.getElementById('calculator');
                     if (el) el.scrollIntoView({ behavior: 'smooth' });
                   }}
+                  onNavigatePage={handleNavigatePage}
                 />
 
                 {/* How It Works Timeline */}
@@ -554,6 +658,54 @@ function AppContent() {
                 onOpenAIChat={handleOpenAIChat}
                 onShowToast={triggerToast}
               />
+            ) : currentPage === 'hub-presentation' ? (
+              <PresentationDesignHub
+                currency={currency}
+                setCurrency={setCurrency}
+                onOpenOrderModal={(serviceId, slides) => {
+                  if (serviceId) setPrefilledService(serviceId);
+                  setIsOrderModalOpen(true);
+                }}
+                onOpenAIChat={handleOpenAIChat}
+                onShowToast={triggerToast}
+                onNavigatePage={handleNavigatePage}
+              />
+            ) : currentPage === 'hub-assignment' ? (
+              <AssignmentWritingHub
+                currency={currency}
+                setCurrency={setCurrency}
+                onOpenOrderModal={(serviceId, words) => {
+                  if (serviceId) setPrefilledService(serviceId);
+                  setIsOrderModalOpen(true);
+                }}
+                onOpenAIChat={handleOpenAIChat}
+                onShowToast={triggerToast}
+                onNavigatePage={handleNavigatePage}
+              />
+            ) : currentPage === 'hub-resume' ? (
+              <ResumeCvHub
+                currency={currency}
+                setCurrency={setCurrency}
+                onOpenOrderModal={(serviceId) => {
+                  if (serviceId) setPrefilledService(serviceId);
+                  setIsOrderModalOpen(true);
+                }}
+                onOpenAIChat={handleOpenAIChat}
+                onShowToast={triggerToast}
+                onNavigatePage={handleNavigatePage}
+              />
+            ) : currentPage === 'hub-formatting' ? (
+              <ReportFormattingHub
+                currency={currency}
+                setCurrency={setCurrency}
+                onOpenOrderModal={(serviceId, words) => {
+                  if (serviceId) setPrefilledService(serviceId);
+                  setIsOrderModalOpen(true);
+                }}
+                onOpenAIChat={handleOpenAIChat}
+                onShowToast={triggerToast}
+                onNavigatePage={handleNavigatePage}
+              />
             ) : currentPage === 'guides' ? (
               <GuidesIndexPage
                 onNavigatePage={handleNavigatePage}
@@ -578,6 +730,88 @@ function AppContent() {
               <CorporateReportGuidePage
                 onNavigatePage={handleNavigatePage}
                 onOpenOrderModal={() => setIsOrderModalOpen(true)}
+              />
+            ) : currentPage === 'tools' ? (
+              <ToolsIndexPage
+                onNavigatePage={handleNavigatePage}
+                onOpenOrderModal={(serviceId) => {
+                  if (serviceId) setPrefilledService(serviceId);
+                  setIsOrderModalOpen(true);
+                }}
+              />
+            ) : currentPage === 'tool-ats-scanner' ? (
+              <AtsResumeScannerTool
+                onOpenOrderModal={(serviceId) => {
+                  if (serviceId) setPrefilledService(serviceId);
+                  setIsOrderModalOpen(true);
+                }}
+                onOpenAIChat={handleOpenAIChat}
+                onShowToast={triggerToast}
+                onNavigatePage={handleNavigatePage}
+              />
+            ) : currentPage === 'tool-pitch-deck' ? (
+              <PitchDeckBuilderTool
+                onOpenOrderModal={(serviceId, slides) => {
+                  if (serviceId) setPrefilledService(serviceId);
+                  setIsOrderModalOpen(true);
+                }}
+                onOpenAIChat={handleOpenAIChat}
+                onShowToast={triggerToast}
+                onNavigatePage={handleNavigatePage}
+              />
+            ) : currentPage === 'tool-citation-gen' ? (
+              <CitationGeneratorTool
+                onOpenOrderModal={(serviceId) => {
+                  if (serviceId) setPrefilledService(serviceId);
+                  setIsOrderModalOpen(true);
+                }}
+                onOpenAIChat={handleOpenAIChat}
+                onShowToast={triggerToast}
+                onNavigatePage={handleNavigatePage}
+              />
+            ) : currentPage === 'tool-doc-estimator' ? (
+              <DocumentEstimatorTool
+                currency={currency}
+                setCurrency={setCurrency}
+                onOpenOrderModal={(serviceId, words) => {
+                  if (serviceId) setPrefilledService(serviceId);
+                  setIsOrderModalOpen(true);
+                }}
+                onOpenAIChat={handleOpenAIChat}
+                onShowToast={triggerToast}
+                onNavigatePage={handleNavigatePage}
+              />
+            ) : currentPage === 'case-studies' ? (
+              <CaseStudiesPage
+                currency={currency}
+                onNavigatePage={handleNavigatePage}
+                onOpenOrderModal={(serviceId) => {
+                  if (serviceId) setPrefilledService(serviceId);
+                  setIsOrderModalOpen(true);
+                }}
+              />
+            ) : currentPage === 'referrals' ? (
+              <ClientReferralRewardsHub
+                currency={currency}
+                userEmail="client@mfsgrowth.online"
+                userName="Valued Client"
+                onOpenOrderModal={(serviceId) => {
+                  if (serviceId) setPrefilledService(serviceId);
+                  setIsOrderModalOpen(true);
+                }}
+                onShowToast={triggerToast}
+                onNavigatePage={handleNavigatePage}
+              />
+            ) : currentPage === 'review-canvas' ? (
+              <ProjectInteractiveReviewCanvas
+                onApproveProject={() => {
+                  triggerToast('Master files approved & delivered!');
+                }}
+                onRequestRevision={(comments) => {
+                  triggerToast(`Revision submitted with ${comments.length} items. Lead designer notified!`);
+                }}
+                onShowToast={triggerToast}
+                onNavigatePage={handleNavigatePage}
               />
             ) : (
               <NotFoundPage onNavigatePage={handleNavigatePage} />

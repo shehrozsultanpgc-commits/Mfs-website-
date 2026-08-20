@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CONTACT_CARDS, FAQS } from '../data/content';
 import { sendActionNotificationEmail } from '../lib/emailNotificationService';
+import { DigitalPRAuthorityFootprint } from './common/DigitalPRAuthorityFootprint';
 import {
   Mail,
   Headset,
@@ -566,7 +567,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
       </section>
 
       {/* 4. Global Support Center Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         <div className="glass-card rounded-3xl border border-white/10 p-6 sm:p-8 relative overflow-hidden">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div>
@@ -592,6 +593,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({
           </div>
         </div>
       </section>
+
+      {/* 4.5 Digital PR & External Authority Network */}
+      <DigitalPRAuthorityFootprint onShowToast={onShowToast} />
 
       {/* 5. Mini FAQ Preview Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">

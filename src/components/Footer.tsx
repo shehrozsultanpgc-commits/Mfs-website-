@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Instagram, Facebook, Mail, Phone, MapPin, Bot, Mic } from 'lucide-react';
+import { Instagram, Facebook, Mail, Phone, MapPin, Bot, Mic, Linkedin, Globe } from 'lucide-react';
 import { MFSLogo } from './common/MFSLogo';
 
 interface FooterProps {
@@ -24,29 +24,62 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
               MFS Growth Agency is a digital services agency based in Islamabad, Pakistan, delivering executive presentations, custom academic writing, ATS resumes, and corporate reports globally.
             </p>
 
-            {/* Socials */}
-            <div className="flex items-center gap-3 mt-2">
+            {/* Socials & Verified Citations */}
+            <div className="flex items-center gap-2 mt-2">
+              <motion.a
+                whileHover={{ scale: 1.15 }}
+                whileTap={{ scale: 0.9 }}
+                href="https://www.linkedin.com/in/muhammad-shehroz-sultan-1237543a9"
+                target="_blank"
+                rel="noreferrer"
+                className="w-8 h-8 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center text-neutral-400 hover:text-[#050507] hover:bg-[#E5C158] hover:border-[#E5C158] transition-all"
+                title="Muhammad Shehroz Sultan — Official LinkedIn"
+              >
+                <Linkedin className="w-3.5 h-3.5" />
+              </motion.a>
               <motion.a
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
                 href="https://www.instagram.com/mfsgrowth?igsh=M2JwbWJ5M2txc2Z1"
                 target="_blank"
                 rel="noreferrer"
-                className="w-9 h-9 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center text-neutral-400 hover:text-[#050507] hover:bg-[#E5C158] hover:border-[#E5C158] transition-all"
+                className="w-8 h-8 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center text-neutral-400 hover:text-[#050507] hover:bg-[#E5C158] hover:border-[#E5C158] transition-all"
                 title="Follow on Instagram"
               >
-                <Instagram className="w-4 h-4" />
+                <Instagram className="w-3.5 h-3.5" />
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
-                href="https://www.facebook.com/share/1DhkbkjT6U/"
+                href="https://www.facebook.com/share/1G4CCwakiW/"
                 target="_blank"
                 rel="noreferrer"
-                className="w-9 h-9 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center text-neutral-400 hover:text-[#050507] hover:bg-[#E5C158] hover:border-[#E5C158] transition-all"
+                className="w-8 h-8 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center text-neutral-400 hover:text-[#050507] hover:bg-[#E5C158] hover:border-[#E5C158] transition-all"
                 title="Follow on Facebook"
               >
-                <Facebook className="w-4 h-4" />
+                <Facebook className="w-3.5 h-3.5" />
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.15 }}
+                whileTap={{ scale: 0.9 }}
+                href="https://maps.google.com/?q=MFS+Growth+Agency+Islamabad"
+                target="_blank"
+                rel="noreferrer"
+                className="w-8 h-8 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center text-neutral-400 hover:text-[#050507] hover:bg-[#E5C158] hover:border-[#E5C158] transition-all"
+                title="Google Business Profile & Map Coordinates"
+              >
+                <MapPin className="w-3.5 h-3.5" />
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.15 }}
+                whileTap={{ scale: 0.9 }}
+                href="https://www.crunchbase.com/organization/mfs-growth-agency"
+                target="_blank"
+                rel="noreferrer"
+                className="w-8 h-8 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center text-neutral-400 hover:text-[#050507] hover:bg-[#E5C158] hover:border-[#E5C158] transition-all"
+                title="Crunchbase Organization Directory"
+              >
+                <Globe className="w-3.5 h-3.5" />
               </motion.a>
             </div>
           </div>
@@ -57,99 +90,89 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
               Services
             </h4>
             <a
-              href="/services"
-              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('services') : onOpenOrderModal(); }}
+              href="/services/presentation-design"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('hub-presentation') : onOpenOrderModal(); }}
               className="text-left hover:text-[#E5C158] transition-colors"
             >
               Presentation Design
             </a>
             <a
-              href="/services"
-              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('services') : onOpenOrderModal(); }}
+              href="/services/assignment-writing"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('hub-assignment') : onOpenOrderModal(); }}
               className="text-left hover:text-[#E5C158] transition-colors"
             >
               Assignment Writing
             </a>
             <a
-              href="/services"
-              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('services') : onOpenOrderModal(); }}
+              href="/services/resume-cv-services"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('hub-resume') : onOpenOrderModal(); }}
               className="text-left hover:text-[#E5C158] transition-colors"
             >
-              Resume Optimization
+              Resume & CV Services
             </a>
             <a
-              href="/services"
-              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('services') : onOpenOrderModal(); }}
+              href="/services/report-formatting"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('hub-formatting') : onOpenOrderModal(); }}
               className="text-left hover:text-[#E5C158] transition-colors"
             >
               Report Formatting
             </a>
           </div>
 
-          {/* Col 3: Knowledge Center / Our Guides */}
+          {/* Col 3: Knowledge & Tools */}
           <div className="lg:col-span-2 flex flex-col gap-3">
             <h4 className="font-poppins font-bold uppercase tracking-wider text-white text-xs mb-2">
-              Our Guides
+              Free Utilities
             </h4>
             <a
-              href="/guides/ats-resume-engineering"
+              href="/tools"
               onClick={(e) => {
                 e.preventDefault();
-                if (onNavigatePage) {
-                  onNavigatePage('guide-ats-resume');
-                } else {
-                  window.history.pushState({ page: 'guide-ats-resume' }, '', '/guides/ats-resume-engineering');
-                  window.dispatchEvent(new PopStateEvent('popstate'));
-                }
+                if (onNavigatePage) onNavigatePage('tools');
               }}
-              className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
+              className="text-left text-[#E5C158] hover:underline font-semibold transition-colors cursor-pointer"
             >
-              ATS Resume Guide
+              All Free Tools
             </a>
             <a
-              href="/guides/executive-pitch-deck-structure"
+              href="/tools/ats-resume-scanner"
               onClick={(e) => {
                 e.preventDefault();
-                if (onNavigatePage) {
-                  onNavigatePage('guide-pitch-deck');
-                } else {
-                  window.history.pushState({ page: 'guide-pitch-deck' }, '', '/guides/executive-pitch-deck-structure');
-                  window.dispatchEvent(new PopStateEvent('popstate'));
-                }
+                if (onNavigatePage) onNavigatePage('tool-ats-scanner');
               }}
               className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
             >
-              Pitch Deck Guide
+              ATS Resume Scanner
             </a>
             <a
-              href="/guides/academic-formatting-citation"
+              href="/tools/pitch-deck-builder"
               onClick={(e) => {
                 e.preventDefault();
-                if (onNavigatePage) {
-                  onNavigatePage('guide-academic-formatting');
-                } else {
-                  window.history.pushState({ page: 'guide-academic-formatting' }, '', '/guides/academic-formatting-citation');
-                  window.dispatchEvent(new PopStateEvent('popstate'));
-                }
+                if (onNavigatePage) onNavigatePage('tool-pitch-deck');
               }}
               className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
             >
-              Academic Formatting
+              Pitch Deck Architect
             </a>
             <a
-              href="/guides/corporate-report-formatting-standards"
+              href="/tools/citation-generator"
               onClick={(e) => {
                 e.preventDefault();
-                if (onNavigatePage) {
-                  onNavigatePage('guide-corporate-report');
-                } else {
-                  window.history.pushState({ page: 'guide-corporate-report' }, '', '/guides/corporate-report-formatting-standards');
-                  window.dispatchEvent(new PopStateEvent('popstate'));
-                }
+                if (onNavigatePage) onNavigatePage('tool-citation-gen');
               }}
               className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
             >
-              Corporate Reports
+              Citation Generator
+            </a>
+            <a
+              href="/tools/document-estimator"
+              onClick={(e) => {
+                e.preventDefault();
+                if (onNavigatePage) onNavigatePage('tool-doc-estimator');
+              }}
+              className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
+            >
+              Turnaround Calculator
             </a>
           </div>
 
@@ -171,6 +194,20 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
               className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
             >
               Our Work
+            </a>
+            <a
+              href="/case-studies"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('case-studies') : undefined; }}
+              className="text-left text-[#E5C158] hover:underline font-semibold transition-colors cursor-pointer"
+            >
+              Case Studies
+            </a>
+            <a
+              href="/referrals"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('referrals') : undefined; }}
+              className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
+            >
+              Referral Rewards (15%)
             </a>
             <a
               href="/pricing"

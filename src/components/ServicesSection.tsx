@@ -25,6 +25,7 @@ interface ServicesSectionProps {
   currency: Currency;
   onSelectService: (serviceId: string) => void;
   onOpenCalculator?: (serviceId?: string) => void;
+  onNavigatePage?: (page: string) => void;
 }
 
 // 1. Interactive Visual Preview Canvas for Slide Decks
@@ -219,12 +220,36 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
   currency,
   onSelectService,
   onOpenCalculator,
+  onNavigatePage,
 }) => {
   // Fetch official services from content data
   const presentationService = SERVICES.find((s) => s.id === 'presentation') || SERVICES[0];
   const assignmentService = SERVICES.find((s) => s.id === 'assignment') || SERVICES[1];
   const resumeService = SERVICES.find((s) => s.id === 'ats-resume' || s.id === 'resume') || SERVICES[3];
   const reportsService = SERVICES.find((s) => s.id === 'reports') || SERVICES[6];
+
+  const SERVICE_HUB_ROUTES: Record<string, { page: string; url: string; label: string }> = {
+    presentation: {
+      page: 'hub-presentation',
+      url: '/services/presentation-design',
+      label: 'Explore Presentation Hub',
+    },
+    assignment: {
+      page: 'hub-assignment',
+      url: '/services/assignment-writing',
+      label: 'Explore Assignment Hub',
+    },
+    resume: {
+      page: 'hub-resume',
+      url: '/services/resume-cv-services',
+      label: 'Explore ATS Resume Hub',
+    },
+    reports: {
+      page: 'hub-formatting',
+      url: '/services/report-formatting',
+      label: 'Explore Report Formatting Hub',
+    },
+  };
 
   const formatServicePricing = (service: ServiceItem) => {
     const isPkr = currency === 'PKR';
@@ -401,7 +426,27 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                       {formatServicePricing(item.serviceObj)}
                     </div>
 
-                    <div className="flex items-center gap-2.5 pt-2 sm:pt-0">
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 pt-2 sm:pt-0">
+                      {SERVICE_HUB_ROUTES[item.id] && (
+                        <a
+                          href={SERVICE_HUB_ROUTES[item.id].url}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            const hub = SERVICE_HUB_ROUTES[item.id];
+                            if (onNavigatePage) {
+                              onNavigatePage(hub.page);
+                            } else {
+                              window.history.pushState({ page: hub.page }, '', hub.url);
+                              window.dispatchEvent(new PopStateEvent('popstate'));
+                            }
+                          }}
+                          className="px-3.5 py-3 rounded-xl bg-white/[0.04] hover:bg-[#E5C158]/15 border border-white/10 hover:border-[#E5C158]/40 text-[#E5C158] font-semibold text-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer min-h-[44px]"
+                        >
+                          <Sparkles className="w-3.5 h-3.5 text-[#E5C158] shrink-0" />
+                          <span>Dedicated Hub</span>
+                        </a>
+                      )}
+
                       <motion.button
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}

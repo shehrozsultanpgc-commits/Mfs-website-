@@ -68,7 +68,7 @@ interface ClientDashboardProps {
   clientId?: string;
   onShowToast?: (msg: string) => void;
   onNavigatePage?: (
-    page: 'home' | 'services' | 'pricing' | 'reviews' | 'about' | 'contact' | 'faq' | 'order' | 'payment' | 'confirmation' | 'dashboard',
+    page: any,
     targetSection?: string
   ) => void;
   onOpenAIChat?: (mode?: 'chat' | 'voice') => void;

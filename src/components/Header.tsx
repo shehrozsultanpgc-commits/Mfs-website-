@@ -28,33 +28,9 @@ export interface HeaderProps {
   onOpenOrderModal: () => void;
   onOpenAuthModal?: () => void;
   onSelectSearchService?: (serviceId: string) => void;
-  currentPage?:
-    | 'home'
-    | 'services'
-    | 'pricing'
-    | 'reviews'
-    | 'about'
-    | 'contact'
-    | 'faq'
-    | 'order'
-    | 'payment'
-    | 'confirmation'
-    | 'dashboard'
-    | 'admin';
+  currentPage?: string;
   onNavigatePage?: (
-    page:
-      | 'home'
-      | 'services'
-      | 'pricing'
-      | 'reviews'
-      | 'about'
-      | 'contact'
-      | 'faq'
-      | 'order'
-      | 'payment'
-      | 'confirmation'
-      | 'dashboard'
-      | 'admin',
+    page: any,
     targetSection?: string
   ) => void;
 }
@@ -176,6 +152,60 @@ export const Header: React.FC<HeaderProps> = ({
       icon: Sparkles,
       desc: 'High-converting investor decks & startup proposals',
     },
+    {
+      id: 'tool-ats-scanner',
+      label: 'Free ATS Resume Scanner',
+      category: 'Free Tools',
+      icon: Award,
+      desc: 'Test resume keyword compatibility against ATS filters',
+      isTool: true,
+      route: 'tool-ats-scanner',
+    },
+    {
+      id: 'tool-pitch-deck',
+      label: 'Pitch Deck Storyline Architect',
+      category: 'Free Tools',
+      icon: Presentation,
+      desc: 'Interactive 10-slide storyline structure builder',
+      isTool: true,
+      route: 'tool-pitch-deck',
+    },
+    {
+      id: 'tool-citation-gen',
+      label: 'Academic Citation Generator',
+      category: 'Free Tools',
+      icon: GraduationCap,
+      desc: 'Format APA 7th, Harvard, MLA 9th & IEEE references',
+      isTool: true,
+      route: 'tool-citation-gen',
+    },
+    {
+      id: 'tool-doc-estimator',
+      label: 'Document Metric & Price Estimator',
+      category: 'Free Tools',
+      icon: FileText,
+      desc: 'Calculate page counts, reading time & project price',
+      isTool: true,
+      route: 'tool-doc-estimator',
+    },
+    {
+      id: 'case-studies',
+      label: 'Client Case Studies & Transformations',
+      category: 'Case Studies',
+      icon: Sparkles,
+      desc: 'Deep dives: $1.4M pitch decks, 96% ATS resumes, distinction dissertations',
+      isTool: true,
+      route: 'case-studies',
+    },
+    {
+      id: 'referrals',
+      label: 'VIP Loyalty & Referral Rewards',
+      category: 'Rewards',
+      icon: Award,
+      desc: 'Earn 15% lifetime wallet credit on client referrals',
+      isTool: true,
+      route: 'referrals',
+    },
   ];
 
   const filteredSearch = servicesList.filter(
@@ -186,19 +216,7 @@ export const Header: React.FC<HeaderProps> = ({
   );
 
   const handleNavClick = (
-    page:
-      | 'home'
-      | 'services'
-      | 'pricing'
-      | 'reviews'
-      | 'about'
-      | 'contact'
-      | 'faq'
-      | 'order'
-      | 'payment'
-      | 'confirmation'
-      | 'dashboard'
-      | 'admin',
+    page: any,
     targetSection?: string
   ) => {
     setMobileMenuOpen(false);
@@ -221,6 +239,13 @@ export const Header: React.FC<HeaderProps> = ({
     setSearchQuery('');
     setMobileMenuOpen(false);
 
+    if (serviceId.startsWith('tool-') || serviceId === 'case-studies' || serviceId === 'referrals') {
+      if (onNavigatePage) {
+        onNavigatePage(serviceId);
+      }
+      return;
+    }
+
     if (onSelectSearchService) {
       onSelectSearchService(serviceId);
     } else if (onNavigatePage) {
@@ -233,6 +258,7 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'services', label: 'Services', hasDropdown: true },
     { id: 'portfolio', label: 'Our Work', isScroll: true, targetSection: 'portfolio' },
     { id: 'pricing', label: 'Pricing' },
+    { id: 'tools', label: 'Free Tools' },
     { id: 'guide-ats-resume', label: 'Guides' },
     { id: 'about', label: 'About' },
     { id: 'reviews', label: 'Reviews' },
@@ -244,6 +270,7 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'services', label: 'Services' },
     { id: 'portfolio', label: 'Our Work', isScroll: true, targetSection: 'portfolio' },
     { id: 'pricing', label: 'Pricing' },
+    { id: 'tools', label: 'Free Tools' },
     { id: 'guide-ats-resume', label: 'Guides' },
     { id: 'about', label: 'About' },
     { id: 'reviews', label: 'Reviews' },
@@ -277,11 +304,15 @@ export const Header: React.FC<HeaderProps> = ({
         <nav className="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="Main Navigation">
           {desktopNavItems.map((item) => {
             const isActive =
-              (currentPage === item.id || (item.id === 'guide-ats-resume' && currentPage.startsWith('guide-'))) &&
+              (currentPage === item.id ||
+                (item.id === 'guide-ats-resume' && currentPage?.startsWith('guide-')) ||
+                (item.id === 'tools' && (currentPage === 'tools' || currentPage?.startsWith('tool-')))) &&
               item.id !== 'portfolio';
             const itemHref =
               item.id === 'guide-ats-resume'
                 ? '/guides/ats-resume-engineering'
+                : item.id === 'tools'
+                ? '/tools'
                 : item.isScroll
                 ? '/#portfolio'
                 : item.id === 'home'
