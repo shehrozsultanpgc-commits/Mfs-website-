@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050507" />
+      <stop offset="50%" stop-color="#0E0E15" />
+      <stop offset="100%" stop-color="#050507" />
+    </linearGradient>
+    <linearGradient id="gold1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF5B8" />
+      <stop offset="50%" stop-color="#E5C158" />
+      <stop offset="100%" stop-color="#A9831B" />
+    </linearGradient>
+    <radialGradient id="glow1" cx="85%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="rgba(229, 193, 88, 0.22)" />
+      <stop offset="100%" stop-color="rgba(229, 193, 88, 0)" />
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg1)" />
+  <rect width="1200" height="675" fill="url(#glow1)" />
+  <rect x="20" y="20" width="1160" height="635" rx="24" fill="none" stroke="rgba(229, 193, 88, 0.35)" stroke-width="2" />
+
+  <!-- Top Badge -->
+  <g transform="translate(60, 55)">
+    <rect width="400" height="38" rx="19" fill="rgba(229, 193, 88, 0.12)" stroke="rgba(229, 193, 88, 0.4)" stroke-width="1.5" />
+    <circle cx="22" cy="19" r="6" fill="#28C76F" />
+    <text x="38" y="24" fill="#E5C158" font-family="'Poppins', sans-serif, system-ui" font-size="13" font-weight="700" letter-spacing="1.5">MFS GROWTH AGENCY • OFFICIAL BRAND</text>
+  </g>
+
+  <!-- Main Headline -->
+  <g transform="translate(60, 160)">
+    <text fill="#FFFFFF" font-family="'Poppins', sans-serif, system-ui" font-size="54" font-weight="900" letter-spacing="-1">
+      MFS <tspan fill="url(#gold1)">GROWTH AGENCY</tspan>
+    </text>
+    <text y="50" fill="#E5C158" font-family="'Poppins', sans-serif, system-ui" font-size="22" font-weight="600">
+      Helping Students &amp; Professionals Grow with High-Quality Digital Solutions
+    </text>
+    <text y="86" fill="#A0A0B2" font-family="'Inter', sans-serif, system-ui" font-size="16" font-weight="400">
+      Premium Executive Presentations • Academic Assignment Writing • ATS Resumes • Corporate Reports
+    </text>
+  </g>
+
+  <!-- 4 Feature Cards Grid -->
+  <g transform="translate(60, 290)">
+    <!-- Service 1 -->
+    <rect x="0" y="0" width="255" height="150" rx="16" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(229, 193, 88, 0.25)" stroke-width="1.5" />
+    <text x="20" y="38" fill="#E5C158" font-family="'Poppins', sans-serif, system-ui" font-size="20">📊</text>
+    <text x="50" y="38" fill="#FFFFFF" font-family="'Poppins', sans-serif, system-ui" font-size="16" font-weight="700">Presentation Design</text>
+    <text x="20" y="70" fill="#A0A0B2" font-family="'Inter', sans-serif, system-ui" font-size="13" font-weight="400">Executive Pitch Decks</text>
+    <text x="20" y="92" fill="#A0A0B2" font-family="'Inter', sans-serif, system-ui" font-size="13" font-weight="400">Academic &amp; Business Slides</text>
+    <text x="20" y="125" fill="#28C76F" font-family="'Poppins', sans-serif, system-ui" font-size="13" font-weight="700">50% Launch Discount</text>
+
+    <!-- Service 2 -->
+    <rect x="275" y="0" width="255" height="150" rx="16" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(229, 193, 88, 0.25)" stroke-width="1.5" />
+    <text x="20" y="38" fill="#E5C158" font-family="'Poppins', sans-serif, system-ui" font-size="20" transform="translate(275, 0)">✍️</text>
+    <text x="50" y="38" fill="#FFFFFF" font-family="'Poppins', sans-serif, system-ui" font-size="16" font-weight="700" transform="translate(275, 0)">Assignment Writing</text>
+    <text x="20" y="70" fill="#A0A0B2" font-family="'Inter', sans-serif, system-ui" font-size="13" font-weight="400" transform="translate(275, 0)">APA, Harvard, MLA Citations</text>
+    <text x="20" y="92" fill="#A0A0B2" font-family="'Inter', sans-serif, system-ui" font-size="13" font-weight="400" transform="translate(275, 0)">Turnitin Original Research</text>
+    <text x="20" y="125" fill="#28C76F" font-family="'Poppins', sans-serif, system-ui" font-size="13" font-weight="700" transform="translate(275, 0)">100% Quality Assurance</text>
+
+    <!-- Service 3 -->
+    <rect x="550" y="0" width="255" height="150" rx="16" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(229, 193, 88, 0.25)" stroke-width="1.5" />
+    <text x="20" y="38" fill="#E5C158" font-family="'Poppins', sans-serif, system-ui" font-size="20" transform="translate(550, 0)">📄</text>
+    <text x="50" y="38" fill="#FFFFFF" font-family="'Poppins', sans-serif, system-ui" font-size="16" font-weight="700" transform="translate(550, 0)">ATS Resume / CV</text>
+    <text x="20" y="70" fill="#A0A0B2" font-family="'Inter', sans-serif, system-ui" font-size="13" font-weight="400" transform="translate(550, 0)">99% ATS Algorithm Pass</text>
+    <text x="20" y="92" fill="#A0A0B2" font-family="'Inter', sans-serif, system-ui" font-size="13" font-weight="400" transform="translate(550, 0)">Executive Cover Letters</text>
+    <text x="20" y="125" fill="#28C76F" font-family="'Poppins', sans-serif, system-ui" font-size="13" font-weight="700" transform="translate(550, 0)">Job Interview Ready</text>
+
+    <!-- Service 4 -->
+    <rect x="825" y="0" width="255" height="150" rx="16" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(229, 193, 88, 0.25)" stroke-width="1.5" />
+    <text x="20" y="38" fill="#E5C158" font-family="'Poppins', sans-serif, system-ui" font-size="20" transform="translate(825, 0)">📑</text>
+    <text x="50" y="38" fill="#FFFFFF" font-family="'Poppins', sans-serif, system-ui" font-size="16" font-weight="700" transform="translate(825, 0)">Report Formatting</text>
+    <text x="20" y="70" fill="#A0A0B2" font-family="'Inter', sans-serif, system-ui" font-size="13" font-weight="400" transform="translate(825, 0)">Corporate Case Studies</text>
+    <text x="20" y="92" fill="#A0A0B2" font-family="'Inter', sans-serif, system-ui" font-size="13" font-weight="400" transform="translate(825, 0)">Financial Data Layouts</text>
+    <text x="20" y="125" fill="#28C76F" font-family="'Poppins', sans-serif, system-ui" font-size="13" font-weight="700" transform="translate(825, 0)">Fast Turnaround</text>
+  </g>
+
+  <!-- Founder & Official Contact Footer Strip -->
+  <g transform="translate(60, 480)">
+    <rect width="1080" height="135" rx="20" fill="rgba(0, 0, 0, 0.7)" stroke="rgba(229, 193, 88, 0.4)" stroke-width="1.5" />
+    
+    <!-- HexaMatrix Logo Emblem -->
+    <rect x="24" y="24" width="87" height="87" rx="16" fill="#0A0A0F" stroke="url(#gold1)" stroke-width="2" />
+    <g transform="translate(37, 36) scale(0.12)">
+      <polygon points="102,167 256,78 410,167 358,197 256,138 154,197" fill="url(#gold1)" />
+      <polygon points="102,167 154,197 154,315 256,374 256,434 102,345" fill="url(#gold1)" />
+      <polygon points="410,167 358,197 358,315 256,374 256,434 410,345" fill="#5A4103" />
+      <polygon points="256,196 306,225 256,254 206,225" fill="url(#gold1)" />
+      <polygon points="206,225 256,254 256,314 206,285" fill="url(#gold1)" />
+      <polygon points="256,254 306,225 306,285 256,314" fill="#5A4103" />
+    </g>
+
+    <!-- Founder Details -->
+    <text x="135" y="55" fill="#FFFFFF" font-family="'Poppins', sans-serif, system-ui" font-size="22" font-weight="800">
+      Muhammad Shehroz Sultan
+    </text>
+    <text x="135" y="80" fill="#E5C158" font-family="'Poppins', sans-serif, system-ui" font-size="14" font-weight="600">
+      Founder &amp; Executive Director • Islamabad, Pakistan HQ
+    </text>
+    <text x="135" y="104" fill="#B0B0C0" font-family="'Inter', sans-serif, system-ui" font-size="13" font-weight="500">
+      🌐 https://mfsgrowth.online • 📱 WhatsApp / Call: +92 301 5323689 • ✉️ mfsmedia.agency@gmail.com
+    </text>
+
+    <!-- Verified Badge -->
+    <rect x="880" y="38" width="170" height="58" rx="14" fill="rgba(229, 193, 88, 0.15)" stroke="rgba(229, 193, 88, 0.5)" />
+    <text x="965" y="63" fill="#E5C158" font-family="'Poppins', sans-serif, system-ui" font-size="12" font-weight="800" text-anchor="middle">VERIFIED AGENCY</text>
+    <text x="965" y="82" fill="#28C76F" font-family="'Poppins', sans-serif, system-ui" font-size="11" font-weight="700" text-anchor="middle">★ 4.98 / 5.0 RATING</text>
+  </g>
+</svg>

@@ -206,6 +206,15 @@ export const Header: React.FC<HeaderProps> = ({
       isTool: true,
       route: 'referrals',
     },
+    {
+      id: 'brand-assets',
+      label: 'Official Brand Cards & Google Image Media Hub',
+      category: 'Media & Brand',
+      icon: Sparkles,
+      desc: '12 high-resolution vector cards, founder authority & Google Image assets',
+      isTool: true,
+      route: 'brand-assets',
+    },
   ];
 
   const filteredSearch = servicesList.filter(
@@ -239,7 +248,7 @@ export const Header: React.FC<HeaderProps> = ({
     setSearchQuery('');
     setMobileMenuOpen(false);
 
-    if (serviceId.startsWith('tool-') || serviceId === 'case-studies' || serviceId === 'referrals') {
+    if (serviceId.startsWith('tool-') || serviceId === 'case-studies' || serviceId === 'referrals' || serviceId === 'brand-assets') {
       if (onNavigatePage) {
         onNavigatePage(serviceId);
       }

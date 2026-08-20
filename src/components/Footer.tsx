@@ -196,6 +196,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
               Our Work
             </a>
             <a
+              href="/brand-assets"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('brand-assets') : undefined; }}
+              className="text-left text-[#E5C158] hover:underline font-semibold transition-colors cursor-pointer"
+            >
+              Brand Media Hub
+            </a>
+            <a
               href="/case-studies"
               onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('case-studies') : undefined; }}
               className="text-left text-[#E5C158] hover:underline font-semibold transition-colors cursor-pointer"

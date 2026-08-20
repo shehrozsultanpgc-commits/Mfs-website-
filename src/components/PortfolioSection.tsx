@@ -19,11 +19,13 @@ import {
 interface PortfolioSectionProps {
   onShowToast: (msg: string) => void;
   onOpenOrderModal?: () => void;
+  onNavigatePage?: (page: any) => void;
 }
 
 export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
   onShowToast,
   onOpenOrderModal,
+  onNavigatePage,
 }) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [selectedSample, setSelectedSample] = useState<typeof PORTFOLIO_SAMPLES[0] | null>(null);
@@ -373,6 +375,40 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
             </div>
           )}
         </AnimatePresence>
+
+        {/* 5.5 BRAND MEDIA ASSETS & GOOGLE IMAGE PREVIEWS BANNER */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45 }}
+          className="mt-14 sm:mt-16 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-[#0C0C14] via-[#08080E] to-[#0C0C14] border border-[#E5C158]/30 relative overflow-hidden shadow-xl"
+        >
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="space-y-2 text-center md:text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E5C158]/10 text-[#E5C158] text-[11px] font-bold uppercase tracking-wider">
+                <Sparkles className="w-3 h-3" />
+                <span>OFFICIAL BRAND VISUAL ASSETS</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-black font-poppins text-white">
+                Explore Our 12 Official Brand Cards &amp; Google Image Hub
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-300 max-w-xl">
+                View verified high-resolution vector cards for founder authority, presentation slide suites, academic writing, ATS resumes, and launch discount rates.
+              </p>
+            </div>
+
+            <button
+              onClick={() => {
+                if (onNavigatePage) onNavigatePage('brand-assets');
+              }}
+              className="px-6 py-3.5 rounded-xl bg-[#E5C158] hover:bg-[#d4af37] text-[#050507] font-extrabold text-xs sm:text-sm flex items-center gap-2 transition-all shadow-lg shrink-0 cursor-pointer"
+            >
+              <span>View Brand Media Hub</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        </motion.div>
 
         {/* 6. CALL TO ACTION BANNER */}
         <motion.div

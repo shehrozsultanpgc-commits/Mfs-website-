@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg9" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050507" />
+      <stop offset="50%" stop-color="#141108" />
+      <stop offset="100%" stop-color="#050507" />
+    </linearGradient>
+    <linearGradient id="gold9" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF5B8" />
+      <stop offset="50%" stop-color="#E5C158" />
+      <stop offset="100%" stop-color="#A9831B" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg9)" />
+  <rect x="20" y="20" width="1160" height="635" rx="24" fill="none" stroke="rgba(229, 193, 88, 0.35)" stroke-width="2" />
+
+  <g transform="translate(60, 50)">
+    <rect width="380" height="36" rx="18" fill="rgba(229, 193, 88, 0.12)" stroke="rgba(229, 193, 88, 0.4)" stroke-width="1.5" />
+    <text x="190" y="23" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="13" font-weight="700" text-anchor="middle">VERIFIED CLIENT REVIEWS &amp; RATINGS</text>
+  </g>
+
+  <!-- Left Side: Ratings Overview -->
+  <g transform="translate(60, 130)">
+    <text fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="44" font-weight="900">
+      4.98 / 5.0 Rated <tspan fill="url(#gold9)">Customer Trust</tspan>
+    </text>
+    <text y="42" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="18" font-weight="600">
+      MFS Growth Agency • 284+ Verified Student &amp; Corporate Testimonials
+    </text>
+
+    <!-- Star Visuals -->
+    <g transform="translate(0, 75)">
+      <text x="0" y="32" fill="#E5C158" font-size="32">★★★★★</text>
+      <text x="150" y="30" fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="20" font-weight="800">4.98 Aggregate Rating</text>
+      <text x="0" y="65" fill="#A0A0B0" font-family="'Inter', sans-serif" font-size="14">Verified on Trustpilot, Google Reviews, WhatsApp &amp; Direct Student Portals</text>
+    </g>
+
+    <!-- Stat Highlights -->
+    <g transform="translate(0, 190)">
+      <rect x="0" y="0" width="230" height="90" rx="12" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(229, 193, 88, 0.25)" />
+      <text x="20" y="30" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="11" font-weight="700">STUDENT SATISFACTION</text>
+      <text x="20" y="60" fill="#28C76F" font-family="'Poppins', sans-serif" font-size="22" font-weight="900">99.4%</text>
+      <text x="20" y="78" fill="#A0A0B0" font-family="'Inter', sans-serif" font-size="10">High Academic Grades</text>
+
+      <rect x="250" y="0" width="230" height="90" rx="12" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(229, 193, 88, 0.25)" />
+      <text x="270" y="30" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="11" font-weight="700">EXECUTIVE PITCH DECKS</text>
+      <text x="270" y="60" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="22" font-weight="900">100%</text>
+      <text x="270" y="78" fill="#A0A0B0" font-family="'Inter', sans-serif" font-size="10">Investor Approval</text>
+    </g>
+  </g>
+
+  <!-- Right Side: Testimonials Cards -->
+  <g transform="translate(680, 120)">
+    <!-- Review 1 -->
+    <rect x="0" y="0" width="460" height="155" rx="16" fill="#0E0D14" stroke="rgba(229, 193, 88, 0.3)" />
+    <g transform="translate(25, 20)">
+      <text x="0" y="18" fill="#E5C158" font-size="16">★★★★★</text>
+      <text x="0" y="45" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="13" font-weight="500">
+        "MFS Growth Agency transformed my MBA thesis defense presentation. The slides were world-class and won 1st prize!"
+      </text>
+      <text x="0" y="95" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="13" font-weight="700">Hamza Tariq</text>
+      <text x="0" y="112" fill="#28C76F" font-family="'Inter', sans-serif" font-size="11">✓ Verified Client • MBA Presentation Design</text>
+    </g>
+
+    <!-- Review 2 -->
+    <rect x="0" y="175" width="460" height="155" rx="16" fill="#0E0D14" stroke="rgba(40, 199, 111, 0.3)" />
+    <g transform="translate(25, 195)">
+      <text x="0" y="18" fill="#E5C158" font-size="16">★★★★★</text>
+      <text x="0" y="45" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="13" font-weight="500">
+        "Got 3 job interviews in Dubai within 10 days of using their ATS Resume and executive LinkedIn overhaul."
+      </text>
+      <text x="0" y="95" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="13" font-weight="700">Ayesha Malik</text>
+      <text x="0" y="112" fill="#28C76F" font-family="'Inter', sans-serif" font-size="11">✓ Verified Client • ATS Resume Suite</text>
+    </g>
+  </g>
+
+  <!-- Bottom Strip -->
+  <g transform="translate(60, 500)">
+    <rect width="1080" height="115" rx="18" fill="rgba(0, 0, 0, 0.75)" stroke="rgba(229, 193, 88, 0.35)" />
+    <text x="30" y="45" fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="20" font-weight="800">
+      Join 500+ Satisfied Clients at MFS Growth Agency
+    </text>
+    <text x="30" y="75" fill="#E5C158" font-family="'Inter', sans-serif" font-size="14" font-weight="600">
+      Founder: Muhammad Shehroz Sultan • WhatsApp Direct: +92 301 5323689 • Web: https://mfsgrowth.online
+    </text>
+    <text x="30" y="98" fill="#9090A5" font-family="'Inter', sans-serif" font-size="12">
+      Presentations • Academic Assignments • ATS Resumes • Executive Reports • 50% Launch Discount
+    </text>
+    <rect x="880" y="32" width="170" height="50" rx="12" fill="#E5C158" />
+    <text x="965" y="62" fill="#050507" font-family="'Poppins', sans-serif" font-size="14" font-weight="800" text-anchor="middle">READ REVIEWS</text>
+  </g>
+</svg>

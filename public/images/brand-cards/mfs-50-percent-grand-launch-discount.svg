@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg7" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050507" />
+      <stop offset="50%" stop-color="#191206" />
+      <stop offset="100%" stop-color="#050507" />
+    </linearGradient>
+    <linearGradient id="gold7" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF8C0" />
+      <stop offset="50%" stop-color="#E5C158" />
+      <stop offset="100%" stop-color="#A9831B" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg7)" />
+  <rect x="20" y="20" width="1160" height="635" rx="24" fill="none" stroke="rgba(229, 193, 88, 0.45)" stroke-width="2" />
+
+  <g transform="translate(60, 50)">
+    <rect width="400" height="36" rx="18" fill="rgba(229, 193, 88, 0.15)" stroke="rgba(229, 193, 88, 0.5)" stroke-width="1.5" />
+    <text x="200" y="23" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="13" font-weight="700" text-anchor="middle">OFFICIAL PROMOTIONAL OFFER</text>
+  </g>
+
+  <!-- Main Headline -->
+  <g transform="translate(60, 130)">
+    <text fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="52" font-weight="900">
+      50% Grand <tspan fill="url(#gold7)">Launch Discount</tspan>
+    </text>
+    <text y="48" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="20" font-weight="600">
+      MFS Growth Agency • Automatic 50% Price Reduction on All Services
+    </text>
+
+    <!-- Comparison Grid -->
+    <g transform="translate(0, 90)">
+      <!-- Box 1 -->
+      <rect x="0" y="0" width="240" height="135" rx="14" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(229, 193, 88, 0.25)" />
+      <text x="20" y="30" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="13" font-weight="700">PRESENTATION SLIDES</text>
+      <text x="20" y="55" fill="#9090A0" font-family="'Inter', sans-serif" font-size="13" text-decoration="line-through">Standard: PKR 3,000</text>
+      <text x="20" y="85" fill="#28C76F" font-family="'Poppins', sans-serif" font-size="22" font-weight="900">PKR 1,500</text>
+      <text x="20" y="112" fill="#E5C158" font-family="'Inter', sans-serif" font-size="11">Per 10 Slides ($12 USD)</text>
+
+      <!-- Box 2 -->
+      <rect x="260" y="0" width="240" height="135" rx="14" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(229, 193, 88, 0.25)" />
+      <text x="280" y="30" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="13" font-weight="700">ACADEMIC WRITING</text>
+      <text x="280" y="55" fill="#9090A0" font-family="'Inter', sans-serif" font-size="13" text-decoration="line-through">Standard: PKR 2,000</text>
+      <text x="280" y="85" fill="#28C76F" font-family="'Poppins', sans-serif" font-size="22" font-weight="900">PKR 1,000</text>
+      <text x="280" y="112" fill="#E5C158" font-family="'Inter', sans-serif" font-size="11">Per 500 Words ($8 USD)</text>
+
+      <!-- Box 3 -->
+      <rect x="520" y="0" width="240" height="135" rx="14" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(229, 193, 88, 0.25)" />
+      <text x="540" y="30" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="13" font-weight="700">ATS RESUME SUITE</text>
+      <text x="540" y="55" fill="#9090A0" font-family="'Inter', sans-serif" font-size="13" text-decoration="line-through">Standard: PKR 3,000</text>
+      <text x="540" y="85" fill="#28C76F" font-family="'Poppins', sans-serif" font-size="22" font-weight="900">PKR 1,500</text>
+      <text x="540" y="112" fill="#E5C158" font-family="'Inter', sans-serif" font-size="11">Complete CV Suite ($12 USD)</text>
+
+      <!-- Box 4 -->
+      <rect x="780" y="0" width="240" height="135" rx="14" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(229, 193, 88, 0.25)" />
+      <text x="800" y="30" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="13" font-weight="700">REPORT FORMATTING</text>
+      <text x="800" y="55" fill="#9090A0" font-family="'Inter', sans-serif" font-size="13" text-decoration="line-through">Standard: PKR 3,000</text>
+      <text x="800" y="85" fill="#28C76F" font-family="'Poppins', sans-serif" font-size="22" font-weight="900">PKR 1,500</text>
+      <text x="800" y="112" fill="#E5C158" font-family="'Inter', sans-serif" font-size="11">Executive Layout ($12 USD)</text>
+    </g>
+
+    <!-- Urgency badge -->
+    <g transform="translate(0, 245)">
+      <rect width="1020" height="70" rx="14" fill="rgba(40, 199, 111, 0.08)" stroke="rgba(40, 199, 111, 0.3)" />
+      <text x="25" y="42" fill="#28C76F" font-family="'Poppins', sans-serif" font-size="18" font-weight="800">⚡ LIMITED TIME GRAND LAUNCH PROMO</text>
+      <text x="440" y="42" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="14">Applied instantly in checkout &amp; live price calculator. No coupon needed.</text>
+    </g>
+  </g>
+
+  <!-- Bottom Strip -->
+  <g transform="translate(60, 500)">
+    <rect width="1080" height="115" rx="18" fill="rgba(0, 0, 0, 0.75)" stroke="rgba(229, 193, 88, 0.35)" />
+    <text x="30" y="45" fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="20" font-weight="800">
+      Claim 50% Launch Discount with MFS Growth Agency
+    </text>
+    <text x="30" y="75" fill="#E5C158" font-family="'Inter', sans-serif" font-size="14" font-weight="600">
+      WhatsApp Order: +92 301 5323689 • Founder: Muhammad Shehroz Sultan • Web: https://mfsgrowth.online
+    </text>
+    <text x="30" y="98" fill="#9090A5" font-family="'Inter', sans-serif" font-size="12">
+      Presentation Design • Academic Writing • ATS Resumes • Executive Reports • Instant Online Delivery
+    </text>
+    <rect x="880" y="32" width="170" height="50" rx="12" fill="#28C76F" />
+    <text x="965" y="62" fill="#050507" font-family="'Poppins', sans-serif" font-size="14" font-weight="900" text-anchor="middle">CLAIM 50% OFF</text>
+  </g>
+</svg>

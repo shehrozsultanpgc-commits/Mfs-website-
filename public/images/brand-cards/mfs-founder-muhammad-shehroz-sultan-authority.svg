@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050507" />
+      <stop offset="50%" stop-color="#121018" />
+      <stop offset="100%" stop-color="#050507" />
+    </linearGradient>
+    <linearGradient id="gold6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF5B8" />
+      <stop offset="50%" stop-color="#E5C158" />
+      <stop offset="100%" stop-color="#A9831B" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg6)" />
+  <rect x="20" y="20" width="1160" height="635" rx="24" fill="none" stroke="rgba(229, 193, 88, 0.35)" stroke-width="2" />
+
+  <g transform="translate(60, 50)">
+    <rect width="360" height="36" rx="18" fill="rgba(229, 193, 88, 0.12)" stroke="rgba(229, 193, 88, 0.4)" stroke-width="1.5" />
+    <text x="180" y="23" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="13" font-weight="700" text-anchor="middle">EXECUTIVE LEADERSHIP &amp; FOUNDER</text>
+  </g>
+
+  <!-- Left: Founder Authority Details -->
+  <g transform="translate(60, 125)">
+    <text fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="46" font-weight="900">
+      Muhammad <tspan fill="url(#gold6)">Shehroz Sultan</tspan>
+    </text>
+    <text y="42" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="18" font-weight="600">
+      Founder &amp; Executive Director • MFS Growth Agency
+    </text>
+    <text y="70" fill="#A0A0B5" font-family="'Inter', sans-serif" font-size="14" font-weight="400">
+      Leading premium digital transformation for students &amp; professionals across Pakistan, USA, UK, UAE &amp; Europe.
+    </text>
+
+    <!-- Authority Grid -->
+    <g transform="translate(0, 100)">
+      <rect x="0" y="0" width="240" height="90" rx="14" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(229, 193, 88, 0.25)" />
+      <text x="20" y="32" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="12" font-weight="700">EXPERIENCE &amp; SCOPE</text>
+      <text x="20" y="62" fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="20" font-weight="900">500+ Projects</text>
+      <text x="20" y="78" fill="#28C76F" font-family="'Inter', sans-serif" font-size="10">Delivered Globally</text>
+
+      <rect x="260" y="0" width="240" height="90" rx="14" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(229, 193, 88, 0.25)" />
+      <text x="280" y="32" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="12" font-weight="700">VERIFIED RATING</text>
+      <text x="280" y="62" fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="20" font-weight="900">4.98 / 5.0</text>
+      <text x="280" y="78" fill="#E5C158" font-family="'Inter', sans-serif" font-size="10">284+ Client Reviews</text>
+    </g>
+
+    <!-- Social & Contact Lines -->
+    <g transform="translate(0, 215)">
+      <rect width="500" height="110" rx="14" fill="rgba(0, 0, 0, 0.5)" stroke="rgba(229, 193, 88, 0.3)" />
+      <text x="20" y="30" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="12" font-weight="700">OFFICIAL VERIFIED PROFILES &amp; CHANNELS</text>
+      <text x="20" y="55" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="13" font-weight="500">
+        • LinkedIn: linkedin.com/in/muhammad-shehroz-sultan-1237543a9
+      </text>
+      <text x="20" y="78" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="13" font-weight="500">
+        • Instagram: @mfsgrowth • Facebook: MFS Growth Official
+      </text>
+      <text x="20" y="98" fill="#28C76F" font-family="'Inter', sans-serif" font-size="12" font-weight="600">
+        • Official WhatsApp Direct: +92 301 5323689 (24/7 Support)
+      </text>
+    </g>
+  </g>
+
+  <!-- Right: Founder Emblem & Matrix Showcase -->
+  <g transform="translate(680, 120)">
+    <rect width="460" height="345" rx="20" fill="#0C0A12" stroke="rgba(229, 193, 88, 0.45)" stroke-width="2" />
+    
+    <!-- HexaMatrix Center Emblem -->
+    <g transform="translate(145, 40)">
+      <rect x="0" y="0" width="170" height="170" rx="30" fill="#050508" stroke="url(#gold6)" stroke-width="3" />
+      <g transform="translate(25, 20) scale(0.24)">
+        <polygon points="102,167 256,78 410,167 358,197 256,138 154,197" fill="url(#gold6)" />
+        <polygon points="102,167 154,197 154,315 256,374 256,434 102,345" fill="url(#gold6)" />
+        <polygon points="410,167 358,197 358,315 256,374 256,434 410,345" fill="#5A4103" />
+        <polygon points="256,196 306,225 256,254 206,225" fill="url(#gold6)" />
+        <polygon points="206,225 256,254 256,314 206,285" fill="url(#gold6)" />
+        <polygon points="256,254 306,225 306,285 256,314" fill="#5A4103" />
+      </g>
+    </g>
+
+    <text x="230" y="245" fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="18" font-weight="800" text-anchor="middle">
+      MFS GROWTH AGENCY
+    </text>
+    <text x="230" y="270" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="13" font-weight="600" text-anchor="middle">
+      ISLAMABAD HEADQUARTERS DESK
+    </text>
+    <text x="230" y="295" fill="#9090A5" font-family="'Inter', sans-serif" font-size="12" text-anchor="middle">
+      Blue Area, Islamabad, Pakistan • Global Digital Services
+    </text>
+    <text x="230" y="320" fill="#28C76F" font-family="'Inter', sans-serif" font-size="12" font-weight="700" text-anchor="middle">
+      ✓ Verified Entity &amp; Google Knowledge Graph Node
+    </text>
+  </g>
+
+  <!-- Bottom Strip -->
+  <g transform="translate(60, 500)">
+    <rect width="1080" height="115" rx="18" fill="rgba(0, 0, 0, 0.75)" stroke="rgba(229, 193, 88, 0.35)" />
+    <text x="30" y="45" fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="20" font-weight="800">
+      Direct Contact with Founder Muhammad Shehroz Sultan
+    </text>
+    <text x="30" y="75" fill="#E5C158" font-family="'Inter', sans-serif" font-size="14" font-weight="600">
+      WhatsApp / Phone: +92 301 5323689 • Official Web: https://mfsgrowth.online • Email: mfsmedia.agency@gmail.com
+    </text>
+    <text x="30" y="98" fill="#9090A5" font-family="'Inter', sans-serif" font-size="12">
+      Presentation Design • Academic Writing • ATS Resumes • Executive Reports • 24/7 Online Support
+    </text>
+    <rect x="880" y="32" width="170" height="50" rx="12" fill="#E5C158" />
+    <text x="965" y="62" fill="#050507" font-family="'Poppins', sans-serif" font-size="14" font-weight="800" text-anchor="middle">CHAT FOUNDER</text>
+  </g>
+</svg>

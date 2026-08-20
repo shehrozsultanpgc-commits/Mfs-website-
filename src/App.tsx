@@ -55,6 +55,7 @@ const DocumentEstimatorTool = React.lazy(() => import('./components/tools/Docume
 const CaseStudiesPage = React.lazy(() => import('./components/growth/CaseStudiesPage').then(m => ({ default: m.CaseStudiesPage })));
 const ClientReferralRewardsHub = React.lazy(() => import('./components/growth/ClientReferralRewardsHub').then(m => ({ default: m.ClientReferralRewardsHub })));
 const ProjectInteractiveReviewCanvas = React.lazy(() => import('./components/growth/ProjectInteractiveReviewCanvas').then(m => ({ default: m.ProjectInteractiveReviewCanvas })));
+const BrandMediaAssetsPage = React.lazy(() => import('./components/BrandMediaAssetsPage').then(m => ({ default: m.BrandMediaAssetsPage })));
 const AIAssistantWidget = React.lazy(() => import('./components/ai/AIAssistantWidget').then(m => ({ default: m.AIAssistantWidget })));
 
 const PageSkeleton = () => (
@@ -98,6 +99,7 @@ type PageType =
   | 'case-studies'
   | 'referrals'
   | 'review-canvas'
+  | 'brand-assets'
   | 'notFound';
 
 const VALID_PAGES: PageType[] = [
@@ -134,12 +136,16 @@ const VALID_PAGES: PageType[] = [
   'case-studies',
   'referrals',
   'review-canvas',
+  'brand-assets',
 ];
 
 function getPageFromRoute(): { page: PageType; targetSection?: string } {
   const pathRaw = window.location.pathname.toLowerCase().replace(/^\/+|\/+$/g, '');
   const hashRaw = window.location.hash.toLowerCase().replace(/^#\/?/, '');
 
+    if (pathRaw === 'brand-assets' || pathRaw === 'media-assets' || pathRaw === 'brand-images' || pathRaw === 'images' || hashRaw === 'brand-assets' || hashRaw === 'media-assets') {
+      return { page: 'brand-assets' };
+    }
     if (pathRaw === 'case-studies' || pathRaw === 'case-study' || pathRaw === 'transformations' || hashRaw === 'case-studies') {
       return { page: 'case-studies' };
     }
@@ -310,6 +316,8 @@ function AppContent() {
         ? '/referrals'
         : page === 'review-canvas'
         ? '/review-canvas'
+        : page === 'brand-assets'
+        ? '/brand-assets'
         : `/${page}`;
 
     if (!isFromHistoryPop) {
@@ -537,6 +545,7 @@ function AppContent() {
                 <PortfolioSection 
                   onShowToast={triggerToast} 
                   onOpenOrderModal={() => setIsOrderModalOpen(true)}
+                  onNavigatePage={handleNavigatePage}
                 />
 
                 {/* Verified Reviews */}
@@ -812,6 +821,16 @@ function AppContent() {
                 }}
                 onShowToast={triggerToast}
                 onNavigatePage={handleNavigatePage}
+              />
+            ) : currentPage === 'brand-assets' ? (
+              <BrandMediaAssetsPage
+                onOpenOrderModal={(serviceId) => {
+                  if (serviceId) setPrefilledService(serviceId);
+                  setIsOrderModalOpen(true);
+                }}
+                onShowToast={triggerToast}
+                onNavigatePage={handleNavigatePage}
+                onOpenAIChat={handleOpenAIChat}
               />
             ) : (
               <NotFoundPage onNavigatePage={handleNavigatePage} />

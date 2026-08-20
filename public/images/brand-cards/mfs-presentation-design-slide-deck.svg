@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050507" />
+      <stop offset="60%" stop-color="#100F18" />
+      <stop offset="100%" stop-color="#050507" />
+    </linearGradient>
+    <linearGradient id="gold2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF5B8" />
+      <stop offset="50%" stop-color="#E5C158" />
+      <stop offset="100%" stop-color="#A9831B" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg2)" />
+  <rect x="20" y="20" width="1160" height="635" rx="24" fill="none" stroke="rgba(229, 193, 88, 0.35)" stroke-width="2" />
+
+  <!-- Top Tag -->
+  <g transform="translate(60, 50)">
+    <rect width="380" height="36" rx="18" fill="rgba(229, 193, 88, 0.12)" stroke="rgba(229, 193, 88, 0.4)" stroke-width="1.5" />
+    <text x="190" y="23" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="13" font-weight="700" text-anchor="middle">EXECUTIVE PRESENTATION DESIGN SERVICE</text>
+  </g>
+
+  <!-- Left Side: Service Details -->
+  <g transform="translate(60, 130)">
+    <text fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="44" font-weight="900">
+      Pitch Decks &amp; <tspan fill="url(#gold2)">Executive Slides</tspan>
+    </text>
+    <text y="42" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="18" font-weight="600">
+      MFS Growth Agency • Rate Structure per 10 Slides • 50% Grand Launch Active
+    </text>
+    
+    <!-- Key Bullet Points -->
+    <g transform="translate(0, 80)">
+      <circle cx="10" cy="15" r="5" fill="#28C76F" />
+      <text x="25" y="20" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="16" font-weight="600">Investor-Ready Pitch Decks with High-Impact Financial Visuals</text>
+
+      <circle cx="10" cy="55" r="5" fill="#28C76F" />
+      <text x="25" y="60" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="16" font-weight="600">Academic Thesis Defense, Seminar &amp; University Class Decks</text>
+
+      <circle cx="10" cy="95" r="5" fill="#28C76F" />
+      <text x="25" y="100" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="16" font-weight="600">Custom Infographics, Custom Vector Assets &amp; Dark/Light Layouts</text>
+
+      <circle cx="10" cy="135" r="5" fill="#28C76F" />
+      <text x="25" y="140" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="16" font-weight="600">Delivered in Editable PowerPoint (.PPTX) &amp; Print PDF Formats</text>
+    </g>
+
+    <!-- Pricing Box -->
+    <g transform="translate(0, 260)">
+      <rect width="480" height="70" rx="14" fill="rgba(229, 193, 88, 0.08)" stroke="rgba(229, 193, 88, 0.3)" />
+      <text x="20" y="32" fill="#A0A0B0" font-family="'Inter', sans-serif" font-size="12">STARTING LAUNCH PRICE</text>
+      <text x="20" y="55" fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="18" font-weight="800">PKR 1,500 <tspan fill="#A0A0B0" font-size="13" font-weight="400">/ $12 USD per 10 Slides</tspan></text>
+      <rect x="330" y="15" width="130" height="40" rx="10" fill="#28C76F" />
+      <text x="395" y="40" fill="#050507" font-family="'Poppins', sans-serif" font-size="13" font-weight="800" text-anchor="middle">50% OFF</text>
+    </g>
+  </g>
+
+  <!-- Right Side: Graphic Visual Slide Simulation -->
+  <g transform="translate(680, 120)">
+    <rect width="460" height="340" rx="20" fill="#0A0A10" stroke="rgba(229, 193, 88, 0.4)" stroke-width="2" />
+    
+    <!-- Slide Header -->
+    <rect x="25" y="25" width="410" height="45" rx="10" fill="rgba(255, 255, 255, 0.03)" />
+    <text x="40" y="53" fill="url(#gold2)" font-family="'Poppins', sans-serif" font-size="16" font-weight="800">MFS EXECUTIVE DECK MOCKUP</text>
+    
+    <!-- Slide Mockup Bars -->
+    <g transform="translate(25, 90)">
+      <!-- Card 1 -->
+      <rect x="0" y="0" width="195" height="100" rx="12" fill="rgba(229, 193, 88, 0.06)" stroke="rgba(229, 193, 88, 0.2)" />
+      <text x="15" y="30" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="12" font-weight="700">MARKET TRACTION</text>
+      <text x="15" y="65" fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="28" font-weight="900">+340%</text>
+      <text x="15" y="85" fill="#28C76F" font-family="'Inter', sans-serif" font-size="10">YoY ARR Growth</text>
+
+      <!-- Card 2 -->
+      <rect x="215" y="0" width="195" height="100" rx="12" fill="rgba(40, 199, 111, 0.06)" stroke="rgba(40, 199, 111, 0.2)" />
+      <text x="230" y="30" fill="#28C76F" font-family="'Poppins', sans-serif" font-size="12" font-weight="700">RETENTION RATE</text>
+      <text x="230" y="65" fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="28" font-weight="900">98.4%</text>
+      <text x="230" y="85" fill="#E5C158" font-family="'Inter', sans-serif" font-size="10">Client Satisfaction</text>
+    </g>
+
+    <!-- Visual Chart Bars -->
+    <g transform="translate(45, 220)">
+      <rect x="0" y="70" width="40" height="30" rx="4" fill="rgba(229, 193, 88, 0.4)" />
+      <rect x="65" y="45" width="40" height="55" rx="4" fill="rgba(229, 193, 88, 0.6)" />
+      <rect x="130" y="25" width="40" height="75" rx="4" fill="rgba(229, 193, 88, 0.8)" />
+      <rect x="195" y="0" width="40" height="100" rx="4" fill="url(#gold2)" />
+      <rect x="260" y="35" width="40" height="65" rx="4" fill="rgba(40, 199, 111, 0.8)" />
+      <rect x="325" y="10" width="40" height="90" rx="4" fill="#28C76F" />
+    </g>
+  </g>
+
+  <!-- Bottom Strip -->
+  <g transform="translate(60, 500)">
+    <rect width="1080" height="115" rx="18" fill="rgba(0, 0, 0, 0.75)" stroke="rgba(229, 193, 88, 0.35)" />
+    <text x="30" y="45" fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="20" font-weight="800">
+      MFS Growth Agency • Directed by Muhammad Shehroz Sultan
+    </text>
+    <text x="30" y="75" fill="#E5C158" font-family="'Inter', sans-serif" font-size="14" font-weight="600">
+      WhatsApp Direct: +92 301 5323689 • Website: https://mfsgrowth.online • Islamabad HQ Desk
+    </text>
+    <text x="30" y="98" fill="#9090A5" font-family="'Inter', sans-serif" font-size="12">
+      Executive Presentations • Academic Defense • Investor Decks • 24/7 Turnaround
+    </text>
+    <rect x="880" y="32" width="170" height="50" rx="12" fill="#E5C158" />
+    <text x="965" y="62" fill="#050507" font-family="'Poppins', sans-serif" font-size="14" font-weight="800" text-anchor="middle">ORDER DECK NOW</text>
+  </g>
+</svg>

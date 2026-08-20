@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050507" />
+      <stop offset="50%" stop-color="#0D1117" />
+      <stop offset="100%" stop-color="#050507" />
+    </linearGradient>
+    <linearGradient id="gold5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF5B8" />
+      <stop offset="50%" stop-color="#E5C158" />
+      <stop offset="100%" stop-color="#A9831B" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg5)" />
+  <rect x="20" y="20" width="1160" height="635" rx="24" fill="none" stroke="rgba(229, 193, 88, 0.35)" stroke-width="2" />
+
+  <g transform="translate(60, 50)">
+    <rect width="440" height="36" rx="18" fill="rgba(229, 193, 88, 0.12)" stroke="rgba(229, 193, 88, 0.4)" stroke-width="1.5" />
+    <text x="220" y="23" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="13" font-weight="700" text-anchor="middle">EXECUTIVE REPORT &amp; CASE STUDY FORMATTING</text>
+  </g>
+
+  <g transform="translate(60, 130)">
+    <text fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="44" font-weight="900">
+      Corporate Reports &amp; <tspan fill="url(#gold5)">Case Studies</tspan>
+    </text>
+    <text y="42" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="18" font-weight="600">
+      MFS Growth Agency • Executive Document Layouts, Tables &amp; Infographics
+    </text>
+
+    <g transform="translate(0, 80)">
+      <circle cx="10" cy="15" r="5" fill="#28C76F" />
+      <text x="25" y="20" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="16" font-weight="600">Professional Typography, Grid Layouts, Headers &amp; Footers</text>
+
+      <circle cx="10" cy="55" r="5" fill="#28C76F" />
+      <text x="25" y="60" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="16" font-weight="600">Financial Balance Sheets, Charts &amp; Executive Summary Formatting</text>
+
+      <circle cx="10" cy="95" r="5" fill="#28C76F" />
+      <text x="25" y="100" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="16" font-weight="600">Business Plans, Feasibility Reports &amp; White Papers</text>
+
+      <circle cx="10" cy="135" r="5" fill="#28C76F" />
+      <text x="25" y="140" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="16" font-weight="600">Delivered in High-Resolution Print Ready PDF &amp; Editable MS Word</text>
+    </g>
+
+    <g transform="translate(0, 260)">
+      <rect width="480" height="70" rx="14" fill="rgba(229, 193, 88, 0.08)" stroke="rgba(229, 193, 88, 0.3)" />
+      <text x="20" y="32" fill="#A0A0B0" font-family="'Inter', sans-serif" font-size="12">STARTING LAUNCH RATE (50% OFF)</text>
+      <text x="20" y="55" fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="18" font-weight="800">PKR 1,500 <tspan fill="#A0A0B0" font-size="13" font-weight="400">/ $12 USD per Document Unit</tspan></text>
+      <rect x="330" y="15" width="130" height="40" rx="10" fill="#28C76F" />
+      <text x="395" y="40" fill="#050507" font-family="'Poppins', sans-serif" font-size="13" font-weight="800" text-anchor="middle">50% DISCOUNT</text>
+    </g>
+  </g>
+
+  <!-- Right Graphic Document -->
+  <g transform="translate(680, 120)">
+    <rect width="460" height="340" rx="20" fill="#0C0E14" stroke="rgba(229, 193, 88, 0.4)" stroke-width="2" />
+    <g transform="translate(30, 25)">
+      <rect x="0" y="0" width="400" height="40" rx="8" fill="rgba(229, 193, 88, 0.12)" />
+      <text x="20" y="26" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="13" font-weight="800">EXECUTIVE STRATEGY CASE STUDY</text>
+
+      <g transform="translate(0, 60)">
+        <rect x="0" y="0" width="190" height="85" rx="10" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(255, 255, 255, 0.08)" />
+        <text x="15" y="25" fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="11" font-weight="700">Financial Growth</text>
+        <text x="15" y="55" fill="url(#gold5)" font-family="'Poppins', sans-serif" font-size="22" font-weight="900">$2.4M</text>
+        <text x="15" y="72" fill="#28C76F" font-family="'Inter', sans-serif" font-size="9">Positive ROI Verified</text>
+
+        <rect x="210" y="0" width="190" height="85" rx="10" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(255, 255, 255, 0.08)" />
+        <text x="225" y="25" fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="11" font-weight="700">Efficiency Boost</text>
+        <text x="225" y="55" fill="#28C76F" font-family="'Poppins', sans-serif" font-size="22" font-weight="900">+87%</text>
+        <text x="225" y="72" fill="#E5C158" font-family="'Inter', sans-serif" font-size="9">Workflow Automation</text>
+      </g>
+
+      <g transform="translate(0, 165)">
+        <rect x="0" y="0" width="400" height="110" rx="10" fill="rgba(0, 0, 0, 0.4)" stroke="rgba(229, 193, 88, 0.2)" />
+        <text x="15" y="25" fill="#E5C158" font-family="'Poppins', sans-serif" font-size="11" font-weight="700">Executive Summary &amp; Recommendations</text>
+        <rect x="15" y="38" width="370" height="6" rx="3" fill="rgba(255, 255, 255, 0.6)" />
+        <rect x="15" y="52" width="340" height="6" rx="3" fill="rgba(255, 255, 255, 0.4)" />
+        <rect x="15" y="66" width="360" height="6" rx="3" fill="rgba(255, 255, 255, 0.4)" />
+        <rect x="15" y="80" width="290" height="6" rx="3" fill="rgba(255, 255, 255, 0.4)" />
+      </g>
+    </g>
+  </g>
+
+  <!-- Bottom Strip -->
+  <g transform="translate(60, 500)">
+    <rect width="1080" height="115" rx="18" fill="rgba(0, 0, 0, 0.75)" stroke="rgba(229, 193, 88, 0.35)" />
+    <text x="30" y="45" fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="20" font-weight="800">
+      MFS Growth Agency • Muhammad Shehroz Sultan
+    </text>
+    <text x="30" y="75" fill="#E5C158" font-family="'Inter', sans-serif" font-size="14" font-weight="600">
+      WhatsApp: +92 301 5323689 • Website: https://mfsgrowth.online • Islamabad HQ Desk
+    </text>
+    <text x="30" y="98" fill="#9090A5" font-family="'Inter', sans-serif" font-size="12">
+      Case Studies • Executive Reports • Feasibility Studies • Pitch Decks • Corporate Formatting
+    </text>
+    <rect x="880" y="32" width="170" height="50" rx="12" fill="#E5C158" />
+    <text x="965" y="62" fill="#050507" font-family="'Poppins', sans-serif" font-size="14" font-weight="800" text-anchor="middle">FORMAT REPORT</text>
+  </g>
+</svg>

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { COMPREHENSIVE_FAQS } from '../../data/faqData';
 import { REVIEWS } from '../../data/content';
+import { BRAND_VISUAL_ASSETS } from '../../data/brandAssets';
 
 interface SEOProps {
   currentPage:
@@ -37,6 +38,7 @@ interface SEOProps {
     | 'case-studies'
     | 'referrals'
     | 'review-canvas'
+    | 'brand-assets'
     | 'notFound';
 }
 
@@ -326,6 +328,15 @@ const PAGE_SEO_DATA: Record<string, {
     canonical: 'https://mfsgrowth.online/admin',
     robots: 'noindex, nofollow',
     pageName: 'Admin Portal',
+  },
+  'brand-assets': {
+    title: 'Official Brand Cards & Google Image Media Hub | MFS Growth Agency',
+    description: 'Explore official high-resolution vector brand cards for MFS Growth Agency, Founder Muhammad Shehroz Sultan, presentation design, academic assignments, and ATS resumes.',
+    keywords: 'MFS Growth Agency brand images, Muhammad Shehroz Sultan images, growth agency logo, presentation design cards, assignment writing graphics, digital agency media kit',
+    canonical: 'https://mfsgrowth.online/brand-assets',
+    robots: 'index, follow, max-image-preview:large',
+    pageName: 'Official Brand Assets',
+    ogImage: 'https://mfsgrowth.online/images/brand-cards/mfs-growth-agency-official-brand-card.svg',
   },
   notFound: {
     title: 'Page Not Found (404) | MFS Growth Agency',
@@ -1099,6 +1110,37 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
             'priceCurrency': 'USD'
           },
           'provider': { '@id': 'https://mfsgrowth.online/#organization' }
+        }
+      );
+    } else if (currentPage === 'brand-assets') {
+      graphElements.push(
+        {
+          '@type': 'ImageGallery',
+          '@id': 'https://mfsgrowth.online/brand-assets#gallery',
+          'url': 'https://mfsgrowth.online/brand-assets',
+          'name': 'Official Brand Cards & Google Image Media Hub | MFS Growth Agency',
+          'description': 'High-resolution vector brand assets and service thumbnails for MFS Growth Agency, directed by Muhammad Shehroz Sultan.',
+          'isPartOf': { '@id': 'https://mfsgrowth.online/#website' },
+          'author': { '@id': 'https://mfsgrowth.online/#founder' },
+          'publisher': { '@id': 'https://mfsgrowth.online/#organization' },
+          'image': BRAND_VISUAL_ASSETS.map((asset) => ({
+            '@type': 'ImageObject',
+            '@id': `https://mfsgrowth.online${asset.imageUrl}#image`,
+            'url': `https://mfsgrowth.online${asset.imageUrl}`,
+            'name': asset.title,
+            'caption': asset.caption,
+            'description': asset.description,
+            'width': 1200,
+            'height': 675,
+            'author': {
+              '@type': 'Person',
+              'name': 'Muhammad Shehroz Sultan'
+            },
+            'copyrightHolder': {
+              '@type': 'Organization',
+              'name': 'MFS Growth Agency'
+            }
+          }))
         }
       );
     }

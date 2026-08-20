@@ -9,14 +9,91 @@
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://mfsgrowth.online/og-image.svg</image:loc>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-growth-agency-official-brand-card.svg</image:loc>
       <image:title>MFS Growth Agency - Official Executive Digital Agency &amp; Leadership</image:title>
-      <image:caption>MFS Growth Agency founded by Muhammad Shehroz Sultan specializing in pitch decks, academic tasks, ATS resumes, and reports.</image:caption>
+      <image:caption>MFS Growth Agency founded by Muhammad Shehroz Sultan specializing in pitch decks, academic tasks, ATS resumes, and reports in Islamabad, Pakistan.</image:caption>
+      <image:geo_location>Islamabad, Pakistan</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-50-percent-grand-launch-discount.svg</image:loc>
+      <image:title>50% Grand Launch Discount Promo Banner</image:title>
+      <image:caption>50% Grand Launch offer across presentation design, assignments, resumes, and corporate reports.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://mfsgrowth.online/android-chrome-512x512.png</image:loc>
       <image:title>MFS Growth Agency Official Gold Shield Emblem</image:title>
       <image:caption>Official brand logo of MFS Growth Agency</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Official Brand Visual Media Hub (Google Images Directory) -->
+  <url>
+    <loc>https://mfsgrowth.online/brand-assets</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-growth-agency-official-brand-card.svg</image:loc>
+      <image:title>MFS Growth Agency Official Brand Banner &amp; Executive Services</image:title>
+      <image:caption>Master brand card for MFS Growth Agency by Founder Muhammad Shehroz Sultan.</image:caption>
+      <image:geo_location>Islamabad, Pakistan</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-presentation-design-slide-deck.svg</image:loc>
+      <image:title>Presentation Design &amp; Executive Pitch Decks by MFS Growth Agency</image:title>
+      <image:caption>Per 10 slides pricing structure for investor pitch decks and academic presentations.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-academic-assignment-writing-service.svg</image:loc>
+      <image:title>Academic Assignment Writing &amp; Research Service by MFS Growth Agency</image:title>
+      <image:caption>University assignment writing and coursework assistance formatted in APA, Harvard, and MLA.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-ats-resume-cv-cover-letter.svg</image:loc>
+      <image:title>ATS Resume Engineering &amp; Executive CV Design Suite</image:title>
+      <image:caption>Applicant tracking system optimized resume and executive CV package.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-executive-report-formatting-case-study.svg</image:loc>
+      <image:title>Executive Report Formatting &amp; Case Studies Layouts</image:title>
+      <image:caption>Corporate business reports, financial documentation, and case study formatting.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-founder-muhammad-shehroz-sultan-authority.svg</image:loc>
+      <image:title>Muhammad Shehroz Sultan - Founder &amp; Executive Director MFS Growth Agency</image:title>
+      <image:caption>Official leadership authority profile of Muhammad Shehroz Sultan in Islamabad, Pakistan.</image:caption>
+      <image:geo_location>Islamabad, Pakistan</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-50-percent-grand-launch-discount.svg</image:loc>
+      <image:title>50% Grand Launch Discount &amp; Promo Offer Banner</image:title>
+      <image:caption>Save 50% on all digital solutions at MFS Growth Agency.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-live-pricing-calculator-instant-quote.svg</image:loc>
+      <image:title>Live Pricing Calculator &amp; Instant Quote Tool</image:title>
+      <image:caption>Dynamic price estimation for slides, word count, and delivery speed in PKR and USD.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-customer-reviews-ratings-satisfaction.svg</image:loc>
+      <image:title>4.98 / 5.0 Rated Customer Satisfaction &amp; Verified Reviews</image:title>
+      <image:caption>Verified student and corporate client testimonials for MFS Growth Agency.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-islamabad-headquarters-global-reach.svg</image:loc>
+      <image:title>Islamabad Headquarters &amp; Global Operations Desk</image:title>
+      <image:caption>Headquarters located in Blue Area, Islamabad (33.7294° N, 73.0931° E) serving global clients 24/7.</image:caption>
+      <image:geo_location>Islamabad, Pakistan</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-easypaisa-jazzcash-bank-payment-methods.svg</image:loc>
+      <image:title>Verified EasyPaisa, JazzCash &amp; Askari Bank Payment Gateways</image:title>
+      <image:caption>Merchant account title: Muhammad Shehroz Sultan for EasyPaisa, JazzCash, and Askari Bank.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-ai-voice-assistant-instant-consultation.svg</image:loc>
+      <image:title>Dual AI Voice &amp; Chat Consultation Assistant</image:title>
+      <image:caption>Real-time AI consultation agent supporting English, Urdu, and Roman Urdu.</image:caption>
     </image:image>
   </url>
 
@@ -27,7 +104,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
-      <image:loc>https://mfsgrowth.online/og-image.svg</image:loc>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-growth-agency-official-brand-card.svg</image:loc>
       <image:title>Executive Presentation Design &amp; Academic Services Directory</image:title>
     </image:image>
   </url>
@@ -36,24 +113,43 @@
     <lastmod>2026-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-presentation-design-slide-deck.svg</image:loc>
+      <image:title>Presentation Design &amp; Investor Pitch Decks</image:title>
+      <image:caption>Custom pitch deck presentations designed with editable PPTX and print PDF.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://mfsgrowth.online/services/assignment-writing</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-academic-assignment-writing-service.svg</image:loc>
+      <image:title>Academic Assignment Writing &amp; Research Service</image:title>
+      <image:caption>Turnitin verified academic assignment and dissertation assistance.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://mfsgrowth.online/services/resume-cv-services</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-ats-resume-cv-cover-letter.svg</image:loc>
+      <image:title>ATS Resume &amp; Executive CV Engineering</image:title>
+      <image:caption>ATS-compliant resume design and executive cover letters.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://mfsgrowth.online/services/report-formatting</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-executive-report-formatting-case-study.svg</image:loc>
+      <image:title>Corporate Report Formatting &amp; Case Study Design</image:title>
+    </image:image>
   </url>
 
   <!-- Pricing, Showcase & Proof Hubs -->
@@ -62,6 +158,10 @@
     <lastmod>2026-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-live-pricing-calculator-instant-quote.svg</image:loc>
+      <image:title>MFS Growth Pricing Calculator</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://mfsgrowth.online/our-work</loc>
@@ -86,6 +186,10 @@
     <lastmod>2026-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-customer-reviews-ratings-satisfaction.svg</image:loc>
+      <image:title>Client Reviews &amp; 4.98 Star Ratings</image:title>
+    </image:image>
   </url>
 
   <!-- Authority, Leadership & Communication -->
@@ -95,9 +199,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <image:image>
-      <image:loc>https://mfsgrowth.online/og-image.svg</image:loc>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-founder-muhammad-shehroz-sultan-authority.svg</image:loc>
       <image:title>Muhammad Shehroz Sultan - Founder of MFS Growth Agency</image:title>
       <image:caption>Executive leadership and verified founder biography of Muhammad Shehroz Sultan.</image:caption>
+      <image:geo_location>Islamabad, Pakistan</image:geo_location>
     </image:image>
   </url>
   <url>
@@ -105,6 +210,10 @@
     <lastmod>2026-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-islamabad-headquarters-global-reach.svg</image:loc>
+      <image:title>Contact MFS Growth Agency Islamabad Desk</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://mfsgrowth.online/faq</loc>
@@ -132,7 +241,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <image:image>
-      <image:loc>https://mfsgrowth.online/images/blog/ats-compliant-executive-resume-og.jpg</image:loc>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-ats-resume-cv-cover-letter.svg</image:loc>
       <image:title>ATS Resume Engineering Master Guide</image:title>
     </image:image>
   </url>
@@ -141,18 +250,30 @@
     <lastmod>2026-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-presentation-design-slide-deck.svg</image:loc>
+      <image:title>Executive Pitch Deck Structure Guide</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://mfsgrowth.online/guides/academic-formatting-citation</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-academic-assignment-writing-service.svg</image:loc>
+      <image:title>Academic Formatting and Citation Standards Guide</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://mfsgrowth.online/guides/corporate-report-formatting-standards</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-executive-report-formatting-case-study.svg</image:loc>
+      <image:title>Corporate Report Formatting Standards</image:title>
+    </image:image>
   </url>
 
   <!-- Interactive Web Tools & Utilities -->
@@ -167,24 +288,40 @@
     <lastmod>2026-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-ats-resume-cv-cover-letter.svg</image:loc>
+      <image:title>Free ATS Resume Scanner Tool</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://mfsgrowth.online/tools/pitch-deck-builder</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-presentation-design-slide-deck.svg</image:loc>
+      <image:title>Pitch Deck Storyline Architect Tool</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://mfsgrowth.online/tools/citation-generator</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-academic-assignment-writing-service.svg</image:loc>
+      <image:title>Citation Generator Tool</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://mfsgrowth.online/tools/document-estimator</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-live-pricing-calculator-instant-quote.svg</image:loc>
+      <image:title>Document Metric and Turnaround Estimator Tool</image:title>
+    </image:image>
   </url>
 
   <!-- Policy, Security & Compliance -->
