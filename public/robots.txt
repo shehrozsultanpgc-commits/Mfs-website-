@@ -1,3 +1,16 @@
+# Search Engines & Favicon Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Favicons
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
 User-agent: *
 Allow: /
 Disallow: /admin
@@ -10,4 +23,26 @@ Disallow: /confirmation
 Disallow: /#confirmation
 Disallow: /api/
 
+# AI Crawlers & LLM Ingestion Engines
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://mfsgrowth.online/sitemap.xml
+# LLM AI Context
+# https://mfsgrowth.online/llms.txt
+# https://mfsgrowth.online/llms-full.txt

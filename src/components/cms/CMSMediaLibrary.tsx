@@ -97,7 +97,7 @@ export const CMSMediaLibrary: React.FC<CMSMediaLibraryProps> = ({
   const [assets, setAssets] = useState<MediaAsset[]>([
     {
       id: 'asset-1',
-      name: 'MSS-Brand-Mark-Monogram.svg',
+      name: 'MFS-Brand-Mark-Emblem.svg',
       fileType: 'svg',
       mimeType: 'image/svg+xml',
       fileSize: '45 KB',
@@ -106,7 +106,7 @@ export const CMSMediaLibrary: React.FC<CMSMediaLibraryProps> = ({
       folder: 'Logos & Branding',
       uploadedBy: 'Muhammad Shehroz Sultan',
       uploadDate: '2026-08-16 12:00 PKT',
-      tags: ['logo', 'brand', 'monogram', 'mss', 'mfs'],
+      tags: ['logo', 'brand', 'emblem', 'hexamatrix', 'mfs'],
       usageCount: 28,
       lastUsedPage: 'Homepage Header, Footer & Favicons',
       isFavorite: true,

@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050507" />
+      <stop offset="50%" stop-color="#0D0D14" />
+      <stop offset="100%" stop-color="#050507" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF2A3" />
+      <stop offset="50%" stop-color="#E5C158" />
+      <stop offset="100%" stop-color="#A8831A" />
+    </linearGradient>
+    <radialGradient id="glow" cx="80%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="rgba(229, 193, 88, 0.25)" />
+      <stop offset="100%" stop-color="rgba(229, 193, 88, 0)" />
+    </radialGradient>
+    <radialGradient id="glowGreen" cx="20%" cy="80%" r="45%">
+      <stop offset="0%" stop-color="rgba(40, 199, 111, 0.15)" />
+      <stop offset="100%" stop-color="rgba(40, 199, 111, 0)" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#glow)" />
+  <rect width="1200" height="630" fill="url(#glowGreen)" />
+
+  <!-- Outer Border Frame -->
+  <rect x="24" y="24" width="1152" height="582" rx="28" fill="none" stroke="rgba(229, 193, 88, 0.35)" stroke-width="2" />
+
+  <!-- Top Badge -->
+  <g transform="translate(80, 75)">
+    <rect width="360" height="38" rx="19" fill="rgba(229, 193, 88, 0.12)" stroke="rgba(229, 193, 88, 0.4)" stroke-width="1.5" />
+    <circle cx="22" cy="19" r="6" fill="#28C76F" />
+    <text x="38" y="24" fill="#E5C158" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">OFFICIAL AGENCY BRAND</text>
+  </g>
+
+  <!-- Main Brand Title -->
+  <g transform="translate(80, 190)">
+    <text fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="62" font-weight="900" letter-spacing="-1">
+      MFS <tspan fill="url(#goldGrad)">GROWTH AGENCY</tspan>
+    </text>
+    <text y="54" fill="#A0A0B5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="400">
+      Helping Students &amp; Professionals Grow with High-Quality Digital Solutions.
+    </text>
+  </g>
+
+  <!-- Key Services Pills -->
+  <g transform="translate(80, 310)">
+    <!-- Pill 1 -->
+    <rect x="0" y="0" width="220" height="52" rx="14" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255, 255, 255, 0.1)" />
+    <text x="24" y="32" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="600">📊 Pitch Decks</text>
+
+    <!-- Pill 2 -->
+    <rect x="235" y="0" width="230" height="52" rx="14" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255, 255, 255, 0.1)" />
+    <text x="259" y="32" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="600">🎓 Academic Tasks</text>
+
+    <!-- Pill 3 -->
+    <rect x="480" y="0" width="230" height="52" rx="14" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255, 255, 255, 0.1)" />
+    <text x="504" y="32" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="600">📄 ATS Resumes</text>
+
+    <!-- Pill 4 -->
+    <rect x="725" y="0" width="230" height="52" rx="14" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255, 255, 255, 0.1)" />
+    <text x="749" y="32" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="600">📑 Case Studies</text>
+  </g>
+
+  <!-- Founder & Authority Verified Box -->
+  <g transform="translate(80, 410)">
+    <rect width="1040" height="130" rx="20" fill="rgba(0, 0, 0, 0.55)" stroke="rgba(229, 193, 88, 0.25)" stroke-width="1.5" />
+    
+    <!-- Official MFS HexaMatrix Emblem -->
+    <rect x="24" y="24" width="82" height="82" rx="18" fill="#0A0A0F" stroke="url(#goldGrad)" stroke-width="2" />
+    <g transform="translate(37, 37) scale(0.11)">
+      <!-- Outer Hexa-Matrix Frame -->
+      <polygon points="102,167 256,78 410,167 358,197 256,138 154,197" fill="url(#goldGrad)" />
+      <polygon points="102,167 154,197 154,315 256,374 256,434 102,345" fill="url(#goldGrad)" />
+      <polygon points="410,167 358,197 358,315 256,374 256,434 410,345" fill="#5A4103" />
+      
+      <!-- Floating Suspended Core Cube -->
+      <polygon points="256,196 306,225 256,254 206,225" fill="url(#goldGrad)" />
+      <polygon points="206,225 256,254 256,314 206,285" fill="url(#goldGrad)" />
+      <polygon points="256,254 306,225 306,285 256,314" fill="#5A4103" />
+    </g>
+
+    <!-- Founder Info -->
+    <text x="130" y="55" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="800">
+      Muhammad Shehroz Sultan
+    </text>
+    <text x="130" y="80" fill="#E5C158" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600">
+      Founder &amp; Lead Director — Islamabad, Pakistan Desk
+    </text>
+    <text x="130" y="102" fill="#9090A0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="400">
+      Official Web: https://mfsgrowth.online • 24/7 Desk: +92 301 5323689 • 50% Grand Launch Offer
+    </text>
+  </g>
+</svg>

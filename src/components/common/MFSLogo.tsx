@@ -20,50 +20,71 @@ const HexaMatrixSvg: React.FC<{ className?: string }> = ({ className = "w-full h
   >
     <defs>
       <linearGradient id="topGoldFallback" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#FFF5C8" />
-        <stop offset="35%" stopColor="#FBE285" />
-        <stop offset="100%" stopColor="#E0BD50" />
+        <stop offset="0%" stopColor="#FDE895" />
+        <stop offset="45%" stopColor="#F5D676" />
+        <stop offset="100%" stopColor="#ECCB62" />
       </linearGradient>
 
       <linearGradient id="leftGoldFallback" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stopColor="#E5C158" />
-        <stop offset="50%" stopColor="#D4AF37" />
-        <stop offset="100%" stopColor="#9C720B" />
+        <stop offset="60%" stopColor="#D4AF37" />
+        <stop offset="100%" stopColor="#A57D13" />
       </linearGradient>
 
       <linearGradient id="rightGoldFallback" x1="100%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stopColor="#A2770C" />
-        <stop offset="60%" stopColor="#735206" />
-        <stop offset="100%" stopColor="#4B3402" />
-      </linearGradient>
-
-      <linearGradient id="specularGlowFallback" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.9" />
-        <stop offset="100%" stopColor="#FFF3C2" stopOpacity="0.3" />
+        <stop offset="0%" stopColor="#B88B22" />
+        <stop offset="50%" stopColor="#916B10" />
+        <stop offset="100%" stopColor="#5E4304" />
       </linearGradient>
     </defs>
 
     <g transform="translate(0, 0)">
-      <path d="M 256,52 L 436.5,156.2 L 256,260.4 L 75.5,156.2 Z M 256,126.8 L 143.2,191.6 L 256,256.4 L 368.8,191.6 Z" fill="url(#topGoldFallback)" fillRule="evenodd" />
+      {/* OUTER HOLLOW HEXAMATRIX FRAME */}
+      {/* Top Face (Hollow Chevron Surface) */}
+      <polygon 
+        points="102,167 256,78 410,167 358,197 256,138 154,197" 
+        fill="url(#topGoldFallback)" 
+      />
 
-      <polygon points="75.5,156.2 256,260.4 256,460 75.5,355.8" fill="url(#leftGoldFallback)" />
-      <polygon points="143.2,191.6 256,256.4 256,381.2 143.2,316.4" fill="url(#rightGoldFallback)" opacity="0.85" />
+      {/* Left Outer Face */}
+      <polygon 
+        points="102,167 154,197 154,315 256,374 256,434 102,345" 
+        fill="url(#leftGoldFallback)" 
+      />
 
-      <polygon points="436.5,156.2 256,260.4 256,460 436.5,355.8" fill="url(#rightGoldFallback)" />
-      <polygon points="368.8,191.6 256,256.4 256,381.2 368.8,316.4" fill="url(#leftGoldFallback)" opacity="0.85" />
+      {/* Right Outer Face */}
+      <polygon 
+        points="410,167 358,197 358,315 256,374 256,434 410,345" 
+        fill="url(#rightGoldFallback)" 
+      />
 
-      <polygon points="256,182 316,216.6 256,251.2 196,216.6" fill="url(#topGoldFallback)" />
-      <polygon points="196,216.6 256,251.2 256,320.4 196,285.8" fill="url(#leftGoldFallback)" />
-      <polygon points="256,251.2 316,216.6 316,285.8 256,320.4" fill="url(#rightGoldFallback)" />
+      {/* FLOATING SUSPENDED CORE CUBE IN OPEN SPACE */}
+      {/* Center Cube Top Face */}
+      <polygon 
+        points="256,196 306,225 256,254 206,225" 
+        fill="url(#topGoldFallback)" 
+      />
 
-      <line x1="256" y1="52" x2="256" y2="126.8" stroke="url(#specularGlowFallback)" strokeWidth="2.5" strokeLinecap="round" />
-      <line x1="75.5" y1="156.2" x2="143.2" y2="191.6" stroke="url(#specularGlowFallback)" strokeWidth="2" />
-      <line x1="436.5" y1="156.2" x2="368.8" y2="191.6" stroke="url(#specularGlowFallback)" strokeWidth="2" />
-      
-      <line x1="256" y1="182" x2="256" y2="251.2" stroke="#FFFFFF" strokeWidth="2" opacity="0.85" />
-      <line x1="196" y1="216.6" x2="256" y2="251.2" stroke="#FFF5C8" strokeWidth="1.5" />
-      <line x1="316" y1="216.6" x2="256" y2="251.2" stroke="#FFF5C8" strokeWidth="1.5" />
-      <line x1="256" y1="251.2" x2="256" y2="320.4" stroke="#FFF5C8" strokeWidth="2" />
+      {/* Center Cube Left Face */}
+      <polygon 
+        points="206,225 256,254 256,314 206,285" 
+        fill="url(#leftGoldFallback)" 
+      />
+
+      {/* Center Cube Right Face */}
+      <polygon 
+        points="256,254 306,225 306,285 256,314" 
+        fill="url(#rightGoldFallback)" 
+      />
+
+      {/* CRISP SEPARATOR EDGES */}
+      <line x1="102" y1="167" x2="154" y2="197" stroke="#121212" strokeWidth="2" strokeLinecap="round" />
+      <line x1="410" y1="167" x2="358" y2="197" stroke="#121212" strokeWidth="2" strokeLinecap="round" />
+      <line x1="256" y1="434" x2="256" y2="374" stroke="#121212" strokeWidth="2" strokeLinecap="round" />
+
+      <line x1="206" y1="225" x2="256" y2="254" stroke="#121212" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="306" y1="225" x2="256" y2="254" stroke="#121212" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="256" y1="254" x2="256" y2="314" stroke="#121212" strokeWidth="1.5" strokeLinecap="round" />
     </g>
   </svg>
 );
@@ -119,7 +140,7 @@ export const MFSLogo: React.FC<MFSLogoProps> = ({
     );
   }
 
-  // Full Brand Lockup (MSS Monogram + MUHAMMAD SHEHROZ SULTAN + MFS GROWTH + DIGITAL AGENCY)
+  // Full Brand Lockup (MFS Hexa-Matrix Emblem + MUHAMMAD SHEHROZ SULTAN + MFS GROWTH + DIGITAL AGENCY)
   if (variant === 'full-brand') {
     return (
       <div className={`flex items-center gap-3 select-none ${className}`}>
@@ -146,7 +167,7 @@ export const MFSLogo: React.FC<MFSLogoProps> = ({
     );
   }
 
-  // Primary / Full / Compact Lockup (MSS Monogram + MFS Growth + Digital Agency)
+  // Primary / Full / Compact Lockup (MFS Hexa-Matrix Emblem + MFS Growth + Digital Agency)
   return (
     <div className={`flex items-center gap-3 select-none ${className}`}>
       <div 

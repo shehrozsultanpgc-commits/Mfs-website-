@@ -2,6 +2,9 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { MEDIA_REGISTRY } from '../data/mediaRegistry';
 import { AboutStudioCanvasVisual } from './AboutStudioCanvasVisual';
+import { FounderAuthorityProfile } from './common/FounderAuthorityProfile';
+import { AIEngineAnswerLayer } from './common/AIEngineAnswerLayer';
+import { BrandAssetVisualGallery } from './common/BrandAssetVisualGallery';
 import {
   Sparkles,
   ShieldCheck,
@@ -302,6 +305,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </div>
           </div>
         </div>
+      </section>
+
+      {/* 2.4 Dedicated Founder & Executive Leadership Authority Profile */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        <FounderAuthorityProfile
+          onOpenOrderModal={onOpenOrderModal}
+          onNavigatePage={onNavigatePage}
+        />
       </section>
 
       {/* 2.5 Official Agency Entity & Knowledge Layer */}
@@ -637,6 +648,16 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </p>
           </div>
         </div>
+      </section>
+
+      {/* 6.5 AI Search Engine & Ground Truth Fact Sheet */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        <AIEngineAnswerLayer />
+      </section>
+
+      {/* 6.6 Official Google Indexed Media & Brand Asset Gallery */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        <BrandAssetVisualGallery />
       </section>
 
       {/* 7. Call To Action (CTA) */}

@@ -242,7 +242,7 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
     // 4. Meta Robots
     setMetaTag('meta[name="robots"]', 'name', 'robots', seo.robots);
 
-    const ogImg = seo.ogImage || 'https://mfsgrowth.online/android-chrome-512x512.png';
+    const ogImg = seo.ogImage || 'https://mfsgrowth.online/og-image.svg';
 
     // 5. OpenGraph Tags
     setMetaTag('meta[property="og:title"]', 'property', 'og:title', seo.title);
@@ -251,12 +251,16 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
     setMetaTag('meta[property="og:site_name"]', 'property', 'og:site_name', 'MFS Growth Agency');
     setMetaTag('meta[property="og:type"]', 'property', 'og:type', currentPage.startsWith('guide-') ? 'article' : 'website');
     setMetaTag('meta[property="og:image"]', 'property', 'og:image', ogImg);
+    setMetaTag('meta[property="og:image:width"]', 'property', 'og:image:width', '1200');
+    setMetaTag('meta[property="og:image:height"]', 'property', 'og:image:height', '630');
+    setMetaTag('meta[property="og:image:alt"]', 'property', 'og:image:alt', 'MFS Growth Agency - Official Executive Digital Agency & Leadership');
 
     // 6. Twitter Card Tags
     setMetaTag('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image');
     setMetaTag('meta[name="twitter:title"]', 'name', 'twitter:title', seo.title);
     setMetaTag('meta[name="twitter:description"]', 'name', 'twitter:description', seo.description);
     setMetaTag('meta[name="twitter:image"]', 'name', 'twitter:image', ogImg);
+    setMetaTag('meta[name="twitter:image:alt"]', 'name', 'twitter:image:alt', 'MFS Growth Agency by Muhammad Shehroz Sultan');
 
     // 7. Canonical URL Link
     let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
@@ -283,7 +287,20 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         'name': 'MFS Growth Agency',
         'alternateName': ['MFS Growth Agency Pakistan', 'MFS Growth Online'],
         'url': 'https://mfsgrowth.online/',
-        'logo': 'https://mfsgrowth.online/android-chrome-512x512.png',
+        'logo': {
+          '@type': 'ImageObject',
+          'url': 'https://mfsgrowth.online/android-chrome-512x512.png',
+          'width': 512,
+          'height': 512,
+          'caption': 'MFS Growth Agency Official Gold Shield'
+        },
+        'image': {
+          '@type': 'ImageObject',
+          'url': 'https://mfsgrowth.online/og-image.svg',
+          'width': 1200,
+          'height': 630,
+          'caption': 'MFS Growth Agency Official Brand Card & Founder Leadership'
+        },
         'description': 'MFS Growth Agency provides executive presentation design, custom academic assignment writing, ATS resume engineering, and corporate report formatting for students and professionals in Pakistan and globally.',
         'disambiguatingDescription': 'MFS Growth Agency is a digital services agency providing presentation design, academic writing assistance, ATS resume engineering, and report formatting based in Islamabad, Pakistan. It is not affiliated with any financial investment management firm.',
         'telephone': '+923015323689',
@@ -362,7 +379,11 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         'jobTitle': 'Founder & Lead Director',
         'description': 'Muhammad Shehroz Sultan is an entrepreneur, digital agency director, and specialist in executive presentation design, academic document formatting, ATS resume engineering, and corporate report design. He is the Founder & Lead Director of MFS Growth Agency.',
         'url': 'https://mfsgrowth.online/about',
-        'image': 'https://mfsgrowth.online/android-chrome-512x512.png',
+        'image': {
+          '@type': 'ImageObject',
+          'url': 'https://mfsgrowth.online/android-chrome-512x512.png',
+          'caption': 'Muhammad Shehroz Sultan - Founder & Lead Director of MFS Growth Agency'
+        },
         'nationality': {
           '@type': 'Country',
           'name': 'Pakistan'
