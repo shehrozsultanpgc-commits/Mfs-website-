@@ -388,7 +388,7 @@ export const BrandImageGallery: React.FC<BrandImageGalleryProps> = ({
                     </div>
                     <div className="flex items-center justify-between text-xs">
                       <span className="text-neutral-400">Headquarters:</span>
-                      <span className="text-white">Blue Area, Islamabad, Pakistan</span>
+                      <span className="text-white">Islamabad, Pakistan</span>
                     </div>
                     <div className="flex items-center justify-between text-xs">
                       <span className="text-neutral-400">Support Desk:</span>

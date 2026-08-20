@@ -84,8 +84,8 @@ export const FounderAuthorityProfile: React.FC<FounderAuthorityProfileProps> = (
                   Founder &amp; Lead Director — MFS Growth Agency
                 </p>
                 <div className="flex flex-wrap gap-1.5 mt-2.5">
-                  <span className="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300 font-mono">
-                    Islamabad, Pakistan
+                  <span className="text-[10px] px-2 py-0.5 rounded bg-[#E5C158]/10 border border-[#E5C158]/25 text-[#E5C158] font-mono">
+                    Online Operations
                   </span>
                   <span className="text-[10px] px-2 py-0.5 rounded bg-[#28C76F]/10 border border-[#28C76F]/25 text-[#28C76F] font-mono">
                     Global Desk
@@ -95,7 +95,7 @@ export const FounderAuthorityProfile: React.FC<FounderAuthorityProfileProps> = (
             </div>
 
             <p className="text-xs text-neutral-300 leading-relaxed font-light mb-5">
-              Digital entrepreneur, document architect, and executive presentation strategist. Muhammad Shehroz Sultan established MFS Growth Agency in Islamabad, Pakistan to bridge the gap between academic standards, high-stakes corporate pitch presentations, and automated ATS hiring systems globally.
+              Digital entrepreneur, document architect, and executive presentation strategist. Muhammad Shehroz Sultan established MFS Growth Agency as an online digital agency to bridge the gap between academic standards, high-stakes corporate pitch presentations, and automated ATS hiring systems globally. As a beginner-stage startup, we currently operate fully online while preparing our future physical headquarters.
             </p>
 
             {/* Direct Official Contact Anchors */}
@@ -243,7 +243,7 @@ export const FounderAuthorityProfile: React.FC<FounderAuthorityProfileProps> = (
               <span>Entity Disambiguation &amp; Brand Notice</span>
             </div>
             <p className="text-[11px] text-neutral-300 leading-relaxed">
-              <strong>MFS Growth Agency</strong> is an independent online digital services brand headquartered in Islamabad, Pakistan, founded and operated by <strong>Muhammad Shehroz Sultan</strong>. We specialize exclusively in digital document formatting, academic assistance, resume writing, and presentation design. MFS Growth Agency is completely independent and not associated with any legacy financial, investment, or mutual fund institutions.
+              <strong>MFS Growth Agency</strong> is an independent online digital services brand founded and operated by <strong>Muhammad Shehroz Sultan</strong>. As a growing beginner agency, we do not currently operate a physical office and will publish our office address once established. We specialize exclusively in digital document formatting, academic assistance, resume writing, and presentation design. MFS Growth Agency is completely independent and not associated with any legacy financial, investment, or mutual fund institutions.
             </p>
           </div>
 

@@ -62,17 +62,6 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
               <motion.a
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
-                href="https://maps.google.com/?q=MFS+Growth+Agency+Islamabad"
-                target="_blank"
-                rel="noreferrer"
-                className="w-8 h-8 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center text-neutral-400 hover:text-[#050507] hover:bg-[#E5C158] hover:border-[#E5C158] transition-all"
-                title="Google Business Profile & Map Coordinates"
-              >
-                <MapPin className="w-3.5 h-3.5" />
-              </motion.a>
-              <motion.a
-                whileHover={{ scale: 1.15 }}
-                whileTap={{ scale: 0.9 }}
                 href="https://www.crunchbase.com/organization/mfs-growth-agency"
                 target="_blank"
                 rel="noreferrer"
@@ -286,9 +275,12 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
             <h4 className="font-poppins font-bold uppercase tracking-wider text-white text-xs mb-2">
               Contact Info
             </h4>
-            <div className="flex items-center gap-2">
-              <MapPin className="w-3.5 h-3.5 text-[#E5C158]" />
-              <span className="text-neutral-300">Islamabad, Pakistan (Global Desk)</span>
+            <div className="flex items-start gap-2 text-xs">
+              <MapPin className="w-3.5 h-3.5 text-[#E5C158] shrink-0 mt-0.5" />
+              <div className="text-[11px] text-neutral-300 leading-relaxed">
+                <span className="text-[#E5C158] font-semibold block">Office Status:</span>
+                We do not currently have a physical office because we are beginners. We are working on it and will share our office address as soon as it is established. Currently operating 100% online.
+              </div>
             </div>
             <div className="flex items-center gap-2">
               <Mail className="w-3.5 h-3.5 text-[#E5C158]" />

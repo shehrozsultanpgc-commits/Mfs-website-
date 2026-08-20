@@ -38,17 +38,6 @@ interface AuthorityProfile {
 
 const CITATION_REGISTRIES: AuthorityProfile[] = [
   {
-    name: 'Google Business Profile & Maps',
-    category: 'business',
-    url: 'https://maps.google.com/?q=MFS+Growth+Agency+Islamabad',
-    handleOrId: 'MFS Growth Agency (Islamabad HQ)',
-    badge: 'Google Verified Place',
-    status: 'verified',
-    description: 'Official verified business profile with Blue Area Islamabad HQ address, 24/7 operating hours, local phone routing, and verified customer reviews.',
-    icon: 'google',
-    sameAsUrl: 'https://maps.google.com/?q=MFS+Growth+Agency+Islamabad'
-  },
-  {
     name: 'Crunchbase Organization Profile',
     category: 'business',
     url: 'https://www.crunchbase.com/organization/mfs-growth-agency',
@@ -177,7 +166,7 @@ export const DigitalPRAuthorityFootprint: React.FC<{
               <div className="flex items-center gap-2">
                 <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  Google Business Profile &amp; Map Coordinates Verified
+                  Google Business Profile Verified
                 </span>
                 <span className="px-2.5 py-1 rounded-full text-[11px] font-mono text-[#E5C158] bg-[#E5C158]/10">
                   NAP Consistency 100%
@@ -199,10 +188,10 @@ export const DigitalPRAuthorityFootprint: React.FC<{
 
                 <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/5 space-y-1">
                   <p className="text-neutral-400 flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5 text-emerald-400" /> Physical &amp; Corporate Address:
+                    <MapPin className="w-3.5 h-3.5 text-emerald-400" /> Physical Office Status:
                   </p>
-                  <p className="text-white font-semibold text-sm">Blue Area Corporate Zone</p>
-                  <p className="text-[11px] text-neutral-400">Islamabad, 44000, Pakistan (33.7294° N, 73.0931° E)</p>
+                  <p className="text-[#E5C158] font-semibold text-xs leading-relaxed">No physical office yet (Beginners)</p>
+                  <p className="text-[11px] text-neutral-400">Working on setting up physical office soon. 100% Online operations.</p>
                 </div>
 
                 <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/5 space-y-1">
@@ -218,7 +207,7 @@ export const DigitalPRAuthorityFootprint: React.FC<{
                     <Star className="w-3.5 h-3.5 text-[#E5C158] fill-[#E5C158]" /> Verified Client Rating:
                   </p>
                   <p className="text-[#E5C158] font-bold text-sm">4.98 / 5.0 Star Rating</p>
-                  <p className="text-[11px] text-neutral-400">284 Verified Reviews across Google &amp; Trustpilot</p>
+                  <p className="text-[11px] text-neutral-400">284 Verified Reviews across Online Platforms</p>
                 </div>
               </div>
             </div>
@@ -235,13 +224,13 @@ export const DigitalPRAuthorityFootprint: React.FC<{
                 </p>
               </div>
               <a
-                href="https://maps.google.com/?q=MFS+Growth+Agency+Islamabad"
+                href="https://www.crunchbase.com/organization/mfs-growth-agency"
                 target="_blank"
                 rel="noreferrer"
                 className="w-full py-3 rounded-xl bg-gradient-to-r from-[#E5C158] to-[#D4AF37] text-black font-bold text-xs flex items-center justify-center gap-2 hover:brightness-110 active:scale-95 transition-all shadow-lg cursor-pointer"
               >
-                <MapPin className="w-4 h-4" />
-                View Google Business Profile
+                <Globe className="w-4 h-4" />
+                View Crunchbase Profile
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>

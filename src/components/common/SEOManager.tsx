@@ -454,28 +454,14 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
           'height': 630,
           'caption': 'MFS Growth Agency Official Brand Card & Founder Leadership'
         },
-        'description': 'MFS Growth Agency provides executive presentation design, custom academic assignment writing, ATS resume engineering, CV writing, and corporate report formatting for students and professionals in Pakistan and globally.',
-        'disambiguatingDescription': 'MFS Growth Agency is a digital services agency providing presentation design, academic writing assistance, ATS resume engineering, and report formatting based in Islamabad, Pakistan. It is not affiliated with any financial investment management firm.',
+        'description': 'MFS Growth Agency provides executive presentation design, custom academic assignment writing, ATS resume engineering, CV writing, and corporate report formatting for students and professionals globally.',
+        'disambiguatingDescription': 'MFS Growth Agency is an online digital services agency providing presentation design, academic writing assistance, ATS resume engineering, and report formatting. Operating 100% online as an early-stage digital startup, it is not affiliated with any financial investment management firm.',
         'telephone': '+923015323689',
         'email': 'mfsmedia.agency@gmail.com',
-        'address': {
-          '@type': 'PostalAddress',
-          'streetAddress': 'Blue Area Corporate Zone',
-          'addressLocality': 'Islamabad',
-          'addressRegion': 'Federal Capital',
-          'postalCode': '44000',
-          'addressCountry': 'PK'
-        },
-        'geo': {
-          '@type': 'GeoCoordinates',
-          'latitude': 33.7294,
-          'longitude': 73.0931
-        },
         'priceRange': '$$',
         'currenciesAccepted': 'PKR, USD, GBP, EUR, AED',
         'paymentAccepted': 'EasyPaisa, JazzCash, Bank Transfer, Credit Card',
         'sameAs': [
-          'https://maps.google.com/?q=MFS+Growth+Agency+Islamabad',
           'https://www.crunchbase.com/organization/mfs-growth-agency',
           'https://www.linkedin.com/company/mfsgrowth',
           'https://www.instagram.com/mfsgrowth?igsh=M2JwbWJ5M2txc2Z1',

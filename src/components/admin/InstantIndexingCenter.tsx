@@ -680,7 +680,7 @@ export const InstantIndexingCenter: React.FC<InstantIndexingCenterProps> = ({ on
             </div>
 
             <p className="text-xs text-neutral-300 leading-relaxed">
-              Google algorithms and generative AI models (ChatGPT, Gemini, Perplexity) rely on unified <code>sameAs</code> cross-referencing to confirm business legitimacy, physical address coordinates, executive leadership, and multi-platform consistency.
+              Google algorithms and generative AI models (ChatGPT, Gemini, Perplexity) rely on unified <code>sameAs</code> cross-referencing to confirm business legitimacy, brand identity, executive leadership, and multi-platform consistency.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
@@ -689,15 +689,15 @@ export const InstantIndexingCenter: React.FC<InstantIndexingCenterProps> = ({ on
                   <Building2 className="w-3.5 h-3.5 text-[#E5C158]" /> Legal Entity Name:
                 </p>
                 <p className="text-white font-bold text-xs">MFS Growth Agency</p>
-                <p className="text-[10px] text-neutral-400 font-mono">Islamabad, PK (Blue Area)</p>
+                <p className="text-[10px] text-neutral-400 font-mono">Founder: Muhammad Shehroz Sultan</p>
               </div>
 
               <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 space-y-1">
                 <p className="text-neutral-400 text-[11px] flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-emerald-400" /> Exact Map Coordinates:
+                  <MapPin className="w-3.5 h-3.5 text-emerald-400" /> Physical Office Status:
                 </p>
-                <p className="text-white font-bold text-xs">33.7294° N, 73.0931° E</p>
-                <p className="text-[10px] text-neutral-400 font-mono">Google Maps Verified</p>
+                <p className="text-[#E5C158] font-bold text-xs">No physical office yet (Beginners)</p>
+                <p className="text-[10px] text-neutral-400 font-mono">Working on it • 100% Online</p>
               </div>
 
               <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 space-y-1">
@@ -705,7 +705,7 @@ export const InstantIndexingCenter: React.FC<InstantIndexingCenterProps> = ({ on
                   <Star className="w-3.5 h-3.5 text-[#E5C158] fill-[#E5C158]" /> Aggregate Rating:
                 </p>
                 <p className="text-[#E5C158] font-bold text-xs">4.98 / 5.0 (284 Reviews)</p>
-                <p className="text-[10px] text-neutral-400 font-mono">Trustpilot &amp; Google</p>
+                <p className="text-[10px] text-neutral-400 font-mono">Verified Client Reviews</p>
               </div>
             </div>
           </div>
@@ -713,13 +713,6 @@ export const InstantIndexingCenter: React.FC<InstantIndexingCenterProps> = ({ on
           {/* Directory Listings Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
-              {
-                title: 'Google Business Profile & Map Citations',
-                url: 'https://maps.google.com/?q=MFS+Growth+Agency+Islamabad',
-                type: 'Local NAP Citation',
-                status: 'Verified',
-                desc: 'Physical HQ address in Blue Area Islamabad, 24/7 operating hours, local phone line (+92 301 5323689), and verified rating.'
-              },
               {
                 title: 'Crunchbase Organization & Founder Directory',
                 url: 'https://www.crunchbase.com/organization/mfs-growth-agency',

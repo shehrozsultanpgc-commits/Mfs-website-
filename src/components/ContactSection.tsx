@@ -85,10 +85,19 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenAIChat }) 
                   +92 301 5323689
                 </a>
               </div>
-              <div className="flex items-center gap-3 py-2">
+              <div className="flex items-center gap-3 py-2 border-b border-white/5">
                 <Clock className="w-4 h-4 text-[#E5C158] shrink-0" />
                 <span className="text-neutral-400 font-medium w-28">Support Desk:</span>
                 <span className="text-white font-medium">24/7 Online Support</span>
+              </div>
+              <div className="flex items-start gap-3 py-2 bg-[#E5C158]/5 p-3 rounded-xl border border-[#E5C158]/20 mt-2">
+                <MapPin className="w-4 h-4 text-[#E5C158] shrink-0 mt-0.5" />
+                <div>
+                  <span className="text-xs font-bold text-[#E5C158] block mb-0.5">Physical Office Notice</span>
+                  <p className="text-[11px] text-neutral-300 leading-relaxed">
+                    We do not currently have a physical office because we are beginners. We are actively working on establishing our physical workspace and will share the official office address once it is ready. All client projects and 24/7 operations are currently managed online.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
