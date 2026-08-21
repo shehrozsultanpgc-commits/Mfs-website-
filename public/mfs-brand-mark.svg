@@ -1,8 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
+    <!-- Background Gradient (Luxury Matte Dark) -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141418" />
+      <stop offset="100%" stop-color="#070709" />
+    </linearGradient>
+
+    <!-- Subtle Outer Border Gradient -->
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.6" />
+      <stop offset="50%" stop-color="#D4AF37" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#D4AF37" stop-opacity="0.4" />
+    </linearGradient>
+
     <!-- Top Face Gradient (Bright Pure Gold) -->
     <linearGradient id="mfsTopFace" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FDE895" />
+      <stop offset="0%" stop-color="#FFF0A5" />
       <stop offset="45%" stop-color="#F5D676" />
       <stop offset="100%" stop-color="#ECCB62" />
     </linearGradient>
@@ -11,16 +24,19 @@
     <linearGradient id="mfsLeftFace" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#E5C158" />
       <stop offset="60%" stop-color="#D4AF37" />
-      <stop offset="100%" stop-color="#A57D13" />
+      <stop offset="100%" stop-color="#9C7410" />
     </linearGradient>
 
     <!-- Right Face Gradient (Deep Shadow Gold) -->
     <linearGradient id="mfsRightFace" x1="100%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#B88B22" />
-      <stop offset="50%" stop-color="#916B10" />
-      <stop offset="100%" stop-color="#5E4304" />
+      <stop offset="0%" stop-color="#BA8B1E" />
+      <stop offset="50%" stop-color="#8F680D" />
+      <stop offset="100%" stop-color="#543B02" />
     </linearGradient>
   </defs>
+
+  <!-- LUXURY BACKGROUND BASE (Ensures 100% visibility on white Google Search & browser viewports) -->
+  <rect x="16" y="16" width="480" height="480" rx="100" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="8" />
 
   <!-- 1. OUTER HOLLOW HEXAMATRIX FRAME -->
   <!-- Top Face (Chevron / Hollow Top Surface) -->
@@ -62,12 +78,12 @@
 
   <!-- 3. CRISP SEPARATOR EDGES -->
   <!-- Outer Separator Lines -->
-  <line x1="102" y1="167" x2="154" y2="197" stroke="#121212" stroke-width="2" stroke-linecap="round" />
-  <line x1="410" y1="167" x2="358" y2="197" stroke="#121212" stroke-width="2" stroke-linecap="round" />
-  <line x1="256" y1="434" x2="256" y2="374" stroke="#121212" stroke-width="2" stroke-linecap="round" />
+  <line x1="102" y1="167" x2="154" y2="197" stroke="#070709" stroke-width="3" stroke-linecap="round" />
+  <line x1="410" y1="167" x2="358" y2="197" stroke="#070709" stroke-width="3" stroke-linecap="round" />
+  <line x1="256" y1="434" x2="256" y2="374" stroke="#070709" stroke-width="3" stroke-linecap="round" />
 
   <!-- Center Cube Separator Lines -->
-  <line x1="206" y1="225" x2="256" y2="254" stroke="#121212" stroke-width="1.5" stroke-linecap="round" />
-  <line x1="306" y1="225" x2="256" y2="254" stroke="#121212" stroke-width="1.5" stroke-linecap="round" />
-  <line x1="256" y1="254" x2="256" y2="314" stroke="#121212" stroke-width="1.5" stroke-linecap="round" />
+  <line x1="206" y1="225" x2="256" y2="254" stroke="#070709" stroke-width="2" stroke-linecap="round" />
+  <line x1="306" y1="225" x2="256" y2="254" stroke="#070709" stroke-width="2" stroke-linecap="round" />
+  <line x1="256" y1="254" x2="256" y2="314" stroke="#070709" stroke-width="2" stroke-linecap="round" />
 </svg>
