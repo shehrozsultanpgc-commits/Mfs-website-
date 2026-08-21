@@ -387,8 +387,8 @@ export const BrandImageGallery: React.FC<BrandImageGalleryProps> = ({
                       <span className="text-white font-bold">Muhammad Shehroz Sultan</span>
                     </div>
                     <div className="flex items-center justify-between text-xs">
-                      <span className="text-neutral-400">Headquarters:</span>
-                      <span className="text-white">Islamabad, Pakistan</span>
+                      <span className="text-neutral-400">Operations:</span>
+                      <span className="text-[#E5C158] text-[11px] text-right font-medium">Digital-First (HQ in Development)</span>
                     </div>
                     <div className="flex items-center justify-between text-xs">
                       <span className="text-neutral-400">Support Desk:</span>

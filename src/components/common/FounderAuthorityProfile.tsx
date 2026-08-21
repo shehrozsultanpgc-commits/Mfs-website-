@@ -95,7 +95,7 @@ export const FounderAuthorityProfile: React.FC<FounderAuthorityProfileProps> = (
             </div>
 
             <p className="text-xs text-neutral-300 leading-relaxed font-light mb-5">
-              Digital entrepreneur, document architect, and executive presentation strategist. Muhammad Shehroz Sultan established MFS Growth Agency as an online digital agency to bridge the gap between academic standards, high-stakes corporate pitch presentations, and automated ATS hiring systems globally. As a beginner-stage startup, we currently operate fully online while preparing our future physical headquarters.
+              Digital entrepreneur, document architect, and executive presentation strategist. Muhammad Shehroz Sultan established MFS Growth Agency as an agile, digital-first agency to bridge the gap between academic standards, high-stakes corporate pitch presentations, and automated ATS hiring systems globally. Operating 100% online, the agency serves an international clientele while developing its future physical corporate headquarters.
             </p>
 
             {/* Direct Official Contact Anchors */}
@@ -243,7 +243,7 @@ export const FounderAuthorityProfile: React.FC<FounderAuthorityProfileProps> = (
               <span>Entity Disambiguation &amp; Brand Notice</span>
             </div>
             <p className="text-[11px] text-neutral-300 leading-relaxed">
-              <strong>MFS Growth Agency</strong> is an independent online digital services brand founded and operated by <strong>Muhammad Shehroz Sultan</strong>. As a growing beginner agency, we do not currently operate a physical office and will publish our office address once established. We specialize exclusively in digital document formatting, academic assistance, resume writing, and presentation design. MFS Growth Agency is completely independent and not associated with any legacy financial, investment, or mutual fund institutions.
+              <strong>MFS Growth Agency</strong> is an independent digital-first services brand founded and operated by <strong>Muhammad Shehroz Sultan</strong>. We operate fully online delivering 24/7 client solutions worldwide, with a dedicated corporate physical headquarters in progress. We specialize exclusively in digital document formatting, academic assistance, ATS resume engineering, and executive presentation design. MFS Growth Agency is completely independent and not associated with any legacy financial, investment, or mutual fund institutions.
             </p>
           </div>
 

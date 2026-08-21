@@ -9,6 +9,7 @@ interface OrderModalProps {
   onClose: () => void;
   currency: Currency;
   prefilledService?: string;
+  prefilledNotes?: string;
   onShowToast?: (msg: string) => void;
   onNavigatePage?: (page: 'home' | 'services' | 'pricing' | 'reviews' | 'about' | 'contact' | 'faq' | 'order' | 'payment' | 'confirmation' | 'dashboard' | 'admin', targetSection?: string) => void;
 }
@@ -18,6 +19,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
   onClose,
   currency,
   prefilledService = 'presentation',
+  prefilledNotes = '',
   onShowToast,
   onNavigatePage,
 }) => {
@@ -47,6 +49,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
             <OrderPage
               currency={currency}
               prefilledServiceId={prefilledService}
+              prefilledNotes={prefilledNotes}
               onShowToast={onShowToast}
               onNavigatePage={(page, sec) => {
                 onClose();

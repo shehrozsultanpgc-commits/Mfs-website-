@@ -56,6 +56,7 @@ const CaseStudiesPage = React.lazy(() => import('./components/growth/CaseStudies
 const ClientReferralRewardsHub = React.lazy(() => import('./components/growth/ClientReferralRewardsHub').then(m => ({ default: m.ClientReferralRewardsHub })));
 const ProjectInteractiveReviewCanvas = React.lazy(() => import('./components/growth/ProjectInteractiveReviewCanvas').then(m => ({ default: m.ProjectInteractiveReviewCanvas })));
 const BrandMediaAssetsPage = React.lazy(() => import('./components/BrandMediaAssetsPage').then(m => ({ default: m.BrandMediaAssetsPage })));
+const OurWorkPage = React.lazy(() => import('./components/OurWorkPage').then(m => ({ default: m.OurWorkPage })));
 const AIAssistantWidget = React.lazy(() => import('./components/ai/AIAssistantWidget').then(m => ({ default: m.AIAssistantWidget })));
 
 const PageSkeleton = () => (
@@ -100,6 +101,9 @@ type PageType =
   | 'referrals'
   | 'review-canvas'
   | 'brand-assets'
+  | 'our-work'
+  | 'portfolio'
+  | 'work'
   | 'notFound';
 
 const VALID_PAGES: PageType[] = [
@@ -137,11 +141,18 @@ const VALID_PAGES: PageType[] = [
   'referrals',
   'review-canvas',
   'brand-assets',
+  'our-work',
+  'portfolio',
+  'work',
 ];
 
 function getPageFromRoute(): { page: PageType; targetSection?: string } {
   const pathRaw = window.location.pathname.toLowerCase().replace(/^\/+|\/+$/g, '');
   const hashRaw = window.location.hash.toLowerCase().replace(/^#\/?/, '');
+
+    if (pathRaw === 'our-work' || pathRaw === 'work' || pathRaw === 'portfolio' || pathRaw === 'sample-work' || hashRaw === 'our-work' || hashRaw === 'work' || hashRaw === 'ourwork') {
+      return { page: 'our-work' };
+    }
 
     if (pathRaw === 'brand-assets' || pathRaw === 'media-assets' || pathRaw === 'brand-images' || pathRaw === 'images' || hashRaw === 'brand-assets' || hashRaw === 'media-assets') {
       return { page: 'brand-assets' };
@@ -225,6 +236,7 @@ function AppContent() {
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [prefilledService, setPrefilledService] = useState('presentation');
+  const [prefilledNote, setPrefilledNote] = useState<string>('');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   // AI Chat External Trigger State
@@ -473,7 +485,7 @@ function AppContent() {
   };
 
   const scrollToPortfolio = () => {
-    handleNavigatePage('home', 'portfolio');
+    handleNavigatePage('our-work');
   };
 
   return (
@@ -604,6 +616,7 @@ function AppContent() {
                 currency={currency}
                 setCurrency={setCurrency}
                 prefilledServiceId={prefilledService}
+                prefilledNotes={prefilledNote}
                 onShowToast={triggerToast}
                 onNavigatePage={handleNavigatePage}
                 onOpenAIChat={handleOpenAIChat}
@@ -832,6 +845,18 @@ function AppContent() {
                 onNavigatePage={handleNavigatePage}
                 onOpenAIChat={handleOpenAIChat}
               />
+            ) : currentPage === 'our-work' || currentPage === 'portfolio' || currentPage === 'work' ? (
+              <OurWorkPage
+                currency={currency}
+                onOpenOrderModal={(serviceId, customNote) => {
+                  if (serviceId) setPrefilledService(serviceId);
+                  setPrefilledNote(customNote || '');
+                  setIsOrderModalOpen(true);
+                }}
+                onOpenAIChat={handleOpenAIChat}
+                onShowToast={triggerToast}
+                onNavigatePage={handleNavigatePage}
+              />
             ) : (
               <NotFoundPage onNavigatePage={handleNavigatePage} />
             )}
@@ -854,9 +879,13 @@ function AppContent() {
       {/* Order Booking Modal */}
       <OrderModal
         isOpen={isOrderModalOpen}
-        onClose={() => setIsOrderModalOpen(false)}
+        onClose={() => {
+          setIsOrderModalOpen(false);
+          setPrefilledNote('');
+        }}
         currency={currency}
         prefilledService={prefilledService}
+        prefilledNotes={prefilledNote}
       />
 
       {/* Social & Email Auth Modal */}

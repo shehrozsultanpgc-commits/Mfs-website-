@@ -57,7 +57,7 @@ export const BrandMediaAssetsPage: React.FC<BrandMediaAssetsPageProps> = ({
             </span>
             <span className="text-white/20 hidden sm:inline">•</span>
             <span className="flex items-center gap-1.5 text-neutral-200">
-              <strong className="text-white">HQ:</strong> Islamabad, Pakistan
+              <strong className="text-white">Operations:</strong> 100% Online (24/7)
             </span>
             <span className="text-white/20 hidden sm:inline">•</span>
             <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">

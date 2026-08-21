@@ -92,7 +92,7 @@ BBA in Marketing | Institute of Business Administration (IBA) Karachi`,
     title: 'Financial Analyst / Accounting',
     targetRole: 'Senior Financial Analyst',
     resumeText: `BILAL TARIQ
-Islamabad, Pakistan | +92 333 5551234 | bilal.finance@email.com
+Global Remote | +1 (555) 019-2834 | bilal.finance@email.com
 
 PROFESSIONAL PROFILE
 Analytical Corporate Finance Professional with 4+ years of expertise in financial modeling, variance analysis, budgeting, and DCF valuations. Proficient in Advanced Excel (VBA, Power Query), SAP ERP, and Power BI dashboard visualization.

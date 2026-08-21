@@ -244,11 +244,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </h2>
 
             <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
-              MFS Growth Agency was founded in Islamabad, Pakistan by <strong>Muhammad Shehroz Sultan</strong> (Founder &amp; Lead Director) to provide high-quality digital solutions, executive presentation design, custom academic assignments, ATS resume engineering, and corporate document formatting. We recognized that students and working professionals often face tight deadlines, strict formatting guidelines, and high stakes without reliable support.
+              MFS Growth Agency was founded by <strong>Muhammad Shehroz Sultan</strong> (Founder &amp; Lead Director) as a modern online digital services agency to provide high-quality digital solutions, executive presentation design, custom academic assignments, ATS resume engineering, and corporate document formatting. We recognized that students and working professionals often face tight deadlines, strict formatting guidelines, and high stakes without reliable support.
             </p>
 
             <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
-              What started as a specialized document formatting service has expanded into an international agency trusted across Pakistan, the Middle East, the UK, the US, and Europe. Today, our multidisciplinary team of presentation designers, academic editors, and ATS resume engineers combines human craftsmanship with AI-assisted efficiency.
+              What started as a specialized document formatting service has expanded into an international digital-first agency serving students and professionals globally. We currently operate through a high-performance cloud infrastructure ensuring rapid turnarounds, while our dedicated physical corporate premises are actively being developed for future inauguration.
             </p>
 
             <div className="pt-2 grid grid-cols-2 gap-4 text-xs text-neutral-300">
@@ -344,10 +344,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </div>
 
             <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-2">
-              <span className="text-[10px] font-bold uppercase text-[#28C76F] block tracking-wider">HEADQUARTERS & DESK</span>
-              <p className="font-poppins font-bold text-white text-sm">Islamabad HQ (Global Digital Desk)</p>
+              <span className="text-[10px] font-bold uppercase text-[#28C76F] block tracking-wider">OFFICE &amp; DIGITAL DESK</span>
+              <p className="font-poppins font-bold text-white text-sm">Digital-First Global Operations</p>
               <p className="text-neutral-400 text-[11px] leading-relaxed">
-                Headquartered in Islamabad, Pakistan with 24/7 online delivery operations serving clients across Pakistan and 15+ countries globally.
+                Operating 100% online via our 24/7 client delivery desk. Our dedicated corporate physical workspace is in development and official premises details will be announced upon launch.
               </p>
             </div>
 
@@ -372,7 +372,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           <div className="mt-6 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 text-[11px] text-neutral-400 leading-relaxed flex items-start gap-2.5">
             <ShieldCheck className="w-4 h-4 text-[#E5C158] shrink-0 mt-0.5" />
             <div>
-              <strong className="text-white">Brand &amp; Entity Disambiguation:</strong> MFS Growth Agency is an independent digital services brand based in Islamabad, Pakistan, specializing in executive presentation design, custom academic assignment assistance, ATS resume engineering, and corporate document formatting. MFS Growth Agency is not affiliated with, sponsored by, or connected to any financial investment management or asset management entities.
+              <strong className="text-white">Brand &amp; Entity Disambiguation:</strong> MFS Growth Agency is an independent digital-first agency specializing in executive presentation design, custom academic assignment assistance, ATS resume engineering, and corporate document formatting. We operate 100% online with 24/7 global client coverage while our dedicated physical corporate premises are actively in development. MFS Growth Agency is not affiliated with, sponsored by, or connected to any financial investment management or asset management entities.
             </div>
           </div>
 

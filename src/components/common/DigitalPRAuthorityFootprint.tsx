@@ -188,10 +188,10 @@ export const DigitalPRAuthorityFootprint: React.FC<{
 
                 <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/5 space-y-1">
                   <p className="text-neutral-400 flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5 text-emerald-400" /> Physical Office Status:
+                    <MapPin className="w-3.5 h-3.5 text-emerald-400" /> Operating Model &amp; Office:
                   </p>
-                  <p className="text-[#E5C158] font-semibold text-xs leading-relaxed">No physical office yet (Beginners)</p>
-                  <p className="text-[11px] text-neutral-400">Working on setting up physical office soon. 100% Online operations.</p>
+                  <p className="text-[#E5C158] font-semibold text-xs leading-relaxed">Digital-First Global Infrastructure</p>
+                  <p className="text-[11px] text-neutral-400">100% online 24/7 delivery. Corporate premises actively in development.</p>
                 </div>
 
                 <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/5 space-y-1">

@@ -11,8 +11,7 @@
     <image:image>
       <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-growth-agency-official-brand-card.svg</image:loc>
       <image:title>MFS Growth Agency - Official Executive Digital Agency &amp; Leadership</image:title>
-      <image:caption>MFS Growth Agency founded by Muhammad Shehroz Sultan specializing in pitch decks, academic tasks, ATS resumes, and reports in Islamabad, Pakistan.</image:caption>
-      <image:geo_location>Islamabad, Pakistan</image:geo_location>
+      <image:caption>MFS Growth Agency founded by Muhammad Shehroz Sultan specializing in pitch decks, academic tasks, ATS resumes, and reports.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-50-percent-grand-launch-discount.svg</image:loc>
@@ -36,7 +35,6 @@
       <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-growth-agency-official-brand-card.svg</image:loc>
       <image:title>MFS Growth Agency Official Brand Banner &amp; Executive Services</image:title>
       <image:caption>Master brand card for MFS Growth Agency by Founder Muhammad Shehroz Sultan.</image:caption>
-      <image:geo_location>Islamabad, Pakistan</image:geo_location>
     </image:image>
     <image:image>
       <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-presentation-design-slide-deck.svg</image:loc>
@@ -61,8 +59,7 @@
     <image:image>
       <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-founder-muhammad-shehroz-sultan-authority.svg</image:loc>
       <image:title>Muhammad Shehroz Sultan - Founder &amp; Executive Director MFS Growth Agency</image:title>
-      <image:caption>Official leadership authority profile of Muhammad Shehroz Sultan in Islamabad, Pakistan.</image:caption>
-      <image:geo_location>Islamabad, Pakistan</image:geo_location>
+      <image:caption>Official leadership authority profile of Muhammad Shehroz Sultan.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-50-percent-grand-launch-discount.svg</image:loc>
@@ -80,10 +77,9 @@
       <image:caption>Verified student and corporate client testimonials for MFS Growth Agency.</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-islamabad-headquarters-global-reach.svg</image:loc>
-      <image:title>Islamabad Headquarters &amp; Global Operations Desk</image:title>
-      <image:caption>Headquarters located in Islamabad, Pakistan serving global clients 24/7.</image:caption>
-      <image:geo_location>Islamabad, Pakistan</image:geo_location>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-global-digital-reach.svg</image:loc>
+      <image:title>Global Online Operations &amp; Digital Reach Desk</image:title>
+      <image:caption>Online digital operations serving global clients 24/7.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-easypaisa-jazzcash-bank-payment-methods.svg</image:loc>
@@ -202,7 +198,6 @@
       <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-founder-muhammad-shehroz-sultan-authority.svg</image:loc>
       <image:title>Muhammad Shehroz Sultan - Founder of MFS Growth Agency</image:title>
       <image:caption>Executive leadership and verified founder biography of Muhammad Shehroz Sultan.</image:caption>
-      <image:geo_location>Islamabad, Pakistan</image:geo_location>
     </image:image>
   </url>
   <url>
@@ -211,8 +206,8 @@
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
     <image:image>
-      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-islamabad-headquarters-global-reach.svg</image:loc>
-      <image:title>Contact MFS Growth Agency Islamabad Desk</image:title>
+      <image:loc>https://mfsgrowth.online/images/brand-cards/mfs-global-digital-reach.svg</image:loc>
+      <image:title>Contact MFS Growth Agency Support Desk</image:title>
     </image:image>
   </url>
   <url>

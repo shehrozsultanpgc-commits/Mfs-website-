@@ -39,6 +39,7 @@ export interface OrderPageProps {
   currency: Currency;
   setCurrency?: (c: Currency) => void;
   prefilledServiceId?: string;
+  prefilledNotes?: string;
   onShowToast?: (msg: string) => void;
   onNavigatePage?: (page: 'home' | 'services' | 'pricing' | 'reviews' | 'about' | 'contact' | 'faq' | 'order' | 'payment' | 'confirmation' | 'dashboard' | 'admin', targetSection?: string) => void;
   onOpenAIChat?: (mode?: 'chat' | 'voice') => void;
@@ -55,6 +56,7 @@ export const OrderPage: React.FC<OrderPageProps> = ({
   currency,
   setCurrency,
   prefilledServiceId = 'presentation',
+  prefilledNotes = '',
   onShowToast,
   onNavigatePage,
   onOpenAIChat,
@@ -72,12 +74,18 @@ export const OrderPage: React.FC<OrderPageProps> = ({
   // Form State - Selected Service
   const [selectedServiceId, setSelectedServiceId] = useState<string>(prefilledServiceId);
 
-  // Sync prefilled service when prop changes
+  // Sync prefilled service and notes when prop changes
   useEffect(() => {
     if (prefilledServiceId) {
       setSelectedServiceId(prefilledServiceId);
     }
   }, [prefilledServiceId]);
+
+  useEffect(() => {
+    if (prefilledNotes) {
+      setProjectDescription((prev) => (prev ? prev : prefilledNotes));
+    }
+  }, [prefilledNotes]);
 
   // Customer Contact Info
   const [customerName, setCustomerName] = useState<string>('');

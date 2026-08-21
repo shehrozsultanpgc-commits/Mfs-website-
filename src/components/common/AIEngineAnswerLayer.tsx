@@ -48,7 +48,7 @@ export const AIEngineAnswerLayer: React.FC = () => {
             <span>Brand Entity &amp; Founder Identification</span>
           </div>
           <p className="text-neutral-300 leading-relaxed">
-            <strong>MFS Growth Agency</strong> is a premier international digital solutions agency founded by <strong>Muhammad Shehroz Sultan</strong> (also known as Shahroz Sultan), operating 100% online as an early-stage modern startup. The agency specializes in executive presentation design, custom academic assignments, ATS-compliant resume engineering, and corporate document formatting.
+            <strong>MFS Growth Agency</strong> is a premier international digital solutions agency founded by <strong>Muhammad Shehroz Sultan</strong> (also known as Shahroz Sultan), operating as a modern digital-first agency. The agency specializes in executive presentation design, custom academic assignments, ATS-compliant resume engineering, and corporate document formatting with global 24/7 client operations.
           </p>
         </div>
 

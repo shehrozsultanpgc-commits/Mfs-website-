@@ -694,10 +694,10 @@ export const InstantIndexingCenter: React.FC<InstantIndexingCenterProps> = ({ on
 
               <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 space-y-1">
                 <p className="text-neutral-400 text-[11px] flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-emerald-400" /> Physical Office Status:
+                  <MapPin className="w-3.5 h-3.5 text-emerald-400" /> Operational Model:
                 </p>
-                <p className="text-[#E5C158] font-bold text-xs">No physical office yet (Beginners)</p>
-                <p className="text-[10px] text-neutral-400 font-mono">Working on it • 100% Online</p>
+                <p className="text-[#E5C158] font-bold text-xs">Digital-First Global Operations</p>
+                <p className="text-[10px] text-neutral-400 font-mono">24/7 Online • HQ in Development</p>
               </div>
 
               <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 space-y-1">

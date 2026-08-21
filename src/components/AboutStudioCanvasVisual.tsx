@@ -18,7 +18,7 @@ export const AboutStudioCanvasVisual: React.FC = () => {
           </span>
         </div>
         <span className="text-[10px] font-mono text-neutral-400 bg-white/5 px-2 py-0.5 rounded border border-white/10">
-          Islamabad HQ • 24/7 Global Delivery
+          Online Studio • 24/7 Global Delivery
         </span>
       </div>
 

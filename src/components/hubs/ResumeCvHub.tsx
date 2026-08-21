@@ -220,7 +220,7 @@ export const ResumeCvHub: React.FC<ResumeCvHubProps> = ({
                 <div className="border-b border-white/10 pb-2">
                   <h4 className="text-sm font-bold font-poppins text-white">MUHAMMAD SHEHROZ SULTAN</h4>
                   <div className="text-[10px] text-[#E5C158] font-mono">SENIOR SOFTWARE & PRODUCT ARCHITECT</div>
-                  <div className="text-[9px] text-neutral-400 font-mono mt-0.5">Islamabad, PK • shehroz@mfsgrowth.online • +92 301 5323689</div>
+                  <div className="text-[9px] text-neutral-400 font-mono mt-0.5">Global Digital Desk • shehroz@mfsgrowth.online • +92 301 5323689</div>
                 </div>
 
                 <div className="space-y-1.5 text-xs">

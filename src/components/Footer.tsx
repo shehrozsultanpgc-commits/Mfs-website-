@@ -21,7 +21,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
             <MFSLogo variant="full" size={40} />
 
             <p className="text-neutral-400 text-xs leading-relaxed max-w-sm">
-              MFS Growth Agency is a digital services agency based in Islamabad, Pakistan, delivering executive presentations, custom academic writing, ATS resumes, and corporate reports globally.
+              MFS Growth Agency is a modern online digital services agency delivering executive presentations, custom academic writing, ATS resumes, and corporate reports to students and professionals globally.
             </p>
 
             {/* Socials & Verified Citations */}
@@ -178,8 +178,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
               Our Services
             </a>
             <a
-              href="/#portfolio"
-              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('home', 'portfolio') : undefined; }}
+              href="/our-work"
+              onClick={(e) => { e.preventDefault(); onNavigatePage ? onNavigatePage('our-work') : undefined; }}
               className="text-left hover:text-[#E5C158] transition-colors cursor-pointer"
             >
               Our Work
@@ -278,8 +278,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
             <div className="flex items-start gap-2 text-xs">
               <MapPin className="w-3.5 h-3.5 text-[#E5C158] shrink-0 mt-0.5" />
               <div className="text-[11px] text-neutral-300 leading-relaxed">
-                <span className="text-[#E5C158] font-semibold block">Office Status:</span>
-                We do not currently have a physical office because we are beginners. We are working on it and will share our office address as soon as it is established. Currently operating 100% online.
+                <span className="text-[#E5C158] font-semibold block">Global Operations:</span>
+                Digital-first agency serving clients worldwide 24/7. Physical headquarters is in progress; official premises details will be announced upon launch.
               </div>
             </div>
             <div className="flex items-center gap-2">

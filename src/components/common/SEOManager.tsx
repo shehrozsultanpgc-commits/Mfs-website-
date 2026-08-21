@@ -85,9 +85,9 @@ const PAGE_SEO_DATA: Record<string, {
     pageName: 'Reviews',
   },
   about: {
-    title: 'About Us — Muhammad Shehroz Sultan & MFS Growth Agency Pakistan',
-    description: 'Learn about MFS Growth Agency, founded by Muhammad Shehroz Sultan. Premium digital services agency in Islamabad, Pakistan offering presentation design, academic writing, and ATS resume engineering.',
-    keywords: 'About MFS Growth Agency, Muhammad Shehroz Sultan, Muhammad Shahroz Sultan, Shehroz Sultan MFS Growth, MFS Growth Agency Pakistan, digital services agency Islamabad',
+    title: 'About Us — Muhammad Shehroz Sultan & MFS Growth Agency',
+    description: 'Learn about MFS Growth Agency, founded by Muhammad Shehroz Sultan. Premium online digital services agency offering presentation design, academic writing, and ATS resume engineering.',
+    keywords: 'About MFS Growth Agency, Muhammad Shehroz Sultan, Muhammad Shahroz Sultan, Shehroz Sultan MFS Growth, MFS Growth Agency, online digital services agency',
     canonical: 'https://mfsgrowth.online/about',
     robots: 'index, follow',
     pageName: 'About Us',
@@ -455,7 +455,7 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
           'caption': 'MFS Growth Agency Official Brand Card & Founder Leadership'
         },
         'description': 'MFS Growth Agency provides executive presentation design, custom academic assignment writing, ATS resume engineering, CV writing, and corporate report formatting for students and professionals globally.',
-        'disambiguatingDescription': 'MFS Growth Agency is an online digital services agency providing presentation design, academic writing assistance, ATS resume engineering, and report formatting. Operating 100% online as an early-stage digital startup, it is not affiliated with any financial investment management firm.',
+        'disambiguatingDescription': 'MFS Growth Agency is an agile, digital-first agency providing presentation design, academic writing assistance, ATS resume engineering, and report formatting. Operating online delivering 24/7 client solutions worldwide, it is not affiliated with any financial investment management firm.',
         'telephone': '+923015323689',
         'email': 'mfsmedia.agency@gmail.com',
         'priceRange': '$$',

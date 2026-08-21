@@ -265,7 +265,7 @@ export const Header: React.FC<HeaderProps> = ({
   const desktopNavItems = [
     { id: 'home', label: 'Home' },
     { id: 'services', label: 'Services', hasDropdown: true },
-    { id: 'portfolio', label: 'Our Work', isScroll: true, targetSection: 'portfolio' },
+    { id: 'our-work', label: 'Our Work' },
     { id: 'pricing', label: 'Pricing' },
     { id: 'tools', label: 'Free Tools' },
     { id: 'guide-ats-resume', label: 'Guides' },
@@ -277,7 +277,7 @@ export const Header: React.FC<HeaderProps> = ({
   const mobileNavLinks = [
     { id: 'home', label: 'Home' },
     { id: 'services', label: 'Services' },
-    { id: 'portfolio', label: 'Our Work', isScroll: true, targetSection: 'portfolio' },
+    { id: 'our-work', label: 'Our Work' },
     { id: 'pricing', label: 'Pricing' },
     { id: 'tools', label: 'Free Tools' },
     { id: 'guide-ats-resume', label: 'Guides' },
@@ -313,17 +313,15 @@ export const Header: React.FC<HeaderProps> = ({
         <nav className="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="Main Navigation">
           {desktopNavItems.map((item) => {
             const isActive =
-              (currentPage === item.id ||
-                (item.id === 'guide-ats-resume' && currentPage?.startsWith('guide-')) ||
-                (item.id === 'tools' && (currentPage === 'tools' || currentPage?.startsWith('tool-')))) &&
-              item.id !== 'portfolio';
+              currentPage === item.id ||
+              (item.id === 'our-work' && (currentPage === 'our-work' || currentPage === 'portfolio' || currentPage === 'work')) ||
+              (item.id === 'guide-ats-resume' && currentPage?.startsWith('guide-')) ||
+              (item.id === 'tools' && (currentPage === 'tools' || currentPage?.startsWith('tool-')));
             const itemHref =
               item.id === 'guide-ats-resume'
                 ? '/guides/ats-resume-engineering'
                 : item.id === 'tools'
                 ? '/tools'
-                : item.isScroll
-                ? '/#portfolio'
                 : item.id === 'home'
                 ? '/'
                 : `/${item.id}`;
@@ -340,11 +338,7 @@ export const Header: React.FC<HeaderProps> = ({
                   href={itemHref}
                   onClick={(e) => {
                     e.preventDefault();
-                    if (item.isScroll) {
-                      handleNavClick('home', item.targetSection);
-                    } else {
-                      handleNavClick(item.id as any);
-                    }
+                    handleNavClick(item.id as any);
                   }}
                   className={`px-3 py-1.5 text-xs xl:text-sm font-medium transition-colors cursor-pointer rounded-lg relative flex items-center gap-1 ${
                     isActive
@@ -667,19 +661,16 @@ export const Header: React.FC<HeaderProps> = ({
                     <div className="grid grid-cols-1 gap-1">
                       {mobileNavLinks.map((link) => {
                         const isActive =
-                          currentPage === link.id && link.id !== 'portfolio';
-                        const linkHref = link.isScroll ? '/#portfolio' : link.id === 'home' ? '/' : `/${link.id}`;
+                          currentPage === link.id ||
+                          (link.id === 'our-work' && (currentPage === 'our-work' || currentPage === 'portfolio' || currentPage === 'work'));
+                        const linkHref = link.id === 'home' ? '/' : `/${link.id}`;
                         return (
                           <a
                             key={link.id}
                             href={linkHref}
                             onClick={(e) => {
                               e.preventDefault();
-                              if (link.isScroll) {
-                                handleNavClick('home', link.targetSection);
-                              } else {
-                                handleNavClick(link.id as any);
-                              }
+                              handleNavClick(link.id as any);
                             }}
                             className={`w-full text-left py-3 px-4 rounded-xl text-base font-semibold transition-all flex items-center justify-between cursor-pointer ${
                               isActive
