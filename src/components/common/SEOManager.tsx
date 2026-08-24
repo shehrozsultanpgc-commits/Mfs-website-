@@ -336,7 +336,7 @@ const PAGE_SEO_DATA: Record<string, {
     canonical: 'https://mfsgrowth.online/brand-assets',
     robots: 'index, follow, max-image-preview:large',
     pageName: 'Official Brand Assets',
-    ogImage: 'https://mfsgrowth.online/images/brand-cards/mfs-growth-agency-official-brand-card.svg',
+    ogImage: 'https://mfsgrowth.online/images/brand-cards/mfs-growth-agency-official-brand-card.png',
   },
   notFound: {
     title: 'Page Not Found (404) | MFS Growth Agency',
@@ -375,7 +375,7 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
     // 4. Meta Robots
     setMetaTag('meta[name="robots"]', 'name', 'robots', seo.robots);
 
-    const ogImg = seo.ogImage || 'https://mfsgrowth.online/og-image.svg';
+    const ogImg = seo.ogImage || 'https://mfsgrowth.online/og-image.png';
 
     // 5. OpenGraph Tags
     setMetaTag('meta[property="og:title"]', 'property', 'og:title', seo.title);
