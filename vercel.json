@@ -13,7 +13,7 @@
       ]
     },
     {
-      "source": "/favicon-(.*).png",
+      "source": "/(favicon|favicon-(.*)|android-chrome(.*)|apple-touch-icon(.*)|mfs-brand-mark|mfs-logo).png",
       "headers": [
         { "key": "Content-Type", "value": "image/png" },
         { "key": "Cache-Control", "value": "public, max-age=86400" },
@@ -21,9 +21,9 @@
       ]
     },
     {
-      "source": "/(android-chrome|apple-touch-icon)(.*).png",
+      "source": "/(site.webmanifest|manifest.json)",
       "headers": [
-        { "key": "Content-Type", "value": "image/png" },
+        { "key": "Content-Type", "value": "application/manifest+json" },
         { "key": "Cache-Control", "value": "public, max-age=86400" },
         { "key": "Access-Control-Allow-Origin", "value": "*" }
       ]

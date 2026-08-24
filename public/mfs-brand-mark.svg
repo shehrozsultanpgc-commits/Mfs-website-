@@ -1,89 +1,110 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <!-- Background Gradient (Luxury Matte Dark) -->
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#141418" />
-      <stop offset="100%" stop-color="#070709" />
+    <!-- Matte Dark Background Base -->
+    <linearGradient id="bgCanvas" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E0E12" />
+      <stop offset="100%" stop-color="#060608" />
     </linearGradient>
 
-    <!-- Subtle Outer Border Gradient -->
-    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.6" />
-      <stop offset="50%" stop-color="#D4AF37" stop-opacity="0.15" />
-      <stop offset="100%" stop-color="#D4AF37" stop-opacity="0.4" />
+    <!-- Outer Frame - Top Luminous Gold Surface -->
+    <linearGradient id="goldTopFace" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCEBA4" />
+      <stop offset="35%" stop-color="#F3D979" />
+      <stop offset="100%" stop-color="#E5C35E" />
     </linearGradient>
 
-    <!-- Top Face Gradient (Bright Pure Gold) -->
-    <linearGradient id="mfsTopFace" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFF0A5" />
-      <stop offset="45%" stop-color="#F5D676" />
-      <stop offset="100%" stop-color="#ECCB62" />
+    <!-- Outer Frame - Left Facet Gold -->
+    <linearGradient id="goldLeftFace" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E5C35E" />
+      <stop offset="50%" stop-color="#D4AF37" />
+      <stop offset="100%" stop-color="#A47E1B" />
     </linearGradient>
 
-    <!-- Left Face Gradient (Warm Mid Gold) -->
-    <linearGradient id="mfsLeftFace" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#E5C158" />
+    <!-- Outer Frame - Right Facet Gold -->
+    <linearGradient id="goldRightFace" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#BD9226" />
+      <stop offset="60%" stop-color="#8F6B12" />
+      <stop offset="100%" stop-color="#5C4204" />
+    </linearGradient>
+
+    <!-- Floating Center Cube - Top Facet -->
+    <linearGradient id="cubeTopFace" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF5BE" />
+      <stop offset="50%" stop-color="#F7DF88" />
+      <stop offset="100%" stop-color="#E8C765" />
+    </linearGradient>
+
+    <!-- Floating Center Cube - Left Facet -->
+    <linearGradient id="cubeLeftFace" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8C765" />
       <stop offset="60%" stop-color="#D4AF37" />
-      <stop offset="100%" stop-color="#9C7410" />
+      <stop offset="100%" stop-color="#9C7715" />
     </linearGradient>
 
-    <!-- Right Face Gradient (Deep Shadow Gold) -->
-    <linearGradient id="mfsRightFace" x1="100%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#BA8B1E" />
-      <stop offset="50%" stop-color="#8F680D" />
-      <stop offset="100%" stop-color="#543B02" />
+    <!-- Floating Center Cube - Right Facet -->
+    <linearGradient id="cubeRightFace" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#B88E23" />
+      <stop offset="60%" stop-color="#88640E" />
+      <stop offset="100%" stop-color="#553C02" />
     </linearGradient>
   </defs>
 
-  <!-- LUXURY BACKGROUND BASE (Ensures 100% visibility on white Google Search & browser viewports) -->
-  <rect x="16" y="16" width="480" height="480" rx="100" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="8" />
+  <!-- 1. FULL SOLID 100% OPAQUE MATTE BLACK CANVAS (No white border, no transparent edges) -->
+  <rect x="0" y="0" width="512" height="512" fill="url(#bgCanvas)" />
 
-  <!-- 1. OUTER HOLLOW HEXAMATRIX FRAME -->
-  <!-- Top Face (Chevron / Hollow Top Surface) -->
+  <!-- 2. SOLID INNER SHADOW CAVITY -->
+  <!-- Outer Hexagon Base Bounds: Center (256, 256), Radius ~200 -->
+
+  <!-- 3. OUTER HOLLOW ISOMETRIC HEXAGON FRAME -->
+  <!-- Outer Top Surface (Chevron Cap) -->
   <polygon 
-    points="102,167 256,78 410,167 358,197 256,138 154,197" 
-    fill="url(#mfsTopFace)" 
+    points="86,158 256,60 426,158 368,191 256,126 144,191" 
+    fill="url(#goldTopFace)" 
   />
 
-  <!-- Left Outer Face (L-shaped Isometric Panel) -->
+  <!-- Outer Left Facet -->
   <polygon 
-    points="102,167 154,197 154,315 256,374 256,434 102,345" 
-    fill="url(#mfsLeftFace)" 
+    points="86,158 144,191 144,321 256,386 256,452 86,354" 
+    fill="url(#goldLeftFace)" 
   />
 
-  <!-- Right Outer Face (L-shaped Isometric Panel) -->
+  <!-- Outer Right Facet -->
   <polygon 
-    points="410,167 358,197 358,315 256,374 256,434 410,345" 
-    fill="url(#mfsRightFace)" 
+    points="426,158 368,191 368,321 256,386 256,452 426,354" 
+    fill="url(#goldRightFace)" 
   />
 
-  <!-- 2. FLOATING SUSPENDED CORE CUBE IN EMPTY CENTER -->
+  <!-- 4. INNER MATTE BLACK CAVITY -->
+  <polygon 
+    points="144,191 256,126 368,191 368,321 256,386 144,321" 
+    fill="#08080A" 
+  />
+
+  <!-- 5. FLOATING SUSPENDED CORE CUBE -->
   <!-- Center Cube Top Face -->
   <polygon 
-    points="256,196 306,225 256,254 206,225" 
-    fill="url(#mfsTopFace)" 
+    points="256,198 312,230 256,262 200,230" 
+    fill="url(#cubeTopFace)" 
   />
 
   <!-- Center Cube Left Face -->
   <polygon 
-    points="206,225 256,254 256,314 206,285" 
-    fill="url(#mfsLeftFace)" 
+    points="200,230 256,262 256,328 200,296" 
+    fill="url(#cubeLeftFace)" 
   />
 
   <!-- Center Cube Right Face -->
   <polygon 
-    points="256,254 306,225 306,285 256,314" 
-    fill="url(#mfsRightFace)" 
+    points="256,262 312,230 312,296 256,328" 
+    fill="url(#cubeRightFace)" 
   />
 
-  <!-- 3. CRISP SEPARATOR EDGES -->
-  <!-- Outer Separator Lines -->
-  <line x1="102" y1="167" x2="154" y2="197" stroke="#070709" stroke-width="3" stroke-linecap="round" />
-  <line x1="410" y1="167" x2="358" y2="197" stroke="#070709" stroke-width="3" stroke-linecap="round" />
-  <line x1="256" y1="434" x2="256" y2="374" stroke="#070709" stroke-width="3" stroke-linecap="round" />
+  <!-- 6. CRISP DELINEATION BEVEL LINES (Subtle dark accents matching 4K Emblem render) -->
+  <line x1="86" y1="158" x2="144" y2="191" stroke="#08080A" stroke-width="3" stroke-linecap="round" />
+  <line x1="426" y1="158" x2="368" y2="191" stroke="#08080A" stroke-width="3" stroke-linecap="round" />
+  <line x1="256" y1="452" x2="256" y2="386" stroke="#08080A" stroke-width="3" stroke-linecap="round" />
 
-  <!-- Center Cube Separator Lines -->
-  <line x1="206" y1="225" x2="256" y2="254" stroke="#070709" stroke-width="2" stroke-linecap="round" />
-  <line x1="306" y1="225" x2="256" y2="254" stroke="#070709" stroke-width="2" stroke-linecap="round" />
-  <line x1="256" y1="254" x2="256" y2="314" stroke="#070709" stroke-width="2" stroke-linecap="round" />
+  <line x1="200" y1="230" x2="256" y2="262" stroke="#08080A" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="312" y1="230" x2="256" y2="262" stroke="#08080A" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="256" y1="262" x2="256" y2="328" stroke="#08080A" stroke-width="2.5" stroke-linecap="round" />
 </svg>
