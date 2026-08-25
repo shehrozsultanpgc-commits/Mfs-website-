@@ -30,13 +30,7 @@ const serveStaticAsset = (filePath: string, contentType: string) => {
   };
 };
 
-app.get('/favicon.ico', serveStaticAsset(path.join(publicDir, 'favicon.ico'), 'image/x-icon'));
-app.get('/favicon.png', serveStaticAsset(path.join(publicDir, 'favicon.png'), 'image/png'));
-app.get('/favicon-48x48.png', serveStaticAsset(path.join(publicDir, 'favicon-48x48.png'), 'image/png'));
-app.get('/favicon-32x32.png', serveStaticAsset(path.join(publicDir, 'favicon-32x32.png'), 'image/png'));
-app.get('/favicon-16x16.png', serveStaticAsset(path.join(publicDir, 'favicon-16x16.png'), 'image/png'));
-app.get('/apple-touch-icon.png', serveStaticAsset(path.join(publicDir, 'apple-touch-icon.png'), 'image/png'));
-app.get('/apple-touch-icon-precomposed.png', serveStaticAsset(path.join(publicDir, 'apple-touch-icon.png'), 'image/png'));
+app.get('/favicon.svg', serveStaticAsset(path.join(publicDir, 'favicon.svg'), 'image/svg+xml'));
 app.get('/site.webmanifest', serveStaticAsset(path.join(publicDir, 'site.webmanifest'), 'application/manifest+json'));
 app.get('/manifest.json', serveStaticAsset(path.join(publicDir, 'manifest.json'), 'application/manifest+json'));
 app.get('/robots.txt', serveStaticAsset(path.join(publicDir, 'robots.txt'), 'text/plain; charset=utf-8'));
