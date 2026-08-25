@@ -1,4 +1,6 @@
 import express from 'express';
+import path from 'path';
+import fs from 'fs';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
@@ -11,6 +13,34 @@ const app = express();
 
 // Trust proxy for Cloud Run & Vercel reverse proxy layer
 app.set('trust proxy', 1);
+
+// Direct Static Favicon & SEO Asset Endpoints (Immune to SPA routing)
+const publicDir = path.join(process.cwd(), 'public');
+
+const serveStaticAsset = (filePath: string, contentType: string) => {
+  return (_req: express.Request, res: express.Response) => {
+    if (fs.existsSync(filePath)) {
+      res.setHeader('Content-Type', contentType);
+      res.setHeader('Cache-Control', 'public, max-age=86400');
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.sendFile(filePath);
+    } else {
+      res.status(404).end();
+    }
+  };
+};
+
+app.get('/favicon.ico', serveStaticAsset(path.join(publicDir, 'favicon.ico'), 'image/x-icon'));
+app.get('/favicon.png', serveStaticAsset(path.join(publicDir, 'favicon.png'), 'image/png'));
+app.get('/favicon-48x48.png', serveStaticAsset(path.join(publicDir, 'favicon-48x48.png'), 'image/png'));
+app.get('/favicon-32x32.png', serveStaticAsset(path.join(publicDir, 'favicon-32x32.png'), 'image/png'));
+app.get('/favicon-16x16.png', serveStaticAsset(path.join(publicDir, 'favicon-16x16.png'), 'image/png'));
+app.get('/apple-touch-icon.png', serveStaticAsset(path.join(publicDir, 'apple-touch-icon.png'), 'image/png'));
+app.get('/apple-touch-icon-precomposed.png', serveStaticAsset(path.join(publicDir, 'apple-touch-icon.png'), 'image/png'));
+app.get('/site.webmanifest', serveStaticAsset(path.join(publicDir, 'site.webmanifest'), 'application/manifest+json'));
+app.get('/manifest.json', serveStaticAsset(path.join(publicDir, 'manifest.json'), 'application/manifest+json'));
+app.get('/robots.txt', serveStaticAsset(path.join(publicDir, 'robots.txt'), 'text/plain; charset=utf-8'));
+app.get('/sitemap.xml', serveStaticAsset(path.join(publicDir, 'sitemap.xml'), 'application/xml; charset=utf-8'));
 
 // 1. CORS Security Configuration
 app.use(
