@@ -5,9 +5,9 @@
   "trailingSlash": false,
   "headers": [
     {
-      "source": "/favicon.ico",
+      "source": "/(mfs-brand-mark|favicon|og-image).svg",
       "headers": [
-        { "key": "Content-Type", "value": "image/x-icon" },
+        { "key": "Content-Type", "value": "image/svg+xml" },
         { "key": "Cache-Control", "value": "public, max-age=86400" },
         { "key": "Access-Control-Allow-Origin", "value": "*" }
       ]
