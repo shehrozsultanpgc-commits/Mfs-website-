@@ -8,7 +8,7 @@
   "theme_color": "#050507",
   "icons": [
     {
-      "src": "/favicon.svg",
+      "src": "/mfs-brand-mark.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"

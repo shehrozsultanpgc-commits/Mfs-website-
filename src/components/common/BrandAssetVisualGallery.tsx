@@ -55,7 +55,7 @@ export const BrandAssetVisualGallery: React.FC = () => {
         <div className="rounded-2xl border border-white/10 bg-black/50 p-4 space-y-3 hover:border-[#E5C158]/40 transition-colors">
           <div className="w-full aspect-[16/9] rounded-xl overflow-hidden bg-[#0A0A0F] border border-white/5 relative flex items-center justify-center p-4">
             <img
-              src="/android-chrome-512x512.png"
+              src="/mfs-brand-mark.svg"
               alt="MFS Growth Agency Official Gold Shield Emblem"
               className="w-24 h-24 object-contain drop-shadow-[0_4px_15px_rgba(229,193,88,0.3)]"
               loading="lazy"
@@ -63,7 +63,7 @@ export const BrandAssetVisualGallery: React.FC = () => {
           </div>
           <div>
             <span className="text-[10px] font-mono text-[#28C76F] font-semibold block uppercase">
-              Brand Shield Emblem (512x512)
+              Brand Shield Emblem (Vector SVG)
             </span>
             <h4 className="text-xs font-bold text-white font-poppins">
               Official MFS Golden Crest

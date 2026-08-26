@@ -116,7 +116,7 @@ export const CMSSearchConsoleCenter: React.FC<CMSSearchConsoleCenterProps> = ({
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-xl bg-[#E5C158]/10 border border-[#E5C158]/40 p-2 flex items-center justify-center shrink-0">
               <img
-                src="/favicon-32x32.png"
+                src="/mfs-brand-mark.svg"
                 alt="Google Search Favicon Preview"
                 className="w-7 h-7 object-contain drop-shadow-[0_2px_8px_rgba(229,193,88,0.4)]"
               />
@@ -158,7 +158,7 @@ export const CMSSearchConsoleCenter: React.FC<CMSSearchConsoleCenterProps> = ({
             <div className="flex items-center gap-2.5">
               <div className="w-6 h-6 rounded-full bg-[#303134] border border-white/10 flex items-center justify-center p-1 shrink-0 overflow-hidden">
                 <img
-                  src="/favicon-32x32.png"
+                  src="/mfs-brand-mark.svg"
                   alt="MFS Google Favicon"
                   className="w-4 h-4 object-contain"
                 />
@@ -186,7 +186,7 @@ export const CMSSearchConsoleCenter: React.FC<CMSSearchConsoleCenterProps> = ({
             </div>
             <div className="text-xs font-bold text-white font-poppins">Static URL Integrity</div>
             <p className="text-[11px] text-neutral-400">
-              Favicon is located at root <code className="text-[#E5C158]">/favicon.ico</code> & <code className="text-[#E5C158]">/favicon-32x32.png</code> without dynamic query params.
+              Favicon is located at root <code className="text-[#E5C158]">/mfs-brand-mark.svg</code> without dynamic query params.
             </p>
           </div>
 

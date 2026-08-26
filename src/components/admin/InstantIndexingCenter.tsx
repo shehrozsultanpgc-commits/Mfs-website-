@@ -131,7 +131,7 @@ export const InstantIndexingCenter: React.FC<InstantIndexingCenterProps> = ({ on
       "legalName": "MFS Growth Agency",
       "alternateName": ["MFS Growth", "MFS Growth Online", "MFS Growth Agency Pakistan"],
       "url": "https://mfsgrowth.online/",
-      "logo": "https://mfsgrowth.online/android-chrome-512x512.png",
+      "logo": "https://mfsgrowth.online/mfs-brand-mark.svg",
       "image": "https://mfsgrowth.online/og-image.svg",
       "telephone": "+923015323689",
       "email": "mfsmedia.agency@gmail.com",

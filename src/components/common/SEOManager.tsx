@@ -404,7 +404,32 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
     }
     canonicalLink.setAttribute('href', seo.canonical);
 
-    // 8. Dynamic Nested JSON-LD Structured Data Graph 3.0
+    // 8. Enforce Valid SVG Favicon Links & Clean Broken Favicon Tags
+    const updateFaviconLink = (rel: string, href: string, type?: string) => {
+      let link = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement | null;
+      if (!link) {
+        link = document.createElement('link');
+        link.setAttribute('rel', rel);
+        document.head.appendChild(link);
+      }
+      link.setAttribute('href', href);
+      if (type) {
+        link.setAttribute('type', type);
+      } else {
+        link.removeAttribute('type');
+      }
+    };
+
+    // Remove obsolete/broken favicon tags if present
+    document.querySelectorAll('link[href*="favicon.ico"], link[href*="favicon-16x16"], link[href*="favicon-32x32"], link[href*="favicon-48x48"], link[href*="android-chrome"]').forEach((el) => {
+      el.remove();
+    });
+
+    updateFaviconLink('icon', '/mfs-brand-mark.svg', 'image/svg+xml');
+    updateFaviconLink('shortcut icon', '/mfs-brand-mark.svg', 'image/svg+xml');
+    updateFaviconLink('apple-touch-icon', '/mfs-brand-mark.svg');
+
+    // 9. Dynamic Nested JSON-LD Structured Data Graph 3.0
     let schemaScript = document.querySelector('#mfs-jsonld-schema') as HTMLScriptElement | null;
     if (!schemaScript) {
       schemaScript = document.createElement('script');
@@ -442,7 +467,7 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         'url': 'https://mfsgrowth.online/',
         'logo': {
           '@type': 'ImageObject',
-          'url': 'https://mfsgrowth.online/android-chrome-512x512.png',
+          'url': 'https://mfsgrowth.online/mfs-brand-mark.svg',
           'width': 512,
           'height': 512,
           'caption': 'MFS Growth Agency Official Gold Shield'
@@ -566,7 +591,7 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         'url': 'https://mfsgrowth.online/about',
         'image': {
           '@type': 'ImageObject',
-          'url': 'https://mfsgrowth.online/android-chrome-512x512.png',
+          'url': 'https://mfsgrowth.online/mfs-brand-mark.svg',
           'caption': 'Muhammad Shehroz Sultan - Founder & Executive Director of MFS Growth Agency'
         },
         'nationality': {
@@ -651,7 +676,7 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         'name': 'MFS Growth Agency | Academic Assignments, Presentations & ATS Resumes in Pakistan',
         'isPartOf': { '@id': 'https://mfsgrowth.online/#website' },
         'about': { '@id': 'https://mfsgrowth.online/#organization' },
-        'primaryImageOfPage': 'https://mfsgrowth.online/android-chrome-512x512.png'
+        'primaryImageOfPage': 'https://mfsgrowth.online/mfs-brand-mark.svg'
       });
     } else if (currentPage === 'services') {
       graphElements.push(
@@ -817,7 +842,7 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         '@id': 'https://mfsgrowth.online/guides/executive-pitch-deck-structure#article',
         'headline': 'Executive Pitch Deck Structure Guide: The Essential 10-Slide Framework for Investors',
         'description': 'Learn the essential investor pitch deck sequence, narrative structure, visual hierarchy, and data presentation principles.',
-        'image': 'https://mfsgrowth.online/android-chrome-512x512.png',
+        'image': 'https://mfsgrowth.online/mfs-brand-mark.svg',
         'datePublished': '2026-08-18T00:00:00+00:00',
         'dateModified': '2026-08-20T00:00:00+00:00',
         'mainEntityOfPage': {
@@ -842,7 +867,7 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         '@id': 'https://mfsgrowth.online/guides/academic-formatting-citation#article',
         'headline': 'Academic Formatting & Citation Standards Guide: APA 7, Harvard, MLA & IEEE',
         'description': 'Learn academic formatting and citation principles across APA 7, Harvard, MLA, IEEE and Oxford referencing systems.',
-        'image': 'https://mfsgrowth.online/android-chrome-512x512.png',
+        'image': 'https://mfsgrowth.online/mfs-brand-mark.svg',
         'datePublished': '2026-08-18T00:00:00+00:00',
         'dateModified': '2026-08-20T00:00:00+00:00',
         'mainEntityOfPage': {
@@ -867,7 +892,7 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
         '@id': 'https://mfsgrowth.online/guides/corporate-report-formatting-standards#article',
         'headline': 'Corporate Report Formatting Standards Guide: Professional Structure & Layout',
         'description': 'Learn professional corporate report formatting standards, including report structure, typography, page layout, tables, charts, and executive summaries.',
-        'image': 'https://mfsgrowth.online/android-chrome-512x512.png',
+        'image': 'https://mfsgrowth.online/mfs-brand-mark.svg',
         'datePublished': '2026-08-18T00:00:00+00:00',
         'dateModified': '2026-08-20T00:00:00+00:00',
         'mainEntityOfPage': {
