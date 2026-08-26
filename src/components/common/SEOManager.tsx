@@ -428,6 +428,7 @@ export const SEOManager: React.FC<SEOProps> = ({ currentPage }) => {
     updateFaviconLink('icon', '/mfs-brand-mark.svg', 'image/svg+xml');
     updateFaviconLink('shortcut icon', '/mfs-brand-mark.svg', 'image/svg+xml');
     updateFaviconLink('apple-touch-icon', '/mfs-brand-mark.svg');
+    updateFaviconLink('mask-icon', '/mfs-brand-mark.svg');
 
     // 9. Dynamic Nested JSON-LD Structured Data Graph 3.0
     let schemaScript = document.querySelector('#mfs-jsonld-schema') as HTMLScriptElement | null;
