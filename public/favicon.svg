@@ -1,11 +1,101 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
-  <rect width="1000" height="1000" fill="#000000" rx="0"/>
-  <g id="mfs-hexamatrix">
-    <polygon points="283.49,375.00 170.91,310.00 500.00,120.00 829.09,310.00 716.51,375.00 500.00,250.00" fill="#F6DC7D"/>
-    <polygon points="500.00,750.00 500.00,880.00 170.91,690.00 170.91,310.00 283.49,375.00 283.49,625.00" fill="#D4AF37"/>
-    <polygon points="716.51,375.00 829.09,310.00 829.09,690.00 500.00,880.00 500.00,750.00 716.51,625.00" fill="#8F6815"/>
-    <polygon points="500,500 607.39,438.00 500.00,376.00 392.61,438.00" fill="#FFF5BA"/>
-    <polygon points="500,500 392.61,438.00 392.61,562.00 500.00,624.00" fill="#F6DC7D"/>
-    <polygon points="500,500 500.00,624.00 607.39,562.00 607.39,438.00" fill="#B98F28"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Outer Frame - Top Luminous Gold Surface -->
+    <linearGradient id="favGoldTopFace" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCEBA4" />
+      <stop offset="40%" stop-color="#F3D979" />
+      <stop offset="100%" stop-color="#E5C35E" />
+    </linearGradient>
+
+    <!-- Outer Frame - Left Facet Gold -->
+    <linearGradient id="favGoldLeftFace" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E5C35E" />
+      <stop offset="50%" stop-color="#D4AF37" />
+      <stop offset="100%" stop-color="#A47E1B" />
+    </linearGradient>
+
+    <!-- Outer Frame - Right Facet Gold -->
+    <linearGradient id="favGoldRightFace" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#BD9226" />
+      <stop offset="60%" stop-color="#8F6B12" />
+      <stop offset="100%" stop-color="#5C4204" />
+    </linearGradient>
+
+    <!-- Floating Center Cube - Top Facet -->
+    <linearGradient id="favCubeTopFace" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF5BE" />
+      <stop offset="50%" stop-color="#F7DF88" />
+      <stop offset="100%" stop-color="#E8C765" />
+    </linearGradient>
+
+    <!-- Floating Center Cube - Left Facet -->
+    <linearGradient id="favCubeLeftFace" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8C765" />
+      <stop offset="60%" stop-color="#D4AF37" />
+      <stop offset="100%" stop-color="#9C7715" />
+    </linearGradient>
+
+    <!-- Floating Center Cube - Right Facet -->
+    <linearGradient id="favCubeRightFace" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#B88E23" />
+      <stop offset="60%" stop-color="#88640E" />
+      <stop offset="100%" stop-color="#553C02" />
+    </linearGradient>
+  </defs>
+
+  <!-- 1. FULL SOLID 100% OPAQUE MATTE BLACK BACKGROUND (No border lines, no white edges) -->
+  <rect x="0" y="0" width="512" height="512" fill="#050507" />
+
+  <!-- 2. OUTER HOLLOW ISOMETRIC HEXAGON FRAME -->
+  <!-- Outer Top Surface (Chevron Cap) -->
+  <polygon 
+    points="86,158 256,60 426,158 368,191 256,126 144,191" 
+    fill="url(#favGoldTopFace)" 
+  />
+
+  <!-- Outer Left Facet -->
+  <polygon 
+    points="86,158 144,191 144,321 256,386 256,452 86,354" 
+    fill="url(#favGoldLeftFace)" 
+  />
+
+  <!-- Outer Right Facet -->
+  <polygon 
+    points="426,158 368,191 368,321 256,386 256,452 426,354" 
+    fill="url(#favGoldRightFace)" 
+  />
+
+  <!-- 3. INNER MATTE BLACK CAVITY -->
+  <polygon 
+    points="144,191 256,126 368,191 368,321 256,386 144,321" 
+    fill="#050507" 
+  />
+
+  <!-- 4. FLOATING SUSPENDED CORE CUBE -->
+  <!-- Center Cube Top Face -->
+  <polygon 
+    points="256,198 312,230 256,262 200,230" 
+    fill="url(#favCubeTopFace)" 
+  />
+
+  <!-- Center Cube Left Face -->
+  <polygon 
+    points="200,230 256,262 256,328 200,296" 
+    fill="url(#favCubeLeftFace)" 
+  />
+
+  <!-- Center Cube Right Face -->
+  <polygon 
+    points="256,262 312,230 312,296 256,328" 
+    fill="url(#favCubeRightFace)" 
+  />
+
+  <!-- 5. CRISP DELINEATION SEPARATOR EDGES -->
+  <line x1="86" y1="158" x2="144" y2="191" stroke="#050507" stroke-width="3.5" stroke-linecap="round" />
+  <line x1="426" y1="158" x2="368" y2="191" stroke="#050507" stroke-width="3.5" stroke-linecap="round" />
+  <line x1="256" y1="452" x2="256" y2="386" stroke="#050507" stroke-width="3.5" stroke-linecap="round" />
+
+  <line x1="200" y1="230" x2="256" y2="262" stroke="#050507" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="312" y1="230" x2="256" y2="262" stroke="#050507" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="256" y1="262" x2="256" y2="328" stroke="#050507" stroke-width="2.5" stroke-linecap="round" />
 </svg>

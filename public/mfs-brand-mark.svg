@@ -1,15 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <!-- Matte Dark Background Base -->
-    <linearGradient id="bgCanvas" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0E0E12" />
-      <stop offset="100%" stop-color="#060608" />
-    </linearGradient>
-
     <!-- Outer Frame - Top Luminous Gold Surface -->
     <linearGradient id="goldTopFace" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#FCEBA4" />
-      <stop offset="35%" stop-color="#F3D979" />
+      <stop offset="40%" stop-color="#F3D979" />
       <stop offset="100%" stop-color="#E5C35E" />
     </linearGradient>
 
@@ -49,13 +43,10 @@
     </linearGradient>
   </defs>
 
-  <!-- 1. FULL SOLID 100% OPAQUE MATTE BLACK CANVAS (No white border, no transparent edges) -->
-  <rect x="0" y="0" width="512" height="512" fill="url(#bgCanvas)" />
+  <!-- 1. FULL SOLID 100% OPAQUE MATTE BLACK BACKGROUND (No border lines, no white edges, pure solid) -->
+  <rect x="0" y="0" width="512" height="512" fill="#050507" />
 
-  <!-- 2. SOLID INNER SHADOW CAVITY -->
-  <!-- Outer Hexagon Base Bounds: Center (256, 256), Radius ~200 -->
-
-  <!-- 3. OUTER HOLLOW ISOMETRIC HEXAGON FRAME -->
+  <!-- 2. OUTER HOLLOW ISOMETRIC HEXAGON FRAME -->
   <!-- Outer Top Surface (Chevron Cap) -->
   <polygon 
     points="86,158 256,60 426,158 368,191 256,126 144,191" 
@@ -74,13 +65,13 @@
     fill="url(#goldRightFace)" 
   />
 
-  <!-- 4. INNER MATTE BLACK CAVITY -->
+  <!-- 3. INNER MATTE BLACK CAVITY -->
   <polygon 
     points="144,191 256,126 368,191 368,321 256,386 144,321" 
-    fill="#08080A" 
+    fill="#050507" 
   />
 
-  <!-- 5. FLOATING SUSPENDED CORE CUBE -->
+  <!-- 4. FLOATING SUSPENDED CORE CUBE -->
   <!-- Center Cube Top Face -->
   <polygon 
     points="256,198 312,230 256,262 200,230" 
@@ -99,12 +90,12 @@
     fill="url(#cubeRightFace)" 
   />
 
-  <!-- 6. CRISP DELINEATION BEVEL LINES (Subtle dark accents matching 4K Emblem render) -->
-  <line x1="86" y1="158" x2="144" y2="191" stroke="#08080A" stroke-width="3" stroke-linecap="round" />
-  <line x1="426" y1="158" x2="368" y2="191" stroke="#08080A" stroke-width="3" stroke-linecap="round" />
-  <line x1="256" y1="452" x2="256" y2="386" stroke="#08080A" stroke-width="3" stroke-linecap="round" />
+  <!-- 5. CRISP DELINEATION SEPARATOR EDGES -->
+  <line x1="86" y1="158" x2="144" y2="191" stroke="#050507" stroke-width="3.5" stroke-linecap="round" />
+  <line x1="426" y1="158" x2="368" y2="191" stroke="#050507" stroke-width="3.5" stroke-linecap="round" />
+  <line x1="256" y1="452" x2="256" y2="386" stroke="#050507" stroke-width="3.5" stroke-linecap="round" />
 
-  <line x1="200" y1="230" x2="256" y2="262" stroke="#08080A" stroke-width="2.5" stroke-linecap="round" />
-  <line x1="312" y1="230" x2="256" y2="262" stroke="#08080A" stroke-width="2.5" stroke-linecap="round" />
-  <line x1="256" y1="262" x2="256" y2="328" stroke="#08080A" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="200" y1="230" x2="256" y2="262" stroke="#050507" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="312" y1="230" x2="256" y2="262" stroke="#050507" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="256" y1="262" x2="256" y2="328" stroke="#050507" stroke-width="2.5" stroke-linecap="round" />
 </svg>
