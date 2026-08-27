@@ -16,6 +16,7 @@ import {
   Layers
 } from 'lucide-react';
 import { SEOManager } from '../common/SEOManager';
+import { GooglePreferredSourceBadge } from '../common/GooglePreferredSourceBadge';
 
 interface GuidesIndexPageProps {
   onNavigatePage?: (page: string) => void;
@@ -182,6 +183,9 @@ export const GuidesIndexPage: React.FC<GuidesIndexPageProps> = ({
               </span>
             </div>
           </div>
+
+          {/* Official Google Preferred Source Discovery Banner */}
+          <GooglePreferredSourceBadge variant="banner" className="mt-6" />
         </header>
 
         {/* Guides Grid */}

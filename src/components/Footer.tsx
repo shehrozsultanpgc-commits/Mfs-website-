@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Instagram, Facebook, Mail, Phone, MapPin, Bot, Mic, Linkedin, Globe } from 'lucide-react';
 import { MFSLogo } from './common/MFSLogo';
+import { GooglePreferredSourceBadge } from './common/GooglePreferredSourceBadge';
 
 interface FooterProps {
   onOpenOrderModal: () => void;
@@ -70,6 +71,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
               >
                 <Globe className="w-3.5 h-3.5" />
               </motion.a>
+            </div>
+
+            {/* Google Preferred Source Feature */}
+            <div className="pt-2">
+              <GooglePreferredSourceBadge variant="compact" />
             </div>
           </div>
 
