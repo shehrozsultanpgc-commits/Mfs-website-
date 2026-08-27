@@ -41,7 +41,7 @@ export class AIAssistantEngine {
     this.state.currency = initialCurrency;
     this.addMessage(
       'assistant',
-      "Assalam-o-Alaikum! Welcome to **MFS Growth Agency**. 👋 I am your MFS AI Concierge.\n\nHow can I assist you with our services today? Feel free to ask about **Presentation Design**, **Assignment Writing**, **ATS Resumes**, **Report Formatting**, or our active **50% Grand Launch Offer**!"
+      "Assalam-o-Alaikum! Welcome to **MFS Growth Agency**. 👋 Main MFS Growth ka Senior Project Consultant hoon.\n\nBatayein sir, aaj kis project mein aap ki madad karoon? (Presentation Design, Assignment Writing, ATS Resume, ya Report Formatting) — Abhi humara **50% Grand Launch Discount** active hai!"
     );
   }
 
@@ -110,7 +110,7 @@ export class AIAssistantEngine {
       lower.includes('env') ||
       lower.includes('shehrozsultanpgc')
     ) {
-      return "Main **MFS Growth Agency** ka AI Concierge hoon! 😊\n\nMeri speciality aap ko humari services (**Presentation Design**, **Assignment Writing**, **ATS Resumes**, **Report Formatting**) aur pricing ke baare mein guide karna hai. Aap aaj kis project mein madad chahte hain?";
+      return "Main **MFS Growth Agency** ka Senior Project Consultant hoon! 😊\n\nMeri speciality aap ko humari services (**Presentation Design**, **Assignment Writing**, **ATS Resumes**, **Report Formatting**) aur pricing ke baare mein guide karna hai. Aap aaj kis project mein madad chahte hain?";
     }
 
     // 2. Name Extraction & Graceful Skip
@@ -137,35 +137,31 @@ export class AIAssistantEngine {
     }
 
     // 3. Greetings & Casual Small Talk
+    if (lower === 'hello' || lower === 'hi' || lower === 'hey' || lower === 'salam' || lower === 'assalam o alaikum' || lower === 'assalam-o-alaikum' || lower === 'aoa') {
+      const nameGreeting = this.state.customerName && this.state.customerName !== 'Valued Client' ? ` **${this.state.customerName}**` : ' sir';
+      return `Assalam-o-Alaikum${nameGreeting}! Welcome to **MFS Growth Agency**. 👋 Main aap ka Senior Project Consultant hoon.\n\nBatayein, aaj kis project pe kaam karwana hai? Presentation slides, Assignment research, ya ATS Resume? (Abhi **50% Grand Launch Discount** active hai!)`;
+    }
+
     if (
       lower.includes('kya haal') ||
       lower.includes('kaise ho') ||
       lower.includes('kese ho') ||
       lower.includes('kaise hain') ||
-      lower.includes('assalam') ||
-      lower.includes('hello') ||
-      lower.includes('hi') ||
-      lower.includes('hey') ||
-      lower.includes('wassup')
+      lower.includes('theek ho') ||
+      lower.includes('how are you')
     ) {
-      const nameGreeting = this.state.customerName && this.state.customerName !== 'Valued Client' ? ` **${this.state.customerName}**` : '';
-      return `Walaikum Assalam${nameGreeting}! Main bilkul theek hoon, aap bataayein kaise hain? 😊\n\nWelcome to **MFS Growth Agency**! May I know your name so I can address you properly, or feel free to let me know which service you need:\n• 📊 **Presentation Design** (Executive & Academic Slides)\n• ✍️ **Assignment Writing** (APA / Harvard / MLA References)\n• 👔 **ATS Resume & CV Engineering** (95%+ ATS Scan Compatibility)\n• 📄 **Corporate Report Formatting**\n\n🎉 Active Offer: **50% Grand Launch Discount** across all services!`;
+      return `Shuker Alhamdulillah, main bilkul theek hoon! Aap sunayein sir, aap kaise hain? 😊\n\nKis service ke silsile mein rabta kiya hai? Presentation, Assignment, ya CV writing?`;
     }
 
     // 4. Rates & Pricing Queries
     if (lower.includes('rate') || lower.includes('price') || lower.includes('kitne') || lower.includes('cost') || lower.includes('charge') || lower.includes('discount')) {
-      return `🏷️ **MFS Growth Agency - Grand Launch Rates (50% OFF Applied)**:\n\n` +
-        `• 📊 **Presentation Design**: PKR 1,250 ($7.50 USD) / 10 slides *(Was PKR 2,500)*\n` +
-        `• ✍️ **Assignment Writing**: PKR 1,000 ($7.50 USD) / 1,000 words *(Was PKR 2,000)*\n` +
-        `• 👔 **Resume Writing**: PKR 1,250 ($10.00 USD) / Resume *(Was PKR 2,500)*\n` +
-        `• ⚡ **ATS Resume Engineering**: PKR 1,500 ($12.00 USD) / ATS Standard *(Was PKR 3,000)*\n` +
-        `• 📄 **Report Formatting**: PKR 1,000 ($7.50 USD) / 1,000 words\n\n` +
-        `⚡ **Turnaround Speed Options**:\n` +
-        `• Standard Delivery (24-48 Hours): Base Rate\n` +
-        `• Express 24-Hour: +30% Rush Fee\n` +
-        `• Priority 12-24 Hours: +50% Rush Fee\n` +
-        `• 1-Hour Urgent Express / Same-Day: +75% Rush Fee\n\n` +
-        `Which service would you like to place an order for?`;
+      return `Sir, abhi humara **50% Grand Launch Discount** chal raha hai! Rates bohot affordable hain:\n\n` +
+        `• 📊 **Presentation Design**: Sirf PKR 1,250 ($7.50 USD) / 10 slides *(Was PKR 2,500)*\n` +
+        `• ✍️ **Assignment Writing**: Sirf PKR 1,000 ($7.50 USD) / 1,000 words *(Was PKR 2,000)*\n` +
+        `• 👔 **Resume Writing**: Sirf PKR 1,250 ($10.00 USD) / Resume *(Was PKR 2,500)*\n` +
+        `• ⚡ **ATS Resume Engineering**: Sirf PKR 1,500 ($12.00 USD) / ATS Standard *(Was PKR 3,000)*\n` +
+        `• 📄 **Report Formatting**: Sirf PKR 1,000 ($7.50 USD) / 1,000 words\n\n` +
+        `Aap batayein, aap ko kis service ka estimate calculate kar ke doon?`;
     }
 
     // 5. Presentation Inquiry

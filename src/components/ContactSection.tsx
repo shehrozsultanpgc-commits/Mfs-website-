@@ -1,51 +1,11 @@
 import React from 'react';
-import { CONTACT_CARDS } from '../data/content';
-import { Mail, Headset, Phone, Clock, MapPin, Bot, Mic } from 'lucide-react';
+import { Mail, Phone, Clock, MapPin, MessageCircle, ArrowRight, ShieldCheck } from 'lucide-react';
 
 interface ContactSectionProps {
-  onOpenAIChat?: (mode?: 'chat' | 'voice') => void;
+  onOpenAIChat?: (_mode?: 'chat' | 'voice') => void;
 }
 
-export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenAIChat }) => {
-  const getIcon = (iconName: string) => {
-    switch (iconName) {
-      case 'mail':
-        return Mail;
-      case 'support':
-        return Headset;
-      case 'phone':
-        return Phone;
-      case 'clock':
-        return Clock;
-      case 'mapPin':
-        return MapPin;
-      case 'bot':
-        return Bot;
-      case 'mic':
-        return Mic;
-      default:
-        return Mail;
-    }
-  };
-
-  const enhancedContactCards = [
-    ...CONTACT_CARDS,
-    {
-      id: 'contact-6',
-      title: 'MFS AI Chatbot',
-      value: 'Instant 24/7 Support',
-      iconName: 'bot',
-      onClick: () => onOpenAIChat?.('chat'),
-    },
-    {
-      id: 'contact-7',
-      title: 'Voice Assistant',
-      value: 'Interactive Audio Help',
-      iconName: 'mic',
-      onClick: () => onOpenAIChat?.('voice'),
-    }
-  ];
-
+export const ContactSection: React.FC<ContactSectionProps> = () => {
   return (
     <section id="contact" className="py-24 relative bg-white/[0.01] border-y border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -59,11 +19,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenAIChat }) 
             Get in Touch <span className="gold-pure-gradient">Today</span>
           </h2>
           <p className="text-neutral-400 text-sm sm:text-base leading-relaxed">
-            Reach out through our official channels. Our team is online around the clock to support your projects.
+            Reach out through our official channels. Our executive team is online around the clock to support your academic and professional projects.
           </p>
         </div>
 
-        {/* Clean Communication Panel (Non-Card Layout) */}
+        {/* Clean Communication Panel */}
         <div className="bg-black/40 border border-white/10 rounded-2xl p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-2 gap-8 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
           {/* Direct Communication Channels */}
           <div className="space-y-4">
@@ -102,29 +62,40 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenAIChat }) 
             </div>
           </div>
 
-          {/* Instant AI & Interactive Support */}
-          <div className="pt-6 lg:pt-0 lg:pl-8 space-y-4">
-            <h3 className="text-sm font-poppins font-bold uppercase tracking-wider text-[#E5C158] mb-4">
-              Instant AI & Interactive Support
-            </h3>
-            <p className="text-xs text-neutral-400 leading-relaxed mb-4">
-              Get immediate answers to your project scope, turnaround, or payment questions using our dual-mode AI assistant.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 pt-2">
-              <button
-                onClick={() => onOpenAIChat?.('chat')}
-                className="flex-1 px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 hover:border-[#E5C158] text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group"
+          {/* Instant Priority WhatsApp Desk */}
+          <div className="pt-6 lg:pt-0 lg:pl-8 space-y-4 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-2 h-2 rounded-full bg-[#28C76F] animate-ping" />
+                <h3 className="text-sm font-poppins font-bold uppercase tracking-wider text-[#28C76F]">
+                  Instant WhatsApp Desk (24/7 Online)
+                </h3>
+              </div>
+              <p className="text-xs text-neutral-300 leading-relaxed mb-4">
+                Chat directly with our senior project managers on WhatsApp for instant price quotes, custom deadlines, sample viewings, or urgent 1-hour deliveries.
+              </p>
+              <div className="bg-[#28C76F]/10 border border-[#28C76F]/20 rounded-xl p-3 mb-4 space-y-1.5 text-xs text-neutral-300">
+                <div className="flex items-center gap-1.5 text-[#E5C158] font-bold text-xs">
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  <span>50% Grand Launch Offer Active</span>
+                </div>
+                <p className="text-[11px] text-neutral-400">
+                  Enjoy flat 50% discount across Presentation Design, Assignment Writing, ATS Resumes, and Corporate Reports.
+                </p>
+              </div>
+            </div>
+
+            <div className="pt-2">
+              <a
+                href="https://wa.me/923015323689?text=Hello%20MFS%20Growth%20Agency!%20I%20would%20like%20to%20discuss%20a%20project%20and%20claim%20the%2050%25%20Grand%20Launch%20Discount."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full px-5 py-3.5 rounded-xl bg-gradient-to-r from-[#28C76F] to-[#20B05F] hover:from-[#25D366] hover:to-[#28C76F] text-[#050507] font-bold text-xs font-poppins flex items-center justify-center gap-2 shadow-[0_4px_20px_rgba(40,199,111,0.3)] hover:shadow-[0_6px_25px_rgba(40,199,111,0.5)] transition-all cursor-pointer group"
               >
-                <Bot className="w-4 h-4 text-[#E5C158] group-hover:scale-110 transition-transform" />
-                <span>Launch MFS AI Chat</span>
-              </button>
-              <button
-                onClick={() => onOpenAIChat?.('voice')}
-                className="flex-1 px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 hover:border-[#28C76F] text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group"
-              >
-                <Mic className="w-4 h-4 text-[#28C76F] group-hover:scale-110 transition-transform" />
-                <span>Launch Voice Assistant</span>
-              </button>
+                <MessageCircle className="w-4 h-4 fill-current" />
+                <span>Start WhatsApp Conversation</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
             </div>
           </div>
         </div>

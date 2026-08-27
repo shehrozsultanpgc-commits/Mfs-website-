@@ -644,14 +644,14 @@ export const ProjectDetailsCenter: React.FC<ProjectDetailsCenterProps> = ({
                 <span className="text-[10px] text-neutral-400">Add instructions</span>
               </button>
 
-              <button
-                onClick={() => onOpenAIChat && onOpenAIChat('chat')}
-                className="p-3.5 rounded-2xl bg-white/[0.03] hover:bg-[#28C76F]/10 border border-white/10 text-left transition-colors cursor-pointer group"
+              <a
+                href="mailto:mfsmedia.agency@gmail.com"
+                className="p-3.5 rounded-2xl bg-white/[0.03] hover:bg-[#E5C158]/10 border border-white/10 text-left transition-colors cursor-pointer group block"
               >
-                <MessageSquare className="w-5 h-5 text-[#28C76F] mb-1.5 group-hover:scale-110 transition-transform" />
-                <strong className="text-white text-xs block font-bold">Ask MFS AI</strong>
-                <span className="text-[10px] text-neutral-400">Instant answers</span>
-              </button>
+                <FileText className="w-5 h-5 text-[#E5C158] mb-1.5 group-hover:scale-110 transition-transform" />
+                <strong className="text-white text-xs block font-bold">Email Project Lead</strong>
+                <span className="text-[10px] text-neutral-400">Formal instructions</span>
+              </a>
 
               <button
                 onClick={() => setShowRevisionModal(true)}

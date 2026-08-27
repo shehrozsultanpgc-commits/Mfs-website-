@@ -506,13 +506,15 @@ export const ReportFormattingHub: React.FC<ReportFormattingHubProps> = ({
               <span>Order Formatting Now</span>
               <ArrowRight className="w-4 h-4" />
             </button>
-            <button
-              onClick={onOpenAIChat}
-              className="px-6 py-4 rounded-xl bg-white/5 border border-white/10 text-white font-poppins font-semibold text-sm hover:bg-white/10 transition-all flex items-center gap-2"
+            <a
+              href="https://wa.me/923015323689?text=Hello%20MFS%20Growth%20Agency!%20I%20would%20like%20to%20discuss%20a%20Report%20Formatting%20project."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-4 rounded-xl bg-white/5 border border-white/10 text-white font-poppins font-semibold text-sm hover:bg-white/10 transition-all flex items-center gap-2 cursor-pointer"
             >
-              <MessageSquare className="w-4 h-4 text-[#E5C158]" />
-              <span>Ask MFS AI Assistant</span>
-            </button>
+              <MessageSquare className="w-4 h-4 text-[#28C76F]" />
+              <span>Chat on WhatsApp</span>
+            </a>
           </div>
         </div>
       </div>

@@ -10,8 +10,7 @@ import {
   ThumbsUp,
   ThumbsDown,
   MessageSquare,
-  Bot,
-  Mic,
+  MessageCircle,
   Mail,
   Phone,
   ArrowRight,
@@ -384,13 +383,15 @@ export const FaqPage: React.FC<FaqPageProps> = ({
               >
                 Reset All Filters
               </button>
-              <button
-                onClick={() => onOpenAIChat && onOpenAIChat('chat')}
-                className="px-5 py-2.5 rounded-xl bg-[#E5C158] text-[#050507] text-xs font-bold hover:bg-[#fce888] transition-all cursor-pointer flex items-center gap-2"
+              <a
+                href="https://wa.me/923015323689?text=Hello%20MFS%20Growth%20Agency!%20I%20have%20a%20question%20about%20your%20services."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2.5 rounded-xl bg-[#28C76F] text-[#050507] text-xs font-bold hover:bg-[#25D366] transition-all cursor-pointer flex items-center gap-2"
               >
-                <Bot className="w-4 h-4" />
-                <span>Ask MFS AI Assistant</span>
-              </button>
+                <MessageCircle className="w-4 h-4 fill-current" />
+                <span>Ask on WhatsApp</span>
+              </a>
             </div>
           </div>
         ) : (
@@ -523,69 +524,71 @@ export const FaqPage: React.FC<FaqPageProps> = ({
             
             {/* Left AI Information */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E5C158]/10 border border-[#E5C158]/30 text-[#E5C158] text-xs font-semibold">
-                <Sparkles className="w-4 h-4" />
-                <span>24/7 INSTANT AI SUPPORT</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#28C76F]/10 border border-[#28C76F]/30 text-[#28C76F] text-xs font-semibold">
+                <MessageCircle className="w-4 h-4" />
+                <span>24/7 WHATSAPP CONSULTATION</span>
               </div>
 
               <h2 className="text-2xl sm:text-4xl font-poppins font-bold text-white leading-tight">
-                Didn't Find Your Answer? <span className="gradient-gold-text">Ask MFS AI</span>
+                Didn't Find Your Answer? <span className="gradient-gold-text">Chat with Our Team</span>
               </h2>
 
               <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed">
-                Our MFS AI Assistant is available 24/7 to answer custom questions, explain service packages, calculate exact discount prices, and guide you through placing your order in English, Urdu, or Roman Urdu.
+                Our senior project managers are available 24/7 on WhatsApp to answer your questions, prepare custom quotations, review your briefs, and assist you with your project timeline.
               </p>
 
               {/* Feature Grid Checkmarks */}
               <div className="grid grid-cols-2 gap-3 text-xs text-neutral-300 font-medium">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-[#28C76F] shrink-0" />
-                  <span>Instant 24/7 Responses</span>
+                  <span>Instant WhatsApp Replies</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-[#28C76F] shrink-0" />
-                  <span>English & Urdu Language Support</span>
+                  <span>Urgent Deadlines Supported</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-[#28C76F] shrink-0" />
-                  <span>Live Price Calculations</span>
+                  <span>50% Launch Discount Active</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-[#28C76F] shrink-0" />
-                  <span>Order & Delivery Assistance</span>
+                  <span>Direct Human Support</span>
                 </div>
               </div>
 
               {/* Action Buttons */}
               <div className="pt-2 flex flex-wrap items-center gap-4">
-                <button
-                  onClick={() => onOpenAIChat && onOpenAIChat('chat')}
-                  className="px-7 py-3.5 rounded-full bg-[#E5C158] text-[#050507] font-bold text-xs hover:bg-[#fce888] transition-all cursor-pointer shadow-xl flex items-center gap-2"
+                <a
+                  href="https://wa.me/923015323689?text=Hello%20MFS%20Growth%20Agency!%20I%20have%20a%20question%20about%20your%20services."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-7 py-3.5 rounded-full bg-gradient-to-r from-[#28C76F] to-[#20B05F] text-[#050507] font-bold text-xs hover:from-[#25D366] hover:to-[#28C76F] transition-all cursor-pointer shadow-xl flex items-center gap-2"
                 >
-                  <MessageSquare className="w-4 h-4" />
-                  <span>Chat with MFS AI</span>
-                </button>
+                  <MessageCircle className="w-4 h-4 fill-current" />
+                  <span>Chat on WhatsApp</span>
+                </a>
 
-                <button
-                  onClick={() => onOpenAIChat && onOpenAIChat('voice')}
+                <a
+                  href="mailto:mfsmedia.agency@gmail.com"
                   className="px-7 py-3.5 rounded-full bg-white/[0.05] border border-white/10 text-white font-semibold text-xs hover:bg-white/10 transition-all cursor-pointer flex items-center gap-2"
                 >
-                  <Mic className="w-4 h-4 text-[#28C76F]" />
-                  <span>Talk to AI Voice Assistant</span>
-                </button>
+                  <Mail className="w-4 h-4 text-[#E5C158]" />
+                  <span>Send Project Email</span>
+                </a>
               </div>
             </div>
 
-            {/* Right AI Orb Illustration */}
+            {/* Right Contact Card */}
             <div className="lg:col-span-5 flex flex-col items-center justify-center p-6 bg-white/[0.02] border border-white/10 rounded-2xl relative text-center">
-              <div className="w-24 h-24 rounded-full bg-[#E5C158]/20 border border-[#E5C158] flex items-center justify-center text-[#E5C158] mb-4 animate-breathe-ai shadow-[0_0_40px_rgba(229,193,88,0.3)]">
-                <Bot className="w-12 h-12" />
+              <div className="w-20 h-20 rounded-full bg-[#28C76F]/20 border border-[#28C76F] flex items-center justify-center text-[#28C76F] mb-4 shadow-[0_0_30px_rgba(40,199,111,0.25)]">
+                <MessageCircle className="w-10 h-10 fill-current" />
               </div>
 
-              <h3 className="font-poppins font-bold text-white text-base mb-1">MFS Smart Assistant</h3>
-              <span className="text-[11px] text-[#28C76F] font-semibold block mb-3">● Active Now & Ready to Chat</span>
+              <h3 className="font-poppins font-bold text-white text-base mb-1">MFS Support Desk</h3>
+              <span className="text-[11px] text-[#28C76F] font-semibold block mb-3">● 24 Hours Online • Live Human Help</span>
               <p className="text-neutral-400 text-xs max-w-xs leading-relaxed">
-                Try asking: "How much does 15 slides cost?" or "Assalam-o-Alaikum, order kaise place karein?"
+                Connect directly with our team for immediate quotations, custom slide decks, assignment guidelines, and resume reviews.
               </p>
             </div>
           </div>

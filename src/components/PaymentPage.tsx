@@ -416,21 +416,14 @@ export const PaymentPage: React.FC<PaymentPageProps> = ({
               </div>
 
               <div className="flex items-center gap-2 shrink-0">
-                <button
-                  onClick={() => onOpenAIChat && onOpenAIChat('chat')}
-                  className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition-colors flex items-center gap-1.5 cursor-pointer"
-                >
-                  <MessageSquare className="w-3.5 h-3.5 text-[#E5C158]" />
-                  <span>Ask AI</span>
-                </button>
                 <a
-                  href="https://wa.me/923015323689"
+                  href="https://wa.me/923015323689?text=Hello%20MFS%20Growth%20Agency!%20I%20have%20a%20question%20regarding%20my%20payment."
                   target="_blank"
                   rel="noreferrer"
-                  className="px-4 py-2.5 rounded-xl bg-[#28C76F] hover:bg-[#22b060] text-black font-bold text-xs transition-colors flex items-center gap-1.5 cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-[#28C76F] hover:bg-[#22b060] text-black font-bold text-xs transition-colors flex items-center gap-1.5 cursor-pointer shadow-md"
                 >
                   <PhoneCall className="w-3.5 h-3.5" />
-                  <span>WhatsApp</span>
+                  <span>WhatsApp Support</span>
                 </a>
               </div>
             </div>

@@ -57,7 +57,7 @@ const ClientReferralRewardsHub = React.lazy(() => import('./components/growth/Cl
 const ProjectInteractiveReviewCanvas = React.lazy(() => import('./components/growth/ProjectInteractiveReviewCanvas').then(m => ({ default: m.ProjectInteractiveReviewCanvas })));
 const BrandMediaAssetsPage = React.lazy(() => import('./components/BrandMediaAssetsPage').then(m => ({ default: m.BrandMediaAssetsPage })));
 const OurWorkPage = React.lazy(() => import('./components/OurWorkPage').then(m => ({ default: m.OurWorkPage })));
-const AIAssistantWidget = React.lazy(() => import('./components/ai/AIAssistantWidget').then(m => ({ default: m.AIAssistantWidget })));
+import { FloatingWhatsAppButton } from './components/common/FloatingWhatsAppButton';
 
 const PageSkeleton = () => (
   <div className="min-h-[60vh] flex flex-col items-center justify-center py-24 px-4 bg-[#050507]">
@@ -239,11 +239,11 @@ function AppContent() {
   const [prefilledNote, setPrefilledNote] = useState<string>('');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  // AI Chat External Trigger State
-  const [aiTrigger, setAiTrigger] = useState<{ isOpen: boolean; mode: 'chat' | 'voice' }>({
-    isOpen: false,
-    mode: 'chat',
-  });
+  // Direct WhatsApp Quick Chat Opener
+  const handleOpenWhatsAppChat = (customMsg?: string) => {
+    const text = customMsg || 'Hello MFS Growth Agency! I would like to inquire about your services and 50% Grand Launch Discount.';
+    window.open(`https://wa.me/923015323689?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+  };
 
   // Track modal closing via hardware back button vs manual UI click
   const isOrderModalClosingViaBack = React.useRef(false);
@@ -464,8 +464,8 @@ function AppContent() {
     }, 3200);
   };
 
-  const handleOpenAIChat = (mode: 'chat' | 'voice' = 'chat') => {
-    setAiTrigger({ isOpen: true, mode });
+  const handleOpenAIChat = (_mode?: 'chat' | 'voice') => {
+    handleOpenWhatsAppChat('Hello MFS Growth Agency! I would like to discuss a project and 50% Grand Launch Offer.');
   };
 
   const handleOpenOrderWithService = (serviceId: string) => {
@@ -867,14 +867,11 @@ function AppContent() {
       {/* Footer */}
       <Footer onOpenOrderModal={() => handleNavigatePage('order')} onNavigatePage={handleNavigatePage} onOpenAIChat={handleOpenAIChat} />
 
-      {/* Floating 24/7 AI Chatbot & WhatsApp Floating Actions */}
-      <Suspense fallback={null}>
-        <AIAssistantWidget 
-          externalIsOpen={aiTrigger.isOpen}
-          externalMode={aiTrigger.mode}
-          onCloseExternal={() => setAiTrigger((prev) => ({ ...prev, isOpen: false }))}
-        />
-      </Suspense>
+      {/* Floating 24/7 WhatsApp Support Button */}
+      <FloatingWhatsAppButton
+        phoneNumber="923015323689"
+        defaultMessage="Hello MFS Growth Agency! I would like to inquire about your services and 50% Grand Launch Offer."
+      />
 
       {/* Order Booking Modal */}
       <OrderModal

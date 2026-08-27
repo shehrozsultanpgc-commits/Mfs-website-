@@ -17,8 +17,6 @@ import {
   Globe,
   Instagram,
   Facebook,
-  Bot,
-  Mic,
   ArrowRight,
   ShieldCheck,
   ChevronDown,
@@ -131,24 +129,6 @@ export const ContactPage: React.FC<ContactPageProps> = ({
       badgeColor: 'bg-[#E5C158]/10 text-[#E5C158] border-[#E5C158]/20',
     },
     {
-      title: 'MFS AI Chatbot',
-      desc: 'Smart 24/7 assistant answering service questions in English, Urdu & Roman Urdu.',
-      icon: <Bot className="w-6 h-6 text-[#E5C158]" />,
-      actionText: 'Open AI Assistant',
-      onClick: () => onOpenAIChat?.('chat'),
-      badge: 'Instant AI',
-      badgeColor: 'bg-[#E5C158]/10 text-[#E5C158] border-[#E5C158]/20',
-    },
-    {
-      title: 'AI Voice Assistant',
-      desc: 'Interactive voice widget for hands-free audio assistance and instant service help.',
-      icon: <Mic className="w-6 h-6 text-[#28C76F]" />,
-      actionText: 'Launch Voice Assistant',
-      onClick: () => onOpenAIChat?.('voice'),
-      badge: 'Voice AI',
-      badgeColor: 'bg-[#28C76F]/10 text-[#28C76F] border-[#28C76F]/20',
-    },
-    {
       title: 'Direct Phone Call',
       desc: 'Speak directly with our client coordination desk.',
       icon: <PhoneCall className="w-6 h-6 text-[#E5C158]" />,
@@ -229,25 +209,15 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 <p className="text-xs text-neutral-300 leading-relaxed mb-6">{method.desc}</p>
               </div>
 
-              {method.actionUrl ? (
-                <a
-                  href={method.actionUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-full py-2.5 px-3 rounded-xl bg-white/[0.05] border border-white/10 text-white font-semibold text-xs hover:bg-[#E5C158] hover:text-[#050507] hover:border-[#E5C158] transition-all flex items-center justify-center gap-1.5 cursor-pointer text-center"
-                >
-                  <span>{method.actionText}</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              ) : (
-                <button
-                  onClick={method.onClick}
-                  className="w-full py-2.5 px-3 rounded-xl bg-white/[0.05] border border-white/10 text-white font-semibold text-xs hover:bg-[#E5C158] hover:text-[#050507] hover:border-[#E5C158] transition-all flex items-center justify-center gap-1.5 cursor-pointer text-center"
-                >
-                  <span>{method.actionText}</span>
-                  <Sparkles className="w-3.5 h-3.5 text-[#E5C158] group-hover:text-[#050507]" />
-                </button>
-              )}
+              <a
+                href={method.actionUrl}
+                target={method.actionUrl.startsWith('http') ? '_blank' : undefined}
+                rel={method.actionUrl.startsWith('http') ? 'noreferrer' : undefined}
+                className="w-full py-2.5 px-3 rounded-xl bg-white/[0.05] border border-white/10 text-white font-semibold text-xs hover:bg-[#E5C158] hover:text-[#050507] hover:border-[#E5C158] transition-all flex items-center justify-center gap-1.5 cursor-pointer text-center"
+              >
+                <span>{method.actionText}</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
             </div>
           ))}
         </div>
@@ -672,20 +642,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               <MessageSquare className="w-4 h-4" />
               <span>Direct WhatsApp Chat</span>
             </button>
-            <button
-              onClick={() => onOpenAIChat?.('chat')}
+            <a
+              href="mailto:mfsmedia.agency@gmail.com"
               className="px-8 py-3.5 rounded-full bg-white/[0.05] border border-white/10 text-white font-bold text-xs hover:bg-white/10 transition-all shadow-xl cursor-pointer inline-flex items-center gap-2"
             >
-              <Bot className="w-4 h-4 text-[#E5C158]" />
-              <span>Ask AI Chatbot</span>
-            </button>
-            <button
-              onClick={() => onOpenAIChat?.('voice')}
-              className="px-8 py-3.5 rounded-full bg-white/[0.05] border border-white/10 text-white font-bold text-xs hover:bg-white/10 transition-all shadow-xl cursor-pointer inline-flex items-center gap-2"
-            >
-              <Mic className="w-4 h-4 text-[#28C76F]" />
-              <span>Voice Assistant</span>
-            </button>
+              <Mail className="w-4 h-4 text-[#E5C158]" />
+              <span>Email Project Scope</span>
+            </a>
           </div>
         </div>
       </section>

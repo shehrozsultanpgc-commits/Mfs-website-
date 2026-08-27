@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Instagram, Facebook, Mail, Phone, MapPin, Bot, Mic, Linkedin, Globe } from 'lucide-react';
+import { Instagram, Facebook, Mail, Phone, MapPin, MessageCircle, Linkedin, Globe } from 'lucide-react';
 import { MFSLogo } from './common/MFSLogo';
 import { GooglePreferredSourceBadge } from './common/GooglePreferredSourceBadge';
 
@@ -297,16 +297,15 @@ export const Footer: React.FC<FooterProps> = ({ onOpenOrderModal, onNavigatePage
               <a href="tel:+923015323689" className="hover:text-[#E5C158]">+92 301 5323689</a>
             </div>
             <div className="flex items-center gap-2 mt-2">
-              <button onClick={(e) => { e.preventDefault(); onOpenAIChat?.('chat'); }} className="flex items-center gap-2 text-neutral-400 hover:text-[#E5C158] transition-colors cursor-pointer">
-                <Bot className="w-3.5 h-3.5 text-[#E5C158]" />
-                <span>Ask AI Chatbot</span>
-              </button>
-            </div>
-            <div className="flex items-center gap-2">
-              <button onClick={(e) => { e.preventDefault(); onOpenAIChat?.('voice'); }} className="flex items-center gap-2 text-neutral-400 hover:text-[#28C76F] transition-colors cursor-pointer">
-                <Mic className="w-3.5 h-3.5 text-[#28C76F]" />
-                <span>AI Voice Assistant</span>
-              </button>
+              <a
+                href="https://wa.me/923015323689?text=Hello%20MFS%20Growth%20Agency!%20I%20would%20like%20to%20inquire%20about%20your%20services%20and%2050%25%20Launch%20Discount."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-[#28C76F] hover:text-[#25D366] font-semibold transition-colors cursor-pointer"
+              >
+                <MessageCircle className="w-3.5 h-3.5 fill-current" />
+                <span>Chat on WhatsApp (24/7 Support)</span>
+              </a>
             </div>
           </div>
 

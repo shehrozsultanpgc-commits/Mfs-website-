@@ -3,7 +3,6 @@ import { Currency } from '../types';
 import { useModalHistory } from '../hooks/useModalHistory';
 import {
   Sparkles,
-  Bot,
   Briefcase,
   CheckCircle2,
   Clock,
@@ -16,7 +15,7 @@ import {
   Upload,
   Download,
   MessageSquare,
-  Mic,
+  Mail,
   PhoneCall,
   RefreshCw,
   Bell,
@@ -284,11 +283,11 @@ export const DashboardHome: React.FC<DashboardHomeProps> = ({
           </div>
         </div>
 
-        {/* Motivational Quote & AI Focus Box */}
+        {/* Motivational Quote & Agency Focus Box */}
         <div className="p-4 rounded-2xl bg-gradient-to-r from-white/[0.04] to-black border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="flex items-start gap-3">
             <div className="p-2.5 rounded-2xl bg-[#E5C158]/20 text-[#E5C158] shrink-0">
-              <Bot className="w-5 h-5" />
+              <Sparkles className="w-5 h-5" />
             </div>
             <div className="space-y-0.5 text-xs">
               <div className="flex items-center gap-2">
@@ -296,18 +295,20 @@ export const DashboardHome: React.FC<DashboardHomeProps> = ({
                 <span className="text-[10px] bg-[#28C76F]/20 text-[#28C76F] px-2 py-0.5 rounded font-bold">100% Quality Focus</span>
               </div>
               <p className="text-neutral-300 italic">
-                "Quality is not an act, it is a habit — MFS Growth AI strives for zero-defect digital deliverables on every slide and document."
+                "Quality is not an act, it is a habit — MFS Growth Agency strives for zero-defect digital deliverables on every slide and document."
               </p>
             </div>
           </div>
 
-          <button
-            onClick={() => onOpenAIChat && onOpenAIChat('chat')}
-            className="px-4 py-2 rounded-xl bg-[#E5C158] hover:bg-[#fce888] text-[#050507] font-bold text-xs transition-all shrink-0 cursor-pointer shadow-lg flex items-center gap-2"
+          <a
+            href="https://wa.me/923015323689?text=Hello%20MFS%20Growth%20Agency!%20I%20am%20in%20my%20Client%20Portal%20and%20need%20assistance."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 rounded-xl bg-[#28C76F] hover:bg-[#25D366] text-[#050507] font-bold text-xs transition-all shrink-0 cursor-pointer shadow-lg flex items-center gap-2"
           >
-            <Sparkles className="w-3.5 h-3.5 text-black" />
-            <span>Consult MFS AI Assistant</span>
-          </button>
+            <MessageSquare className="w-3.5 h-3.5 text-black" />
+            <span>Chat on WhatsApp</span>
+          </a>
         </div>
       </div>
 
@@ -737,32 +738,34 @@ export const DashboardHome: React.FC<DashboardHomeProps> = ({
           </button>
 
           {/* Action 5 */}
-          <button
-            onClick={() => onOpenAIChat && onOpenAIChat('chat')}
-            className="p-4 rounded-2xl bg-white/[0.03] hover:bg-[#E5C158]/10 border border-white/10 hover:border-[#E5C158] text-left cursor-pointer transition-all group space-y-2"
+          <a
+            href="https://wa.me/923015323689?text=Hello%20MFS%20Growth%20Agency!%20I%20need%20assistance%20with%20my%20order."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-4 rounded-2xl bg-white/[0.03] hover:bg-[#28C76F]/10 border border-white/10 hover:border-[#28C76F] text-left cursor-pointer transition-all group space-y-2 block"
           >
-            <div className="p-2.5 rounded-xl bg-[#E5C158]/20 text-[#E5C158] w-fit group-hover:scale-110 transition-transform">
-              <Bot className="w-5 h-5" />
+            <div className="p-2.5 rounded-xl bg-[#28C76F]/20 text-[#28C76F] w-fit group-hover:scale-110 transition-transform">
+              <MessageSquare className="w-5 h-5 fill-current" />
             </div>
             <div>
-              <h4 className="font-poppins font-bold text-white text-xs">Ask MFS Chat AI</h4>
-              <p className="text-[10px] text-neutral-400 mt-0.5">24/7 AI Assistant guidance</p>
+              <h4 className="font-poppins font-bold text-white text-xs">WhatsApp Support Desk</h4>
+              <p className="text-[10px] text-neutral-400 mt-0.5">24/7 direct senior support</p>
             </div>
-          </button>
+          </a>
 
           {/* Action 6 */}
-          <button
-            onClick={() => onOpenAIChat && onOpenAIChat('voice')}
-            className="p-4 rounded-2xl bg-white/[0.03] hover:bg-amber-500/10 border border-white/10 hover:border-amber-500 text-left cursor-pointer transition-all group space-y-2"
+          <a
+            href="mailto:mfsmedia.agency@gmail.com"
+            className="p-4 rounded-2xl bg-white/[0.03] hover:bg-[#E5C158]/10 border border-white/10 hover:border-[#E5C158] text-left cursor-pointer transition-all group space-y-2 block"
           >
-            <div className="p-2.5 rounded-xl bg-amber-500/20 text-amber-400 w-fit group-hover:scale-110 transition-transform">
-              <Mic className="w-5 h-5 animate-pulse" />
+            <div className="p-2.5 rounded-xl bg-[#E5C158]/20 text-[#E5C158] w-fit group-hover:scale-110 transition-transform">
+              <Mail className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="font-poppins font-bold text-white text-xs">MFS Voice AI</h4>
-              <p className="text-[10px] text-neutral-400 mt-0.5">Hands-free voice queries</p>
+              <h4 className="font-poppins font-bold text-white text-xs">Email Project Files</h4>
+              <p className="text-[10px] text-neutral-400 mt-0.5">Submit briefs & large zip archives</p>
             </div>
-          </button>
+          </a>
 
           {/* Action 7 */}
           <a

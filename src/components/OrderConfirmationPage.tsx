@@ -173,15 +173,15 @@ export const OrderConfirmationPage: React.FC<OrderConfirmationPageProps> = ({
       {/* Main Order Details & Roadmap Grid */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
-        {/* Personalized AI Confirmation Card */}
+        {/* Official Project Confirmation Card */}
         <div className="glass-card rounded-3xl border border-white/10 p-6 sm:p-8 bg-black/90 space-y-4">
           <div className="flex items-center gap-3">
             <div className="p-3 rounded-2xl bg-[#E5C158]/10 text-[#E5C158] border border-[#E5C158]/30">
-              <Bot className="w-6 h-6" />
+              <CheckCircle2 className="w-6 h-6 text-[#28C76F]" />
             </div>
             <div>
               <span className="text-[10px] font-bold uppercase tracking-wider text-[#E5C158]">
-                PERSONALIZED AI PROJECT UPDATE
+                OFFICIAL PROJECT NOTIFICATION
               </span>
               <h3 className="text-lg font-poppins font-bold text-white">Project Initialization Message</h3>
             </div>
@@ -367,7 +367,7 @@ export const OrderConfirmationPage: React.FC<OrderConfirmationPageProps> = ({
                 <Gift className="w-8 h-8" />
               </div>
               <h2 className="text-2xl font-poppins font-extrabold text-white">
-                🎁 Unlocked Your MFS AI Welcome Gifts!
+                🎁 Unlocked Your MFS VIP Welcome Gifts!
               </h2>
               <p className="text-xs text-neutral-300 leading-relaxed">
                 Thank you for ordering with MFS Growth Agency. Here are your 4 complimentary VIP client perks:
@@ -376,10 +376,10 @@ export const OrderConfirmationPage: React.FC<OrderConfirmationPageProps> = ({
 
             <div className="space-y-3 text-xs">
               <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 flex items-start gap-3">
-                <Bot className="w-5 h-5 text-[#E5C158] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 text-[#28C76F] shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-white block font-bold">1. Free AI Project Consultation</strong>
-                  <p className="text-neutral-400 text-[11px]">Instant 24/7 guidance for formatting, structure, and slide flow.</p>
+                  <strong className="text-white block font-bold">1. 24/7 Dedicated Priority Support</strong>
+                  <p className="text-neutral-400 text-[11px]">Instant direct WhatsApp assistance for formatting, structure, and project guidance.</p>
                 </div>
               </div>
 
